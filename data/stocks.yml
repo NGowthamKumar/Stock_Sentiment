@@ -1,0 +1,18 @@
+stocks:
+  - ticker: HCLTECH.NS
+    name: HCL Technologies Limited
+    sector: IT Services
+    aliases: ["HCL Tech", "HCL Technologies", "HCL"]
+  - ticker: RELIANCE.NS
+    name: Reliance Industries Limited
+    sector: Conglomerate
+    aliases: ["Reliance", "RIL", "Reliance Industries"]
+  - ticker: INFY.NS
+    name: Infosys Limited
+    sector: IT Services
+    aliases: ["Infosys", "Infy"]
+  - ticker: TCS.NS
+    name: Tata Consultancy Services Limited
+    sector: IT Services
+    aliases: ["TCS", "Tata Consultancy Services"]
+# add the rest of your portfolio over time
