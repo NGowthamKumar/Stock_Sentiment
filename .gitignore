@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Data/model caches
+*.parquet
+*.pkl
+cache/
+hf_cache/
+.huggingface/
+~$*
+
+# Local runs / Streamlit
+.streamlit/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/

@@ -59,7 +59,7 @@ def main():
         
     df = df.dropna(subset=["ticker", "ensemble", "published_utc"]).copy()
     if df.empty:
-        print("❌ No rows with ticker+published_utc+ensemble.")
+        print("No rows with ticker+published_utc+ensemble.")
         return
 
     # classify events
@@ -69,7 +69,7 @@ def main():
     cutoff = now - pd.Timedelta(days=WINDOW_DAYS)
     df = df[df["published_utc"] >= cutoff]
     if df.empty:
-        print("❌ No rows in time window.")
+        print("No rows in time window.")
         return
 
     # recency weights
@@ -109,7 +109,7 @@ def main():
 
     out = pd.DataFrame(out_rows)
     if out.empty:
-        print("❌ No aggregates.")
+        print("No aggregates.")
         return
 
     # Normalize breadth/volume across current universe
@@ -128,7 +128,7 @@ def main():
     # Save today snapshot
     snap_path = "data/stock_sentiment_summary.csv"
     out.to_csv(snap_path, index=False)
-    print(f"✅ Summary → {snap_path} ({len(out)} tickers)")
+    print(f"Summary → {snap_path} ({len(out)} tickers)")
 
     # Append to history
     hist_dir = "data/history"
@@ -141,7 +141,7 @@ def main():
         combined.to_csv(hist_path, index=False)
     else:
         out.to_csv(hist_path, index=False)
-    print(f"📚 Appended snapshot → {hist_path}")
+    print(f"Appended snapshot → {hist_path}")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,70 @@
+name: daily-ingest-and-score
+
+on:
+  schedule:
+    # Every 30 min, Mon–Fri, 03:00–10:59 UTC (buffer around IST market hours)
+    - cron: "*/30 3-10 * * 1-5"
+  workflow_dispatch:
+
+# allow this workflow to push updated CSVs back to the repo
+permissions:
+  contents: write
+
+# prevent overlapping runs (useful when a run takes longer than the interval)
+concurrency:
+  group: daily-ingest-and-score
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      # cache location for HF models
+      HF_HOME: ~/.cache/huggingface
+      TRANSFORMERS_CACHE: ~/.cache/huggingface
+
+    steps:
+      - name: Random jitter (120–300s)
+        run: |
+          python - << 'PY'
+          import random, time
+          t = random.randint(120, 300)
+          print(f"Sleeping {t}s for polite staggering...")
+          time.sleep(t)
+          PY
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Cache FinBERT / HF models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-finbert
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Fetch → Sentiment → Aggregate → Predict
+        run: |
+          python -m src.fetch_news
+          python -m src.sentiment_vader
+          python -m src.aggregate_sentiment
+          # keep next-day predictions fresh using the last trained model
+          python -m src.predict_next || true
+
+      - name: Commit refreshed CSVs
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/*.csv data/history/*.csv || true
+          git commit -m "daily auto-update (ingest/sentiment/aggregate/predict)" || echo "no changes"
+          git push || true

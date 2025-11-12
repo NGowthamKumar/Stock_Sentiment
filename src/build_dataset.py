@@ -42,7 +42,7 @@ def main():
     os.makedirs("data/modeling", exist_ok=True)
     out = "data/modeling/dataset.parquet"
     df.to_parquet(out, index=False)
-    print(f"✅ Built dataset with {len(df)} rows → {out}")
+    print(f"Built dataset with {len(df)} rows → {out}")
 
 if __name__ == "__main__":
     main()
