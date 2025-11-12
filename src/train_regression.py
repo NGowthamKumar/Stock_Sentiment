@@ -33,7 +33,7 @@ def main():
     os.makedirs("models", exist_ok=True)
     df = pd.read_parquet("data/modeling/dataset.parquet").sort_values(["date","ticker"])
     if df.empty:
-        raise SystemExit("❌ dataset is empty. You need at least ~2 days of history.")
+        raise SystemExit("dataset is empty. You need at least ~2 days of history.")
 
     X, y = df[FEATURES], df[TARGET]
 
@@ -50,8 +50,8 @@ def main():
     best_name = min(scores, key=lambda n: (scores[n]["mae"], -scores[n]["dir_acc"]))
     best_model = models[best_name].fit(X, y)
     joblib.dump(dict(model=best_model, features=FEATURES), "models/nextday_regressor.pkl")
-    print(f"✅ Saved {best_name} → models/nextday_regressor.pkl")
-    print(f"🏁 Best scores: {scores[best_name]}")
+    print(f"Saved {best_name} → models/nextday_regressor.pkl")
+    print(f"Best scores: {scores[best_name]}")
 
 if __name__ == "__main__":
     main()

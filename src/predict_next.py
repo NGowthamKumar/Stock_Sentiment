@@ -14,7 +14,7 @@ def main():
 
     X = latest[["ticker", *features]].dropna()
     if X.empty:
-        raise SystemExit("❌ No rows with full features in latest snapshot.")
+        raise SystemExit("No rows with full features in latest snapshot.")
     preds = model.predict(X[features])
 
     out = X[["ticker"]].copy()

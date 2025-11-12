@@ -14,7 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 os.chdir(ROOT)
 
-print(f"🚀 Starting full update: {datetime.now():%Y-%m-%d %H:%M:%S}")
+print(f"Starting full update: {datetime.now():%Y-%m-%d %H:%M:%S}")
 
 # sequential pipeline
 os.system("python -m src.fetch_news")
@@ -29,4 +29,4 @@ os.system("python -m src.predict_next")
 # finally launch dashboard
 os.system("streamlit run dashboard/app.py")
 
-print(f"✅ Pipeline complete at {datetime.now():%H:%M:%S}")
+print(f"Pipeline complete at {datetime.now():%H:%M:%S}")

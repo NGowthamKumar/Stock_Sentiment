@@ -97,7 +97,7 @@ def main(days: int = 180):
     os.makedirs("data/history", exist_ok=True)
     out = "data/history/stock_sentiment_summary_history.csv"
     hist.to_csv(out, index=False)
-    print(f"✅ Backfilled {hist['date'].nunique()} days → {out} (rows={len(hist)})")
+    print(f"Backfilled {hist['date'].nunique()} days → {out} (rows={len(hist)})")
 
 if __name__ == "__main__":
     import sys
