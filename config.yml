@@ -1,0 +1,32 @@
+use_finbert: true
+half_life_hours: 36
+window_days: 10
+
+weights:
+  recency: 0.45
+  events: 0.25
+  breadth: 0.20
+  volume: 0.10
+
+event_weights:
+  EARNINGS: 0.7
+  GUIDANCE: 0.6
+  MA: 0.6
+  LITIGATION: -0.7
+  REGULATORY: -0.5
+  MGMT_CHANGE: 0.3
+  ORDER_WIN: 0.5
+  MACRO: 0.2
+  OTHER: 0.0
+
+source_weights:
+  EXCHANGE: 1.0
+  SEBI: 0.95
+  IR: 0.9
+  REUTERS: 0.85
+  BUSINESSLINE: 0.8
+  LIVEMINT: 0.8
+  MONEYCONTROL: 0.7
+  ET_MARKETS: 0.7
+  GOOGLE_NEWS: 0.6
+  OTHER: 0.5
