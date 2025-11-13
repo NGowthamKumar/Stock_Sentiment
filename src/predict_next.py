@@ -21,7 +21,7 @@ def main():
     out["pred_ret_1d_pct"] = preds
     out = out.sort_values("pred_ret_1d_pct", ascending=False)
     out.to_csv("data/predictions_nextday.csv", index=False)
-    print("✅ Wrote predictions → data/predictions_nextday.csv")
+    print("Wrote predictions → data/predictions_nextday.csv")
     print(out.head(10))
 
 if __name__ == "__main__":

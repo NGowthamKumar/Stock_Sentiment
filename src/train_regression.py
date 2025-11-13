@@ -49,6 +49,23 @@ def main():
 
     best_name = min(scores, key=lambda n: (scores[n]["mae"], -scores[n]["dir_acc"]))
     best_model = models[best_name].fit(X, y)
+    # ---------------------------------------------------------
+    # Save metrics for dashboard / Model Health tab
+    # ---------------------------------------------------------
+    metrics_path = "data/modeling/model_metrics.csv"
+
+    pd.DataFrame([{
+        "train_date": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M"),
+        "best_model": best_name,
+        "mae": scores[best_name]["mae"],
+        "r2": scores[best_name]["r2"],
+        "direction_accuracy": scores[best_name]["dir_acc"],
+        "spearman": scores[best_name]["spearman"],
+        "rows": len(df)
+    }]).to_csv(metrics_path, index=False)
+
+    print(f"Saved model metrics → {metrics_path}")
+    # ---------------------------------------------------------
     joblib.dump(dict(model=best_model, features=FEATURES), "models/nextday_regressor.pkl")
     print(f"Saved {best_name} → models/nextday_regressor.pkl")
     print(f"Best scores: {scores[best_name]}")
