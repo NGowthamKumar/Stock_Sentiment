@@ -314,10 +314,10 @@ with st.expander(" About SmartScore Components"):
     st.markdown("""
         **SmartScore (0–100)** is a composite index combining multiple sentiment and event-driven factors:
 
-        - **S_recency** — measures how recent and consistent the sentiment is; fresh news has higher weight  
-        - **S_events** — captures the type of news (earnings, orders, penalties, etc.) and its sentiment impact  
-        - **S_breadth** — represents the ratio of positive vs. negative headlines for the stock  
-        - **S_volume** — reflects total news flow (how much the stock is being discussed)
+        - **S_recency** - measures how recent and consistent the sentiment is; fresh news has higher weight  
+        - **S_events** - captures the type of news (earnings, orders, penalties, etc.) and its sentiment impact  
+        - **S_breadth** - represents the ratio of positive vs. negative headlines for the stock  
+        - **S_volume** - reflects total news flow (how much the stock is being discussed)
 
         **Formula:**  
         SmartScore = 0.45 × S_recency + 0.25 × S_events + 0.20 × S_breadth + 0.10 × S_volume
