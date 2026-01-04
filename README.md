@@ -166,6 +166,7 @@ git clone https://github.com/yourusername/indian-stock-sentiment
 cd indian-stock-sentiment
 pip install -r requirements.txt
 python src/run_daily.py
+```
 
 ---
 
@@ -173,6 +174,7 @@ python src/run_daily.py
 
 ```bash
 streamlit run dashboard/app.py
+```
 
 ---
 
