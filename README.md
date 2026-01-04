@@ -132,19 +132,19 @@ STOCK_SENTIMENT/
 │   └─ nextday_regressor.pkl   # Best trained model
 │
 ├─ src/
-│ ├─ aggregate_sentiment.py # SmartScore computation logic
-│ ├─ backfill_history.py # Historical SmartScore reconstruction
-│ ├─ build_dataset.py # Feature + label dataset creation
-│ ├─ config.py # Central configuration
-│ ├─ entity_map.py # Ticker alias & entity resolution
-│ ├─ event_classifier.py # Rule-based event classification
-│ ├─ fetch_news.py # RSS ingestion & normalization
-│ ├─ predict_next.py # Next-day return prediction
-│ ├─ price_labels.py # Price fetching & forward returns
-│ ├─ run_daily.py # Full daily pipeline runner
-│ ├─ sentiment_vader.py # FinBERT + VADER ensemble sentiment
-│ ├─ train_regression.py # ML training & evaluation
-│ └─ utils_text.py # Text cleaning utilities
+│ ├─ aggregate_sentiment.py    # SmartScore computation logic
+│ ├─ backfill_history.py       # Historical SmartScore reconstruction
+│ ├─ build_dataset.py          # Feature + label dataset creation
+│ ├─ config.py                 # Central configuration
+│ ├─ entity_map.py             # Ticker alias & entity resolution
+│ ├─ event_classifier.py       # Rule-based event classification
+│ ├─ fetch_news.py             # RSS ingestion & normalization
+│ ├─ predict_next.py           # Next-day return prediction
+│ ├─ price_labels.py           # Price fetching & forward returns
+│ ├─ run_daily.py              # Full daily pipeline runner
+│ ├─ sentiment_vader.py        # FinBERT + VADER ensemble sentiment
+│ ├─ train_regression.py       # ML training & evaluation
+│ └─ utils_text.py             # Text cleaning utilities
 │
 ├─ config.yml
 └─ requirements.txt
@@ -165,7 +165,7 @@ STOCK_SENTIMENT/
 
 ```bash
 git clone https://github.com/NGowthamKumar/Stock_Sentiment.git
-cd indian-stock-sentiment
+cd Stock_Sentiment
 pip install -r requirements.txt
 python src/run_daily.py
 ```
