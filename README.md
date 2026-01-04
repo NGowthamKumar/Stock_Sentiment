@@ -109,6 +109,7 @@ All pipelines are **fully automated** using GitHub Actions.
 ---
 
 ## Project Structure
+```
 STOCK_SENTIMENT/
 │
 ├─ .github/workflows/
@@ -147,6 +148,7 @@ STOCK_SENTIMENT/
 │
 ├─ config.yml
 └─ requirements.txt
+```
 
 ---
 
