@@ -164,7 +164,7 @@ STOCK_SENTIMENT/
 ## Installation & Local Setup
 
 ```bash
-git clone https://github.com/yourusername/indian-stock-sentiment
+git clone https://github.com/NGowthamKumar/Stock_Sentiment.git
 cd indian-stock-sentiment
 pip install -r requirements.txt
 python src/run_daily.py
