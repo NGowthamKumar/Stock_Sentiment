@@ -1,10 +1,14 @@
 # dashboard/app.py
+import os   
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 from datetime import datetime
 
 st.set_page_config(page_title="Indian Stock Sentiment Analyser", layout="wide")
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Stock_Sentiment root
 
 # ---------- helpers ----------
 @st.cache_data
@@ -15,10 +19,11 @@ def load_csv_with_mtime(path, mtime, parse_dates=None):
         return pd.DataFrame()
     
 def load_csv(path, parse_dates=None):
-    if not os.path.exists(path):
+    full_path = os.path.join(BASE_DIR, path)
+    if not os.path.exists(full_path):
         return pd.DataFrame()
-    mtime = os.path.getmtime(path)   # cache busting key
-    return load_csv_with_mtime(path, mtime, parse_dates)
+    mtime = os.path.getmtime(full_path)   # cache busting key
+    return load_csv_with_mtime(full_path, mtime, parse_dates)
 
 def fmt_dt(ts=None):
     return datetime.now().strftime("%Y-%m-%d %H:%M")
