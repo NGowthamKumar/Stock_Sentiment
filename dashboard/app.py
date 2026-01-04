@@ -8,11 +8,17 @@ st.set_page_config(page_title="Indian Stock Sentiment Analyser", layout="wide")
 
 # ---------- helpers ----------
 @st.cache_data
-def load_csv(path, parse_dates=None):
+def load_csv_with_mtime(path, mtime, parse_dates=None):
     try:
         return pd.read_csv(path, parse_dates=parse_dates)
     except Exception:
         return pd.DataFrame()
+    
+def load_csv(path, parse_dates=None):
+    if not os.path.exists(path):
+        return pd.DataFrame()
+    mtime = os.path.getmtime(path)   # cache busting key
+    return load_csv_with_mtime(path, mtime, parse_dates)
 
 def fmt_dt(ts=None):
     return datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -150,7 +156,7 @@ with tab4:
     import os
     metrics_path = "data/modeling/model_metrics.csv"
     if os.path.exists(metrics_path):
-        metrics = pd.read_csv(metrics_path)
+        metrics = load_csv(metrics_path)
         if not metrics.empty:
             row = metrics.iloc[-1]  # latest training row
             c1, c2, c3 = st.columns(3)
@@ -163,6 +169,11 @@ with tab4:
             st.caption(
                 f"Last trained: **{row['train_date']}** — using **{int(row['rows'])} samples**"
             )
+            st.caption(
+                f"Metrics file updated at: "
+                f"{datetime.fromtimestamp(os.path.getmtime(metrics_path))}"
+            )
+
             st.markdown("---")
             if len(metrics) > 1:
                 st.markdown("### Training Trend")
@@ -178,7 +189,7 @@ with tab4:
     - The model is retrained automatically **every Friday** (via GitHub Actions).
     - SmartScore features include recency, events, breadth, and volume signals.
     """)
-
+    
 # ================================ TECH & WORKFLOW =====================
 with tab5:
     st.subheader("Technical Details & Workflow")
