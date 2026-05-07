@@ -23,21 +23,25 @@ def main():
     feats = feats.sort_values(["ticker","date"])
     feats[["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg"]] = \
         feats.groupby("ticker")[["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg"]].shift(1)
-
+    
+    
     first = feats["date"].min().date()
     last = feats["date"].max().date()
-    start = (first - pd.Timedelta(days=3)).strftime("%Y-%m-%d")
+    start = (first - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
     end   = (last + pd.Timedelta(days=2)).strftime("%Y-%m-%d")
 
     tickers = sorted(feats["ticker"].dropna().unique().tolist())
     prices = fetch_prices(tickers, start, end)
     prices["date"] = pd.to_datetime(prices["date"]).dt.tz_localize(None)
     prices = add_forward_return(prices, horizon_days=1)
+    prices = prices.sort_values(["ticker","date"])
+    prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
+    prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
 
     df = feats.merge(prices, on=["date","ticker"], how="inner")
 
     # Drop rows with missing shifted features or label
-    df = df.dropna(subset=["smart_score","ret_fwd"]).copy()
+    df = df.dropna(subset=["smart_score","ret_fwd","ret_lag1"]).copy()
 
     os.makedirs("data/modeling", exist_ok=True)
     out = "data/modeling/dataset.parquet"
