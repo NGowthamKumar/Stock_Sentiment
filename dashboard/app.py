@@ -158,14 +158,14 @@ with tab3:
 # ================================ MODEL HEALTH =======================
 with tab4:
     st.subheader("Model Health Dashboard")
-    import os
     metrics_path = "data/modeling/model_metrics.csv"
     if os.path.exists(metrics_path):
         metrics = load_csv(metrics_path)
         if not metrics.empty:
-            row = metrics.iloc[-1]  # latest training row
+            best_rows = metrics[metrics["is_best"] == True]
+            row = best_rows.iloc[-1] if not best_rows.empty else metrics.iloc[-1] 
             c1, c2, c3 = st.columns(3)
-            c1.metric("Best Model", row["best_model"])
+            c1.metric("Best Model", row["model"])
             c2.metric("MAE", f"{row['mae']:.4f}")
             c3.metric("Direction Accuracy", f"{row['direction_accuracy']*100:.2f}%")
             c4, c5 = st.columns(2)
@@ -180,9 +180,24 @@ with tab4:
             )
 
             st.markdown("---")
-            if len(metrics) > 1:
-                st.markdown("### Training Trend")
-                st.line_chart(metrics[["mae", "direction_accuracy"]])
+            if len(best_rows) > 1:
+                st.markdown("### Training Trend (Best Model)")
+                fig_trend = px.line(
+                    best_rows.sort_values("train_date"),
+                    x="train_date",
+                    y=["mae", "direction_accuracy", "spearman"],
+                    markers=True,
+                    title="Model Metrics Over Time"
+                )
+                st.plotly_chart(fig_trend, use_container_width=True)
+
+            # Model comparison table 
+            st.markdown("### All Training Runs")
+            st.dataframe(
+                metrics.sort_values("train_date", ascending=False),
+                use_container_width=True,
+                hide_index=True
+            )
     else:
         st.info("Model metrics not found yet. They will appear after the first weekly training run.")
     st.markdown("---")
