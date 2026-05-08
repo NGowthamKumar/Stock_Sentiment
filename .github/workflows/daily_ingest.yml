@@ -58,6 +58,18 @@ jobs:
           python -m src.fetch_news
           python -m src.sentiment_vader
           python -m src.aggregate_sentiment
+          # Fetch FII/DII only after 18:30 IST (13:00 UTC)
+          python - << 'PY'
+          from datetime import datetime, timezone, timedelta
+          IST = timezone(timedelta(hours=5, minutes=30))
+          ist_hour = datetime.now(IST).hour
+          if ist_hour >= 18:
+              print("Post-market: fetching FII/DII...")
+              import os
+              os.system("python -m src.fetch_fii_dii")
+          else:
+              print(f"Skipping FII/DII (IST hour: {ist_hour})")
+          PY
           # keep next-day predictions fresh using the last trained model
           python -m src.predict_next || true
 
@@ -66,5 +78,6 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/*.csv data/history/*.csv || true
+          git add data/fii_dii_history.csv || true
           git commit -m "daily auto-update (ingest/sentiment/aggregate/predict)" || echo "no changes"
           git push || true
