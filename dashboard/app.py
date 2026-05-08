@@ -240,6 +240,7 @@ with tab5:
            • **S_volume:** log(news count), min–max normalized  
            **SmartScore = 0.45·S_recency + 0.25·S_events + 0.20·S_breadth + 0.10·S_volume**
         5. **Modeling (next-day)** → join SmartScores with adjusted close from **yfinance**; label = **t→t+1 % return**.  
+           • Features include **SmartScore components + price momentum** (ret_lag1, ret_lag2 - previous 1 and 2 day returns).  
            • Train **Ridge** and **RandomForest** with **TimeSeriesSplit**, report **MAE**, **Direction Accuracy**, **Spearman**.  
            • Pick the best model (lowest MAE; tie-break by direction accuracy).
         6. **Signals & UI** → generate **predicted next-day returns** per ticker; visualize in Streamlit with filters for Recency, Events, Breadth, and Volume.

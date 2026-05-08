@@ -40,6 +40,20 @@ def main():
 
     df = feats.merge(prices, on=["date","ticker"], how="inner")
 
+    # FII/DII flow features
+    fii_dii_path = "data/fii_dii_history.csv"
+    if os.path.exists(fii_dii_path):
+        fii_dii = pd.read_csv(fii_dii_path, parse_dates=["date"])
+        fii_dii["date"] = pd.to_datetime(fii_dii["date"]).dt.tz_localize(None)
+        df = df.merge(fii_dii[["date","fii_net","dii_net"]], on="date", how="left")
+        df["fii_net"] = df["fii_net"].fillna(0)
+        df["dii_net"] = df["dii_net"].fillna(0)
+        print(f"Merged FII/DII features → {df[['fii_net','dii_net']].notna().sum().to_dict()}")
+    else:
+        df["fii_net"] = 0
+        df["dii_net"] = 0
+        print("FII/DII history not found, defaulting to 0")
+
     # Drop rows with missing shifted features or label
     df = df.dropna(subset=["smart_score","ret_fwd","ret_lag1"]).copy()
 

@@ -10,7 +10,7 @@ from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.linear_model import Ridge
 from sklearn.ensemble import RandomForestRegressor
 
-FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2"]
+FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net"]
 TARGET = "ret_fwd"
 
 def evaluate(model, X, y, folds=5):
