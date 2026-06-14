@@ -38,6 +38,10 @@ def main():
     prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
     prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
 
+    # Clip extreme outliers from corporate actions (splits, demergers, bonus issues)
+    for col in ["ret_fwd", "ret_lag1", "ret_lag2"]:
+        prices[col] = prices[col].clip(lower=-15, upper=15)
+
     df = feats.merge(prices, on=["date","ticker"], how="inner")
 
     # FII/DII flow features
