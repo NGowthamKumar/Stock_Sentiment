@@ -4,10 +4,7 @@ __pycache__/
 .venv/
 venv/
 
-# Data/model caches
-*.parquet
-*.pkl
-cache/
+# Hugging Face / model download caches
 hf_cache/
 .huggingface/
 ~$*
