@@ -17,3 +17,6 @@ tqdm
 scikit-learn
 joblib
 PyYAML
+xgboost
+pyarrow
+pydantic-settings
