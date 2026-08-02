@@ -32,6 +32,7 @@ def fmt_dt(ts=None):
 summary = load_csv("data/stock_sentiment_summary.csv")              # today snapshot
 hist    = load_csv("data/history/stock_sentiment_summary_history.csv", parse_dates=["date"])
 preds   = load_csv("data/predictions_nextday.csv")
+signals = load_csv("data/xgb_signals.csv")  # XGBoost UP/DOWN signals
 
 st.title("Indian Stock Sentiment Analyser")
 st.caption(f"Last updated: {fmt_dt()}  •  Data: Google News, Moneycontrol, ET Markets, Investing.com")
@@ -46,8 +47,8 @@ if "date" in hist.columns:
     hist["date"] = pd.to_datetime(hist["date"], errors="coerce")
 
 # -------------------------------- TABS --------------------------------
-tab1, tab2, tab3, tab4, tab5 = st.tabs(
-    ["Overview", "Predictions", "Stock Drilldown", "Model Health", "Tech & Workflow"]
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
+    ["Overview", "Predictions", "Signals", "Stock Drilldown", "Model Health", "Tech & Workflow"]
 )
 
 # ================================ OVERVIEW ============================
@@ -123,8 +124,76 @@ with tab2:
 
         st.caption("Note: Predictions are signals, not guarantees. Use thresholds and breadth/event filters.")
 
-# ================================ DRILLDOWN ===========================
+# ================================ SIGNALS ============================
 with tab3:
+    st.subheader("XGBoost Signal Dashboard")
+    st.caption("UP/DOWN probability signals from XGBoost Classifier — updated after each daily run")
+
+    if signals.empty:
+        st.info("No XGBoost signals yet. Run the weekly training first to generate signals.")
+    else:
+        # Merge with summary for SmartScore context
+        sig_merged = signals.merge(summary, on="ticker", how="left")
+
+        # Filter controls
+        c1, c2 = st.columns(2)
+        with c1:
+            min_prob = st.slider("Min UP probability (%)", 0, 100, 55)
+        with c2:
+            signal_filter = st.multiselect(
+                "Filter by signal",
+                options=["🟢 STRONG BULLISH", "🟡 MILD BULLISH", "⚪ NEUTRAL", 
+                         "🟠 MILD BEARISH", "🔴 STRONG BEARISH"],
+                default=["🟢 STRONG BULLISH", "🟡 MILD BULLISH"]
+            )
+
+        filtered = sig_merged[
+            (sig_merged["up_probability"] >= min_prob) &
+            (sig_merged["signal"].isin(signal_filter))
+        ].sort_values("up_probability", ascending=False)
+
+        st.write(f"**Stocks meeting criteria: {len(filtered)}**")
+
+        # Main signals table
+        display_cols = ["ticker", "signal", "confidence", "up_probability", 
+                        "smart_score", "S_recency", "S_events"]
+        display_cols = [c for c in display_cols if c in filtered.columns]
+        st.dataframe(filtered[display_cols], use_container_width=True, hide_index=True)
+
+        # Visual chart
+        col1, col2 = st.columns(2)
+        with col1:
+            top_bull = signals.nlargest(15, "up_probability")
+            fig_bull = px.bar(
+                top_bull, x="ticker", y="up_probability",
+                color="up_probability",
+                color_continuous_scale="Greens",
+                title="Top Bullish Signals (% probability UP)"
+            )
+            fig_bull.add_hline(y=50, line_dash="dash", line_color="gray", 
+                               annotation_text="50% baseline")
+            st.plotly_chart(fig_bull, use_container_width=True)
+
+        with col2:
+            top_bear = signals.nsmallest(15, "up_probability")
+            fig_bear = px.bar(
+                top_bear, x="ticker", y="up_probability",
+                color="up_probability",
+                color_continuous_scale="Reds_r",
+                title="Top Bearish Signals (% probability UP)"
+            )
+            fig_bear.add_hline(y=50, line_dash="dash", line_color="gray",
+                               annotation_text="50% baseline")
+            st.plotly_chart(fig_bear, use_container_width=True)
+
+        st.caption("""
+        ⚠️ Signals are research indicators only — not financial advice.  
+        High confidence signals (>65% or <35%) are more meaningful than neutral ones.
+        Use alongside SmartScore and your own research before any decision.
+        """)
+
+# ================================ DRILLDOWN ===========================
+with tab4:
     st.subheader("Stock Drilldown")
 
     tickers = sorted(summary["ticker"].unique().tolist())
@@ -156,7 +225,7 @@ with tab3:
         st.write(f" Pos: **{int(row.pos)}** Neg: **{int(row.neg)}** Total: **{int(row.total)}**")
 
 # ================================ MODEL HEALTH =======================
-with tab4:
+with tab5:
     st.subheader("Model Health Dashboard")
     metrics_path = "data/modeling/model_metrics.csv"
     if os.path.exists(metrics_path):
@@ -201,6 +270,29 @@ with tab4:
     else:
         st.info("Model metrics not found yet. They will appear after the first weekly training run.")
     st.markdown("---")
+    # XGBoost accuracy display
+    if not metrics.empty:
+        xgb_rows = metrics[metrics["model"] == "XGBoost_Classifier"]
+        if not xgb_rows.empty:
+            latest_xgb = xgb_rows.sort_values("train_date").iloc[-1]
+            st.markdown("### XGBoost Classifier")
+            c1, c2 = st.columns(2)
+            c1.metric("XGBoost Direction Accuracy", 
+                      f"{latest_xgb['direction_accuracy']*100:.2f}%")
+            c2.metric("Trained On", f"{int(latest_xgb['rows'])} samples")
+            
+            if len(xgb_rows) > 1:
+                st.markdown("### XGBoost Accuracy Trend")
+                fig_xgb = px.line(
+                    xgb_rows.sort_values("train_date"),
+                    x="train_date",
+                    y="direction_accuracy",
+                    markers=True,
+                    title="XGBoost Classification Accuracy Over Time"
+                )
+                st.plotly_chart(fig_xgb, use_container_width=True)
+
+    st.markdown("---")
     st.markdown("### Notes")
     st.write("""
     - Predictions use TimeSeriesSplit CV to avoid leakage.
@@ -211,7 +303,7 @@ with tab4:
     """)
     
 # ================================ TECH & WORKFLOW =====================
-with tab5:
+with tab6:
     st.subheader("Technical Details & Workflow")
 
     # ---------- 0) One-paragraph explainer ----------
