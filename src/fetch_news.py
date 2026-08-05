@@ -55,7 +55,7 @@ STOCKS_FOR_GOOGLE = [
     "Sun TV Network", "Reliance Power", "Delta Corp", "PNB",
     "Yes Bank", "ITC", "IndusInd Bank", "Sail", "ONGC", "EaseMyTrip",
     "BHEL", "BLS International Services", "Natco Pharma", "NBCC(India)",
-    "IEX", "Tata Technologies", "Indian Overseas Bank", "SJVN","Tata Motors Passenger Vehicles",
+    "IEX", "Tata Technologies", "Indian Overseas Bank", "SJVN",
     "Tata Motors Commercial Vehicles", "ICICI Bank",
     "TCS", "Bharti Airtel", "State Bank of India", "Bajaj Finance", "Larsen Toubro",
     "Hindustan Unilever", "Sun Pharma", "Maruti Suzuki", "Mahindra Mahindra", "Wipro",
@@ -66,6 +66,7 @@ STOCKS_FOR_GOOGLE = [
     "Asian Paints", "Dabur", "Godrej Consumer", "Titan Company", "Trent",
     "Dr Reddy Labs", "Cipla", "Divis Laboratories", "Apollo Hospitals",
     "Bajaj Auto", "Hero MotoCorp", "Eicher Motors", "Zomato", "Paytm", "Dmart", "LIC India", "DLF",
+    "Shree Cement", "UltraTech Cement", "IndiGo Airlines", "Max Healthcare", "Hindalco", "JSW Steel",
 ]
 
 # ---------------------------
@@ -102,7 +103,7 @@ ALIAS_TO_TICKER_PATTERNS = [
     (r"\bTata\s*Technologies\b",            "TATATECH.NS"),
     (r"\bIndian\s*Overseas\s*Bank\b",       "IOB.NS"),
     (r"\bSJVN\b",                           "SJVN.NS"),
-    (r"\bSpiceJet\b",                       "SPICEJET.NS"),
+    (r"\bSpiceJet\b",                       "SPICEJET.BO"),
     (r"\bEaseMyTrip\b",                     "EASEMYTRIP.NS"),
     (r"\bBLS\s*International\b",            "BLS.NS"),
     (r"\bUPL\b",                            "UPL.NS"),
@@ -113,8 +114,8 @@ ALIAS_TO_TICKER_PATTERNS = [
     (r"\bBansal\s*Wires\b",                 "BANSALWIRE.NS"),
     # Adani Energy Solutions sometimes appears as "Adani Trans"
     (r"\bAdani\s*(?:Energy\s*Solutions|Trans(?:mission)?)\b", "ADANIENSOL.NS"),
-    (r"\bTata\s*Motors\s*Passenger\b|\bTAMO\b", "TAMO.NS"),
-    (r"\bTata\s*Motors\b|\bTMCV\b", "TMCV.NS"),
+    (r"\bTata\s*Motors\s*Passenger\b|\bTAMO\b|\bTMPV\b", "TMPV.NS"),
+    (r"\bTata\s*Motors\s*(?:Commercial|CV)?\b|\bTMCV\b", "TMCV.NS"),
     (r"\bICICI\s*Bank\b",                   "ICICIBANK.NS"),
     (r"\bTCS\b|\bTata\s*Consultancy\b",     "TCS.NS"),
     (r"\bBharti\s*Airtel\b|\bAirtel\b",     "BHARTIARTL.NS"),
@@ -155,15 +156,19 @@ ALIAS_TO_TICKER_PATTERNS = [
     (r"\bBajaj\s*Auto\b",                               "BAJAJ-AUTO.NS"),
     (r"\bHero\s*(?:MotoCorp|Moto)\b",                   "HEROMOTOCO.NS"),
     (r"\bEicher\s*Motors\b|\bRoyal\s*Enfield\b",        "EICHERMOT.NS"),
-    (r"\bZomato\b",                                     "ZOMATO.NS"),
+    (r"\bZomato\b|\bEternal\b",                         "ETERNAL.NS"),
     (r"\bPaytm\b|\bOne97\b",                            "PAYTM.NS"),
     (r"\bDmart\b|\bAvenue\s*Supermarts\b",              "DMART.NS"),
     (r"\bLIC\b|\bLife\s*Insurance\s*Corporation\b",     "LICI.NS"),
     (r"\bDLF\b",                                        "DLF.NS"),
     (r"\bIRFC\b|\bIndian\s*Railway\s*Finance\b",        "IRFC.NS"),
     (r"\bNatco\s*Pharma\b",                             "NATCOPHARM.NS"),
-    # Optional / new listings:
-    # (r"\bOla\s*Electric\b",               "OLA.NS"),  # if listed later
+    (r"\bShree\s*Cement\b",                             "SHREECEM.NS"),
+    (r"\bUltraTech\s*Cement\b",                         "ULTRACEMCO.NS"),
+    (r"\bIndiGo\b|\bInterGlobe\b",                      "INDIGO.NS"),
+    (r"\bMax\s*Healthcare\b",                           "MAXHEALTH.NS"),
+    (r"\bHindalco\b",                                   "HINDALCO.NS"),
+    (r"\bJSW\s*Steel\b",                                "JSWSTEEL.NS"),
 ]
 
 ALIAS_REGEX = [(re.compile(pat, re.I), tk) for pat, tk in ALIAS_TO_TICKER_PATTERNS]

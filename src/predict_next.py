@@ -36,18 +36,54 @@ def build_features(latest):
         else:
             latest["fii_net"] = 0
             latest["dii_net"] = 0
-
+    # Fetch macro indicators if model needs them
+    if "india_vix" not in latest.columns:
+        try:
+            import yfinance as yf
+            end = pd.Timestamp.now().strftime("%Y-%m-%d")
+            start = (pd.Timestamp.now() - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
+            
+            macro_map = {
+                "^INDIAVIX": "india_vix",
+                "CL=F":      "crude_oil",
+                "USDINR=X":  "usd_inr"
+            }
+            for ticker, col in macro_map.items():
+                data = yf.download(ticker, start=start, end=end,
+                                  progress=False, auto_adjust=True)
+                if not data.empty:
+                    if isinstance(data.columns, pd.MultiIndex):
+                        data.columns = data.columns.get_level_values(0)
+                    latest_val = float(data["Close"].iloc[-1].iloc[0] if hasattr(data["Close"].iloc[-1], 'iloc') else data["Close"].iloc[-1])
+                    prev_val = float(data["Close"].iloc[-2].iloc[0] if hasattr(data["Close"].iloc[-2], 'iloc') else data["Close"].iloc[-2]) if len(data) > 1 else latest_val
+                    latest[col] = latest_val
+                    change_col = {"india_vix": "vix_change",
+                                  "crude_oil": "oil_change",
+                                  "usd_inr":   "usdinr_change"}[col]
+                    latest[change_col] = (latest_val - prev_val) / prev_val * 100
+                else:
+                    latest[col] = 0
+                    change_col = {"india_vix": "vix_change",
+                                  "crude_oil": "oil_change",
+                                  "usd_inr":   "usdinr_change"}[col]
+                    latest[change_col] = 0
+        except Exception as e:
+            print(f"Warning: macro fetch failed: {e}")
+            for col in ["india_vix","crude_oil","usd_inr",
+                        "vix_change","oil_change","usdinr_change"]:
+                if col not in latest.columns:
+                    latest[col] = 0
     return latest
 
 def get_signal_label(prob):
     """Convert XGBoost probability to human readable signal"""
-    if prob >= 0.65:
+    if prob >= 0.72:
         return "🟢 STRONG BULLISH"
-    elif prob >= 0.55:
+    elif prob >= 0.6:
         return "🟡 MILD BULLISH"
-    elif prob >= 0.45:
+    elif prob >= 0.42:
         return "⚪ NEUTRAL"
-    elif prob >= 0.35:
+    elif prob >= 0.30:
         return "🟠 MILD BEARISH"
     else:
         return "🔴 STRONG BEARISH"
@@ -83,7 +119,7 @@ def main():
     print("Wrote predictions → data/predictions_nextday.csv")
     print(out.head(10))
 
-    # ── XGBoost Classifier signals (new) ──
+    # ── XGBoost Classifier signals ──
     xgb_path = "models/xgb_classifier.pkl"
     if os.path.exists(xgb_path):
         xgb_bundle = joblib.load(xgb_path)
@@ -103,6 +139,57 @@ def main():
         print("\nXGBoost Signals:")
         print(signals.head(10))
         print("Wrote XGBoost signals → data/xgb_signals.csv")
+
+    # ── Voting Ensemble signals (new) ──
+    ensemble_path = "models/voting_ensemble.pkl"
+    if os.path.exists(ensemble_path):
+        ens_bundle = joblib.load(ensemble_path)
+        ens_model = ens_bundle["model"]
+        ens_features = ens_bundle["features"]
+
+        X_ens = latest[["ticker", *ens_features]].dropna()
+        ens_probs = ens_model.predict_proba(X_ens[ens_features])[:, 1]
+
+        # Individual model probabilities for transparency
+        xgb_probs  = ens_model.estimators_[0].predict_proba(X_ens[ens_features])[:, 1]
+        lgbm_probs = ens_model.estimators_[1].predict_proba(X_ens[ens_features])[:, 1]
+        rf_probs   = ens_model.estimators_[2].predict_proba(X_ens[ens_features])[:, 1]
+
+        # Count how many models agree
+        def models_agree(xgb_p, lgbm_p, rf_p):
+            votes_up = sum([xgb_p > 0.5, lgbm_p > 0.5, rf_p > 0.5])
+            return votes_up
+
+        ens_signals = X_ens[["ticker"]].copy()
+        ens_signals["ensemble_probability"] = (ens_probs * 100).round(1)
+        ens_signals["xgb_prob"]   = (xgb_probs  * 100).round(1)
+        ens_signals["lgbm_prob"]  = (lgbm_probs * 100).round(1)
+        ens_signals["rf_prob"]    = (rf_probs   * 100).round(1)
+        ens_signals["models_agree"] = [
+            models_agree(x, l, r)
+            for x, l, r in zip(xgb_probs, lgbm_probs, rf_probs)
+        ]
+
+        def ensemble_signal(row):
+            prob = row["ensemble_probability"]
+            agree = row["models_agree"]
+            if prob >= 68 and agree == 3:
+                return "🟢 STRONG BUY — All 3 agree"
+            elif prob >= 58 and agree >= 2:
+                return "🟡 MILD BUY — 2-3 models agree"
+            elif prob <= 32 and agree == 0:
+                return "🔴 STRONG AVOID — All 3 agree"
+            elif prob <= 42 and agree <= 1:
+                return "🟠 MILD AVOID — 2-3 models agree"
+            else:
+                return "⚪ NEUTRAL — Models uncertain"
+
+        ens_signals["signal"] = ens_signals.apply(ensemble_signal, axis=1)
+        ens_signals = ens_signals.sort_values("ensemble_probability", ascending=False)
+        ens_signals.to_csv("data/ensemble_signals.csv", index=False)
+        print("\nVoting Ensemble Signals:")
+        print(ens_signals[["ticker","ensemble_probability","models_agree","signal"]].head(10))
+        print("Wrote ensemble signals → data/ensemble_signals.csv")
 
 if __name__ == "__main__":
     main()
