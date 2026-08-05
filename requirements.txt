@@ -20,3 +20,4 @@ PyYAML
 xgboost
 pyarrow
 pydantic-settings
+lightgbm

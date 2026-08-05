@@ -227,70 +227,116 @@ with tab4:
 # ================================ MODEL HEALTH =======================
 with tab5:
     st.subheader("Model Health Dashboard")
-    metrics_path = "data/modeling/model_metrics.csv"
+    st.markdown("""
+    This project uses **two types of models** working in parallel:
+    
+    ** Regression Models** (Ridge, RandomForest) — predict the exact % return tomorrow.
+    Evaluated by MAE, R², and Direction Accuracy.
+    
+    ** Classification Models** (XGBoost, Voting Ensemble) — predict UP or DOWN probability.
+    Evaluated by Direction Accuracy only (MAE/R²/Spearman not applicable).
+    
+    The **Voting Ensemble** (XGBoost + LightGBM + RandomForest Classifier) is the most 
+    reliable signal — when all 3 models agree, confidence is highest.
+    """)
+
+    st.markdown("---")
+    metrics_path = os.path.join(BASE_DIR, "data/modeling/model_metrics.csv")
+
     if os.path.exists(metrics_path):
         metrics = load_csv(metrics_path)
+        metrics["train_date"] = pd.to_datetime(metrics["train_date"], errors="coerce")
+
         if not metrics.empty:
-            best_rows = metrics[metrics["is_best"] == True]
-            row = best_rows.iloc[-1] if not best_rows.empty else metrics.iloc[-1] 
+
+            # ── Section 1: Best Regression Model ──
+            st.markdown("### Regression Models (Ridge / RandomForest)")
+            st.caption("Predicts exact next-day % return. Lower MAE = better.")
+
+            reg_metrics = metrics[metrics["model"].isin(["Ridge", "RandomForest"])]
+            best_rows = reg_metrics[reg_metrics["is_best"] == True]
+            row = best_rows.iloc[-1] if not best_rows.empty else reg_metrics.iloc[-1]
+
             c1, c2, c3 = st.columns(3)
-            c1.metric("Best Model", row["model"])
+            c1.metric("Best Regression Model", row["model"])
             c2.metric("MAE", f"{row['mae']:.4f}")
             c3.metric("Direction Accuracy", f"{row['direction_accuracy']*100:.2f}%")
             c4, c5 = st.columns(2)
             c4.metric("R² Score", f"{row['r2']:.3f}")
             c5.metric("Spearman Corr.", f"{row['spearman']:.3f}")
-            st.caption(
-                f"Last trained: **{row['train_date']}** — using **{int(row['rows'])} samples**"
-            )
-            st.caption(
-                f"Metrics file updated at: "
-                f"{datetime.fromtimestamp(os.path.getmtime(metrics_path))}"
-            )
+            st.caption(f"Last trained: **{row['train_date']}** — using **{int(row['rows'])} samples**")
 
-            st.markdown("---")
             if len(best_rows) > 1:
-                st.markdown("### Training Trend (Best Model)")
-                fig_trend = px.line(
+                fig_reg = px.line(
                     best_rows.sort_values("train_date"),
                     x="train_date",
                     y=["mae", "direction_accuracy", "spearman"],
                     markers=True,
-                    title="Model Metrics Over Time"
+                    title="Regression Model Trend Over Time"
                 )
-                st.plotly_chart(fig_trend, use_container_width=True)
+                st.plotly_chart(fig_reg, use_container_width=True)
 
-            # Model comparison table 
+            st.markdown("---")
+
+            # ── Section 2: XGBoost Classifier ──
+            st.markdown("### XGBoost Classifier")
+            st.caption("Predicts UP or DOWN direction. MAE/R²/Spearman not applicable — only Direction Accuracy matters.")
+
+            xgb_rows = metrics[metrics["model"] == "XGBoost_Classifier"]
+            if not xgb_rows.empty:
+                latest_xgb = xgb_rows.sort_values("train_date").iloc[-1]
+                c1, c2 = st.columns(2)
+                c1.metric("XGBoost Direction Accuracy",
+                          f"{latest_xgb['direction_accuracy']*100:.2f}%")
+                c2.metric("Trained On", f"{int(latest_xgb['rows'])} samples")
+
+                if len(xgb_rows) > 1:
+                    fig_xgb = px.line(
+                        xgb_rows.sort_values("train_date"),
+                        x="train_date",
+                        y="direction_accuracy",
+                        markers=True,
+                        title="XGBoost Accuracy Trend"
+                    )
+                    st.plotly_chart(fig_xgb, use_container_width=True)
+
+            st.markdown("---")
+
+            # ── Section 3: Voting Ensemble ──
+            st.markdown("### Voting Ensemble (XGBoost + LightGBM + RandomForest Classifier)")
+            st.caption("Most reliable signal — combines 3 classifiers. When all 3 agree → highest confidence.")
+
+            ens_rows = metrics[metrics["model"] == "Voting_Ensemble"]
+            if not ens_rows.empty:
+                latest_ens = ens_rows.sort_values("train_date").iloc[-1]
+                c1, c2 = st.columns(2)
+                c1.metric("Ensemble Direction Accuracy",
+                          f"{latest_ens['direction_accuracy']*100:.2f}%")
+                c2.metric("Trained On", f"{int(latest_ens['rows'])} samples")
+
+                if len(ens_rows) > 1:
+                    fig_ens = px.line(
+                        ens_rows.sort_values("train_date"),
+                        x="train_date",
+                        y="direction_accuracy",
+                        markers=True,
+                        title="Voting Ensemble Accuracy Trend"
+                    )
+                    st.plotly_chart(fig_ens, use_container_width=True)
+
+            st.markdown("---")
+
+            # ── Section 4: All Training Runs ──
             st.markdown("### All Training Runs")
+            st.caption("MAE/R²/Spearman show 0 for classifiers — these metrics only apply to regression models.")
             st.dataframe(
                 metrics.sort_values("train_date", ascending=False),
                 use_container_width=True,
                 hide_index=True
             )
+
     else:
         st.info("Model metrics not found yet. They will appear after the first weekly training run.")
-    st.markdown("---")
-    # XGBoost accuracy display
-    if not metrics.empty:
-        xgb_rows = metrics[metrics["model"] == "XGBoost_Classifier"]
-        if not xgb_rows.empty:
-            latest_xgb = xgb_rows.sort_values("train_date").iloc[-1]
-            st.markdown("### XGBoost Classifier")
-            c1, c2 = st.columns(2)
-            c1.metric("XGBoost Direction Accuracy", 
-                      f"{latest_xgb['direction_accuracy']*100:.2f}%")
-            c2.metric("Trained On", f"{int(latest_xgb['rows'])} samples")
-            
-            if len(xgb_rows) > 1:
-                st.markdown("### XGBoost Accuracy Trend")
-                fig_xgb = px.line(
-                    xgb_rows.sort_values("train_date"),
-                    x="train_date",
-                    y="direction_accuracy",
-                    markers=True,
-                    title="XGBoost Classification Accuracy Over Time"
-                )
-                st.plotly_chart(fig_xgb, use_container_width=True)
 
     st.markdown("---")
     st.markdown("### Notes")
