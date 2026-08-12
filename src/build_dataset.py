@@ -16,7 +16,7 @@ def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
     
     macro_tickers = {
         "^INDIAVIX": "india_vix",      # India fear index
-        "CL=F":      "crude_oil",      # Crude oil price
+        "BZ=F":      "crude_oil",      # Crude oil price
         "USDINR=X":  "usd_inr",        # USD/INR exchange rate
     }
     
