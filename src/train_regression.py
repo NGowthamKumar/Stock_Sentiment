@@ -14,7 +14,7 @@ from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier          
 
 FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net", "india_vix","crude_oil","usd_inr",        
-            "vix_change","oil_change","usdinr_change" ]
+            "vix_change","oil_change","usdinr_change"]
 TARGET = "ret_fwd"
 
 def evaluate(model, X, y, folds=5):

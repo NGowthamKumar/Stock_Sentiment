@@ -45,7 +45,7 @@ def build_features(latest):
             
             macro_map = {
                 "^INDIAVIX": "india_vix",
-                "CL=F":      "crude_oil",
+                "BZ=F":      "crude_oil",
                 "USDINR=X":  "usd_inr"
             }
             for ticker, col in macro_map.items():

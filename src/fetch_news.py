@@ -173,6 +173,9 @@ ALIAS_TO_TICKER_PATTERNS = [
 
 ALIAS_REGEX = [(re.compile(pat, re.I), tk) for pat, tk in ALIAS_TO_TICKER_PATTERNS]
 
+# Sources that require browser User-Agent to access RSS
+HEADERS_REQUIRED = {"BusinessStandard_Latest"}
+
 # ---------------------------
 # Source builder
 # ---------------------------
@@ -184,6 +187,10 @@ def build_sources() -> dict[str, str]:
     sources["MoneyControl"] = "https://www.moneycontrol.com/rss/MCtopnews.xml"
     sources["EconomicTimes_Markets"] = "https://economictimes.indiatimes.com/rssfeeds/2146842.cms"
     sources["Investing_India"] = "https://in.investing.com/rss/"
+    sources["BusinessStandard_Latest"] = "https://www.business-standard.com/rss/latest.rss"
+    sources["Livemint_Markets"]        = "https://www.livemint.com/rss/markets"
+    sources["BusinessLine_Markets"]    = "https://www.thehindubusinessline.com/markets/?service=rss"
+    sources["NDTVProfit_Markets"]      = "https://feeds.feedburner.com/ndtvprofit-latest"
     return sources
 
 # ---------------------------
@@ -233,9 +240,30 @@ def parse_published(entry) -> str:
         pass
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
-def parse_with_retry(url: str):
-    """Feedparser with custom UA + backoff."""
+def parse_with_retry(url: str, source_name: str = ""):
+    """Feedparser with custom UA + backoff. Uses requests for sources that block feedparser."""
     headers = {"User-Agent": USER_AGENT}
+    
+    # Business Standard blocks feedparser's UA — use requests to fetch then parse
+    if source_name in HEADERS_REQUIRED:
+        browser_headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+            "Accept": "application/rss+xml, application/xml, text/xml, */*",
+        }
+        for attempt in range(1, RETRIES + 1):
+            try:
+                import requests as req
+                resp = req.get(url, headers=browser_headers, timeout=10)
+                if resp.status_code == 200:
+                    feed = feedparser.parse(resp.content)
+                    if getattr(feed, "entries", None):
+                        return feed
+            except Exception:
+                pass
+            time.sleep(BACKOFF_BASE ** (attempt - 1) + random.random())
+        return feedparser.parse(url, request_headers=headers)
+    
+    # Standard feedparser for all other sources
     for attempt in range(1, RETRIES + 1):
         feed = feedparser.parse(url, request_headers=headers)
         if getattr(feed, "entries", None):
@@ -275,7 +303,7 @@ def main():
 
     for name, url in sources.items():
         try:
-            feed = parse_with_retry(url)
+            feed = parse_with_retry(url, source_name=name)
             for e in getattr(feed, "entries", []):
                 title = getattr(e, "title", "") or ""
                 link_raw = getattr(e, "link", "") or ""
