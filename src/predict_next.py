@@ -31,8 +31,8 @@ def build_features(latest):
         if os.path.exists(fii_dii_path):
             fii_dii = pd.read_csv(fii_dii_path, parse_dates=["date"])
             today = fii_dii.iloc[-1]
-            latest["fii_net"] = float(today["fii_net"])
-            latest["dii_net"] = float(today["dii_net"])
+            latest["fii_net"] = min(max(float(today["fii_net"]) / 1000, -10), 10)
+            latest["dii_net"] = min(max(float(today["dii_net"]) / 1000, -10), 10)
         else:
             latest["fii_net"] = 0
             latest["dii_net"] = 0
