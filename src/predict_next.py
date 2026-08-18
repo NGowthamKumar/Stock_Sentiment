@@ -7,24 +7,40 @@ Writes: data/predictions_nextday.csv
 import joblib
 import os
 import pandas as pd
-from src.price_labels import fetch_prices, add_forward_return
+from src.price_labels import fetch_prices, add_forward_return, add_technical_indicators
 
 def build_features(latest):
     """Shared feature building for both models"""
     features_needed = ["ret_lag1", "ret_lag2", "fii_net", "dii_net"]
 
-    if "ret_lag1" not in latest.columns:
-        tickers = latest["ticker"].dropna().unique().tolist()
-        end   = pd.Timestamp.now().strftime("%Y-%m-%d")
-        start = (pd.Timestamp.now() - pd.Timedelta(days=7)).strftime("%Y-%m-%d")
-        prices = fetch_prices(tickers, start, end)
-        prices["date"] = pd.to_datetime(prices["date"]).dt.tz_localize(None)
-        prices = add_forward_return(prices, horizon_days=1)
-        prices = prices.sort_values(["ticker","date"])
-        prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
-        prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
-        lag_today = prices.groupby("ticker").tail(1)[["ticker","ret_lag1","ret_lag2"]]
-        latest = latest.merge(lag_today, on="ticker", how="left")
+    if "ret_lag1" not in latest.columns or "rsi" not in latest.columns:
+        try:
+            tickers = latest["ticker"].dropna().unique().tolist()
+            end   = pd.Timestamp.now().strftime("%Y-%m-%d")
+            start = (pd.Timestamp.now() - pd.Timedelta(days=60)).strftime("%Y-%m-%d")
+            
+            prices = fetch_prices(tickers, start, end)
+            prices["date"] = pd.to_datetime(prices["date"]).dt.tz_localize(None)
+            prices = add_forward_return(prices, horizon_days=1)
+            prices = add_technical_indicators(prices)
+            prices = prices.sort_values(["ticker","date"])
+            
+            # Lag features
+            prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
+            prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
+            
+            # Take most recent row per ticker for all features
+            today = prices.groupby("ticker").tail(1)[[
+                "ticker","ret_lag1","ret_lag2",
+                "rsi","macd_diff","bb_pct","bb_width","price_vs_sma"
+            ]]
+            latest = latest.merge(today, on="ticker", how="left")
+            print(f"Fetched price features for {len(today)} tickers")
+        except Exception as e:
+            print(f"Warning: price feature fetch failed: {e}")
+            for col in ["ret_lag1","ret_lag2","rsi","macd_diff","bb_pct","bb_width","price_vs_sma"]:
+                if col not in latest.columns:
+                    latest[col] = 0
 
     if "fii_net" not in latest.columns:
         fii_dii_path = os.path.join(os.path.dirname(__file__), "../data/fii_dii_history.csv")
