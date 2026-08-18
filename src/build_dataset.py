@@ -7,7 +7,7 @@ Writes: data/modeling/dataset.parquet
 import os
 import pandas as pd
 from datetime import datetime, timedelta
-from src.price_labels import fetch_prices, add_forward_return
+from src.price_labels import fetch_prices, add_forward_return, add_technical_indicators
 
 
 def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
@@ -76,17 +76,40 @@ def main():
     
     first = feats["date"].min().date()
     last = feats["date"].max().date()
-    start = (first - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-    end   = (last + pd.Timedelta(days=2)).strftime("%Y-%m-%d")
+
+    # Actual modeling period
+    data_start = pd.Timestamp(first)
+    data_end = pd.Timestamp(last)
+
+    # Extra historical warm-up period for technical indicators
+    # SMA20 / Bollinger Bands need previous trading-day data.
+    price_start = (data_start - pd.Timedelta(days=60)).strftime("%Y-%m-%d")
+    price_end = (data_end + pd.Timedelta(days=2)).strftime("%Y-%m-%d")
 
     tickers = sorted(feats["ticker"].dropna().unique().tolist())
-    prices = fetch_prices(tickers, start, end)
+
+    print(f"Downloading price history: {price_start} → {price_end}")
+    print(f"Modeling period: {data_start.date()} → {data_end.date()}")
+
+    prices = fetch_prices(tickers, price_start, price_end)
+
     prices["date"] = pd.to_datetime(prices["date"]).dt.tz_localize(None)
+
+    # Calculate indicators using the full historical warm-up period
     prices = add_forward_return(prices, horizon_days=1)
-    prices = prices.sort_values(["ticker","date"])
+    prices = add_technical_indicators(prices)
+
+    prices = prices.sort_values(["ticker", "date"])
+
     prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
     prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
 
+    # Now keep only the actual modeling period.
+    # The warm-up data was used only for calculating indicators/lags.
+    prices = prices[
+        (prices["date"] >= data_start) &
+        (prices["date"] <= data_end)
+    ].copy()
     # Clip extreme outliers from corporate actions (splits, demergers, bonus issues)
     for col in ["ret_fwd", "ret_lag1", "ret_lag2"]:
         prices[col] = prices[col].clip(lower=-15, upper=15)
@@ -119,7 +142,7 @@ def main():
     df = df.dropna(subset=["smart_score","ret_fwd","ret_lag1"]).copy()
 
     # ── Macro indicators ──
-    macro = fetch_macro_indicators(start, end)
+    macro = fetch_macro_indicators(price_start, price_end)
     if not macro.empty:
         macro["date"] = pd.to_datetime(macro["date"]).dt.tz_localize(None)
         df = df.merge(macro, on="date", how="left")
