@@ -3,7 +3,9 @@ name: weekly-train-and-predict
 on:
   schedule:
     - cron: "0 14 * * 1"   # Monday 19:30 IST
+    - cron: "0 14 * * 2"   # Tuesday 19:30 IST
     - cron: "0 14 * * 3"   # Wednesday 19:30 IST
+    - cron: "0 14 * * 4"   # Thursday 19:30 IST
     - cron: "0 14 * * 5"   # Friday 19:30 IST
   workflow_dispatch:
 
