@@ -11,9 +11,11 @@ from sklearn.linear_model import Ridge
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, VotingClassifier
 from sklearn.metrics import accuracy_score  
 from xgboost import XGBClassifier 
-from lightgbm import LGBMClassifier          
+from lightgbm import LGBMClassifier      
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler    
 
-FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net", "india_vix","crude_oil","usd_inr",        
+FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",        
             "vix_change","oil_change","usdinr_change"]
 TARGET = "ret_fwd"
 
@@ -64,7 +66,10 @@ def main():
     X, y = df[FEATURES], df[TARGET]
     y_bin = (y > 0).astype(int)
     reg_models = {
-        "Ridge": Ridge(alpha=1.0),
+        "Ridge": Pipeline([
+        ("scaler", StandardScaler()),
+        ("ridge", Ridge(alpha=1.0))
+        ]),
         "RandomForest": RandomForestRegressor(
             n_estimators=400, max_depth=6, min_samples_leaf=4, n_jobs=-1, random_state=42)
     }

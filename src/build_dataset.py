@@ -48,9 +48,9 @@ def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
     
     # Add daily % change for each indicator
     macro = macro.sort_values("date")
-    macro["vix_change"] = macro["india_vix"].pct_change(fill_method=None) * 100
-    macro["oil_change"] = macro["crude_oil"].pct_change(fill_method=None) * 100
-    macro["usdinr_change"] = macro["usd_inr"].pct_change() * 100
+    macro["vix_change"]    = macro["india_vix"].pct_change(fill_method=None) * 100
+    macro["oil_change"]    = macro["crude_oil"].pct_change(fill_method=None) * 100
+    macro["usdinr_change"] = macro["usd_inr"].pct_change(fill_method=None) * 100
     
     # Forward fill missing values (weekends/holidays)
     macro = macro.ffill()
@@ -98,9 +98,17 @@ def main():
     if os.path.exists(fii_dii_path):
         fii_dii = pd.read_csv(fii_dii_path, parse_dates=["date"])
         fii_dii["date"] = pd.to_datetime(fii_dii["date"]).dt.tz_localize(None)
+        # Normalize crores - thousands of crores to reduce scale
+        fii_dii["fii_net"] = fii_dii["fii_net"] / 1000
+        fii_dii["dii_net"] = fii_dii["dii_net"] / 1000
         df = df.merge(fii_dii[["date","fii_net","dii_net"]], on="date", how="left")
-        df["fii_net"] = df["fii_net"].fillna(0)
-        df["dii_net"] = df["dii_net"].fillna(0)
+        # Forward fill — use last known value instead of 0
+        df = df.sort_values(["ticker","date"])
+        df["fii_net"] = df.groupby("ticker")["fii_net"].ffill().fillna(0)
+        df["dii_net"] = df.groupby("ticker")["dii_net"].ffill().fillna(0)
+        # Clip extremes
+        df["fii_net"] = df["fii_net"].clip(lower=-10, upper=10)
+        df["dii_net"] = df["dii_net"].clip(lower=-10, upper=10)
         print(f"Merged FII/DII features → {df[['fii_net','dii_net']].notna().sum().to_dict()}")
     else:
         df["fii_net"] = 0
@@ -115,10 +123,17 @@ def main():
     if not macro.empty:
         macro["date"] = pd.to_datetime(macro["date"]).dt.tz_localize(None)
         df = df.merge(macro, on="date", how="left")
-        # Forward fill macro for any missing dates
         macro_cols = ["india_vix","crude_oil","usd_inr",
                       "vix_change","oil_change","usdinr_change"]
         df[macro_cols] = df[macro_cols].ffill().fillna(0)
+        
+        # Clip extreme macro changes AFTER merging into df
+        df["vix_change"]    = df["vix_change"].clip(lower=-15, upper=15)
+        df["oil_change"]    = df["oil_change"].clip(lower=-10, upper=10)
+        df["usdinr_change"] = df["usdinr_change"].clip(lower=-3,  upper=3)
+        df["crude_oil"]     = df["crude_oil"].clip(lower=50, upper=110)
+        df["usd_inr"]       = df["usd_inr"].clip(lower=80, upper=95)
+        
         print(f"Merged macro indicators → {macro_cols}")
     else:
         print("Warning: macro indicators unavailable, defaulting to 0")
