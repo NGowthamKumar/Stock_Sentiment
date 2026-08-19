@@ -1,78 +1,80 @@
 ticker,ensemble_probability,xgb_prob,lgbm_prob,rf_prob,models_agree,signal
-TMPV.NS,63.3,69.0,69.6,51.3,3,🟡 MILD BUY — 2-3 models agree
-ADANIGREEN.NS,63.1,67.7,69.7,52.0,3,🟡 MILD BUY — 2-3 models agree
+ADANIGREEN.NS,63.4,69.5,69.7,50.9,3,🟡 MILD BUY — 2-3 models agree
+TMPV.NS,62.9,68.0,69.4,51.4,3,🟡 MILD BUY — 2-3 models agree
 ITC.NS,61.6,63.9,68.6,52.2,3,🟡 MILD BUY — 2-3 models agree
-TCS.NS,61.2,66.4,65.7,51.4,3,🟡 MILD BUY — 2-3 models agree
-BPCL.NS,61.0,66.9,68.3,47.7,2,🟡 MILD BUY — 2-3 models agree
-DELTACORP.NS,60.6,64.8,67.9,49.1,2,🟡 MILD BUY — 2-3 models agree
-WIPRO.NS,60.1,65.8,65.6,48.9,2,🟡 MILD BUY — 2-3 models agree
-IOB.NS,60.0,64.0,71.7,44.4,2,🟡 MILD BUY — 2-3 models agree
-HCLTECH.NS,59.8,64.9,64.7,49.9,2,🟡 MILD BUY — 2-3 models agree
-INFY.NS,59.5,63.3,67.2,48.1,2,🟡 MILD BUY — 2-3 models agree
-HDFCBANK.NS,59.4,64.2,68.2,45.9,2,🟡 MILD BUY — 2-3 models agree
-IOC.NS,59.2,64.8,66.8,46.2,2,🟡 MILD BUY — 2-3 models agree
+TCS.NS,60.7,64.5,67.1,50.5,3,🟡 MILD BUY — 2-3 models agree
+WIPRO.NS,60.3,66.4,65.6,48.9,2,🟡 MILD BUY — 2-3 models agree
+SPICEJET.BO,60.2,66.6,65.9,48.1,2,🟡 MILD BUY — 2-3 models agree
+IOB.NS,59.5,67.6,66.2,44.9,2,🟡 MILD BUY — 2-3 models agree
+IOC.NS,59.5,65.2,66.8,46.4,2,🟡 MILD BUY — 2-3 models agree
+HCLTECH.NS,59.4,64.2,64.7,49.3,2,🟡 MILD BUY — 2-3 models agree
 SUNPHARMA.NS,59.1,61.6,63.5,52.0,3,🟡 MILD BUY — 2-3 models agree
+INFY.NS,59.0,63.3,64.5,49.2,2,🟡 MILD BUY — 2-3 models agree
 ASIANPAINT.NS,58.9,64.6,63.8,48.2,2,🟡 MILD BUY — 2-3 models agree
-BANKBARODA.NS,58.6,67.2,65.5,43.3,2,🟡 MILD BUY — 2-3 models agree
-ULTRACEMCO.NS,58.5,61.7,64.9,48.9,2,🟡 MILD BUY — 2-3 models agree
 ICICIBANK.NS,58.5,66.5,64.6,44.4,2,🟡 MILD BUY — 2-3 models agree
-NESTLEIND.NS,58.5,62.3,64.2,49.0,2,🟡 MILD BUY — 2-3 models agree
-SPICEJET.BO,58.4,65.4,63.9,45.8,2,🟡 MILD BUY — 2-3 models agree
-EASEMYTRIP.NS,58.3,59.7,66.3,49.0,2,🟡 MILD BUY — 2-3 models agree
-BHARTIARTL.NS,58.1,64.4,65.7,44.3,2,🟡 MILD BUY — 2-3 models agree
-COALINDIA.NS,58.0,64.5,65.8,43.7,2,🟡 MILD BUY — 2-3 models agree
-VEDL.NS,57.7,62.8,65.4,45.0,2,⚪ NEUTRAL — Models uncertain
-UPL.NS,57.2,62.5,63.3,45.9,2,⚪ NEUTRAL — Models uncertain
+ULTRACEMCO.NS,58.4,61.4,64.9,48.8,2,🟡 MILD BUY — 2-3 models agree
+NTPC.NS,58.0,62.1,63.8,48.2,2,🟡 MILD BUY — 2-3 models agree
+BANKBARODA.NS,57.9,65.7,65.5,42.6,2,⚪ NEUTRAL — Models uncertain
+BHARTIARTL.NS,57.9,64.4,65.2,44.1,2,⚪ NEUTRAL — Models uncertain
+VEDL.NS,57.8,62.8,65.6,45.0,2,⚪ NEUTRAL — Models uncertain
+NESTLEIND.NS,57.7,60.8,64.3,48.1,2,⚪ NEUTRAL — Models uncertain
 MPHASIS.NS,57.2,63.9,64.6,43.2,2,⚪ NEUTRAL — Models uncertain
-ADANIENSOL.NS,57.1,61.5,61.0,48.7,2,⚪ NEUTRAL — Models uncertain
-IRFC.NS,56.9,59.8,64.9,46.0,2,⚪ NEUTRAL — Models uncertain
-NTPC.NS,56.8,60.7,62.9,46.7,2,⚪ NEUTRAL — Models uncertain
+APOLLOHOSP.NS,57.2,63.8,64.0,43.8,2,⚪ NEUTRAL — Models uncertain
+COALINDIA.NS,57.0,62.2,64.7,44.2,2,⚪ NEUTRAL — Models uncertain
+HDFCBANK.NS,56.9,61.3,64.7,44.9,2,⚪ NEUTRAL — Models uncertain
+UPL.NS,56.5,61.7,62.6,45.3,2,⚪ NEUTRAL — Models uncertain
 MARUTI.NS,56.4,63.3,63.6,42.2,2,⚪ NEUTRAL — Models uncertain
-SBIN.NS,56.3,61.9,62.3,44.8,2,⚪ NEUTRAL — Models uncertain
-PNB.NS,55.7,62.4,63.1,41.7,2,⚪ NEUTRAL — Models uncertain
-YESBANK.NS,55.6,56.0,65.6,45.2,2,⚪ NEUTRAL — Models uncertain
-IEX.NS,55.3,62.4,60.1,43.3,2,⚪ NEUTRAL — Models uncertain
-BAJAJFINSV.NS,55.1,58.8,61.8,44.9,2,⚪ NEUTRAL — Models uncertain
-ETERNAL.NS,55.0,61.6,62.5,40.9,2,⚪ NEUTRAL — Models uncertain
+MMTC.NS,56.4,64.9,63.5,40.9,2,⚪ NEUTRAL — Models uncertain
+IRFC.NS,56.3,58.0,64.9,46.0,2,⚪ NEUTRAL — Models uncertain
+SBIN.NS,56.3,61.9,62.3,44.7,2,⚪ NEUTRAL — Models uncertain
+INDIGO.NS,56.1,63.9,61.4,43.1,2,⚪ NEUTRAL — Models uncertain
+DELTACORP.NS,56.0,59.9,63.6,44.5,2,⚪ NEUTRAL — Models uncertain
+BAJAJFINSV.NS,55.7,59.2,64.5,43.3,2,⚪ NEUTRAL — Models uncertain
+SHREECEM.NS,55.6,56.4,61.3,49.0,2,⚪ NEUTRAL — Models uncertain
+ETERNAL.NS,55.4,61.6,62.5,42.1,2,⚪ NEUTRAL — Models uncertain
+BLS.NS,55.3,62.9,60.2,42.9,2,⚪ NEUTRAL — Models uncertain
+PAYTM.NS,55.3,58.6,62.8,44.5,2,⚪ NEUTRAL — Models uncertain
+PNB.NS,55.3,61.2,63.1,41.7,2,⚪ NEUTRAL — Models uncertain
 NBCC.NS,54.9,56.1,62.2,46.4,2,⚪ NEUTRAL — Models uncertain
-M&M.NS,54.9,59.6,60.6,44.4,2,⚪ NEUTRAL — Models uncertain
+CIPLA.NS,54.8,60.9,61.3,42.4,2,⚪ NEUTRAL — Models uncertain
 HINDUNILVR.NS,54.8,58.1,58.9,47.4,2,⚪ NEUTRAL — Models uncertain
+ADANIENT.NS,54.7,58.7,62.1,43.3,2,⚪ NEUTRAL — Models uncertain
+DMART.NS,54.7,60.3,62.4,41.4,2,⚪ NEUTRAL — Models uncertain
 TATAELXSI.NS,54.7,58.7,64.3,41.1,2,⚪ NEUTRAL — Models uncertain
-PAYTM.NS,54.6,57.8,61.4,44.7,2,⚪ NEUTRAL — Models uncertain
-TMCV.NS,54.5,60.7,58.3,44.7,2,⚪ NEUTRAL — Models uncertain
-TATASTEEL.NS,54.3,57.5,62.2,43.1,2,⚪ NEUTRAL — Models uncertain
-GAIL.NS,54.3,58.8,60.7,43.4,2,⚪ NEUTRAL — Models uncertain
-INDIGO.NS,54.2,61.4,60.5,40.7,2,⚪ NEUTRAL — Models uncertain
-ADANIENT.NS,54.2,57.3,61.6,43.7,2,⚪ NEUTRAL — Models uncertain
+INDUSINDBK.NS,54.7,59.8,60.4,43.9,2,⚪ NEUTRAL — Models uncertain
+IEX.NS,54.6,59.3,60.8,43.6,2,⚪ NEUTRAL — Models uncertain
+M&M.NS,54.4,58.6,60.3,44.3,2,⚪ NEUTRAL — Models uncertain
 DABUR.NS,54.1,53.8,62.9,45.6,2,⚪ NEUTRAL — Models uncertain
+GAIL.NS,54.1,58.4,60.7,43.3,2,⚪ NEUTRAL — Models uncertain
+BAJFINANCE.NS,54.1,56.8,61.4,43.9,2,⚪ NEUTRAL — Models uncertain
 BAJAJ-AUTO.NS,54.0,59.3,60.5,42.1,2,⚪ NEUTRAL — Models uncertain
-BAJFINANCE.NS,53.9,56.0,62.1,43.7,2,⚪ NEUTRAL — Models uncertain
 HDFCLIFE.NS,53.9,56.9,63.1,41.6,2,⚪ NEUTRAL — Models uncertain
-GODREJCP.NS,53.9,56.4,56.3,48.9,2,⚪ NEUTRAL — Models uncertain
 JSWSTEEL.NS,53.6,57.5,60.5,42.8,2,⚪ NEUTRAL — Models uncertain
-TITAN.NS,53.4,59.4,59.8,41.0,2,⚪ NEUTRAL — Models uncertain
 NATCOPHARM.NS,53.4,54.5,57.2,48.4,2,⚪ NEUTRAL — Models uncertain
-HEROMOTOCO.NS,53.2,57.0,59.5,43.2,2,⚪ NEUTRAL — Models uncertain
+GODREJCP.NS,53.3,55.1,56.3,48.4,2,⚪ NEUTRAL — Models uncertain
+NMDC.NS,53.1,56.5,61.1,41.8,2,⚪ NEUTRAL — Models uncertain
 LICI.NS,52.9,58.8,59.6,40.5,2,⚪ NEUTRAL — Models uncertain
-JIOFIN.NS,52.7,55.8,57.6,44.7,2,⚪ NEUTRAL — Models uncertain
-LT.NS,52.7,57.3,59.6,41.2,2,⚪ NEUTRAL — Models uncertain
+TITAN.NS,52.9,59.4,57.9,41.3,2,⚪ NEUTRAL — Models uncertain
 BHEL.NS,52.6,57.9,60.7,39.4,2,⚪ NEUTRAL — Models uncertain
-MMTC.NS,52.5,56.9,60.4,40.3,2,⚪ NEUTRAL — Models uncertain
-INDUSINDBK.NS,52.4,55.0,59.5,42.7,2,⚪ NEUTRAL — Models uncertain
-NMDC.NS,52.4,55.5,60.8,40.7,2,⚪ NEUTRAL — Models uncertain
-DRREDDY.NS,52.2,55.9,59.6,41.1,2,⚪ NEUTRAL — Models uncertain
+TMCV.NS,52.6,56.5,57.2,44.2,2,⚪ NEUTRAL — Models uncertain
+JIOFIN.NS,52.5,55.1,57.7,44.8,2,⚪ NEUTRAL — Models uncertain
+YESBANK.NS,52.3,50.8,61.0,45.0,2,⚪ NEUTRAL — Models uncertain
 POWERGRID.NS,52.1,52.5,58.4,45.3,2,⚪ NEUTRAL — Models uncertain
+ADANIENSOL.NS,52.0,53.0,55.8,47.1,2,⚪ NEUTRAL — Models uncertain
+DRREDDY.NS,52.0,55.2,59.6,41.3,2,⚪ NEUTRAL — Models uncertain
 TATAPOWER.NS,51.9,54.5,62.6,38.7,2,⚪ NEUTRAL — Models uncertain
-BLS.NS,51.8,58.4,56.6,40.3,2,⚪ NEUTRAL — Models uncertain
-ADANIPORTS.NS,51.7,58.9,54.2,41.9,2,⚪ NEUTRAL — Models uncertain
-HINDALCO.NS,51.3,54.6,57.8,41.3,2,⚪ NEUTRAL — Models uncertain
-SUNTV.NS,50.4,54.6,56.7,39.8,2,⚪ NEUTRAL — Models uncertain
+BANSALWIRE.NS,51.6,54.7,60.0,40.2,2,⚪ NEUTRAL — Models uncertain
+LT.NS,51.5,55.1,58.3,41.2,2,⚪ NEUTRAL — Models uncertain
+ADANIPORTS.NS,51.5,56.8,57.3,40.3,2,⚪ NEUTRAL — Models uncertain
+SUNTV.NS,51.1,56.1,56.9,40.3,2,⚪ NEUTRAL — Models uncertain
+TATASTEEL.NS,50.8,51.6,57.9,43.1,2,⚪ NEUTRAL — Models uncertain
+HEROMOTOCO.NS,50.4,53.2,56.8,41.2,2,⚪ NEUTRAL — Models uncertain
+ONGC.NS,50.3,55.4,56.1,39.6,2,⚪ NEUTRAL — Models uncertain
+HINDALCO.NS,50.2,54.6,54.5,41.5,2,⚪ NEUTRAL — Models uncertain
 MAXHEALTH.NS,50.1,52.7,51.6,45.9,2,⚪ NEUTRAL — Models uncertain
-EICHERMOT.NS,49.9,52.8,58.1,38.9,2,⚪ NEUTRAL — Models uncertain
-BANSALWIRE.NS,49.9,51.3,57.0,41.4,2,⚪ NEUTRAL — Models uncertain
-SAIL.NS,49.8,53.6,56.6,39.3,2,⚪ NEUTRAL — Models uncertain
-ONGC.NS,49.7,53.9,55.4,39.9,2,⚪ NEUTRAL — Models uncertain
-RELIANCE.NS,49.5,52.7,53.9,41.9,2,⚪ NEUTRAL — Models uncertain
-KOTAKBANK.NS,48.5,50.1,56.4,39.0,2,⚪ NEUTRAL — Models uncertain
-AXISBANK.NS,47.9,52.0,51.2,40.6,2,⚪ NEUTRAL — Models uncertain
-BEL.NS,45.7,46.6,51.4,39.0,1,⚪ NEUTRAL — Models uncertain
+EICHERMOT.NS,50.0,52.8,58.4,38.9,2,⚪ NEUTRAL — Models uncertain
+SAIL.NS,49.8,53.6,56.6,39.1,2,⚪ NEUTRAL — Models uncertain
+RELIANCE.NS,49.0,52.1,53.7,41.2,2,⚪ NEUTRAL — Models uncertain
+KOTAKBANK.NS,48.4,49.6,56.4,39.0,1,⚪ NEUTRAL — Models uncertain
+AXISBANK.NS,47.6,51.2,51.2,40.5,2,⚪ NEUTRAL — Models uncertain
+BEL.NS,45.3,46.0,50.8,39.0,1,⚪ NEUTRAL — Models uncertain
