@@ -8,6 +8,7 @@ import joblib
 import os
 import pandas as pd
 from src.price_labels import fetch_prices, add_forward_return, add_technical_indicators
+import json
 
 def build_features(latest):
     """Shared feature building for both models"""
@@ -114,6 +115,82 @@ def get_confidence(prob):
     else:
         return "Low Confidence"
 
+def save_signal_history(latest: pd.DataFrame, out: pd.DataFrame, 
+                        ens_signals: pd.DataFrame) -> None:
+    """Save today's predictions to signal history for accuracy tracking"""
+    history_path = "data/signal_history.csv"
+    today = pd.Timestamp.now().strftime("%Y-%m-%d")
+    
+    rows = []
+    
+    for _, row in latest.iterrows():
+        ticker = row.get("ticker")
+        if not ticker:
+            continue
+        
+        smart_score = float(row.get("smart_score", 0))
+        s_recency   = float(row.get("S_recency", 0))
+        
+        # Signal 1 — SmartScore signal
+        # Bullish if SmartScore > 65 AND S_recency > 70
+        ss_bullish = 1 if (smart_score > 65 and s_recency > 70) else 0
+        
+        # Signal 2 — XGBoost signal
+        xgb_prob = None
+        xgb_bullish = None
+        if ens_signals is not None and not ens_signals.empty:
+            ens_row = ens_signals[ens_signals["ticker"] == ticker]
+            if not ens_row.empty:
+                xgb_prob = float(ens_row.iloc[0].get("ensemble_probability", 50))
+                xgb_bullish = 1 if xgb_prob > 55 else 0
+        
+        # Signal 3 — Combined (both agree)
+        combined_bullish = None
+        if ss_bullish is not None and xgb_bullish is not None:
+            combined_bullish = 1 if (ss_bullish == 1 and xgb_bullish == 1) else 0
+        
+        # Regression predicted return
+        reg_row = out[out["ticker"] == ticker]
+        pred_ret = float(reg_row.iloc[0]["pred_ret_1d_pct"]) if not reg_row.empty else None
+        
+        rows.append({
+            "pred_date":        today,
+            "ticker":           ticker,
+            "smart_score":      round(smart_score, 2),
+            "s_recency":        round(s_recency, 2),
+            "ss_signal":        ss_bullish,       # SmartScore signal
+            "xgb_prob":         round(xgb_prob, 2) if xgb_prob else None,
+            "xgb_signal":       xgb_bullish,      # XGBoost signal
+            "combined_signal":  combined_bullish,  # Both agree
+            "pred_ret_pct":     round(pred_ret, 4) if pred_ret else None,
+            "actual_ret_pct":   None,              # filled next day
+            "actual_dir":       None,              # filled next day
+            "ss_correct":       None,              # filled next day
+            "xgb_correct":      None,              # filled next day
+            "combined_correct": None,              # filled next day
+        })
+    
+    if not rows:
+        return
+    
+    new_df = pd.DataFrame(rows)
+    
+    if os.path.exists(history_path):
+        existing = pd.read_csv(history_path)
+        # Avoid duplicating same date + ticker
+        existing_keys = set(zip(existing["pred_date"], existing["ticker"]))
+        new_rows = new_df[~new_df.apply(
+            lambda r: (r["pred_date"], r["ticker"]) in existing_keys, axis=1
+        )]
+        if not new_rows.empty:
+            combined = pd.concat([existing, new_rows], ignore_index=True)
+            combined.to_csv(history_path, index=False)
+            print(f"Appended {len(new_rows)} rows to signal history")
+    else:
+        new_df.to_csv(history_path, index=False)
+        print(f"Created signal history with {len(new_df)} rows → {history_path}")
+
+
 def main():
     latest = pd.read_csv("data/stock_sentiment_summary.csv")
     latest = build_features(latest)
@@ -206,6 +283,14 @@ def main():
         print("\nVoting Ensemble Signals:")
         print(ens_signals[["ticker","ensemble_probability","models_agree","signal"]].head(10))
         print("Wrote ensemble signals → data/ensemble_signals.csv")
+        # ── Save signal history ──
+        try:
+            ens_signals = None
+            if os.path.exists("data/ensemble_signals.csv"):
+                ens_signals = pd.read_csv("data/ensemble_signals.csv")
+            save_signal_history(latest, out, ens_signals)
+        except Exception as e:
+            print(f"Warning: signal history save failed: {e}")
 
 if __name__ == "__main__":
     main()

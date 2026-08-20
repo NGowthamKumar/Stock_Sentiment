@@ -47,8 +47,8 @@ if "date" in hist.columns:
     hist["date"] = pd.to_datetime(hist["date"], errors="coerce")
 
 # -------------------------------- TABS --------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
-    ["Overview", "Predictions", "Signals", "Stock Drilldown", "Model Health", "Tech & Workflow"]
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
+    ["Overview", "Predictions", "Signals", "Stock Accuracy", "Stock Drilldown", "Model Health", "Tech & Workflow"]
 )
 
 # ================================ OVERVIEW ============================
@@ -192,8 +192,111 @@ with tab3:
         Use alongside SmartScore and your own research before any decision.
         """)
 
-# ================================ DRILLDOWN ===========================
 with tab4:
+    st.subheader("Stock Signal Accuracy")
+    st.caption("Track which stocks our model predicts most reliably — updated daily")
+
+    accuracy_path = os.path.join(BASE_DIR, "data/stock_accuracy.csv")
+    history_path  = os.path.join(BASE_DIR, "data/signal_history.csv")
+
+    if os.path.exists(accuracy_path):
+        acc_df = load_csv(accuracy_path)
+
+        if not acc_df.empty:
+            c1, c2, c3, c4 = st.columns(4)
+            trusted  = acc_df[acc_df["combined_trust"] == "✅ TRUST"]
+            moderate = acc_df[acc_df["combined_trust"] == "🟡 MODERATE"]
+            weak     = acc_df[acc_df["combined_trust"] == "❌ WEAK"]
+            c1.metric("Total Stocks Tracked", len(acc_df))
+            c2.metric("✅ Trust", len(trusted))
+            c3.metric("🟡 Moderate", len(moderate))
+            c4.metric("❌ Weak", len(weak))
+
+            st.markdown("---")
+            st.markdown("### Accuracy by Signal Type")
+
+            col1, col2 = st.columns(2)
+            with col1:
+                fig_ss = px.bar(
+                    acc_df.dropna(subset=["ss_acc_overall"]).head(20),
+                    x="ticker", y="ss_acc_overall",
+                    color="ss_trust",
+                    color_discrete_map={
+                        "✅ TRUST": "#2ecc71",
+                        "🟡 MODERATE": "#f1c40f",
+                        "❌ WEAK": "#e74c3c"
+                    },
+                    title="SmartScore Signal Accuracy (%)"
+                )
+                fig_ss.add_hline(y=50, line_dash="dash",
+                                  annotation_text="50% baseline")
+                st.plotly_chart(fig_ss, use_container_width=True)
+
+            with col2:
+                fig_xgb = px.bar(
+                    acc_df.dropna(subset=["xgb_acc_overall"]).head(20),
+                    x="ticker", y="xgb_acc_overall",
+                    color="xgb_trust",
+                    color_discrete_map={
+                        "✅ TRUST": "#2ecc71",
+                        "🟡 MODERATE": "#f1c40f",
+                        "❌ WEAK": "#e74c3c"
+                    },
+                    title="XGBoost Signal Accuracy (%)"
+                )
+                fig_xgb.add_hline(y=50, line_dash="dash",
+                                   annotation_text="50% baseline")
+                st.plotly_chart(fig_xgb, use_container_width=True)
+
+            st.markdown("### Combined Signal Accuracy (Both Models Agree)")
+            fig_combined = px.bar(
+                acc_df.dropna(subset=["combined_acc"]).head(30),
+                x="ticker", y="combined_acc",
+                color="combined_trust",
+                color_discrete_map={
+                    "✅ TRUST": "#2ecc71",
+                    "🟡 MODERATE": "#f1c40f",
+                    "❌ WEAK": "#e74c3c"
+                },
+                title="Combined Signal Accuracy — When Both SmartScore AND XGBoost Agree"
+            )
+            fig_combined.add_hline(y=50, line_dash="dash",
+                                    annotation_text="50% baseline")
+            st.plotly_chart(fig_combined, use_container_width=True)
+
+            st.markdown("---")
+            st.markdown("### Full Accuracy Table")
+            display_cols = ["ticker","total_signals","ss_acc_overall",
+                           "ss_trust","xgb_acc_overall","xgb_trust",
+                           "combined_acc","combined_trust","best_signal"]
+            display_cols = [c for c in display_cols if c in acc_df.columns]
+            st.dataframe(acc_df[display_cols],
+                        use_container_width=True, hide_index=True)
+
+            st.markdown("---")
+            st.info("""
+            **How to use:**
+            - ✅ TRUST (>60%): Act on signals for this stock
+            - 🟡 MODERATE (53-60%): Use with other confirmation  
+            - ❌ WEAK (<53%): Ignore signals for this stock
+            - **Combined** is most reliable — both SmartScore AND XGBoost agree
+            - Minimum 3 signals needed before a stock appears
+            """)
+    else:
+        if os.path.exists(history_path):
+            hist = load_csv(history_path)
+            st.info(f"""
+             Signal history is being built automatically.
+            **{len(hist)} predictions** saved so far.
+            Accuracy data will appear after tomorrow's market close
+            when today's predictions get settled with actual returns.
+            Check back tomorrow!
+            """)
+        else:
+            st.info("Signal history will start building from today's predictions.")
+
+# ================================ DRILLDOWN ===========================
+with tab5:
     st.subheader("Stock Drilldown")
 
     tickers = sorted(summary["ticker"].unique().tolist())
@@ -202,18 +305,22 @@ with tab4:
     left, right = st.columns([2, 1])
     with left:
         if not hist.empty:
-            h = hist[hist["ticker"] == tk].sort_values("date")
+            h = hist[hist["ticker"] == tk].sort_values("pred_date")
             if not h.empty:
-                fig3 = px.line(h, x="date", y="smart_score", title=f"{tk} — SmartScore over time")
+                # Signal accuracy over time
+                fig3 = px.line(h, x="pred_date", y="smart_score",
+                            title=f"{tk} — SmartScore History")
                 st.plotly_chart(fig3, use_container_width=True)
 
-                fig4 = px.line(h, x="date", y=["S_recency","S_events","S_breadth","S_volume"],
-                               title=f"{tk} — Components (0–100)")
-                st.plotly_chart(fig4, use_container_width=True)
+                # XGBoost probability over time
+                if "xgb_prob" in h.columns:
+                    fig4 = px.line(h, x="pred_date", y="xgb_prob",
+                                title=f"{tk} — XGBoost UP Probability (%)")
+                    fig4.add_hline(y=55, line_dash="dash",
+                                annotation_text="55% threshold")
+                    st.plotly_chart(fig4, use_container_width=True)
             else:
-                st.info("No historical snapshots yet for this ticker.")
-        else:
-            st.info("History file not found. It will appear after a few daily runs or backfill.")
+                st.info("No signal history yet for this stock.")
 
     with right:
         row = summary[summary["ticker"] == tk].iloc[0]
@@ -225,7 +332,7 @@ with tab4:
         st.write(f" Pos: **{int(row.pos)}** Neg: **{int(row.neg)}** Total: **{int(row.total)}**")
 
 # ================================ MODEL HEALTH =======================
-with tab5:
+with tab6:
     st.subheader("Model Health Dashboard")
     st.markdown("""
     This project uses **two types of models** working in parallel:
@@ -349,7 +456,7 @@ with tab5:
     """)
     
 # ================================ TECH & WORKFLOW =====================
-with tab6:
+with tab7:
     st.subheader("Technical Details & Workflow")
 
     # ---------- 0) One-paragraph explainer ----------

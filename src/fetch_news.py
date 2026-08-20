@@ -350,13 +350,49 @@ def build_sources() -> dict[str, str]:
     for name in STOCKS_FOR_GOOGLE:
         q = f"{name.replace(' ', '+')}+stock+India"
         sources[f"Google_{name}"] = f"https://news.google.com/rss/search?q={q}"
-    sources["MoneyControl"] = "https://www.moneycontrol.com/rss/MCtopnews.xml"
-    sources["EconomicTimes_Markets"] = "https://economictimes.indiatimes.com/rssfeeds/2146842.cms"
-    sources["Investing_India"] = "https://in.investing.com/rss/"
-    sources["BusinessStandard_Latest"] = "https://www.business-standard.com/rss/latest.rss"
-    sources["Livemint_Markets"]        = "https://www.livemint.com/rss/markets"
-    sources["BusinessLine_Markets"]    = "https://www.thehindubusinessline.com/markets/?service=rss"
-    sources["NDTVProfit_Markets"]      = "https://feeds.feedburner.com/ndtvprofit-latest"
+        sources["MoneyControl"] = "https://www.moneycontrol.com/rss/MCtopnews.xml"
+        sources["EconomicTimes_Markets"] = "https://economictimes.indiatimes.com/rssfeeds/2146842.cms"
+        sources["Investing_India"] = "https://in.investing.com/rss/"
+        sources["BusinessStandard_Latest"] = "https://www.business-standard.com/rss/latest.rss"
+        sources["Livemint_Markets"]        = "https://www.livemint.com/rss/markets"
+        sources["BusinessLine_Markets"]    = "https://www.thehindubusinessline.com/markets/?service=rss"
+        sources["NDTVProfit_Markets"]      = "https://feeds.feedburner.com/ndtvprofit-latest"
+        sources["ET_Stocks"]          = "https://economictimes.indiatimes.com/rssfeeds/1977021501.cms"
+        sources["ET_Companies"]       = "https://economictimes.indiatimes.com/rssfeeds/1286551815.cms"
+        sources["ET_Economy"]         = "https://economictimes.indiatimes.com/rssfeeds/1373380680.cms"
+        sources["ET_Industry"]       = "https://economictimes.indiatimes.com/rssfeeds/13357270.cms"
+
+        sources["BS_Companies"]       = "https://www.business-standard.com/rss/companies-101.rss"
+        sources["BS_Finance"]         = "https://www.business-standard.com/rss/finance-103.rss"
+        sources["BS_Economy"]         = "https://www.business-standard.com/rss/economy-policy-102.rss"
+        sources["BS_Industry"]        = "https://www.business-standard.com/rss/industry-104.rss"
+
+        sources["Mint_Companies"]     = "https://www.livemint.com/rss/companies"
+        sources["Mint_Money"]         = "https://www.livemint.com/rss/money"
+        sources["Mint_Economy"]       = "https://www.livemint.com/rss/economy"
+
+        sources["BL_Economy"]         = "https://www.thehindubusinessline.com/economy/?service=rss"
+        sources["BL_Companies"]       = "https://www.thehindubusinessline.com/companies/?service=rss"
+        sources["BL_Portfolio"]       = "https://www.thehindubusinessline.com/portfolio/?service=rss"
+
+        sources["TradeBrains"]        = "https://tradebrains.in/feed"
+
+        sources["Investing_Stocks"]   = "https://in.investing.com/rss/stock_stock_picks.rss"
+
+        sources["Pulse_Zerodha"]      = "https://pulse.zerodha.com/feed.xml"
+
+        sources["TickerTape"]         = "https://www.tickertape.in/blog/feed"
+        sources["TheHindu_Business"]        = "https://thehindu.com/business/feeder/default.rss"
+        sources["TheHindu_Markets"]         = "https://www.thehindu.com/business/markets/?service=rss"
+
+        sources["IndianExpress_Business"]   = "https://indianexpress.com/section/business/feed/"
+        sources["IndianExpress_Companies"]  = "https://indianexpress.com/section/business/companies/feed/"
+        sources["IndianExpress_Market"]     = "https://indianexpress.com/section/business/market/feed/"
+        sources["IndianExpress_Economy"]    = "https://indianexpress.com/section/business/economy/feed/"
+
+        sources["IndiaToday_Business"]      = "https://www.indiatoday.in/rss/1206574"
+
+        sources["BusinessLine_Home"]        = "https://www.thehindubusinessline.com/feeder/default.rss"
     return sources
 
 # ---------------------------
@@ -463,7 +499,7 @@ def map_ticker(title: str, source_name: str) -> tuple[str | None, float]:
 def main():
     os.makedirs("data", exist_ok=True)
     sources = build_sources()
-
+    now = pd.Timestamp.now(tz="UTC")
     rows = []
     print(f"Starting news fetch from {len(sources)} sources...\n")
 
@@ -517,16 +553,38 @@ def main():
     # Secondary dedup: collapse near-duplicates across outlets within same hour
     df.sort_values(["title_canon", "pub_hour", "source_name"], inplace=True)
     df = df.drop_duplicates(subset=["title_canon", "pub_hour"], keep="first")
+    def get_tier(published_utc):
+        try:
+            age_hours = (now - pd.Timestamp(published_utc)).total_seconds() / 3600
+            if age_hours <= 48:    return 1  # LIVE
+            elif age_hours <= 720: return 2  # RECENT (30 days)
+            else:                  return 3  # ARCHIVE
+        except:
+            return 3
 
-    after = len(df)
+    df["recency_tier"] = df["published_utc"].apply(get_tier)
+    df["age_hours"]    = df["published_utc"].apply(
+        lambda x: round((now - pd.Timestamp(x)).total_seconds() / 3600, 1)
+    )
+
+    # Drop archive (>30 days) from active pipeline
+    df_active = df[df["recency_tier"] <= 2].copy()
+
+    # Save tier summary
+    tier_counts = df["recency_tier"].value_counts().sort_index()
+    print(f"News tiers: Live={tier_counts.get(1,0)}, Recent={tier_counts.get(2,0)}, Archive(dropped)={tier_counts.get(3,0)}")
+
+    after = len(df_active)
+
+    before_active = before  # original before dedup
 
     out = "data/raw_news.csv"
-    df.to_csv(out, index=False, encoding="utf-8")
+    df_active.to_csv(out, index=False, encoding="utf-8")  # ← save df_active, not df
 
     print(f"\nSaved {after} deduped items to {out} (dropped {before - after} dups)\n")
     print("Sample:")
     sample_cols = ["source_name", "source_domain", "ticker", "map_confidence", "published_utc", "title"]
-    print(df.head(8)[sample_cols])
+    print(df_active.head(8)[sample_cols])
 
 if __name__ == "__main__":
     main()

@@ -82,6 +82,7 @@ jobs:
           PY
           # keep next-day predictions fresh using the last trained model
           python -m src.predict_next || true
+          python -m src.settle_signals || true
 
       - name: Commit refreshed CSVs
         run: |

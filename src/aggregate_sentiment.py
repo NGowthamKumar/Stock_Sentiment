@@ -75,7 +75,20 @@ def main():
     # recency weights
     hours_ago = (now - df["published_utc"]).dt.total_seconds() / 3600.0
     df["w"] = hours_ago.map(lambda h: ewma_weight(h, HALF_LIFE_HOURS))
-    df["w_total"] = df["w"]  # placeholder for source reliability later
+
+    # ── Add tier weighting ──
+    # Tier 1 (0-48h) = full weight, Tier 2 (2-30d) = half weight
+    def get_tier_weight(published_utc):
+        try:
+            age_hours = (now - published_utc).total_seconds() / 3600
+            if age_hours <= 48:   return 1.0   # LIVE
+            elif age_hours <= 720: return 0.5  # RECENT
+            else:                  return 0.1  # OLD (shouldn't exist after fetch filter)
+        except:
+            return 0.5
+
+    df["tier_weight"] = df["published_utc"].apply(get_tier_weight)
+    df["w_total"] = df["w"] * df["tier_weight"]  # combine EWMA + tier weight
 
     out_rows = []
     for tk, g in df.groupby("ticker"):
