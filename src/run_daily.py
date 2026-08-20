@@ -25,6 +25,7 @@ os.system("python -m src.aggregate_sentiment")
 os.system("python -m src.build_dataset")
 os.system("python -m src.train_regression")
 os.system("python -m src.predict_next")
+os.system("python -m src.settle_signals")
 
 # finally launch dashboard
 os.system("streamlit run dashboard/app.py")
