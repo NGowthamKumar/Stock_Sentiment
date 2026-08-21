@@ -95,14 +95,24 @@ def main():
 
     prices["date"] = pd.to_datetime(prices["date"]).dt.tz_localize(None)
 
-    # Calculate indicators using the full historical warm-up period
+    # 1-day forward return (existing)
     prices = add_forward_return(prices, horizon_days=1)
+    prices = prices.rename(columns={"ret_fwd": "ret_fwd_1d"})
+
+    # 3-day forward return (new)
+    prices_3d = prices.copy()
+    prices_3d["close_next_3d"] = prices_3d.groupby("ticker")["close"].shift(-3)
+    prices_3d["ret_fwd_3d"] = (prices_3d["close_next_3d"] / prices_3d["close"] - 1.0) * 100
+    prices["ret_fwd_3d"] = prices_3d["ret_fwd_3d"]
+
+    # Use 1-day as primary target (keep ret_fwd for compatibility)
+    prices["ret_fwd"] = prices["ret_fwd_1d"]
+
+    # Technical indicators
     prices = add_technical_indicators(prices)
-
     prices = prices.sort_values(["ticker", "date"])
-
-    prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
-    prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
+    prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd_1d"].shift(1)
+    prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd_1d"].shift(2)
 
     # Now keep only the actual modeling period.
     # The warm-up data was used only for calculating indicators/lags.
@@ -110,9 +120,10 @@ def main():
         (prices["date"] >= data_start) &
         (prices["date"] <= data_end)
     ].copy()
-    # Clip extreme outliers from corporate actions (splits, demergers, bonus issues)
-    for col in ["ret_fwd", "ret_lag1", "ret_lag2"]:
-        prices[col] = prices[col].clip(lower=-15, upper=15)
+    # Clip extreme outliers — including 3-day return
+    for col in ["ret_fwd", "ret_fwd_1d", "ret_lag1", "ret_lag2", "ret_fwd_3d"]:
+        if col in prices.columns:
+            prices[col] = prices[col].clip(lower=-15, upper=15)
 
     df = feats.merge(prices, on=["date","ticker"], how="inner")
 
@@ -138,8 +149,7 @@ def main():
         df["dii_net"] = 0
         print("FII/DII history not found, defaulting to 0")
 
-    # Drop rows with missing shifted features or label
-    df = df.dropna(subset=["smart_score","ret_fwd","ret_lag1"]).copy()
+    df = df.dropna(subset=["smart_score","ret_fwd_1d","ret_lag1"]).copy()
 
     # ── Macro indicators ──
     macro = fetch_macro_indicators(price_start, price_end)
