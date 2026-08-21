@@ -449,3 +449,4 @@ pred_date,ticker,smart_score,s_recency,ss_signal,xgb_prob,xgb_signal,combined_si
 >>>>>>> db7764106805a6a8cb56a1a7c3c5a3348a8eee56,,,,,,,,,,,,,
 2026-08-21,HAL.NS,66.06,71.82,1.0,46.1,0.0,0.0,-0.0753,,,,,
 2026-08-21,EASEMYTRIP.NS,62.17,65.93,0.0,49.0,0.0,0.0,-0.1167,,,,,
+2026-08-21,MARICO.NS,74.86,94.13,1.0,50.7,0.0,0.0,-0.2156,,,,,
