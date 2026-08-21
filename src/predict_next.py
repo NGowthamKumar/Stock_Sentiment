@@ -292,5 +292,57 @@ def main():
         except Exception as e:
             print(f"Warning: signal history save failed: {e}")
 
+    # ── 3-Day XGBoost signals ──
+    xgb_3d_path = "models/xgb_3d_classifier.pkl"
+    ens_3d_path = "models/voting_3d_ensemble.pkl"
+
+    if os.path.exists(xgb_3d_path) and os.path.exists(ens_3d_path):
+        xgb_3d_bundle = joblib.load(xgb_3d_path)
+        ens_3d_bundle  = joblib.load(ens_3d_path)
+
+        X_3d = latest[["ticker", *xgb_3d_bundle["features"]]].dropna()
+
+        # XGBoost 3-day
+        probs_3d = xgb_3d_bundle["model"].predict_proba(
+            X_3d[xgb_3d_bundle["features"]]
+        )[:, 1]
+
+        # Ensemble 3-day
+        ens_3d_probs = ens_3d_bundle["model"].predict_proba(
+            X_3d[ens_3d_bundle["features"]]
+        )[:, 1]
+
+        signals_3d = X_3d[["ticker"]].copy()
+        signals_3d["xgb_3d_prob"]      = (probs_3d * 100).round(1)
+        signals_3d["ensemble_3d_prob"] = (ens_3d_probs * 100).round(1)
+        signals_3d["xgb_3d_signal"]    = signals_3d["xgb_3d_prob"].apply(
+            get_signal_label
+        )
+
+        # Combined 1d + 3d agreement
+        if os.path.exists("data/ensemble_signals.csv"):
+            ens_1d = pd.read_csv("data/ensemble_signals.csv")[
+                ["ticker","ensemble_probability"]
+            ].rename(columns={"ensemble_probability": "ens_1d_prob"})
+            signals_3d = signals_3d.merge(ens_1d, on="ticker", how="left")
+            signals_3d["both_agree"] = (
+                (signals_3d["ens_1d_prob"] > 55) &
+                (signals_3d["ensemble_3d_prob"] > 55)
+            )
+            signals_3d["combined_signal"] = signals_3d.apply(
+                lambda r: "🟢 STRONG — Both 1d & 3d agree" if r["both_agree"]
+                else "🟡 1d only bullish" if r["ens_1d_prob"] > 55
+                else "🔵 3d only bullish" if r["ensemble_3d_prob"] > 55
+                else "⚪ NEUTRAL",
+                axis=1
+            )
+
+        signals_3d = signals_3d.sort_values("ensemble_3d_prob", ascending=False)
+        signals_3d.to_csv("data/signals_3d.csv", index=False)
+        print("\n3-Day Signals (top 10):")
+        print(signals_3d[["ticker","xgb_3d_prob","ensemble_3d_prob",
+                           "combined_signal"]].head(10))
+        print("Wrote 3-day signals → data/signals_3d.csv")
+
 if __name__ == "__main__":
     main()

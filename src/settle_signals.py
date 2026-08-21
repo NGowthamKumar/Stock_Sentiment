@@ -108,9 +108,14 @@ def compute_stock_accuracy(history: pd.DataFrame) -> pd.DataFrame:
             )[0],
         })
     
-    return pd.DataFrame(results).sort_values(
-        "combined_acc", ascending=False, na_position="last"
-    )
+    df_results = pd.DataFrame(results)
+    if df_results.empty:
+        return df_results
+    # Sort by whatever accuracy column exists
+    for sort_col in ["combined_acc", "ss_acc_overall", "xgb_acc_overall"]:
+        if sort_col in df_results.columns:
+            return df_results.sort_values(sort_col, ascending=False, na_position="last")
+    return df_results
 
 def main():
     history_path  = "data/signal_history.csv"

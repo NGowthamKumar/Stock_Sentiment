@@ -17,7 +17,10 @@ from sklearn.preprocessing import StandardScaler
 
 FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",        
             "vix_change","oil_change","usdinr_change","rsi","macd_diff","bb_pct","bb_width","price_vs_sma"]
-TARGET = "ret_fwd"
+
+TARGET = "ret_fwd_1d"
+TARGET_1D = "ret_fwd_1d"
+TARGET_3D = "ret_fwd_3d"
 
 def evaluate(model, X, y, folds=5):
     if len(X) < folds + 5:
@@ -63,7 +66,7 @@ def main():
     if df.empty:
         raise SystemExit("dataset is empty. You need at least ~2 days of history.")
 
-    X, y = df[FEATURES], df[TARGET]
+    X, y = df[FEATURES], df[TARGET_1D]
     y_bin = (y > 0).astype(int)
     reg_models = {
         "Ridge": Pipeline([
@@ -119,6 +122,7 @@ def main():
         ],
         voting="soft"  # uses probabilities — more accurate than hard voting
     )
+    
     ensemble_scores = evaluate_classifier(voting, X, y)
     print(f"Voting Ensemble: {ensemble_scores}")
     voting.fit(X, y_bin)
@@ -126,11 +130,84 @@ def main():
     print(f"Saved Voting Ensemble → models/voting_ensemble.pkl")
 
     # ---------------------------------------------------------
-    # Save all metrics
+    # Define metrics path and run time (needed by 3-day block below)
     # ---------------------------------------------------------
     metrics_path = "data/modeling/model_metrics.csv"
     run_time = pd.Timestamp.now().strftime("%Y-%m-%d %H:%M")
 
+    # ── 3-Day XGBoost Classifier ──
+    if TARGET_3D in df.columns:
+        y_3d = df[TARGET_3D]
+        y_bin_3d = (y_3d > 0).astype(int)
+        
+        # Drop rows where 3d return is NaN (last 3 rows per ticker)
+        mask_3d = y_3d.notna()
+        X_3d = X[mask_3d]
+        y_bin_3d = y_bin_3d[mask_3d]
+        
+        xgb_3d = XGBClassifier(
+            n_estimators=300, max_depth=4, learning_rate=0.05,
+            subsample=0.8, colsample_bytree=0.8,
+            eval_metric="logloss", random_state=42, n_jobs=-1
+        )
+        xgb_3d_scores = evaluate_classifier(xgb_3d, X_3d, y_3d[mask_3d])
+        print(f"XGBoost 3-Day Classifier: {xgb_3d_scores}")
+        xgb_3d.fit(X_3d, y_bin_3d)
+        joblib.dump(dict(model=xgb_3d, features=FEATURES), "models/xgb_3d_classifier.pkl")
+        print(f"Saved XGBoost 3-Day → models/xgb_3d_classifier.pkl")
+        
+        # ── 3-Day Voting Ensemble ──
+        lgbm_3d = LGBMClassifier(
+            n_estimators=300, max_depth=4, learning_rate=0.05,
+            subsample=0.8, colsample_bytree=0.8,
+            random_state=42, n_jobs=-1, verbose=-1
+        )
+        rf_3d = RandomForestClassifier(
+            n_estimators=300, max_depth=6, min_samples_leaf=4,
+            n_jobs=-1, random_state=42
+        )
+        voting_3d = VotingClassifier(
+            estimators=[
+                ("xgb", XGBClassifier(n_estimators=300, max_depth=4,
+                    learning_rate=0.05, subsample=0.8, colsample_bytree=0.8,
+                    eval_metric="logloss", random_state=42, n_jobs=-1)),
+                ("lgbm", lgbm_3d),
+                ("rf", rf_3d)
+            ],
+            voting="soft"
+        )
+        ensemble_3d_scores = evaluate_classifier(voting_3d, X_3d, y_3d[mask_3d])
+        print(f"Voting Ensemble 3-Day: {ensemble_3d_scores}")
+        voting_3d.fit(X_3d, y_bin_3d)
+        joblib.dump(dict(model=voting_3d, features=FEATURES), "models/voting_3d_ensemble.pkl")
+        print(f"Saved 3-Day Voting Ensemble → models/voting_3d_ensemble.pkl")
+        
+        # Save 3-day metrics
+        rows_3d = [
+            {
+                "train_date": run_time, "model": "XGBoost_3Day_Classifier",
+                "is_best": False, "mae": 0.0, "r2": 0.0,
+                "direction_accuracy": xgb_3d_scores["accuracy"],
+                "spearman": 0.0, "rows": len(X_3d)
+            },
+            {
+                "train_date": run_time, "model": "Voting_3Day_Ensemble",
+                "is_best": False, "mae": 0.0, "r2": 0.0,
+                "direction_accuracy": ensemble_3d_scores["accuracy"],
+                "spearman": 0.0, "rows": len(X_3d)
+            }
+        ]
+        pd.DataFrame(rows_3d).to_csv(
+            metrics_path, mode='a', header=False, index=False
+        )
+        print("Saved 3-day model metrics")
+    else:
+        print("Warning: ret_fwd_3d not in dataset — skipping 3-day models")
+
+    # ---------------------------------------------------------
+    # Save all metrics
+    # ---------------------------------------------------------
+    
     rows = []
     for name, s in scores.items():
         rows.append({
