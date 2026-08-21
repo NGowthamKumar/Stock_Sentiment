@@ -128,6 +128,16 @@ with tab2:
 with tab3:
     st.subheader("XGBoost Signal Dashboard")
     st.caption("UP/DOWN probability signals from XGBoost Classifier — updated after each daily run")
+    
+    if not signals.empty and os.path.exists(os.path.join(BASE_DIR, "data/signals_3d.csv")):
+        sig3d_top = load_csv(os.path.join(BASE_DIR, "data/signals_3d.csv"))
+        both_agree_count = len(sig3d_top[sig3d_top.get("combined_signal", "") == "🟢 STRONG — Both 1d & 3d agree"]) if "combined_signal" in sig3d_top.columns else 0
+        strong_1d = len(signals[signals["signal"] == "🟢 STRONG BULLISH"])
+
+        if both_agree_count > 0 or strong_1d > 0:
+            st.success(f"🎯 Today: **{both_agree_count} stocks** where both 1d & 3d agree (highest confidence) | **{strong_1d} STRONG BULLISH** 1-day signals")
+        else:
+            st.warning("⚪ No high-confidence signals today — models uncertain about near-term direction")
 
     if signals.empty:
         st.info("No XGBoost signals yet. Run the weekly training first to generate signals.")
@@ -191,6 +201,77 @@ with tab3:
         High confidence signals (>65% or <35%) are more meaningful than neutral ones.
         Use alongside SmartScore and your own research before any decision.
         """)
+
+        # ── 3-Day Signals Section ── ← ADD FROM HERE
+        st.markdown("---")
+        st.subheader("3-Day Horizon Signals")
+        st.caption("Predicts direction over next 3 trading days — news sentiment takes 2-3 days to fully price in")
+
+        signals_3d_path = os.path.join(BASE_DIR, "data/signals_3d.csv")
+        if os.path.exists(signals_3d_path):
+            sig3d = load_csv(signals_3d_path)
+
+            if not sig3d.empty:
+                # Summary metrics
+                both_agree = sig3d[sig3d["combined_signal"] == "🟢 STRONG — Both 1d & 3d agree"] if "combined_signal" in sig3d.columns else pd.DataFrame()
+                bullish_3d = sig3d[sig3d["ensemble_3d_prob"] > 55] if "ensemble_3d_prob" in sig3d.columns else pd.DataFrame()
+
+                c1, c2, c3 = st.columns(3)
+                c1.metric("🟢 Both 1d+3d Agree", len(both_agree))
+                c2.metric("🔵 3d Bullish Only", len(bullish_3d) - len(both_agree))
+                c3.metric("Total Stocks", len(sig3d))
+
+                st.info("🟢 **STRONG** = Both 1-day AND 3-day models agree → highest confidence signal")
+
+                min_3d_prob = st.slider("Min 3-Day Ensemble Probability (%)", 50, 80, 55, key="slider_3d")
+
+                if "ensemble_3d_prob" in sig3d.columns:
+                    filtered_3d = sig3d[sig3d["ensemble_3d_prob"] >= min_3d_prob].copy()
+                    filtered_3d = filtered_3d.sort_values("ensemble_3d_prob", ascending=False)
+
+                    display_cols_3d = ["ticker", "xgb_3d_prob", "ensemble_3d_prob",
+                                       "ens_1d_prob", "combined_signal"]
+                    display_cols_3d = [c for c in display_cols_3d if c in filtered_3d.columns]
+
+                    st.dataframe(
+                        filtered_3d[display_cols_3d].rename(columns={
+                            "xgb_3d_prob":     "XGBoost 3d (%)",
+                            "ensemble_3d_prob": "Ensemble 3d (%)",
+                            "ens_1d_prob":      "Ensemble 1d (%)",
+                            "combined_signal":  "Signal",
+                        }),
+                        use_container_width=True,
+                        hide_index=True
+                    )
+
+                    if not filtered_3d.empty:
+                        fig_3d = px.bar(
+                            filtered_3d.head(20),
+                            x="ticker",
+                            y="ensemble_3d_prob",
+                            color="combined_signal",
+                            color_discrete_map={
+                                "🟢 STRONG — Both 1d & 3d agree": "#2ecc71",
+                                "🔵 3d only bullish":              "#3498db",
+                                "🟡 1d only bullish":              "#f1c40f",
+                                "⚪ NEUTRAL":                      "#7f8c8d",
+                            },
+                            title="3-Day Ensemble Probability by Stock",
+                            labels={"ensemble_3d_prob": "3-Day UP Probability (%)"}
+                        )
+                        fig_3d.add_hline(y=55, line_dash="dash",
+                                         annotation_text="55% threshold")
+                        st.plotly_chart(fig_3d, use_container_width=True)
+
+                st.markdown("""
+                **How to use 3-day signals:**
+                - 🟢 **Both agree**: Highest confidence — act on this
+                - 🔵 **3d only bullish**: Buy today, hold 3 days
+                - 🟡 **1d only bullish**: Quick trade only
+                - ⚪ **NEUTRAL**: Skip this stock
+                """)
+        else:
+            st.info("3-day signals will appear after the next pipeline run.")
 
 with tab4:
     st.subheader("Stock Signal Accuracy")

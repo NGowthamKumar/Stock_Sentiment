@@ -117,6 +117,65 @@ def compute_stock_accuracy(history: pd.DataFrame) -> pd.DataFrame:
             return df_results.sort_values(sort_col, ascending=False, na_position="last")
     return df_results
 
+def compute_streaks(history: pd.DataFrame) -> pd.DataFrame:
+    """Compute consecutive positive day streaks and correct prediction streaks per stock"""
+    settled = history[history["actual_dir"].notna()].copy()
+    if settled.empty:
+        return pd.DataFrame()
+    
+    settled["actual_dir"] = settled["actual_dir"].astype(int)
+    settled = settled.sort_values(["ticker", "pred_date"])
+    
+    results = []
+    for ticker, grp in settled.groupby("ticker"):
+        grp = grp.sort_values("pred_date")
+        
+        # Current consecutive positive return streak
+        pos_streak = 0
+        for v in grp["actual_dir"].values:
+            if v == 1:
+                pos_streak += 1
+            else:
+                pos_streak = 0
+        
+        # Current consecutive correct prediction streak (XGBoost)
+        correct_streak = 0
+        for v in grp["xgb_correct"].dropna().astype(int).values:
+            if v == 1:
+                correct_streak += 1
+            else:
+                correct_streak = 0
+        
+        # Current consecutive correct prediction streak (SmartScore)
+        ss_correct_streak = 0
+        for v in grp["ss_correct"].dropna().astype(int).values:
+            if v == 1:
+                ss_correct_streak += 1
+            else:
+                ss_correct_streak = 0
+        
+        # Positive days last 10
+        pos_days_10d = int(grp["actual_dir"].tail(10).sum())
+        
+        # Win rate last 10 days
+        xgb_wr = grp["xgb_correct"].tail(10).mean()
+        win_rate_10d = round(float(xgb_wr) * 100, 1) if pd.notna(xgb_wr) else None
+        
+        results.append({
+            "ticker":            ticker,
+            "pos_day_streak":    pos_streak,
+            "xgb_correct_streak": correct_streak,
+            "ss_correct_streak": ss_correct_streak,
+            "pos_days_10d":      pos_days_10d,
+            "win_rate_10d":      win_rate_10d,
+            "total_settled":     len(grp),
+        })
+    
+    return pd.DataFrame(results).sort_values(
+        "pos_day_streak", ascending=False, na_position="last"
+    )
+
+
 def main():
     history_path  = "data/signal_history.csv"
     accuracy_path = "data/stock_accuracy.csv"
@@ -189,6 +248,16 @@ def main():
         print(acc_df[cols].head(15).to_string(index=False))
     else:
         print("Not enough settled data yet — check back tomorrow")
+
+    # Compute and save streaks
+    streak_df = compute_streaks(history)
+    if not streak_df.empty:
+        streak_df.to_csv("data/stock_streaks.csv", index=False)
+        print("\nTop stocks by positive day streak:")
+        print(streak_df[["ticker","pos_day_streak","xgb_correct_streak",
+                          "pos_days_10d","win_rate_10d"]].head(10).to_string(index=False))
+    else:
+        print("Not enough data for streaks yet")
 
 if __name__ == "__main__":
     main()
