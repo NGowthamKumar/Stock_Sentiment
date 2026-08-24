@@ -128,7 +128,7 @@ with tab2:
 with tab3:
     st.subheader("XGBoost Signal Dashboard")
     st.caption("UP/DOWN probability signals from XGBoost Classifier — updated after each daily run")
-    
+
     if not signals.empty and os.path.exists(os.path.join(BASE_DIR, "data/signals_3d.csv")):
         sig3d_top = load_csv(os.path.join(BASE_DIR, "data/signals_3d.csv"))
         both_agree_count = len(sig3d_top[sig3d_top.get("combined_signal", "") == "🟢 STRONG — Both 1d & 3d agree"]) if "combined_signal" in sig3d_top.columns else 0
@@ -373,8 +373,56 @@ with tab4:
             when today's predictions get settled with actual returns.
             Check back tomorrow!
             """)
-        else:
-            st.info("Signal history will start building from today's predictions.")
+            streaks_path = os.path.join(BASE_DIR, "data/stock_streaks.csv")
+            if os.path.exists(streaks_path):
+                streaks = load_csv(streaks_path)
+                if not streaks.empty and streaks["pos_day_streak"].max() > 0:
+                    st.markdown("---")
+                    st.subheader("Performance Streaks")
+                    st.caption("Updates daily as predictions are settled with actual market returns")
+
+                    c1, c2 = st.columns(2)
+                    with c1:
+                        st.markdown("### 📈 Positive Return Streak")
+                        st.caption("Stocks with most consecutive positive days")
+                        top_pos = streaks[streaks["pos_day_streak"] > 0].head(10)
+                        st.dataframe(
+                            top_pos[["ticker","pos_day_streak","pos_days_10d"]].rename(columns={
+                                "pos_day_streak": "Current Streak 🔥",
+                                "pos_days_10d":   "Positive Days (10d)"
+                            }),
+                            use_container_width=True, hide_index=True
+                        )
+                    with c2:
+                        st.markdown("### 🎯 Model Correct Prediction Streak")
+                        st.caption("Stocks our XGBoost has been correctly predicting")
+                        top_correct = streaks[streaks["xgb_correct_streak"] > 0].head(10)
+                        st.dataframe(
+                            top_correct[["ticker","xgb_correct_streak","win_rate_10d"]].rename(columns={
+                                "xgb_correct_streak": "Correct in a Row 🎯",
+                                "win_rate_10d":        "Win Rate 10d (%)"
+                            }),
+                            use_container_width=True, hide_index=True
+                        )
+                    st.info("""
+                    📊 **How to use streaks:**
+                    - Stock on positive streak + model correctly predicting → strongest buy signal
+                    - 100% win rate with 2+ days = model understands this stock well
+                    - Streaks become more meaningful after 2-3 weeks of data
+                    """)
+
+            else:
+                if os.path.exists(history_path):
+                    hist = load_csv(history_path)
+                    st.info(f"""
+                    Signal history is being built automatically.
+                    **{len(hist)} predictions** saved so far.
+                    Check back tomorrow!
+                    """)
+                else:
+                    st.info("Signal history will start building from today's predictions.")
+        
+        
 
 # ================================ DRILLDOWN ===========================
 with tab5:
@@ -386,16 +434,17 @@ with tab5:
     left, right = st.columns([2, 1])
     with left:
         if not hist.empty:
-            h = hist[hist["ticker"] == tk].sort_values("pred_date")
+            date_col = "pred_date" if "pred_date" in hist.columns else "date"
+            h = hist[hist["ticker"] == tk].sort_values(date_col)
             if not h.empty:
                 # Signal accuracy over time
-                fig3 = px.line(h, x="pred_date", y="smart_score",
+                fig3 = px.line(h, x=date_col, y="smart_score",
                             title=f"{tk} — SmartScore History")
                 st.plotly_chart(fig3, use_container_width=True)
 
                 # XGBoost probability over time
                 if "xgb_prob" in h.columns:
-                    fig4 = px.line(h, x="pred_date", y="xgb_prob",
+                    fig4 = px.line(h, x=date_col, y="xgb_prob",
                                 title=f"{tk} — XGBoost UP Probability (%)")
                     fig4.add_hline(y=55, line_dash="dash",
                                 annotation_text="55% threshold")

@@ -116,7 +116,8 @@ def get_confidence(prob):
         return "Low Confidence"
 
 def save_signal_history(latest: pd.DataFrame, out: pd.DataFrame, 
-                        ens_signals: pd.DataFrame) -> None:
+                        ens_signals: pd.DataFrame,
+                        signals_3d: pd.DataFrame = None) -> None:
     """Save today's predictions to signal history for accuracy tracking"""
     history_path = "data/signal_history.csv"
     today = pd.Timestamp.now().strftime("%Y-%m-%d")
@@ -149,6 +150,19 @@ def save_signal_history(latest: pd.DataFrame, out: pd.DataFrame,
         if ss_bullish is not None and xgb_bullish is not None:
             combined_bullish = 1 if (ss_bullish == 1 and xgb_bullish == 1) else 0
         
+        # Signal 4 — 3-day signals
+        xgb_3d_prob = None
+        xgb_3d_bullish = None
+        ens_3d_prob = None
+        ens_3d_bullish = None
+        if signals_3d is not None and not signals_3d.empty:
+            row_3d = signals_3d[signals_3d["ticker"] == ticker]
+            if not row_3d.empty:
+                xgb_3d_prob    = float(row_3d.iloc[0].get("xgb_3d_prob", 50))
+                ens_3d_prob    = float(row_3d.iloc[0].get("ensemble_3d_prob", 50))
+                xgb_3d_bullish = 1 if xgb_3d_prob > 55 else 0
+                ens_3d_bullish = 1 if ens_3d_prob > 55 else 0
+        
         # Regression predicted return
         reg_row = out[out["ticker"] == ticker]
         pred_ret = float(reg_row.iloc[0]["pred_ret_1d_pct"]) if not reg_row.empty else None
@@ -158,16 +172,23 @@ def save_signal_history(latest: pd.DataFrame, out: pd.DataFrame,
             "ticker":           ticker,
             "smart_score":      round(smart_score, 2),
             "s_recency":        round(s_recency, 2),
-            "ss_signal":        ss_bullish,       # SmartScore signal
+            "ss_signal":        ss_bullish,
             "xgb_prob":         round(xgb_prob, 2) if xgb_prob else None,
-            "xgb_signal":       xgb_bullish,      # XGBoost signal
-            "combined_signal":  combined_bullish,  # Both agree
+            "xgb_signal":       xgb_bullish,
+            "combined_signal":  combined_bullish,
             "pred_ret_pct":     round(pred_ret, 4) if pred_ret else None,
-            "actual_ret_pct":   None,              # filled next day
-            "actual_dir":       None,              # filled next day
-            "ss_correct":       None,              # filled next day
-            "xgb_correct":      None,              # filled next day
-            "combined_correct": None,              # filled next day
+            "xgb_3d_prob":      round(xgb_3d_prob, 2) if xgb_3d_prob else None,
+            "ens_3d_prob":      round(ens_3d_prob, 2) if ens_3d_prob else None,
+            "xgb_3d_signal":    xgb_3d_bullish,
+            "ens_3d_signal":    ens_3d_bullish,
+            "actual_ret_pct":   None,
+            "actual_dir":       None,
+            "actual_dir_3d":    None,
+            "ss_correct":       None,
+            "xgb_correct":      None,
+            "combined_correct": None,
+            "xgb_3d_correct":   None,
+            "ens_3d_correct":   None,
         })
     
     if not rows:
@@ -183,7 +204,7 @@ def save_signal_history(latest: pd.DataFrame, out: pd.DataFrame,
             lambda r: (r["pred_date"], r["ticker"]) in existing_keys, axis=1
         )]
         if not new_rows.empty:
-            combined = pd.concat([existing, new_rows], ignore_index=True)
+            combined = pd.concat([existing, new_rows.dropna(how='all')], ignore_index=True)
             combined.to_csv(history_path, index=False)
             print(f"Appended {len(new_rows)} rows to signal history")
     else:
@@ -283,14 +304,6 @@ def main():
         print("\nVoting Ensemble Signals:")
         print(ens_signals[["ticker","ensemble_probability","models_agree","signal"]].head(10))
         print("Wrote ensemble signals → data/ensemble_signals.csv")
-        # ── Save signal history ──
-        try:
-            ens_signals = None
-            if os.path.exists("data/ensemble_signals.csv"):
-                ens_signals = pd.read_csv("data/ensemble_signals.csv")
-            save_signal_history(latest, out, ens_signals)
-        except Exception as e:
-            print(f"Warning: signal history save failed: {e}")
 
     # ── 3-Day XGBoost signals ──
     xgb_3d_path = "models/xgb_3d_classifier.pkl"
@@ -343,6 +356,17 @@ def main():
         print(signals_3d[["ticker","xgb_3d_prob","ensemble_3d_prob",
                            "combined_signal"]].head(10))
         print("Wrote 3-day signals → data/signals_3d.csv")
+        # ── Save signal history (after ALL signals computed) ──
+    try:
+        ens_loaded = None
+        sig3d_loaded = None
+        if os.path.exists("data/ensemble_signals.csv"):
+            ens_loaded = pd.read_csv("data/ensemble_signals.csv")
+        if os.path.exists("data/signals_3d.csv"):
+            sig3d_loaded = pd.read_csv("data/signals_3d.csv")
+        save_signal_history(latest, out, ens_loaded, sig3d_loaded)
+    except Exception as e:
+        print(f"Warning: signal history save failed: {e}")
 
 if __name__ == "__main__":
     main()
