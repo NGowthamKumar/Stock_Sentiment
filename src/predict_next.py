@@ -63,7 +63,21 @@ def build_features(latest):
             macro_map = {
                 "^INDIAVIX": "india_vix",
                 "BZ=F":      "crude_oil",
-                "USDINR=X":  "usd_inr"
+                "USDINR=X":  "usd_inr",
+                "^VIX":      "us_vix",
+                "^NSEI":     "nifty_ret",
+                "^CNXIT":    "nifty_it",
+                "^NSEBANK":  "nifty_bank",
+            }
+            
+            change_map = {
+                "india_vix":  "vix_change",
+                "crude_oil":  "oil_change",
+                "usd_inr":    "usdinr_change",
+                "us_vix":     "us_vix_change",
+                "nifty_ret":  "nifty_ret_change",
+                "nifty_it":   "nifty_it_change",
+                "nifty_bank": "nifty_bank_change",
             }
             for ticker, col in macro_map.items():
                 data = yf.download(ticker, start=start, end=end,
@@ -74,20 +88,18 @@ def build_features(latest):
                     latest_val = float(data["Close"].iloc[-1].iloc[0] if hasattr(data["Close"].iloc[-1], 'iloc') else data["Close"].iloc[-1])
                     prev_val = float(data["Close"].iloc[-2].iloc[0] if hasattr(data["Close"].iloc[-2], 'iloc') else data["Close"].iloc[-2]) if len(data) > 1 else latest_val
                     latest[col] = latest_val
-                    change_col = {"india_vix": "vix_change",
-                                  "crude_oil": "oil_change",
-                                  "usd_inr":   "usdinr_change"}[col]
+                    change_col = change_map[col]  
                     latest[change_col] = (latest_val - prev_val) / prev_val * 100
                 else:
                     latest[col] = 0
-                    change_col = {"india_vix": "vix_change",
-                                  "crude_oil": "oil_change",
-                                  "usd_inr":   "usdinr_change"}[col]
-                    latest[change_col] = 0
+                    latest[change_map[col]] = 0   
         except Exception as e:
             print(f"Warning: macro fetch failed: {e}")
-            for col in ["india_vix","crude_oil","usd_inr",
-                        "vix_change","oil_change","usdinr_change"]:
+            for col in ["india_vix","crude_oil","usd_inr","us_vix",
+                        "nifty_ret","nifty_it","nifty_bank",
+                        "vix_change","oil_change","usdinr_change",
+                        "us_vix_change","nifty_ret_change",
+                        "nifty_it_change","nifty_bank_change"]:
                 if col not in latest.columns:
                     latest[col] = 0
     return latest
@@ -199,7 +211,10 @@ def save_signal_history(latest: pd.DataFrame, out: pd.DataFrame,
     if os.path.exists(history_path):
         existing = pd.read_csv(history_path)
         # Avoid duplicating same date + ticker
-        existing_keys = set(zip(existing["pred_date"], existing["ticker"]))
+        if "pred_date" in existing.columns:
+            existing_keys = set(zip(existing["pred_date"], existing["ticker"]))
+        else:
+            existing_keys = set()
         new_rows = new_df[~new_df.apply(
             lambda r: (r["pred_date"], r["ticker"]) in existing_keys, axis=1
         )]

@@ -16,8 +16,13 @@ def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
     
     macro_tickers = {
         "^INDIAVIX": "india_vix",      # India fear index
-        "BZ=F":      "crude_oil",      # Crude oil price
+        "BZ=F":      "crude_oil",      # Brent crude oil
         "USDINR=X":  "usd_inr",        # USD/INR exchange rate
+        "^VIX":      "us_vix",         # US fear index (captures Nvidia/global tech fear)
+        "^NSEI":     "nifty_ret",      # Nifty 50 index (market-wide momentum)
+        "^CNXIT":    "nifty_it",       # Nifty IT index (IT sector momentum)
+        "^NSEBANK":  "nifty_bank",     # Nifty Bank index (banking sector)
+        # "^INBMK":   "bond_yield",      # India 10-year bond yield
     }
     
     frames = []
@@ -48,9 +53,17 @@ def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
     
     # Add daily % change for each indicator
     macro = macro.sort_values("date")
-    macro["vix_change"]    = macro["india_vix"].pct_change(fill_method=None) * 100
-    macro["oil_change"]    = macro["crude_oil"].pct_change(fill_method=None) * 100
-    macro["usdinr_change"] = macro["usd_inr"].pct_change(fill_method=None) * 100
+    macro["vix_change"]       = macro["india_vix"].pct_change(fill_method=None) * 100
+    macro["oil_change"]       = macro["crude_oil"].pct_change(fill_method=None) * 100
+    macro["usdinr_change"]    = macro["usd_inr"].pct_change(fill_method=None) * 100
+    if "us_vix" in macro.columns:
+        macro["us_vix_change"]    = macro["us_vix"].pct_change(fill_method=None) * 100
+    if "nifty_ret" in macro.columns:
+        macro["nifty_ret_change"] = macro["nifty_ret"].pct_change(fill_method=None) * 100
+    if "nifty_it" in macro.columns:
+        macro["nifty_it_change"]  = macro["nifty_it"].pct_change(fill_method=None) * 100
+    if "nifty_bank" in macro.columns:
+        macro["nifty_bank_change"]= macro["nifty_bank"].pct_change(fill_method=None) * 100
     
     # Forward fill missing values (weekends/holidays)
     macro = macro.ffill()
@@ -166,12 +179,25 @@ def main():
         df["usdinr_change"] = df["usdinr_change"].clip(lower=-3,  upper=3)
         df["crude_oil"]     = df["crude_oil"].clip(lower=50, upper=110)
         df["usd_inr"]       = df["usd_inr"].clip(lower=80, upper=95)
+        # New sector indices — only clip if they exist
+        for col, lo, hi in [
+            ("us_vix_change",     -20, 20),
+            ("nifty_ret_change",   -5,  5),
+            ("nifty_it_change",    -5,  5),
+            ("nifty_bank_change",  -5,  5),
+            ("bond_yield_change",  -2,  2),
+        ]:
+            if col in df.columns:
+                df[col] = df[col].clip(lower=lo, upper=hi)
         
         print(f"Merged macro indicators → {macro_cols}")
     else:
         print("Warning: macro indicators unavailable, defaulting to 0")
-        for col in ["india_vix","crude_oil","usd_inr",
-                    "vix_change","oil_change","usdinr_change"]:
+        for col in ["india_vix","crude_oil","usd_inr","us_vix","nifty_ret",
+                    "nifty_it","nifty_bank","bond_yield",
+                    "vix_change","oil_change","usdinr_change","us_vix_change",
+                    "nifty_ret_change","nifty_it_change","nifty_bank_change",
+                    "bond_yield_change"]:
             df[col] = 0
 
     os.makedirs("data/modeling", exist_ok=True)

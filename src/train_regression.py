@@ -16,8 +16,13 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler    
 
 FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",        
-            "vix_change","oil_change","usdinr_change","rsi","macd_diff","bb_pct","bb_width","price_vs_sma"]
-
+            "vix_change","oil_change","usdinr_change","rsi","macd_diff","bb_pct","bb_width","price_vs_sma",
+            "us_vix_change",      # US fear → IT sector pressure
+            "nifty_ret_change",   # Market-wide momentum
+            "nifty_it_change",    # IT sector momentum
+            "nifty_bank_change",  # Banking sector momentum
+            #"bond_yield_change",  # Interest rate sensitivity
+            ]
 TARGET = "ret_fwd_1d"
 TARGET_1D = "ret_fwd_1d"
 TARGET_3D = "ret_fwd_3d"
