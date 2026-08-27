@@ -107,7 +107,8 @@ def main():
 
         # Event score: average event weight * sign(ewma) mapped to 0..100
         ev_weights = [EVENT_WEIGHTS.get(e, 0.0) for e in g["event_type"]]
-        ev_mean = float(np.mean(ev_weights)) if ev_weights else 0.0
+        # Use max magnitude event (not mean) — one major event dominates
+        ev_mean = float(max(ev_weights, key=abs)) if ev_weights else 0.0
         S_events = 100.0 * np.clip(0.5 + 0.5 * (ev_mean * np.sign(ewma)), 0, 1)
 
         out_rows.append(dict(

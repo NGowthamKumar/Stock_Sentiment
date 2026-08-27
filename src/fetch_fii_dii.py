@@ -1,61 +1,53 @@
-# src/fetch_fii_dii.py
+# src/backfill_fii_dii.py
 """
-Fetches daily FII/DII net flow data from NSE
-Writes: data/fii_dii_history.csv
+Backfill FII/DII from NSE market activity page
+Uses a different NSE endpoint that has more history
 """
-import os
-import time
 import requests
 import pandas as pd
+import time
+import os
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
-    "Accept": "application/json, text/plain, */*",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Referer": "https://www.nseindia.com/reports/fii-dii",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Accept": "application/json",
+    "Referer": "https://www.nseindia.com/market-data/live-market-indices",
 }
 
-def fetch_fii_dii() -> pd.DataFrame | None:
+def fetch_historical_fii():
     session = requests.Session()
     session.headers.update(HEADERS)
-    session.get("https://www.nseindia.com", timeout=10)
+    
+    # Prime cookies
+    session.get("https://www.nseindia.com", timeout=15)
     time.sleep(2)
-    session.get("https://www.nseindia.com/reports/fii-dii", timeout=10)
-    time.sleep(2)
-    resp = session.get(
-        "https://www.nseindia.com/api/fiidiiTradeReact",
-        timeout=10
-    )
-    resp.raise_for_status()
-    return pd.DataFrame(resp.json())
+    
+    # Try the historical endpoint
+    urls_to_try = [
+        "https://www.nseindia.com/api/fiidiiTradeReact?type=historical",
+        "https://www.nseindia.com/api/historicalFiiDii",
+        "https://www.nseindia.com/api/fii-dii-monthly",
+    ]
+    
+    for url in urls_to_try:
+        try:
+            print(f"Trying: {url}")
+            resp = session.get(url, timeout=15)
+            if resp.status_code == 200:
+                data = resp.json()
+                print(f"Got {len(data)} records from {url}")
+                print(f"Sample: {data[:2]}")
+                return pd.DataFrame(data)
+        except Exception as e:
+            print(f"  Failed: {e}")
+        time.sleep(2)
+    
+    return pd.DataFrame()
 
 def main():
-    os.makedirs("data", exist_ok=True)
-    out_path = "data/fii_dii_history.csv"
-
-    try:
-        df = fetch_fii_dii()
-
-        # Pivot to one row per date: fii_net, dii_net
-        fii = df[df["category"] == "FII/FPI"][["date","netValue"]].rename(columns={"netValue":"fii_net"})
-        dii = df[df["category"] == "DII"][["date","netValue"]].rename(columns={"netValue":"dii_net"})
-        row = fii.merge(dii, on="date")
-        row["date"] = pd.to_datetime(row["date"], format="%d-%b-%Y")
-
-        print(row)
-
-        if os.path.exists(out_path):
-            # Avoid duplicate for same date
-            existing = pd.read_csv(out_path, parse_dates=["date"])
-            combined = pd.concat([existing, row]).drop_duplicates(subset=["date"], keep="last")
-            combined.to_csv(out_path, index=False)
-        else:
-            row.to_csv(out_path, index=False)
-
-        print(f"Saved FII/DII data → {out_path}")
-
-    except Exception as e:
-        print(f"FII/DII fetch failed: {e}")
+    df = fetch_historical_fii()
+    if not df.empty:
+        print(df.head())
 
 if __name__ == "__main__":
     main()

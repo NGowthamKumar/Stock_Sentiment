@@ -69,6 +69,46 @@ def _finbert_pos_minus_neg(texts: list[str]) -> np.ndarray:
 
     return out
 
+# Price movement keyword patterns
+NEGATIVE_PRICE_PATTERNS = [
+    r"fall[s]?\s+\d+", r"drop[s]?\s+\d+", r"decline[s]?\s+\d+",
+    r"down\s+\d+\s*%", r"lose[s]?\s+\d+", r"slip[s]?\s+\d+",
+    r"plunge[s]?", r"crash[es]?", r"tumble[s]?",
+    r"52.week\s+low", r"all.time\s+low", r"multi.year\s+low",
+    r"hits?\s+low", r"touches?\s+low",
+    r"worst\s+performer", r"top\s+loser",
+    r"downgrad", r"cut\s+target", r"sell\s+rating",
+    r"penalty", r"fraud", r"scam", r"lawsuit", r"ban",
+    r"profit\s+fall", r"revenue\s+drop", r"loss\s+widen",
+]
+
+POSITIVE_PRICE_PATTERNS = [
+    r"rise[s]?\s+\d+", r"gain[s]?\s+\d+", r"surge[s]?\s+\d+",
+    r"up\s+\d+\s*%", r"jump[s]?\s+\d+", r"rally", r"rallies",
+    r"52.week\s+high", r"all.time\s+high", r"record\s+high",
+    r"hits?\s+high", r"touches?\s+high",
+    r"best\s+performer", r"top\s+gainer",
+    r"upgrad", r"raise[s]?\s+target", r"buy\s+rating",
+    r"beats?\s+estimate", r"profit\s+rise", r"revenue\s+grow",
+    r"strong\s+results", r"record\s+profit",
+]
+
+import re as _re
+
+def detect_price_movement(title: str) -> float | None:
+    """
+    Returns -0.6 if headline signals price drop
+    Returns +0.6 if headline signals price rise
+    Returns None if no clear price movement signal
+    """
+    t = title.lower()
+    for pattern in NEGATIVE_PRICE_PATTERNS:
+        if _re.search(pattern, t):
+            return -0.6
+    for pattern in POSITIVE_PRICE_PATTERNS:
+        if _re.search(pattern, t):
+            return 0.6
+    return None
 
 def main():
     path = "data/raw_news.csv"

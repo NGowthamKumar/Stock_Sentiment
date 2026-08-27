@@ -30,6 +30,7 @@ import random
 import hashlib
 from datetime import datetime, timezone
 from urllib.parse import urlparse, urlunparse, parse_qsl, urlencode
+from src.keyword_sector_router import GLOBAL_KEYWORD_ROUTING, PRICE_MOVEMENT_KEYWORDS
 
 import feedparser
 import pandas as pd
@@ -491,6 +492,32 @@ def map_ticker(title: str, source_name: str) -> tuple[str | None, float]:
                 return tk, 0.6
     return None, 0.0
 
+def route_global_news(title: str, ticker: str) -> list:
+    """
+    If ticker is NaN, route article to affected sectors based on keywords
+    Returns list of (ticker, sentiment_boost) tuples
+    """
+    if pd.notna(ticker):
+        return [(ticker, 0)]  # Already mapped, no change
+    
+    title_lower = title.lower()
+    routed = []
+    
+    for category, config in GLOBAL_KEYWORD_ROUTING.items():
+        keywords = config["keywords"]
+        if any(kw in title_lower for kw in keywords):
+            affected = config["affected_tickers"]
+            direction = config["sentiment_direction"]
+            
+            if affected == "ALL" or affected == "BROAD":
+                # Market-wide signal — add to all major indices
+                routed.append(("NIFTY_BROAD", direction))
+            elif isinstance(affected, list):
+                for tk in affected:
+                    routed.append((tk, direction))
+    
+    return routed
+
 # ---------------------------
 # Main
 # ---------------------------
@@ -516,16 +543,37 @@ def main():
                 day = published_utc[:10] if published_utc else "nodate"
                 nid = sha1(f"{title_c}|{domain_of(link)}|{day}")
 
+                # Primary row — original ticker mapping
                 rows.append({
-                        "source_name": name,
-                        "source_domain": domain_of(link) or domain_of(url),  # use real domain
-                        "title": title,
-                        "link": link,
+                        "source_name":   name,
+                        "source_domain": domain_of(link) or domain_of(url),
+                        "title":         title,
+                        "link":          link,
                         "published_utc": published_utc,
-                        "news_id": nid,
-                        "ticker": tk,
+                        "news_id":       nid,
+                        "ticker":        tk,
                         "map_confidence": conf,
-                        "title_canon": title_c,
+                        "title_canon":   title_c,
+                        })
+
+                # Global keyword routing — if no ticker matched,
+                # create additional rows for affected sector stocks
+                if tk is None:
+                    routed = route_global_news(title, tk)
+                    for routed_ticker, _ in routed:
+                        if routed_ticker == "NIFTY_BROAD":
+                            continue  # skip broad market for now
+                        routed_nid = sha1(f"{title_c}|{domain_of(link)}|{day}|{routed_ticker}")
+                        rows.append({
+                            "source_name":   name,
+                            "source_domain": domain_of(link) or domain_of(url),
+                            "title":         title,
+                            "link":          link,
+                            "published_utc": published_utc,
+                            "news_id":       routed_nid,
+                            "ticker":        routed_ticker,
+                            "map_confidence": 0.4,  # lower confidence for routed
+                            "title_canon":   title_c,
                         })
         except Exception as ex:
             print(f" {name} failed: {ex}")
@@ -550,7 +598,7 @@ def main():
 
     # Secondary dedup: collapse near-duplicates across outlets within same hour
     df.sort_values(["title_canon", "pub_hour", "source_name"], inplace=True)
-    df = df.drop_duplicates(subset=["title_canon", "pub_hour"], keep="first")
+    df = df.drop_duplicates(subset=["title_canon", "pub_hour", "ticker"], keep="first")
     def get_tier(published_utc):
         try:
             age_hours = (now - pd.Timestamp(published_utc)).total_seconds() / 3600
