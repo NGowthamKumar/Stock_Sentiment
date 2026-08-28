@@ -62,10 +62,13 @@ jobs:
       - name: Predict next day
         run: python -m src.predict_next
 
+      - name: Settle signals
+        run: python -m src.settle_signals || true
+
       - name: Commit models + artifacts
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/*.csv data/history/*.csv data/modeling/*.parquet data/modeling/*.csv models/*.pkl || true
+          git add data/*.csv data/history/*.csv data/modeling/*.parquet data/modeling/*.csv models/*.pkl data/signal_history.csv data/stock_accuracy.csv data/stock_streaks.csv data/signals_3d.csv || true
           git commit -m "weekly retrain + predictions" || echo "no changes"
           git push || true
