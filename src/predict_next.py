@@ -54,7 +54,7 @@ def build_features(latest):
             latest["fii_net"] = 0
             latest["dii_net"] = 0
     # Fetch macro indicators if model needs them
-    if "india_vix" not in latest.columns:
+    if "india_vix" not in latest.columns or "us_10y_change" not in latest.columns:
         try:
             import yfinance as yf
             end = pd.Timestamp.now().strftime("%Y-%m-%d")
@@ -68,6 +68,8 @@ def build_features(latest):
                 "^NSEI":     "nifty_ret",
                 "^CNXIT":    "nifty_it",
                 "^NSEBANK":  "nifty_bank",
+                "^TNX":      "us_10y_yield",   
+                "GC=F":      "gold_price", 
             }
             
             change_map = {
@@ -78,6 +80,8 @@ def build_features(latest):
                 "nifty_ret":  "nifty_ret_change",
                 "nifty_it":   "nifty_it_change",
                 "nifty_bank": "nifty_bank_change",
+                "us_10y_yield": "us_10y_change",    
+                "gold_price":   "gold_change",
             }
             for ticker, col in macro_map.items():
                 data = yf.download(ticker, start=start, end=end,
@@ -97,11 +101,20 @@ def build_features(latest):
             print(f"Warning: macro fetch failed: {e}")
             for col in ["india_vix","crude_oil","usd_inr","us_vix",
                         "nifty_ret","nifty_it","nifty_bank",
+                        "us_10y_yield","gold_price", 
                         "vix_change","oil_change","usdinr_change",
                         "us_vix_change","nifty_ret_change",
-                        "nifty_it_change","nifty_bank_change"]:
+                        "nifty_it_change","nifty_bank_change",
+                        "us_10y_change","gold_change"]:
                 if col not in latest.columns:
                     latest[col] = 0
+    # Weekend fix: fill all change columns with 0 if NaN
+    change_cols = ["vix_change","oil_change","usdinr_change","us_vix_change",
+                    "nifty_ret_change","nifty_it_change","nifty_bank_change",
+                    "us_10y_change","gold_change"]
+    for col in change_cols:
+        if col in latest.columns:
+            latest[col] = latest[col].fillna(0)
     return latest
 
 def get_signal_label(prob):
@@ -236,7 +249,15 @@ def main():
     model = bundle["model"]
     features = bundle["features"]
 
-    X = latest[["ticker", *features]].dropna()
+    # Fill NaN features with 0 - handles weekend/holiday missing macro data
+    for feat in features:
+        if feat not in latest.columns:
+            latest[feat] = 0
+        else:
+            latest[feat] = latest[feat].fillna(0)  #  fill in latest directly
+
+    X = latest[["ticker", *features]].copy()
+    X = X.dropna(subset=["ticker"])
     if X.empty:
         raise SystemExit("No rows with full features in latest snapshot.")
 

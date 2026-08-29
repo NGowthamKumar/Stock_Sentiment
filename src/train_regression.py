@@ -22,6 +22,8 @@ FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total",
             "nifty_it_change",    # IT sector momentum
             "nifty_bank_change",  # Banking sector momentum
             #"bond_yield_change",  # Interest rate sensitivity
+            "us_10y_change",      # US 10yr yield, FII flow predictor
+            "gold_change",        # Gold price
             ]
 TARGET = "ret_fwd_1d"
 TARGET_1D = "ret_fwd_1d"
@@ -79,7 +81,8 @@ def main():
         ("ridge", Ridge(alpha=1.0))
         ]),
         "RandomForest": RandomForestRegressor(
-            n_estimators=400, max_depth=6, min_samples_leaf=4, n_jobs=-1, random_state=42)
+            n_estimators=400, max_depth=6, min_samples_leaf=4, n_jobs=-1, random_state=42, 
+        )
     }
 
     scores = {name: evaluate(m, X, y) for name, m in reg_models.items()}
@@ -98,10 +101,24 @@ def main():
         colsample_bytree=0.8,
         eval_metric="logloss",
         random_state=42,
-        n_jobs=-1
+        n_jobs=-1,
+        scale_pos_weight=1.0,
     )
     xgb_scores = evaluate_classifier(xgb, X, y)
     print(f"XGBoost Classifier: {xgb_scores}")
+    
+    # Compute class balance for XGBoost
+    neg_count = (y_bin == 0).sum()
+    pos_count = (y_bin == 1).sum()
+    scale_pw = neg_count / max(pos_count, 1)
+    xgb_balanced = XGBClassifier(
+        n_estimators=300, max_depth=4, learning_rate=0.05,
+        subsample=0.8, colsample_bytree=0.8,
+        eval_metric="logloss", random_state=42, n_jobs=-1,
+        scale_pos_weight=scale_pw
+    )
+    xgb_balanced.fit(X, y_bin)
+    joblib.dump(dict(model=xgb_balanced, features=FEATURES), "models/xgb_classifier.pkl")
     xgb.fit(X, y_bin)
 
     joblib.dump(dict(model=xgb, features=FEATURES), "models/xgb_classifier.pkl")
@@ -115,7 +132,7 @@ def main():
     )
     rf_clf = RandomForestClassifier(
         n_estimators=300, max_depth=6, min_samples_leaf=4,
-        n_jobs=-1, random_state=42
+        n_jobs=-1, random_state=42, class_weight="balanced" 
     )
     voting = VotingClassifier(
         estimators=[
@@ -169,7 +186,7 @@ def main():
         )
         rf_3d = RandomForestClassifier(
             n_estimators=300, max_depth=6, min_samples_leaf=4,
-            n_jobs=-1, random_state=42
+            n_jobs=-1, random_state=42, class_weight="balanced"
         )
         voting_3d = VotingClassifier(
             estimators=[

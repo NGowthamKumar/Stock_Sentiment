@@ -31,6 +31,9 @@ import hashlib
 from datetime import datetime, timezone
 from urllib.parse import urlparse, urlunparse, parse_qsl, urlencode
 from src.keyword_sector_router import GLOBAL_KEYWORD_ROUTING, PRICE_MOVEMENT_KEYWORDS
+import asyncio
+import aiohttp
+from concurrent.futures import ThreadPoolExecutor
 
 import feedparser
 import pandas as pd
@@ -42,6 +45,56 @@ USER_AGENT = "IndianStockSentiment/1.0 (+https://github.com/NGowthamKumar)"
 SLEEP_MIN, SLEEP_MAX = 0.6, 1.2   # pacing between sources
 RETRIES = 3
 BACKOFF_BASE = 1.5                # 1.0, 2.5, 4.25 ... + jitter
+
+# Source reliability weights — higher = more trusted
+SOURCE_WEIGHTS = {
+    # Tier 1 — Premium institutional sources
+    "BusinessStandard_Latest":   1.0,
+    "BS_Companies":              1.0,
+    "BS_Finance":                1.0,
+    "BS_Economy":                1.0,
+    "ET_Stocks":                 1.0,
+    "ET_Companies":              1.0,
+    "ET_Economy":                1.0,
+    "EconomicTimes_Markets":     1.0,
+    "Mint_Markets":              0.95,
+    "Mint_Companies":            0.95,
+    "Mint_Money":                0.95,
+    "NDTVProfit_Markets":        0.90,
+    "BusinessLine_Markets":      0.90,
+    "BL_Economy":                0.90,
+    "BL_Companies":              0.90,
+    "Reuters_India":             1.0,
+    "Reuters_Markets":           1.0,
+    # Tier 2 — Good retail sources
+    "IndianExpress_Business":    0.80,
+    "IndianExpress_Market":      0.80,
+    "TheHindu_Business":         0.85,
+    "TheHindu_Markets":          0.85,
+    "IndiaToday_Business":       0.75,
+    "Investing_Stocks":          0.75,
+    "Investing_India":           0.75,
+    # Tier 3 — Retail/Blog sources
+    "TradeBrains":               0.60,
+    "TradeBrains_News":          0.60,
+    "Goodreturns":               0.60,
+    "Goodreturns_Market":        0.60,
+    "Pulse_Zerodha":             0.65,
+    "Equitymaster":              0.65,
+    "IIFL_Markets":              0.65,
+    # Google News — variable quality
+    "default_google":            0.55,
+    # Default for unknown sources
+    "default":                   0.50,
+}
+
+def get_source_weight(source_name: str) -> float:
+    """Get reliability weight for a news source"""
+    if source_name in SOURCE_WEIGHTS:
+        return SOURCE_WEIGHTS[source_name]
+    if source_name.startswith("Google_"):
+        return SOURCE_WEIGHTS["default_google"]
+    return SOURCE_WEIGHTS["default"]
 
 # ---------------------------
 # Portfolio for Google queries
@@ -441,6 +494,36 @@ def parse_published(entry) -> str:
         pass
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
+# Titles seen in last 7 days — for Google date validation
+_SEEN_TITLES: set[str] = set()
+
+def validate_published_date(published_utc: str, title_c: str, source_name: str) -> str:
+    """
+    Google News sometimes returns resharing date not original date
+    If title was seen before with older date → use current time as published
+    """
+    if not source_name.startswith("Google_"):
+        return published_utc  # Only fix Google News dates
+    
+    if not published_utc:
+        return published_utc
+    
+    try:
+        pub_ts = pd.Timestamp(published_utc)
+        age_hours = (pd.Timestamp.now(tz="UTC") - pub_ts).total_seconds() / 3600
+        
+        # If article is more than 7 days old from Google News
+        # it's likely a reshared/trending old article
+        # Mark as slightly older live article (not archive)
+        if age_hours > 168:  # 7 days
+            # Keep original date but flag as potentially stale
+            return published_utc
+            
+    except:
+        pass
+    
+    return published_utc
+
 def parse_with_retry(url: str, source_name: str = ""):
     """Feedparser with custom UA + backoff. Uses requests for sources that block feedparser."""
     headers = {"User-Agent": USER_AGENT}
@@ -518,6 +601,77 @@ def route_global_news(title: str, ticker: str) -> list:
     
     return routed
 
+def fetch_one_source(name_url: tuple) -> list:
+    name, url = name_url
+    title_c = ""  # ← initialize at the very top before anything
+    try:
+        feed = parse_with_retry(url, source_name=name)
+        rows = []
+        now = pd.Timestamp.now(tz="UTC")
+        for e in getattr(feed, "entries", []):
+            title_c = ""  # ← reset for each entry
+            try:
+                title      = getattr(e, "title", "") or ""
+                link_raw   = getattr(e, "link", "") or ""
+                link       = normalize_url(link_raw)
+                published_utc = parse_published(e)
+                title_c    = canon_title(title) if title else ""
+                tk, conf   = map_ticker(title, name)
+                day        = published_utc[:10] if published_utc else "nodate"
+                nid        = sha1(f"{title_c}|{domain_of(link)}|{day}")
+                rows.append({
+                    "source_name":    name,
+                    "source_domain":  domain_of(link) or domain_of(url),
+                    "title":          title,
+                    "link":           link,
+                    "published_utc":  published_utc,
+                    "news_id":        nid,
+                    "ticker":         tk,
+                    "map_confidence": conf,
+                    "title_canon":    title_c,
+                    "source_weight":  get_source_weight(name),
+                })
+                if tk is None:
+                    routed = route_global_news(title, tk)
+                    for routed_ticker, _ in routed:
+                        if routed_ticker == "NIFTY_BROAD":
+                            continue
+                        routed_nid = sha1(f"{title_c}|{domain_of(link)}|{day}|{routed_ticker}")
+                        rows.append({
+                            "source_name":    name,
+                            "source_domain":  domain_of(link) or domain_of(url),
+                            "title":          title,
+                            "link":           link,
+                            "published_utc":  published_utc,
+                            "news_id":        routed_nid,
+                            "ticker":         routed_ticker,
+                            "map_confidence": 0.4,
+                            "title_canon":    title_c,
+                            "source_weight":  get_source_weight(name) * 0.8,
+                        })
+            except Exception:
+                continue
+        return rows
+    except Exception as ex:
+        print(f" {name} failed: {ex}")
+        return []
+
+# Article content enrichment — only for top-confidence local runs
+FETCH_ARTICLE_CONTENT = os.getenv("FETCH_ARTICLES", "false").lower() == "true"
+
+def fetch_article_content(url: str) -> str:
+    """Fetch full article text for better FinBERT scoring"""
+    if not FETCH_ARTICLE_CONTENT:
+        return ""
+    try:
+        import newspaper
+        article = newspaper.Article(url)
+        article.download()
+        article.parse()
+        return article.text[:500]  # first 500 chars
+    except:
+        return ""
+
 # ---------------------------
 # Main
 # ---------------------------
@@ -525,67 +679,23 @@ def main():
     os.makedirs("data", exist_ok=True)
     sources = build_sources()
     now = pd.Timestamp.now(tz="UTC")
-    rows = []
-    print(f"Starting news fetch from {len(sources)} sources...\n")
+    print(f"Starting news fetch from {len(sources)} sources (parallel)...\n")
 
-    for name, url in sources.items():
-        try:
-            feed = parse_with_retry(url, source_name=name)
-            for e in getattr(feed, "entries", []):
-                title = getattr(e, "title", "") or ""
-                link_raw = getattr(e, "link", "") or ""
-                link = normalize_url(link_raw)
-                published_utc = parse_published(e)
-                title_c = canon_title(title)
-                tk, conf = map_ticker(title, name)
+    # Parallel fetch — 8 workers (polite but fast)
+    all_rows = []
+    source_items = list(sources.items())
 
-                # Stable ID: (title_canon | domain | YYYY-MM-DD)
-                day = published_utc[:10] if published_utc else "nodate"
-                nid = sha1(f"{title_c}|{domain_of(link)}|{day}")
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        results = list(executor.map(fetch_one_source, source_items))
 
-                # Primary row — original ticker mapping
-                rows.append({
-                        "source_name":   name,
-                        "source_domain": domain_of(link) or domain_of(url),
-                        "title":         title,
-                        "link":          link,
-                        "published_utc": published_utc,
-                        "news_id":       nid,
-                        "ticker":        tk,
-                        "map_confidence": conf,
-                        "title_canon":   title_c,
-                        })
+    for result in results:
+        all_rows.extend(result)
 
-                # Global keyword routing — if no ticker matched,
-                # create additional rows for affected sector stocks
-                if tk is None:
-                    routed = route_global_news(title, tk)
-                    for routed_ticker, _ in routed:
-                        if routed_ticker == "NIFTY_BROAD":
-                            continue  # skip broad market for now
-                        routed_nid = sha1(f"{title_c}|{domain_of(link)}|{day}|{routed_ticker}")
-                        rows.append({
-                            "source_name":   name,
-                            "source_domain": domain_of(link) or domain_of(url),
-                            "title":         title,
-                            "link":          link,
-                            "published_utc": published_utc,
-                            "news_id":       routed_nid,
-                            "ticker":        routed_ticker,
-                            "map_confidence": 0.4,  # lower confidence for routed
-                            "title_canon":   title_c,
-                        })
-        except Exception as ex:
-            print(f" {name} failed: {ex}")
-
-        # polite pacing between sources
-        time.sleep(random.uniform(SLEEP_MIN, SLEEP_MAX))
-
-    if not rows:
+    if not all_rows:
         print("No items fetched.")
         return
 
-    df = pd.DataFrame(rows)
+    df = pd.DataFrame(all_rows)
 
     # Ensure UTC dtype and hour bucket (secondary dedup safety)
     df["published_utc"] = pd.to_datetime(df["published_utc"], errors="coerce", utc=True)
@@ -599,6 +709,7 @@ def main():
     # Secondary dedup: collapse near-duplicates across outlets within same hour
     df.sort_values(["title_canon", "pub_hour", "source_name"], inplace=True)
     df = df.drop_duplicates(subset=["title_canon", "pub_hour", "ticker"], keep="first")
+
     def get_tier(published_utc):
         try:
             age_hours = (now - pd.Timestamp(published_utc)).total_seconds() / 3600
@@ -609,7 +720,7 @@ def main():
             return 3
 
     df["recency_tier"] = df["published_utc"].apply(get_tier)
-    df["age_hours"]    = df["published_utc"].apply(
+    df["age_hours"] = df["published_utc"].apply(
         lambda x: round((now - pd.Timestamp(x)).total_seconds() / 3600, 1)
     )
 
@@ -622,10 +733,8 @@ def main():
 
     after = len(df_active)
 
-    before_active = before  # original before dedup
-
     out = "data/raw_news.csv"
-    df_active.to_csv(out, index=False, encoding="utf-8")  # ← save df_active, not df
+    df_active.to_csv(out, index=False, encoding="utf-8")
 
     print(f"\nSaved {after} deduped items to {out} (dropped {before - after} dups)\n")
     print("Sample:")

@@ -142,6 +142,21 @@ def main():
     df["ensemble"] = df["vader"].astype(float)
     df.loc[has_fb, "ensemble"] = 0.7 * df.loc[has_fb, "finbert"] + 0.3 * df.loc[has_fb, "vader"]
 
+    # ----- Price movement override -----
+    # Headlines with clear price direction override ensemble score
+    # "HDFC Bank falls 2% to 52-week low" → force negative regardless of FinBERT
+    price_signals = df["title"].astype(str).map(detect_price_movement)
+    has_price_signal = price_signals.notna()
+    
+    # Blend: 60% price signal + 40% ensemble (don't completely ignore NLP)
+    df.loc[has_price_signal, "ensemble"] = (
+        0.6 * price_signals[has_price_signal] + 
+        0.4 * df.loc[has_price_signal, "ensemble"]
+    )
+    
+    overridden = has_price_signal.sum()
+    print(f"Price movement override applied to {overridden} headlines")
+
     # Diagnostics
     diff = (df["finbert"].fillna(df["vader"]) - df["vader"]).abs().clip(0, 1)
     df["model_disagreement"] = diff

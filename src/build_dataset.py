@@ -23,6 +23,8 @@ def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
         "^CNXIT":    "nifty_it",       # Nifty IT index (IT sector momentum)
         "^NSEBANK":  "nifty_bank",     # Nifty Bank index (banking sector)
         # "^INBMK":   "bond_yield",      # India 10-year bond yield
+        "^TNX":      "us_10y_yield",   # US 10-year Treasury yield, FII signal
+        "GC=F":      "gold_price",     # Gold futures, risk-off signal
     }
     
     frames = []
@@ -64,6 +66,10 @@ def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
         macro["nifty_it_change"]  = macro["nifty_it"].pct_change(fill_method=None) * 100
     if "nifty_bank" in macro.columns:
         macro["nifty_bank_change"]= macro["nifty_bank"].pct_change(fill_method=None) * 100
+    if "us_10y_yield" in macro.columns:
+        macro["us_10y_change"] = macro["us_10y_yield"].pct_change(fill_method=None) * 100
+    if "gold_price" in macro.columns:
+        macro["gold_change"] = macro["gold_price"].pct_change(fill_method=None) * 100
     
     # Forward fill missing values (weekends/holidays)
     macro = macro.ffill()
@@ -186,18 +192,23 @@ def main():
             ("nifty_it_change",    -5,  5),
             ("nifty_bank_change",  -5,  5),
             ("bond_yield_change",  -2,  2),
+            ("us_10y_change",      -1,  1),   
+            ("gold_change",        -5,  5),
         ]:
             if col in df.columns:
                 df[col] = df[col].clip(lower=lo, upper=hi)
         
-        print(f"Merged macro indicators → {macro_cols}")
+        existing_macro = [c for c in df.columns if any(x in c for x in 
+                        ['vix','oil','usd','nifty','us_10y','gold','sp500'])]
+        print(f"Merged macro indicators → {existing_macro}")
     else:
         print("Warning: macro indicators unavailable, defaulting to 0")
         for col in ["india_vix","crude_oil","usd_inr","us_vix","nifty_ret",
                     "nifty_it","nifty_bank","bond_yield",
                     "vix_change","oil_change","usdinr_change","us_vix_change",
                     "nifty_ret_change","nifty_it_change","nifty_bank_change",
-                    "bond_yield_change"]:
+                    "bond_yield_change","us_10y_yield","us_10y_change",  
+                    "gold_price","gold_change"]:
             df[col] = 0
 
     os.makedirs("data/modeling", exist_ok=True)

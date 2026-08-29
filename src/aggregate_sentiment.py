@@ -88,7 +88,26 @@ def main():
             return 0.5
 
     df["tier_weight"] = df["published_utc"].apply(get_tier_weight)
-    df["w_total"] = df["w"] * df["tier_weight"]  # combine EWMA + tier weight
+
+    # Use source_weight if available
+    if "source_weight" in df.columns:
+        df["source_weight"] = df["source_weight"].fillna(0.5)
+    else:
+        df["source_weight"] = 0.75  # default medium weight
+    
+    # Use model_confidence if available
+    if "model_confidence" in df.columns:
+        df["model_confidence"] = df["model_confidence"].fillna(0.5)
+    else:
+        df["model_confidence"] = 0.5
+    
+    # Combined weight: EWMA × tier × source quality × NLP confidence
+    df["w_total"] = (
+        df["w"] * 
+        df["tier_weight"] * 
+        df["source_weight"] *      #  source quality weight
+        df["model_confidence"]     #  NLP confidence weight
+    )
 
     out_rows = []
     for tk, g in df.groupby("ticker"):
