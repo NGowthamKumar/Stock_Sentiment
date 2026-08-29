@@ -279,11 +279,14 @@ with tab4:
 
     accuracy_path = os.path.join(BASE_DIR, "data/stock_accuracy.csv")
     history_path  = os.path.join(BASE_DIR, "data/signal_history.csv")
+    streaks_path  = os.path.join(BASE_DIR, "data/stock_streaks.csv")
 
     if os.path.exists(accuracy_path):
         acc_df = load_csv(accuracy_path)
 
         if not acc_df.empty:
+
+            # ── Summary Metrics ──
             c1, c2, c3, c4 = st.columns(4)
             trusted  = acc_df[acc_df["combined_trust"] == "✅ TRUST"]
             moderate = acc_df[acc_df["combined_trust"] == "🟡 MODERATE"]
@@ -294,8 +297,9 @@ with tab4:
             c4.metric("❌ Weak", len(weak))
 
             st.markdown("---")
-            st.markdown("### Accuracy by Signal Type")
 
+            # ── Accuracy Charts ──
+            st.markdown("### Accuracy by Signal Type")
             col1, col2 = st.columns(2)
             with col1:
                 fig_ss = px.bar(
@@ -346,82 +350,93 @@ with tab4:
             st.plotly_chart(fig_combined, use_container_width=True)
 
             st.markdown("---")
-            st.markdown("### Full Accuracy Table")
-            display_cols = ["ticker","total_signals","ss_acc_overall",
-                           "ss_trust","xgb_acc_overall","xgb_trust",
-                           "combined_acc","combined_trust","best_signal"]
-            display_cols = [c for c in display_cols if c in acc_df.columns]
-            st.dataframe(acc_df[display_cols],
-                        use_container_width=True, hide_index=True)
 
-            st.markdown("---")
-            st.info("""
-            **How to use:**
-            - ✅ TRUST (>60%): Act on signals for this stock
-            - 🟡 MODERATE (53-60%): Use with other confirmation  
-            - ❌ WEAK (<53%): Ignore signals for this stock
-            - **Combined** is most reliable — both SmartScore AND XGBoost agree
-            - Minimum 3 signals needed before a stock appears
-            """)
-    else:
-        if os.path.exists(history_path):
-            hist = load_csv(history_path)
-            st.info(f"""
-             Signal history is being built automatically.
-            **{len(hist)} predictions** saved so far.
-            Accuracy data will appear after tomorrow's market close
-            when today's predictions get settled with actual returns.
-            Check back tomorrow!
-            """)
-            streaks_path = os.path.join(BASE_DIR, "data/stock_streaks.csv")
+            # ── Performance Streaks ──
+            st.markdown("### 📈 Performance Streaks")
+            st.caption("Stocks on a roll right now — consecutive positive days and correct predictions")
+
             if os.path.exists(streaks_path):
                 streaks = load_csv(streaks_path)
                 if not streaks.empty and streaks["pos_day_streak"].max() > 0:
-                    st.markdown("---")
-                    st.subheader("Performance Streaks")
-                    st.caption("Updates daily as predictions are settled with actual market returns")
-
                     c1, c2 = st.columns(2)
                     with c1:
-                        st.markdown("### 📈 Positive Return Streak")
-                        st.caption("Stocks with most consecutive positive days")
+                        st.markdown("**Positive Return Streak 🔥**")
+                        st.caption("Most consecutive positive days recently")
                         top_pos = streaks[streaks["pos_day_streak"] > 0].head(10)
                         st.dataframe(
                             top_pos[["ticker","pos_day_streak","pos_days_10d"]].rename(columns={
-                                "pos_day_streak": "Current Streak 🔥",
+                                "pos_day_streak": "Streak 🔥",
                                 "pos_days_10d":   "Positive Days (10d)"
                             }),
                             use_container_width=True, hide_index=True
                         )
                     with c2:
-                        st.markdown("### 🎯 Model Correct Prediction Streak")
-                        st.caption("Stocks our XGBoost has been correctly predicting")
+                        st.markdown("**Model Correct Streak 🎯**")
+                        st.caption("Stocks XGBoost has been correctly predicting")
                         top_correct = streaks[streaks["xgb_correct_streak"] > 0].head(10)
-                        st.dataframe(
-                            top_correct[["ticker","xgb_correct_streak","win_rate_10d"]].rename(columns={
-                                "xgb_correct_streak": "Correct in a Row 🎯",
-                                "win_rate_10d":        "Win Rate 10d (%)"
-                            }),
-                            use_container_width=True, hide_index=True
-                        )
-                    st.info("""
-                    📊 **How to use streaks:**
-                    - Stock on positive streak + model correctly predicting → strongest buy signal
-                    - 100% win rate with 2+ days = model understands this stock well
-                    - Streaks become more meaningful after 2-3 weeks of data
-                    """)
-
-            else:
-                if os.path.exists(history_path):
-                    hist = load_csv(history_path)
-                    st.info(f"""
-                    Signal history is being built automatically.
-                    **{len(hist)} predictions** saved so far.
-                    Check back tomorrow!
-                    """)
+                        if not top_correct.empty:
+                            st.dataframe(
+                                top_correct[["ticker","xgb_correct_streak","win_rate_10d"]].rename(columns={
+                                    "xgb_correct_streak": "Correct Streak 🎯",
+                                    "win_rate_10d":        "Win Rate 10d (%)"
+                                }),
+                                use_container_width=True, hide_index=True
+                            )
+                        else:
+                            st.caption("Prediction streaks appear after more signals settle")
                 else:
-                    st.info("Signal history will start building from today's predictions.")
-        
+                    st.caption("Streaks grow as more trading days accumulate — check back next week")
+            else:
+                st.caption("Streak data not available yet")
+
+            st.markdown("---")
+
+            # ── Full Accuracy Table (with streaks merged in) ──
+            st.markdown("### Full Accuracy Table")
+            st.caption("Complete signal accuracy + streak data per stock")
+
+            # Merge streaks into accuracy table
+            if os.path.exists(streaks_path):
+                streaks_df = load_csv(streaks_path)
+                if not streaks_df.empty:
+                    acc_merged = acc_df.merge(
+                        streaks_df[["ticker","pos_day_streak","xgb_correct_streak","win_rate_10d","pos_days_10d"]],
+                        on="ticker", how="left"
+                    )
+                else:
+                    acc_merged = acc_df.copy()
+            else:
+                acc_merged = acc_df.copy()
+
+            display_cols = [
+                "ticker","total_signals",
+                "ss_acc_overall","ss_trust",
+                "xgb_acc_overall","xgb_trust",
+                "combined_acc","combined_trust",
+                "best_signal",
+                "pos_day_streak","xgb_correct_streak","win_rate_10d"
+            ]
+            display_cols = [c for c in display_cols if c in acc_merged.columns]
+            st.dataframe(
+                acc_merged[display_cols].rename(columns={
+                    "pos_day_streak":      "Streak 🔥",
+                    "xgb_correct_streak":  "Model Streak 🎯",
+                    "win_rate_10d":        "Win Rate 10d"
+                }),
+                use_container_width=True, hide_index=True
+            )
+
+    else:
+        if os.path.exists(history_path):
+            hist = load_csv(history_path)
+            st.info(f"""
+            Signal history is being built automatically.
+            **{len(hist)} predictions** saved so far.
+            Accuracy data will appear after tomorrow's market close.
+            Check back tomorrow!
+            """)
+        else:
+            st.info("Signal history will start building from today's predictions.")
         
 
 # ================================ DRILLDOWN ===========================
