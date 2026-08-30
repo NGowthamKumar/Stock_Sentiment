@@ -32,7 +32,6 @@ from datetime import datetime, timezone
 from urllib.parse import urlparse, urlunparse, parse_qsl, urlencode
 from src.keyword_sector_router import GLOBAL_KEYWORD_ROUTING, PRICE_MOVEMENT_KEYWORDS
 import asyncio
-import aiohttp
 from concurrent.futures import ThreadPoolExecutor
 
 import feedparser
