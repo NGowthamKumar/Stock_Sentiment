@@ -20,3 +20,6 @@ Thumbs.db
 # Local utility scripts — not needed in GitHub
 backup_lstm_data.bat
 check*.py
+data/raw_news.csv 
+data/processed_sentiment.csv 
+data/modeling/dataset.parquet 
