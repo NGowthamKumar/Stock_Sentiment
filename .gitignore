@@ -16,3 +16,7 @@ hf_cache/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Local utility scripts — not needed in GitHub
+backup_lstm_data.bat
+check*.py

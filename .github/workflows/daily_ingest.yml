@@ -28,6 +28,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     env:
       # cache location for HF models
       HF_HOME: ~/.cache/huggingface
@@ -91,4 +92,5 @@ jobs:
           git add data/*.csv data/history/*.csv || true
           git add data/fii_dii_history.csv || true
           git commit -m "daily auto-update (ingest/sentiment/aggregate/predict)" || echo "no changes"
+          git pull origin main --rebase || true
           git push || true
