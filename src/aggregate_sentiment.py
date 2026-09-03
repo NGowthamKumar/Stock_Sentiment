@@ -42,6 +42,16 @@ def minmax(series: pd.Series) -> pd.Series:
         return pd.Series([0.5] * len(series), index=series.index)
     return (series - lo) / (hi - lo)
 
+# Cross-sectional Z-score normalization (replaced Min-Max)
+# Prevents one viral stock from crushing all other stocks' S_volume scores to near zero
+def cross_sectional_zscore(series: pd.Series) -> pd.Series:
+    """Z-score across all tickers — immune to outliers"""
+    if series.empty or series.std() == 0:
+        return pd.Series([50.0] * len(series), index=series.index)
+    z = (series - series.mean()) / series.std()
+    z = z.clip(-3, 3)              # cap extreme outliers at ±3σ
+    return (z + 3) / 6 * 100       # rescale to 0-100
+
 def main():
     now = datetime.now(timezone.utc)
     today = now.date()
@@ -145,9 +155,8 @@ def main():
         print("No aggregates.")
         return
 
-    # Normalize breadth/volume across current universe
-    out["S_breadth"] = minmax(out["S_breadth_raw"]) * 100
-    out["S_volume"]  = minmax(out["S_volume_raw"]) * 100
+    out["S_breadth"] = cross_sectional_zscore(out["S_breadth_raw"])
+    out["S_volume"]  = cross_sectional_zscore(out["S_volume_raw"])
 
     out["smart_score"] = (
         WEIGHTS["recency"] * out["S_recency"]
