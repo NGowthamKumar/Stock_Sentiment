@@ -1,10 +1,11 @@
 # src/fetch_news.py
 """
 Fetch latest Indian stock-market headlines from:
-  1) Google News (per-stock query)
-  2) Moneycontrol (RSS)
-  3) Economic Times - Markets (RSS)
-  4) Investing.com India (RSS)
+  1) Google News (per-stock query) — 150+ stocks
+  2) 215 RSS sources — ET, BS, Mint, NDTVProfit, BusinessLine,
+     IndianExpress, TheHindu, Reuters, Investing.com and more
+  3) Global keyword routing — maps geopolitical/macro news
+     to affected NSE sector stocks automatically
 
 Polite behaviours:
   - Custom User-Agent
@@ -29,9 +30,9 @@ import time
 import random
 import hashlib
 from datetime import datetime, timezone
+from turtle import title
 from urllib.parse import urlparse, urlunparse, parse_qsl, urlencode
 from src.keyword_sector_router import GLOBAL_KEYWORD_ROUTING, PRICE_MOVEMENT_KEYWORDS
-import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
 import feedparser
@@ -99,6 +100,7 @@ def get_source_weight(source_name: str) -> float:
 # Portfolio for Google queries
 # ---------------------------
 STOCKS_FOR_GOOGLE = [
+    # Core holdings + ETFs
     "HCL Tech", "Reliance Industries", "Vedanta", "Bansal Wires Industries",
     "Nippon India ETF Gold Bees", "Niftybees", "UPL", "HDFC Bank",
     "Jio Financial Services", "Coal India", "Tata Steel", "Nippon India Silver Bees",
@@ -106,292 +108,427 @@ STOCKS_FOR_GOOGLE = [
     "Adani Energy Solutions", "MMTC", "NHPC", "Nestle", "Nippon India EFT IT",
     "Sun TV Network", "Reliance Power", "Delta Corp", "PNB",
     "Yes Bank", "ITC", "IndusInd Bank", "Sail", "ONGC", "EaseMyTrip",
-    "BHEL", "BLS International Services", "Natco Pharma", "NBCC(India)",
+    "BHEL", "BLS International Services", "Natco Pharma", "NBCC India",
     "IEX", "Tata Technologies", "Indian Overseas Bank", "SJVN",
     "Tata Motors Commercial Vehicles", "ICICI Bank",
+
+    # Nifty 50 core
     "TCS", "Bharti Airtel", "State Bank of India", "Bajaj Finance", "Larsen Toubro",
     "Hindustan Unilever", "Sun Pharma", "Maruti Suzuki", "Mahindra Mahindra", "Wipro",
-    "Axis Bank", "NTPC", "Power Grid", "Adani Enterprises", 
+    "Axis Bank", "NTPC", "Power Grid", "Adani Enterprises",
     "Kotak Mahindra Bank", "Bank of Baroda", "Bajaj Finserv",
     "HDFC Life Insurance", "SBI Life Insurance", "Tech Mahindra", "Mphasis",
-    "Adani Ports", "Adani Green Energy", "Tata Power", "Indian Oil Corporation", "BPCL", "Gail India",
-    "Asian Paints", "Dabur", "Godrej Consumer", "Titan Company", "Trent",
-    "Dr Reddy Labs", "Cipla", "Divis Laboratories", "Apollo Hospitals",
-    "Bajaj Auto", "Hero MotoCorp", "Eicher Motors", "Zomato", "Paytm", "Dmart", "LIC India", "DLF",
-    "Shree Cement", "UltraTech Cement", "IndiGo Airlines", "Max Healthcare", "Hindalco", "JSW Steel",
-    "Ambuja Cements", "ACC Cement", "Havells India", "Pidilite Industries", "Berger Paints", "Marico",
-    "Colgate Palmolive India", "Britannia Industries", "United Spirits", "Muthoot Finance", "Cholamandalam Finance",
-    "SBI Cards", "Indian Hotels", "InterGlobe Aviation", "Torrent Pharmaceuticals", "Lupin", "Biocon",
-    "Aurobindo Pharma", "Mankind Pharma", "Zydus Lifesciences", "Jindal Steel Power", "Vedanta Aluminium", "Coal India",
-    "NHPC", "SJVN", "Torrent Power", "Cummins India", "ABB India", "Siemens India", "Bharat Forge",
-    "MRF Tyres", "Apollo Tyres", "Balkrishna Industries", "Page Industries", "Voltas", "Whirlpool India",
-    "Info Edge India", "Naukri", "PolicyBazaar", "One97 Communications", "Ambuja Cements", "ACC", "Shree Cement", "UltraTech Cement",
-    "Havells India", "Pidilite Industries", "Berger Paints", "Marico", "Colgate Palmolive India", "Britannia Industries",
-    "Godrej Properties", "Oberoi Realty", "Prestige Estates", "Muthoot Finance", "Cholamandalam Finance", "SBI Cards",
-    "Indian Hotels", "InterGlobe Aviation", "Torrent Pharmaceuticals", "Lupin", "Biocon", 
-    "Aurobindo Pharma", "Mankind Pharma", "Zydus Lifesciences", "Jindal Steel Power", "Torrent Power", "Adani Power",
-    "Cummins India", "ABB India", "Siemens India", "Bharat Forge", "MRF", "Apollo Tyres", "Balkrishna Industries",
-    "Page Industries", "Voltas", "Blue Star", "Info Edge India", "PolicyBazaar", "Nykaa",
-    "Vodafone Idea", "Suzlon Energy", "IRCTC", "HUDCO", "Jaiprakash Power", "NHPC",
-    "Varun Beverages", "United Breweries", "Radico Khaitan", "Tata Consumer Products", "Emami", "Jyothy Labs",
-    "SRF", "Aarti Industries", "Deepak Nitrite", "Navin Fluorine", "Balaji Amines",
-    "Dixon Technologies", "Amber Enterprises", "Kaynes Technology", "Tata Elxsi", "KPIT Technologies", "Persistent Systems",
-    "Coforge", "LTM Limited", "Mphasis", "Hindustan Aeronautics", "BEL", "Mazagon Dock",
-    "Cochin Shipyard", "Garden Reach Shipbuilders", "Solar Industries", "Data Patterns",
-    "HDFC AMC", "Nippon AMC", "Angel One", "BSE India", "PB Fintech", "Computer Age Management",
-    "Laurus Labs", "Alkem Laboratories", "Ipca Laboratories","Ajanta Pharma", "Granules India",
-    "Shyam Metalics", "APL Apollo Tubes", "Ratnamani Metals", "Tube Investments",
-]
+    "Adani Ports", "Adani Green Energy", "Tata Power", "Indian Oil Corporation",
+    "BPCL", "Gail India",
 
+    # Consumer / FMCG
+    "Asian Paints", "Dabur", "Godrej Consumer", "Titan Company", "Trent",
+    "Marico", "Colgate Palmolive India", "Britannia Industries",
+    "United Spirits", "Varun Beverages", "United Breweries", "Radico Khaitan",
+    "Tata Consumer Products", "Emami", "Jyothy Labs", "Whirlpool India",
+    "Hindustan Zinc", "CCL Products", "Bikaji Foods",
+
+    # Pharma / Healthcare
+    "Dr Reddy Labs", "Cipla", "Divis Laboratories", "Apollo Hospitals",
+    "Lupin", "Biocon", "Aurobindo Pharma", "Mankind Pharma", "Zydus Lifesciences",
+    "Torrent Pharmaceuticals", "Laurus Labs", "Alkem Laboratories",
+    "Ipca Laboratories", "Ajanta Pharma", "Granules India", "Max Healthcare",
+    "Narayana Hrudayalaya", "Fortis Healthcare", "Krishna Institute Medical Sciences",
+    "Syngene International", "Abbott India", "Pfizer India", "Glaxosmithkline Pharma",
+
+    # Auto
+    "Bajaj Auto", "Hero MotoCorp", "Eicher Motors", "MRF Tyres",
+    "Apollo Tyres", "Balkrishna Industries", "Samvardhana Motherson",
+    "Bosch India", "Minda Industries", "Sona BLW Precision",
+    "Craftsman Automation", "Endurance Technologies",
+
+    # Consumer tech / Internet
+    "Zomato", "Paytm", "Dmart", "LIC India", "Info Edge India", "Naukri",
+    "PolicyBazaar", "One97 Communications", "Nykaa", "Vodafone Idea",
+    "Indiamart Intermesh", "Cartrade Tech",
+
+    # Real estate
+    "DLF", "Godrej Properties", "Oberoi Realty", "Prestige Estates",
+    "Macrotech Developers", "Brigade Enterprises", "Sobha Developers",
+    "Phoenix Mills",
+
+    # Cement / Materials
+    "Shree Cement", "UltraTech Cement", "Ambuja Cements", "ACC Cement",
+    "Hindalco", "JSW Steel", "Jindal Steel Power", "Vedanta Aluminium",
+    "Shyam Metalics", "APL Apollo Tubes", "Ratnamani Metals", "Tube Investments",
+    "National Aluminium", "Hindustan Copper",
+
+    # Paints / Chemicals
+    "Havells India", "Pidilite Industries", "Berger Paints",
+    "SRF", "Aarti Industries", "Deepak Nitrite", "Navin Fluorine", "Balaji Amines",
+    "Gujarat Fluorochemicals", "Alkyl Amines", "Vinati Organics",
+
+    # Financials / NBFC / Insurance
+    "Muthoot Finance", "Cholamandalam Finance", "SBI Cards",
+    "HDFC AMC", "Nippon AMC", "Angel One", "BSE India",
+    "PB Fintech", "Computer Age Management", "UTI AMC",
+    "Bajaj Holdings", "Shriram Finance", "Aditya Birla Capital",
+    "Five Star Business Finance", "Home First Finance",
+    "IIFL Finance", "Manappuram Finance",
+
+    # Hospitality / Travel
+    "Indian Hotels", "InterGlobe Aviation", "IndiGo Airlines",
+    "EIH Hotels", "Lemon Tree Hotels", "Mahindra Holidays",
+
+    # Capital goods / Defence / Infra
+    "Cummins India", "ABB India", "Siemens India", "Bharat Forge",
+    "Page Industries", "Voltas", "Blue Star",
+    "Hindustan Aeronautics", "BEL", "Mazagon Dock",
+    "Cochin Shipyard", "Garden Reach Shipbuilders",
+    "Solar Industries", "Data Patterns", "Paras Defence",
+    "MTAR Technologies", "Bharat Dynamics",
+    "HUDCO", "Jaiprakash Power", "Adani Power",
+    "RVNL", "Ircon International", "KEC International",
+    "Kalpataru Projects", "PNC Infratech",
+
+    # IT / Tech
+    "Dixon Technologies", "Amber Enterprises", "Kaynes Technology",
+    "KPIT Technologies", "Persistent Systems", "Coforge", "LTM Limited",
+    "Tata Communications", "Zensar Technologies", "Mastek",
+    "NIIT Technologies", "Hexaware Technologies",
+
+    # PSU / Government
+    "Indian Railway Finance", "Rail Vikas Nigam", "IRCTC",
+    "Bharat Heavy Electricals", "NTPC Green Energy",
+    "Oil India", "HPCL", "MRPL",
+
+    # Renewables / Energy
+    "Suzlon Energy", "Torrent Power", "Adani Total Gas",
+    "Gujarat Gas", "Indraprastha Gas", "Mahanagar Gas",
+    "CESC", "Tata Power Renewables",
+
+    # Telecom
+    "MTNL", "Tata Communications", "Route Mobile", "Tanla Platforms",
+
+    # Specialty / Others
+    "Jubilant Foodworks", "Devyani International", "Westlife Foodworld",
+    "Sapphire Foods", "Restaurant Brands Asia",
+    "Affle India", "IndiGrid", "Sterlite Power",
+    "Timken India", "SKF India", "Schaeffler India",
+
+    # ── ETFs & Index Funds ──
+    # Gold ETFs
+    "Gold BeES", "HDFC Gold ETF", "SBI Gold ETF",
+    "Kotak Gold ETF", "Nippon Gold ETF", "Axis Gold ETF",
+
+    # Silver ETFs
+    "Nippon Silver ETF", "ICICI Silver ETF", "Mirae Silver ETF",
+
+    # Nifty 50 ETFs (most traded)
+    "Nippon Nifty BeES", "SBI Nifty ETF", "HDFC Nifty ETF",
+    "Kotak Nifty ETF", "UTI Nifty ETF",
+
+    # Sectoral ETFs
+    "Nippon IT ETF", "ICICI IT ETF",           # IT sector
+    "Nippon Bank BeES", "SBI Banking ETF",     # Banking sector
+    "Nippon Pharma ETF", "ICICI Pharma ETF",   # Pharma sector
+    "CPSE ETF", "Bharat 22 ETF",               # PSU stocks
+    "Nippon Infra ETF",                        # Infrastructure
+
+    # International ETFs
+    "Motilal Nasdaq 100 ETF", "Mirae Nasdaq ETF",
+    "Motilal S&P 500 ETF",
+
+    # Debt / Liquid ETFs
+    "Nippon Liquid ETF", "ICICI Liquid ETF",
+]
 # ---------------------------
 # Alias → NSE ticker map (extend as needed)
 #    (regex patterns for robustness)
 # ---------------------------
 ALIAS_TO_TICKER_PATTERNS = [
-    (r"\bHCL\s*Tech(?:nologies)?\b",       "HCLTECH.NS"),
-    (r"\bReliance(?:\s+Industries)?\b",    "RELIANCE.NS"),
-    (r"\bInfosys\b",                        "INFY.NS"),
-    (r"\bCoal\s*India\b",                   "COALINDIA.NS"),
-    (r"\bTata\s*Steel\b",                   "TATASTEEL.NS"),
-    (r"\bHDFC\s*Bank\b",                    "HDFCBANK.NS"),
-    (r"\bTata\s*Elxsi\b",                   "TATAELXSI.NS"),
-    (r"\bNMDC\b",                           "NMDC.NS"),
-    (r"\bBharat\s*Electronics\b|\bBEL\b",   "BEL.NS"),
-    (r"\bVedanta\b",                        "VEDL.NS"),
-    (r"\bJio\s*Financial\b",                "JIOFIN.NS"),
-    (r"\bMMTC\b",                           "MMTC.NS"),
-    (r"\bNHPC\b",                           "NHPC.NS"),
-    (r"\bNestle\b",                         "NESTLEIND.NS"),
-    (r"\bSun\s*TV\b",                       "SUNTV.NS"),
-    (r"\bReliance\s*Power\b",               "RPOWER.NS"),
-    (r"\bDelta\s*Corp\b",                   "DELTACORP.NS"),
+    # ── Core / Large Cap ──
+    (r"\bHCL\s*Tech(?:nologies)?\b",        "HCLTECH.NS"),
+    (r"\bReliance(?:\s+Industries)?\b",     "RELIANCE.NS"),
+    (r"\bInfosys\b",                         "INFY.NS"),
+    (r"\bCoal\s*India\b",                    "COALINDIA.NS"),
+    (r"\bTata\s*Steel\b",                    "TATASTEEL.NS"),
+    (r"\bHDFC\s*Bank\b",                     "HDFCBANK.NS"),
+    (r"\bTata\s*Elxsi\b",                    "TATAELXSI.NS"),
+    (r"\bNMDC\b",                            "NMDC.NS"),
+    (r"\bBharat\s*Electronics\b|\bBEL\b",    "BEL.NS"),
+    (r"\bVedanta\b",                         "VEDL.NS"),
+    (r"\bJio\s*Financial\b",                 "JIOFIN.NS"),
+    (r"\bMMTC\b",                            "MMTC.NS"),
+    (r"\bNHPC\b",                            "NHPC.NS"),
+    (r"\bNestle\b",                          "NESTLEIND.NS"),
+    (r"\bSun\s*TV\b",                        "SUNTV.NS"),
+    (r"\bReliance\s*Power\b",                "RPOWER.NS"),
+    (r"\bDelta\s*Corp\b",                    "DELTACORP.NS"),
     (r"\bPNB\b|\bPunjab\s*National\s*Bank\b","PNB.NS"),
-    (r"\bYes\s*Bank\b",                     "YESBANK.NS"),
-    (r"\bITC\b",                            "ITC.NS"),
-    (r"\bIndusInd\s*Bank\b",                "INDUSINDBK.NS"),
-    (r"\bSAIL\b",                           "SAIL.NS"),
-    (r"\bONGC\b",                           "ONGC.NS"),
-    (r"\bBHEL\b",                           "BHEL.NS"),
-    (r"\bNBCC\b",                           "NBCC.NS"),
-    (r"\bIEX\b",                            "IEX.NS"),
-    (r"\bTata\s*Technologies\b",            "TATATECH.NS"),
-    (r"\bIndian\s*Overseas\s*Bank\b",       "IOB.NS"),
-    (r"\bSJVN\b",                           "SJVN.NS"),
-    (r"\bEaseMyTrip\b",                     "EASEMYTRIP.NS"),
-    (r"\bBLS\s*International\b",            "BLS.NS"),
-    (r"\bUPL\b",                            "UPL.NS"),
-    (r"\bNiftybees\b",                      "NIFTYBEES.NS"),
-    (r"\bGold\s*Bees\b",                    "GOLDBEES.NS"),
-    (r"\bSilver\s*Bees\b",                  "SILVERBEES.NS"),
-    (r"\bNippon.*?\bET[F]?\s*IT\b|\bIT\s*Bees\b", "ITBEES.NS"),
-    (r"\bBansal\s*Wires\b",                 "BANSALWIRE.NS"),
-    # Adani Energy Solutions sometimes appears as "Adani Trans"
+    (r"\bYes\s*Bank\b",                      "YESBANK.NS"),
+    (r"\bITC\b",                             "ITC.NS"),
+    (r"\bIndusInd\s*Bank\b",                 "INDUSINDBK.NS"),
+    (r"\bSAIL\b",                            "SAIL.NS"),
+    (r"\bONGC\b",                            "ONGC.NS"),
+    (r"\bBHEL\b",                            "BHEL.NS"),
+    (r"\bNBCC\b",                            "NBCC.NS"),
+    (r"\bIEX\b",                             "IEX.NS"),
+    (r"\bTata\s*Technologies\b",             "TATATECH.NS"),
+    (r"\bIndian\s*Overseas\s*Bank\b",        "IOB.NS"),
+    (r"\bSJVN\b",                            "SJVN.NS"),
+    (r"\bEaseMyTrip\b",                      "EASEMYTRIP.NS"),
+    (r"\bBLS\s*International\b",             "BLS.NS"),
+    (r"\bUPL\b",                             "UPL.NS"),
+    (r"\bBansal\s*Wires\b",                  "BANSALWIRE.NS"),
     (r"\bAdani\s*(?:Energy\s*Solutions|Trans(?:mission)?)\b", "ADANIENSOL.NS"),
-    (r"\bTata\s*Motors\s*Passenger\b|\bTMPV\b|\bTata\s*PV\b|\bTata\s*Motors\s*PV\b", "TMPV.NS"),
-    (r"\bTata\s*Motors\s*(?:Commercial|CV)?\b|\bTMCV\b", "TMCV.NS"),
-    (r"\bICICI\s*Bank\b",                   "ICICIBANK.NS"),
-    (r"\bTCS\b|\bTata\s*Consultancy\b",     "TCS.NS"),
-    (r"\bBharti\s*Airtel\b|\bAirtel\b",     "BHARTIARTL.NS"),
-    (r"\bSBI\b|\bState\s*Bank\b",           "SBIN.NS"),
-    (r"\bBajaj\s*Finance\b",                "BAJFINANCE.NS"),
-    (r"\bL&T\b|\bLarsen\b",                 "LT.NS"),
-    (r"\bHUL\b|\bHindustan\s*Unilever\b",   "HINDUNILVR.NS"),
-    (r"\bSun\s*Pharma\b",                   "SUNPHARMA.NS"),
-    (r"\bMaruti\b|\bMaruti\s*Suzuki\b",     "MARUTI.NS"),
-    (r"\bM&M\b|\bMahindra\b",              "M&M.NS"),
-    (r"\bWipro\b",                          "WIPRO.NS"),
-    (r"\bAxis\s*Bank\b",                    "AXISBANK.NS"),
-    (r"\bNTPC\b",                           "NTPC.NS"),
-    (r"\bPower\s*Grid\b",                   "POWERGRID.NS"),
-    (r"\bAdani\s*Enterprises\b",            "ADANIENT.NS"),
-    (r"\bKotak\s*(?:Mahindra\s*)?Bank\b",               "KOTAKBANK.NS"),
-    (r"\bBank\s*of\s*Baroda\b|\bBoB\b",                 "BANKBARODA.NS"),
-    (r"\bBajaj\s*Finserv\b",                            "BAJAJFINSV.NS"),
-    (r"\bHDFC\s*Life\b",                                "HDFCLIFE.NS"),
-    (r"\bSBI\s*Life\b",                                 "SBILIFE.NS"),
-    (r"\bTech\s*Mahindra\b",                            "TECHM.NS"),
-    (r"\bMphasis\b",                                    "MPHASIS.NS"),
-    (r"\bAdani\s*Ports\b",                              "ADANIPORTS.NS"),
-    (r"\bAdani\s*Green\b",                              "ADANIGREEN.NS"),
-    (r"\bTata\s*Power\b",                               "TATAPOWER.NS"),
-    (r"\bIndian\s*Oil\b|\bIOC\b",                       "IOC.NS"),
-    (r"\bBPCL\b|\bBharat\s*Petroleum\b",                "BPCL.NS"),
-    (r"\bGAIL\b|\bGail\s*India\b",                      "GAIL.NS"),
-    (r"\bAsian\s*Paints\b",                             "ASIANPAINT.NS"),
-    (r"\bDabur\b",                                      "DABUR.NS"),
-    (r"\bGodrej\s*Consumer\b",                          "GODREJCP.NS"),
-    (r"\bTitan\b",                                      "TITAN.NS"),
-    (r"\bTrent\b",                                      "TRENT.NS"),
-    (r"\bDr\s*Reddy\b",                                 "DRREDDY.NS"),
-    (r"\bCipla\b",                                      "CIPLA.NS"),
-    (r"\bDivi\s*(?:s|'s)?\s*Lab\b",                     "DIVISLAB.NS"),
-    (r"\bApollo\s*Hospitals\b",                         "APOLLOHOSP.NS"),
-    (r"\bBajaj\s*Auto\b",                               "BAJAJ-AUTO.NS"),
-    (r"\bHero\s*(?:MotoCorp|Moto)\b",                   "HEROMOTOCO.NS"),
-    (r"\bEicher\s*Motors\b|\bRoyal\s*Enfield\b",        "EICHERMOT.NS"),
-    (r"\bZomato\b|\bEternal\b",                         "ETERNAL.NS"),
-    (r"\bPaytm\b|\bOne97\b",                            "PAYTM.NS"),
-    (r"\bDmart\b|\bAvenue\s*Supermarts\b",              "DMART.NS"),
-    (r"\bLIC\b|\bLife\s*Insurance\s*Corporation\b",     "LICI.NS"),
-    (r"\bDLF\b",                                        "DLF.NS"),
-    (r"\bIRFC\b|\bIndian\s*Railway\s*Finance\b",        "IRFC.NS"),
-    (r"\bNatco\s*Pharma\b",                             "NATCOPHARM.NS"),
-    (r"\bShree\s*Cement\b",                             "SHREECEM.NS"),
-    (r"\bUltraTech\s*Cement\b",                         "ULTRACEMCO.NS"),
-    (r"\bIndiGo\b|\bInterGlobe\b",                      "INDIGO.NS"),
-    (r"\bMax\s*Healthcare\b",                           "MAXHEALTH.NS"),
-    (r"\bHindalco\b",                                   "HINDALCO.NS"),
-    (r"\bJSW\s*Steel\b",                                "JSWSTEEL.NS"),
-    (r"\bAmbuja\s*Cement\b",              "AMBUJACEM.NS"),
-    (r"\bACC\s*Cement\b|\bACC\b",         "ACC.NS"),
-    (r"\bHavells\b",                       "HAVELLS.NS"),
-    (r"\bPidilite\b|\bFeviCol\b",          "PIDILITIND.NS"),
-    (r"\bBerger\s*Paints\b",              "BERGEPAINT.NS"),
-    (r"\bMarico\b|\bParachute\b",          "MARICO.NS"),
-    (r"\bColgate\b",                       "COLPAL.NS"),
-    (r"\bBritannia\b",                     "BRITANNIA.NS"),
-    (r"\bMuthoot\s*Finance\b",            "MUTHOOTFIN.NS"),
-    (r"\bChola\b|\bCholamandalam\b",       "CHOLAFIN.NS"),
-    (r"\bSBI\s*Card\b",                    "SBICARD.NS"),
-    (r"\bIndian\s*Hotels\b|\bTaj\b",       "INDHOTEL.NS"),
-    (r"\bIndiGo\b|\bInterGlobe\b",         "INDIGO.NS"),
-    (r"\bTorrent\s*Pharma\b",             "TORNTPHARM.NS"),
-    (r"\bLupin\b",                         "LUPIN.NS"),
-    (r"\bBiocon\b",                        "BIOCON.NS"),
-    (r"\bAurobindo\b",                     "AUROPHARMA.NS"),
-    (r"\bMankind\s*Pharma\b",             "MANKIND.NS"),
-    (r"\bZydus\b",                         "ZYDUSLIFE.NS"),
-    (r"\bJindal\s*Steel\b|\bJSPL\b",       "JINDALSTEL.NS"),
-    (r"\bTorrent\s*Power\b",              "TORNTPOWER.NS"),
-    (r"\bCummins\b",                       "CUMMINSIND.NS"),
-    (r"\bABB\s*India\b|\bABB\b",           "ABB.NS"),
-    (r"\bSiemens\b",                       "SIEMENS.NS"),
-    (r"\bBharat\s*Forge\b",               "BHARATFORG.NS"),
-    (r"\bMRF\b",                           "MRF.NS"),
-    (r"\bApollo\s*Tyre\b",                "APOLLOTYRE.NS"),
-    (r"\bBalkrishna\b|\bBKT\b",            "BALKRISIND.NS"),
-    (r"\bPage\s*Industries\b|\bJockey\b",  "PAGEIND.NS"),
-    (r"\bVoltas\b",                        "VOLTAS.NS"),
-    (r"\bInfo\s*Edge\b|\bNaukri\b",        "NAUKRI.NS"),
-    (r"\bPolicyBazaar\b|\bPB\s*Fintech\b", "POLICYBZR.NS"),
-    (r"\bOne97\b|\bPaytm\b",              "PAYTM.NS"),
-    (r"\bVodafone\s*Idea\b|\bVi\b",        "IDEA.NS"),
-    (r"\bSuzlon\b",                        "SUZLON.NS"),
-    (r"\bYes\s*Bank\b",                    "YESBANK.NS"),
-    (r"\bIRCTC\b|\bIndian\s*Railway\s*Catering\b", "IRCTC.NS"),
-    (r"\bHUDCO\b",                         "HUDCO.NS"),
-    (r"\bJaiprakash\s*Power\b|\bJP\s*Power\b", "JPPOWER.NS"),
-    # Cement
-    (r"\bAmbuja\s*Cement\b",              "AMBUJACEM.NS"),
-    (r"\bACC\b",                           "ACC.NS"),
-    (r"\bShree\s*Cement\b",               "SHREECEM.NS"),
-    (r"\bUltraTech\s*Cement\b",           "ULTRACEMCO.NS"),
+    (r"\bTata\s*Motors\s*Passenger\b|\bTMPV\b|\bTata\s*PV\b", "TMPV.NS"),
+    (r"\bTata\s*Motors\s*(?:Commercial|CV)?\b|\bTMCV\b",       "TMCV.NS"),
 
-    # Consumer/FMCG
-    (r"\bHavells\b",                       "HAVELLS.NS"),
-    (r"\bPidilite\b|\bFeviCol\b",          "PIDILITIND.NS"),
-    (r"\bBerger\s*Paints\b",              "BERGEPAINT.NS"),
-    (r"\bMarico\b|\bParachute\b",          "MARICO.NS"),
-    (r"\bColgate\b",                       "COLPAL.NS"),
-    (r"\bBritannia\b",                     "BRITANNIA.NS"),
-    (r"\bTata\s*Consumer\b",              "TATACONSUM.NS"),
-    (r"\bEmami\b",                         "EMAMILTD.NS"),
-    (r"\bVarun\s*Beverages\b",            "VBL.NS"),
-    (r"\bUnited\s*Breweries\b|\bKingfisher\b", "UBL.NS"),
-    (r"\bRadico\b",                        "RADICO.NS"),
-    (r"\bJyothy\b",                        "JYOTHYLAB.NS"),
+    # ── Nifty 50 ──
+    (r"\bICICI\s*Bank\b",                    "ICICIBANK.NS"),
+    (r"\bTCS\b|\bTata\s*Consultancy\b",      "TCS.NS"),
+    (r"\bBharti\s*Airtel\b|\bAirtel\b",      "BHARTIARTL.NS"),
+    (r"\bSBI\b|\bState\s*Bank\b",            "SBIN.NS"),
+    (r"\bBajaj\s*Finance\b",                 "BAJFINANCE.NS"),
+    (r"\bL&T\b|\bLarsen\b",                  "LT.NS"),
+    (r"\bHUL\b|\bHindustan\s*Unilever\b",    "HINDUNILVR.NS"),
+    (r"\bSun\s*Pharma\b",                    "SUNPHARMA.NS"),
+    (r"\bMaruti\b|\bMaruti\s*Suzuki\b",      "MARUTI.NS"),
+    (r"\bM&M\b|\bMahindra\b",               "M&M.NS"),
+    (r"\bWipro\b",                           "WIPRO.NS"),
+    (r"\bAxis\s*Bank\b",                     "AXISBANK.NS"),
+    (r"\bNTPC\b",                            "NTPC.NS"),
+    (r"\bPower\s*Grid\b",                    "POWERGRID.NS"),
+    (r"\bAdani\s*Enterprises\b",             "ADANIENT.NS"),
+    (r"\bKotak\s*(?:Mahindra\s*)?Bank\b",    "KOTAKBANK.NS"),
+    (r"\bBank\s*of\s*Baroda\b|\bBoB\b",      "BANKBARODA.NS"),
+    (r"\bBajaj\s*Finserv\b",                 "BAJAJFINSV.NS"),
+    (r"\bHDFC\s*Life\b",                     "HDFCLIFE.NS"),
+    (r"\bSBI\s*Life\b",                      "SBILIFE.NS"),
+    (r"\bTech\s*Mahindra\b",                 "TECHM.NS"),
+    (r"\bMphasis\b",                         "MPHASIS.NS"),
+    (r"\bAdani\s*Ports\b",                   "ADANIPORTS.NS"),
+    (r"\bAdani\s*Green\b",                   "ADANIGREEN.NS"),
+    (r"\bTata\s*Power\b",                    "TATAPOWER.NS"),
+    (r"\bIndian\s*Oil\b|\bIOC\b",            "IOC.NS"),
+    (r"\bBPCL\b|\bBharat\s*Petroleum\b",     "BPCL.NS"),
+    (r"\bGAIL\b|\bGail\s*India\b",           "GAIL.NS"),
 
-    # Real Estate
-    (r"\bGodrej\s*Properties\b",          "GODREJPROP.NS"),
-    (r"\bOberoi\s*Realty\b",              "OBEROIRLTY.NS"),
-    (r"\bPrestige\b",                      "PRESTIGE.NS"),
+    # ── Consumer / FMCG ──
+    (r"\bAsian\s*Paints\b",                  "ASIANPAINT.NS"),
+    (r"\bDabur\b",                           "DABUR.NS"),
+    (r"\bGodrej\s*Consumer\b",               "GODREJCP.NS"),
+    (r"\bTitan\b",                           "TITAN.NS"),
+    (r"\bTrent\b",                           "TRENT.NS"),
+    (r"\bMarico\b|\bParachute\b",            "MARICO.NS"),
+    (r"\bColgate\b",                         "COLPAL.NS"),
+    (r"\bBritannia\b",                       "BRITANNIA.NS"),
+    (r"\bTata\s*Consumer\b",                 "TATACONSUM.NS"),
+    (r"\bEmami\b",                           "EMAMILTD.NS"),
+    (r"\bVarun\s*Beverages\b",               "VBL.NS"),
+    (r"\bUnited\s*Breweries\b|\bKingfisher\b","UBL.NS"),
+    (r"\bRadico\b",                          "RADICO.NS"),
+    (r"\bJyothy\b",                          "JYOTHYLAB.NS"),
+    (r"\bBikaji\b",                          "BIKAJI.NS"),
+    (r"\bCCL\s*Products\b",                  "CCLPROD.NS"),
+    (r"\bHindustan\s*Zinc\b",                "HINDZINC.NS"),
 
-    # Finance
-    (r"\bMuthoot\s*Finance\b",            "MUTHOOTFIN.NS"),
-    (r"\bChola\b|\bCholamandalam\b",       "CHOLAFIN.NS"),
-    (r"\bSBI\s*Card\b",                    "SBICARD.NS"),
-    (r"\bHDFC\s*AMC\b",                    "HDFCAMC.NS"),
-    (r"\bNippon\s*AMC\b|\bNippon\s*Life\b","NAM-INDIA.NS"),
-    (r"\bAngel\s*One\b",                   "ANGELONE.NS"),
-    (r"\bBSE\s*India\b|\bBSE\s*Ltd\b",    "BSE.NS"),
-    (r"\bCAMS\b|\bComputer\s*Age\b",       "CAMS.NS"),
+    # ── Pharma / Healthcare ──
+    (r"\bDr\s*Reddy\b",                      "DRREDDY.NS"),
+    (r"\bCipla\b",                           "CIPLA.NS"),
+    (r"\bDivi\s*(?:s|'s)?\s*Lab\b",          "DIVISLAB.NS"),
+    (r"\bApollo\s*Hospitals\b",              "APOLLOHOSP.NS"),
+    (r"\bTorrent\s*Pharma\b",               "TORNTPHARM.NS"),
+    (r"\bLupin\b",                           "LUPIN.NS"),
+    (r"\bBiocon\b",                          "BIOCON.NS"),
+    (r"\bAurobindo\b",                       "AUROPHARMA.NS"),
+    (r"\bMankind\s*Pharma\b",               "MANKIND.NS"),
+    (r"\bZydus\b",                           "ZYDUSLIFE.NS"),
+    (r"\bAlkem\b",                           "ALKEM.NS"),
+    (r"\bIpca\b",                            "IPCALAB.NS"),
+    (r"\bAjanta\s*Pharma\b",                "AJANTPHARM.NS"),
+    (r"\bLaurus\s*Labs\b",                   "LAURUSLABS.NS"),
+    (r"\bGranules\b",                        "GRANULES.NS"),
+    (r"\bMax\s*Healthcare\b",               "MAXHEALTH.NS"),
+    (r"\bNarayana\s*(?:Hrudayalaya|Health)\b","NH.NS"),
+    (r"\bFortis\s*Healthcare\b|\bFortis\b",  "FORTIS.NS"),
+    (r"\bKIMS\b|\bKrishna\s*Institute\b",    "KIMS.NS"),
+    (r"\bSyngene\b",                         "SYNGENE.NS"),
+    (r"\bAbbott\s*India\b",                  "ABBOTINDIA.NS"),
 
-    # Travel/Hospitality
-    (r"\bIndian\s*Hotels\b|\bTaj\b",       "INDHOTEL.NS"),
-    (r"\bIndiGo\b|\bInterGlobe\b",         "INDIGO.NS"),
-    (r"\bIRCTC\b",                         "IRCTC.NS"),
+    # ── Auto ──
+    (r"\bBajaj\s*Auto\b",                    "BAJAJ-AUTO.NS"),
+    (r"\bHero\s*(?:MotoCorp|Moto)\b",        "HEROMOTOCO.NS"),
+    (r"\bEicher\s*Motors\b|\bRoyal\s*Enfield\b","EICHERMOT.NS"),
+    (r"\bMRF\b",                             "MRF.NS"),
+    (r"\bApollo\s*Tyre\b",                   "APOLLOTYRE.NS"),
+    (r"\bBalkrishna\b|\bBKT\b",              "BALKRISIND.NS"),
+    (r"\bMotherson\b|\bSamvardhana\b",       "MOTHERSON.NS"),
+    (r"\bBosch\s*India\b",                   "BOSCHLTD.NS"),
+    (r"\bMinda\s*Industries\b",              "MINDAIND.NS"),
+    (r"\bSona\s*BLW\b|\bSona\s*Comstar\b",   "SONACOMS.NS"),
+    (r"\bTube\s*Investments\b|\bTI\s*India\b","TIINDIA.NS"),
 
-    # Pharma
-    (r"\bTorrent\s*Pharma\b",             "TORNTPHARM.NS"),
-    (r"\bLupin\b",                         "LUPIN.NS"),
-    (r"\bBiocon\b",                        "BIOCON.NS"),
-    (r"\bAurobindo\b",                     "AUROPHARMA.NS"),
-    (r"\bMankind\s*Pharma\b",             "MANKIND.NS"),
-    (r"\bZydus\b",                         "ZYDUSLIFE.NS"),
-    (r"\bAlkem\b",                         "ALKEM.NS"),
-    (r"\bIpca\b",                          "IPCALAB.NS"),
-    (r"\bAjanta\s*Pharma\b",              "AJANTPHARM.NS"),
-    (r"\bLaurus\s*Labs\b",                 "LAURUSLABS.NS"),
-    (r"\bGranules\b",                      "GRANULES.NS"),
+    # ── Consumer Tech / Internet ──
+    (r"\bZomato\b|\bEternal\b",              "ETERNAL.NS"),
+    (r"\bOla\s*Electric\b|\bOlectric\b",     "OLAELEC.NS"),
+    (r"\bPaytm\b|\bOne97\b",                 "PAYTM.NS"),
+    (r"\bDmart\b|\bAvenue\s*Supermarts\b",   "DMART.NS"),
+    (r"\bLIC\b|\bLife\s*Insurance\s*Corporation\b","LICI.NS"),
+    (r"\bInfo\s*Edge\b|\bNaukri\b",          "NAUKRI.NS"),
+    (r"\bPolicyBazaar\b|\bPB\s*Fintech\b",   "POLICYBZR.NS"),
+    (r"\bNykaa\b|\bFSN\b",                   "NYKAA.NS"),
+    (r"\bVodafone\s*Idea\b|\bVi\b",          "IDEA.NS"),
+    (r"\bIndiamart\b",                       "INDIAMART.NS"),
+    (r"\bAffle\b",                           "AFFLE.NS"),
+    (r"\bRoute\s*Mobile\b",                  "ROUTE.NS"),
+    (r"\bTanla\b",                           "TANLA.NS"),
 
-    # Energy/Power
-    (r"\bAdani\s*Power\b",                "ADANIPOWER.NS"),
-    (r"\bTorrent\s*Power\b",              "TORNTPOWER.NS"),
+    # ── Real Estate ──
+    (r"\bDLF\b",                             "DLF.NS"),
+    (r"\bGodrej\s*Properties\b",             "GODREJPROP.NS"),
+    (r"\bOberoi\s*Realty\b",                 "OBEROIRLTY.NS"),
+    (r"\bPrestige\b",                        "PRESTIGE.NS"),
+    (r"\bMacrotech\b|\bLodha\b",             "LODHA.NS"),
+    (r"\bBrigade\s*Enterprises\b",           "BRIGADE.NS"),
+    (r"\bSobha\b",                           "SOBHA.NS"),
+    (r"\bPhoenix\s*Mills\b",                 "PHOENIXLTD.NS"),
+
+    # ── Cement / Materials ──
+    (r"\bShree\s*Cement\b",                  "SHREECEM.NS"),
+    (r"\bUltraTech\s*Cement\b",              "ULTRACEMCO.NS"),
+    (r"\bAmbuja\s*Cement\b",                 "AMBUJACEM.NS"),
+    (r"\bACC\s*Cement\b|\bACC\b",            "ACC.NS"),
+    (r"\bHindalco\b",                        "HINDALCO.NS"),
+    (r"\bJSW\s*Steel\b",                     "JSWSTEEL.NS"),
+    (r"\bJindal\s*Steel\b|\bJSPL\b",         "JINDALSTEL.NS"),
+    (r"\bShyam\s*Metalics\b",               "SHYAMMETL.NS"),
+    (r"\bAPL\s*Apollo\b",                    "APLAPOLLO.NS"),
+    (r"\bNational\s*Aluminium\b|\bNALCO\b",  "NATIONALUM.NS"),
+    (r"\bHindustan\s*Copper\b",              "HINDCOPPER.NS"),
+
+    # ── Paints / Chemicals ──
+    (r"\bHavells\b",                         "HAVELLS.NS"),
+    (r"\bPidilite\b|\bFeviCol\b",            "PIDILITIND.NS"),
+    (r"\bBerger\s*Paints\b",                 "BERGEPAINT.NS"),
+    (r"\bSRF\b",                             "SRF.NS"),
+    (r"\bAarti\s*Industries\b",              "AARTIIND.NS"),
+    (r"\bDeepak\s*Nitrite\b|\bDeepak\s*Nitrate\b","DEEPAKNTR.NS"),
+    (r"\bNavin\s*Fluorine\b",               "NAVINFLUOR.NS"),
+    (r"\bBalaji\s*Amines\b",                 "BALAMINES.NS"),
+    (r"\bGujarat\s*Fluoro\b|\bGujfluoro\b",  "GUJFLUORO.NS"),
+    (r"\bAlkyl\s*Amines\b",                  "ALKYLAMINE.NS"),
+    (r"\bVinati\s*Organics\b",               "VINATIORGA.NS"),
+
+    # ── Financials / NBFC / Insurance ──
+    (r"\bMuthoot\s*Finance\b",               "MUTHOOTFIN.NS"),
+    (r"\bChola\b|\bCholamandalam\b",         "CHOLAFIN.NS"),
+    (r"\bSBI\s*Card\b",                      "SBICARD.NS"),
+    (r"\bHDFC\s*AMC\b",                      "HDFCAMC.NS"),
+    (r"\bNippon\s*AMC\b|\bNippon\s*Life\b",  "NAM-INDIA.NS"),
+    (r"\bAngel\s*One\b",                     "ANGELONE.NS"),
+    (r"\bBSE\s*India\b|\bBSE\s*Ltd\b",       "BSE.NS"),
+    (r"\bCAMS\b|\bComputer\s*Age\b",         "CAMS.NS"),
+    (r"\bUTI\s*AMC\b",                       "UTIAMC.NS"),
+    (r"\bShriram\s*Finance\b",               "SHRIRAMFIN.NS"),
+    (r"\bAditya\s*Birla\s*Capital\b",        "ABCAPITAL.NS"),
+    (r"\bFive\s*Star\s*(?:Business)?\s*Finance\b","FIVESTAR.NS"),
+    (r"\bHome\s*First\b",                    "HOMEFIRST.NS"),
+    (r"\bIIFL\s*Finance\b|\bIIFL\b",         "IIFL.NS"),
+    (r"\bManappuram\b",                      "MANAPPURAM.NS"),
+    (r"\bBajaj\s*Holdings\b",               "BAJAJHLDNG.NS"),
+
+    # ── Hospitality / Travel ──
+    (r"\bIndian\s*Hotels\b|\bTaj\b",         "INDHOTEL.NS"),
+    (r"\bIndiGo\b|\bInterGlobe\b",           "INDIGO.NS"),
+    (r"\bIRCTC\b|\bIndian\s*Railway\s*Catering\b","IRCTC.NS"),
+    (r"\bEIH\s*Hotels\b|\bObberoi\s*Hotels\b","EIHOTEL.NS"),
+    (r"\bLemon\s*Tree\b",                    "LEMONTREE.NS"),
+
+    # ── Capital Goods / Defence / Infra ──
+    (r"\bCummins\b",                         "CUMMINSIND.NS"),
+    (r"\bABB\s*India\b|\bABB\b",             "ABB.NS"),
+    (r"\bSiemens\b",                         "SIEMENS.NS"),
+    (r"\bBharat\s*Forge\b",                  "BHARATFORG.NS"),
+    (r"\bPage\s*Industries\b|\bJockey\b",    "PAGEIND.NS"),
+    (r"\bVoltas\b",                          "VOLTAS.NS"),
+    (r"\bBlue\s*Star\b",                     "BLUESTARCO.NS"),
+    (r"\bHAL\b|\bHindustan\s*Aeronautics\b", "HAL.NS"),
+    (r"\bMazagon\s*Dock\b|\bMDL\b",          "MAZDOCK.NS"),
+    (r"\bCochin\s*Shipyard\b",               "COCHINSHIP.NS"),
+    (r"\bGarden\s*Reach\b|\bGRSE\b",         "GRSE.NS"),
+    (r"\bSolar\s*Industries\b",              "SOLARINDS.NS"),
+    (r"\bData\s*Patterns\b",                 "DATAPATTNS.NS"),
+    (r"\bParas\s*Defence\b",                 "PDRP.NS"),
+    (r"\bMTAR\s*Technologies\b|\bMTAR\b",    "MTAR.NS"),
+    (r"\bBharat\s*Dynamics\b|\bBDL\b",       "BDL.NS"),
+    (r"\bHUDCO\b",                           "HUDCO.NS"),
     (r"\bJaiprakash\s*Power\b|\bJP\s*Power\b","JPPOWER.NS"),
-    (r"\bSuzlon\b",                        "SUZLON.NS"),
+    (r"\bRVNL\b|\bRail\s*Vikas\b",           "RVNL.NS"),
+    (r"\bIrcon\b",                           "IRCON.NS"),
+    (r"\bKEC\s*International\b|\bKEC\b",     "KEC.NS"),
+    (r"\bKalpataru\b",                       "KPIL.NS"),
+    (r"\bPNC\s*Infratech\b",                 "PNCINFRA.NS"),
+    (r"\bIRFC\b|\bIndian\s*Railway\s*Finance\b","IRFC.NS"),
+    (r"\bNatco\s*Pharma\b",                  "NATCOPHARM.NS"),
 
-    # Industrial/Capital Goods
-    (r"\bCummins\b",                       "CUMMINSIND.NS"),
-    (r"\bABB\s*India\b|\bABB\b",           "ABB.NS"),
-    (r"\bSiemens\b",                       "SIEMENS.NS"),
-    (r"\bBharat\s*Forge\b",               "BHARATFORG.NS"),
-    (r"\bSolar\s*Industries\b",           "SOLARINDS.NS"),
+    # ── IT / Tech ──
+    (r"\bPersistent\s*Systems\b",            "PERSISTENT.NS"),
+    (r"\bCoforge\b",                         "COFORGE.NS"),
+    (r"\bLTIMindtree\b|\bLTM\b|\bLTI\b",    "LTM.NS"),
+    (r"\bKPIT\s*Tech\b",                     "KPITTECH.NS"),
+    (r"\bKaynes\b",                          "KAYNES.NS"),
+    (r"\bData\s*Patterns\b",                 "DATAPATTNS.NS"),
+    (r"\bDixon\s*Tech\b",                    "DIXON.NS"),
+    (r"\bAmber\s*Enterprises\b",             "AMBER.NS"),
+    (r"\bTata\s*Communications\b",           "TATACOMM.NS"),
+    (r"\bZensar\b",                          "ZENSARTECH.NS"),
+    (r"\bMastek\b",                          "MASTEK.NS"),
 
-    # Auto/Tyres
-    (r"\bMRF\b",                           "MRF.NS"),
-    (r"\bApollo\s*Tyre\b",                "APOLLOTYRE.NS"),
-    (r"\bBalkrishna\b|\bBKT\b",            "BALKRISIND.NS"),
-    (r"\bTube\s*Investments\b|\bTI\b",    "TIINDIA.NS"),
+    # ── Energy / Power ──
+    (r"\bAdani\s*Power\b",                   "ADANIPOWER.NS"),
+    (r"\bTorrent\s*Power\b",                 "TORNTPOWER.NS"),
+    (r"\bSuzlon\b",                          "SUZLON.NS"),
+    (r"\bAdani\s*Total\s*Gas\b",             "ATGL.NS"),
+    (r"\bGujarat\s*Gas\b",                   "GUJGASLTD.NS"),
+    (r"\bIGL\b|\bIndraprastha\s*Gas\b",      "IGL.NS"),
+    (r"\bMahanagar\s*Gas\b|\bMGL\b",         "MGL.NS"),
+    (r"\bCESC\b",                            "CESC.NS"),
+    (r"\bOil\s*India\b",                     "OIL.NS"),
+    (r"\bHPCL\b|\bHindustan\s*Petroleum\b",  "HINDPETRO.NS"),
+    (r"\bMRPL\b",                            "MRPL.NS"),
 
-    # Consumer Durables
-    (r"\bVoltas\b",                        "VOLTAS.NS"),
-    (r"\bBlue\s*Star\b",                   "BLUESTARCO.NS"),
-    (r"\bPage\s*Industries\b|\bJockey\b",  "PAGEIND.NS"),
-    (r"\bDixon\s*Tech\b",                  "DIXON.NS"),
-    (r"\bAmber\s*Enterprises\b",          "AMBER.NS"),
+    # ── Food / QSR ──
+    (r"\bJubilant\s*Food(?:works)?\b|\bDominos\b","JUBLFOOD.NS"),
+    (r"\bDevyani\b",                         "DEVYANI.NS"),
+    (r"\bWestlife\b|\bMcDonald\b",           "WESTLIFE.NS"),
+    (r"\bSapphire\s*Foods\b|\bKFC\s*India\b","SAPPHIRE.NS"),
 
-    # IT/Tech
-    (r"\bPersistent\s*Systems\b",         "PERSISTENT.NS"),
-    (r"\bCoforge\b",                       "COFORGE.NS"),
-    (r"\bLTIMindtree\b|\bLTM\b|\bLTI\b", "LTM.NS"),
-    (r"\bKPIT\s*Tech\b",                   "KPITTECH.NS"),
-    (r"\bKaynes\b",                        "KAYNES.NS"),
-    (r"\bData\s*Patterns\b",              "DATAPATTNS.NS"),
+    # ── ETFs ──
+    (r"\bNiftybees\b|\bNifty\s*BeES\b",      "NIFTYBEES.NS"),
+    (r"\bGold\s*Bees\b|\bGold\s*BeES\b",     "GOLDBEES.NS"),
+    (r"\bSilver\s*Bees\b|\bSilver\s*BeES\b", "SILVERBEES.NS"),
+    (r"\bNippon.*?\bET[F]?\s*IT\b|\bIT\s*Bees\b","ITBEES.NS"),
+    (r"\bCPSE\s*ETF\b",                      "CPSEETF.NS"),
+    (r"\bBharat\s*22\s*ETF\b",               "BHARAT22ETF.NS"),
+    (r"\bMotilal\s*Nasdaq\b|\bMON100\b",     "MON100.NS"),
 
-    # Defence
-    (r"\bHAL\b|\bHindustan\s*Aeronautics\b","HAL.NS"),
-    (r"\bMazagon\s*Dock\b|\bMDL\b",       "MAZDOCK.NS"),
-    (r"\bCochin\s*Shipyard\b",            "COCHINSHIP.NS"),
-    (r"\bGarden\s*Reach\b|\bGRSE\b",      "GRSE.NS"),
-
-    # Chemicals
-    (r"\bSRF\b",                           "SRF.NS"),
-    (r"\bAarti\s*Industries\b",           "AARTIIND.NS"),
-    (r"\bDeeepak\s*Nitrite\b|\bDeeepak\s*Nitrate\b","DEEPAKNTR.NS"),
-    (r"\bNavin\s*Fluorine\b",             "NAVINFLUOR.NS"),
-
-    # New age tech
-    (r"\bNykaa\b|\bFSN\b",               "NYKAA.NS"),
-    (r"\bVodafone\s*Idea\b|\bVi\b",        "IDEA.NS"),
-    (r"\bHUDCO\b",                         "HUDCO.NS"),
-    (r"\bShyam\s*Metalics\b",             "SHYAMMETL.NS"),
-    (r"\bAPL\s*Apollo\b",                  "APLAPOLLO.NS"),
+    # ── Specialty ──
+    (r"\bPage\s*Industries\b|\bJockey\b",    "PAGEIND.NS"),
+    (r"\bSRF\b",                             "SRF.NS"),
+    (r"\bShyam\s*Metalics\b",               "SHYAMMETL.NS"),
+    (r"\bAPL\s*Apollo\b",                    "APLAPOLLO.NS"),
+    (r"\bTimken\b",                          "TIMKEN.NS"),
+    (r"\bSKF\b",                             "SKFINDIA.NS"),
+    (r"\bSchaeffler\b",                      "SCHAEFFLER.NS"),
 ]
 
 ALIAS_REGEX = [(re.compile(pat, re.I), tk) for pat, tk in ALIAS_TO_TICKER_PATTERNS]
 
 # Sources that require browser User-Agent to access RSS
-HEADERS_REQUIRED = {"BusinessStandard_Latest"}
+HEADERS_REQUIRED = {"BusinessStandard_Latest",
+                    "BS_Companies",
+                    "BS_Finance",
+                    "BS_Economy",
+                    "BS_Industry",
+                    "MoneyControl",
+                    "Investing_India",}
 
 # ---------------------------
 # Source builder
@@ -602,7 +739,10 @@ def route_global_news(title: str, ticker: str) -> list:
 
 def fetch_one_source(name_url: tuple) -> list:
     name, url = name_url
-    title_c = ""  # ← initialize at the very top before anything
+    title_c = ""  # initialize at the very top before anything
+    # Add small delay for Google sources to avoid rate limiting
+    if name.startswith("Google_"):
+        time.sleep(random.uniform(0.3, 0.8))
     try:
         feed = parse_with_retry(url, source_name=name)
         rows = []
@@ -611,6 +751,11 @@ def fetch_one_source(name_url: tuple) -> list:
             title_c = ""  # ← reset for each entry
             try:
                 title      = getattr(e, "title", "") or ""
+                # Get RSS summary if available (Mint provides 229-char summaries)
+                summary_raw = getattr(e, "summary", "") or getattr(e, "description", "") or ""
+                import re as _re
+                summary_clean = _re.sub(r'<[^>]+>', '', summary_raw)[:300].strip()
+                text_for_sentiment = f"{title}. {summary_clean}" if summary_clean and summary_clean != title else title
                 link_raw   = getattr(e, "link", "") or ""
                 link       = normalize_url(link_raw)
                 published_utc = parse_published(e)
@@ -629,12 +774,16 @@ def fetch_one_source(name_url: tuple) -> list:
                     "map_confidence": conf,
                     "title_canon":    title_c,
                     "source_weight":  get_source_weight(name),
+                    "text_for_sentiment": text_for_sentiment,
                 })
                 if tk is None:
                     routed = route_global_news(title, tk)
+                    routed_count = 0
                     for routed_ticker, _ in routed:
                         if routed_ticker == "NIFTY_BROAD":
                             continue
+                        if routed_count >= 5:
+                            break
                         routed_nid = sha1(f"{title_c}|{domain_of(link)}|{day}|{routed_ticker}")
                         rows.append({
                             "source_name":    name,
@@ -648,6 +797,7 @@ def fetch_one_source(name_url: tuple) -> list:
                             "title_canon":    title_c,
                             "source_weight":  get_source_weight(name) * 0.8,
                         })
+                        routed_count += 1
             except Exception:
                 continue
         return rows
