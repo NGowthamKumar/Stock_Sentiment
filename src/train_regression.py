@@ -15,7 +15,7 @@ from lightgbm import LGBMClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler    
 
-FEATURES = ["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",        
+FEATURES = ["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",        
             "vix_change","oil_change","usdinr_change","rsi","macd_diff","bb_pct","bb_width","price_vs_sma",
             "us_vix_change",      # US fear → IT sector pressure
             "nifty_ret_change",   # Market-wide momentum
@@ -72,7 +72,16 @@ def main():
     df = pd.read_parquet("data/modeling/dataset.parquet").sort_values(["date","ticker"])
     if df.empty:
         raise SystemExit("dataset is empty. You need at least ~2 days of history.")
+    
+    # Fill any NaN in features (e.g. new columns not in historical data)
+    df[FEATURES] = df[FEATURES].fillna(df[FEATURES].median())
 
+    # Fill any NaN in features — handles new columns missing from historical data
+    for feat in FEATURES:
+        if feat not in df.columns:
+            df[feat] = df["S_recency"] if "recency" in feat else 0
+        df[feat] = df[feat].fillna(df[feat].median())
+        
     X, y = df[FEATURES], df[TARGET_1D]
     y_bin = (y > 0).astype(int)
     reg_models = {

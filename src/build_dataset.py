@@ -84,14 +84,16 @@ def main():
 
     h = pd.read_csv(hist_path, parse_dates=["date"])
     feats = h[[
-        "date","ticker","smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg"
+        "date","ticker","smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg"
     ]].copy()
 
     # Shift features by 1 day to avoid leakage (predict t+1 with features at t)
     feats = feats.sort_values(["ticker","date"])
-    feats[["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg"]] = \
-        feats.groupby("ticker")[["smart_score","S_recency","S_events","S_breadth","S_volume","total","pos","neg"]].shift(1)
+    feats[["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg"]] = \
+        feats.groupby("ticker")[["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg"]].shift(1)
     
+    # Fill NaN for S_recency_3d — new column, missing in older history rows
+    feats["S_recency_3d"] = feats["S_recency_3d"].fillna(feats["S_recency"])
     
     first = feats["date"].min().date()
     last = feats["date"].max().date()

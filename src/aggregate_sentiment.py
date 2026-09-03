@@ -12,9 +12,9 @@ import numpy as np
 from datetime import datetime, timezone
 from src.event_classifier import add_event_cols
 
-# ---- Tunables (move to config later if you like)
-HALF_LIFE_HOURS = 36
-WINDOW_DAYS = 10
+HALF_LIFE_1D = 8    # 8h half-life, for 1-day prediction (fresh news only)
+HALF_LIFE_3D = 36   # 36h half-life, for 3-day prediction (trend signal)
+WINDOW_DAYS  = 10
 WEIGHTS = dict(recency=0.45, events=0.25, breadth=0.20, volume=0.10)
 
 # Event weights in [-1, 1]
@@ -84,7 +84,7 @@ def main():
 
     # recency weights
     hours_ago = (now - df["published_utc"]).dt.total_seconds() / 3600.0
-    df["w"] = hours_ago.map(lambda h: ewma_weight(h, HALF_LIFE_HOURS))
+    df["w"] = hours_ago.map(lambda h: ewma_weight(h, HALF_LIFE_3D))
 
     # ── Add tier weighting ──
     # Tier 1 (0-48h) = full weight, Tier 2 (2-30d) = half weight
@@ -110,14 +110,17 @@ def main():
         df["model_confidence"] = df["model_confidence"].fillna(0.5)
     else:
         df["model_confidence"] = 0.5
-    
+
+    # w_total computed per-ticker inside loop using dual half-lives
+    # keeping df["w"] for reference only
+
     # Combined weight: EWMA × tier × source quality × NLP confidence
-    df["w_total"] = (
+    '''df["w_total"] = (
         df["w"] * 
         df["tier_weight"] * 
         df["source_weight"] *      #  source quality weight
         df["model_confidence"]     #  NLP confidence weight
-    )
+    )'''
 
     out_rows = []
     for tk, g in df.groupby("ticker"):
@@ -125,12 +128,30 @@ def main():
         pos = (g["label"] == "positive").sum()
         neg = (g["label"] == "negative").sum()
 
-        w = g["w_total"].values
         s = g["ensemble"].values
-        ewma = float(np.average(s, weights=w)) if w.sum() > 0 else float(np.mean(s))
+        tier_w = g["tier_weight"].values
+        src_w  = g["source_weight"].values
+        conf_w = g["model_confidence"].values
 
-        # Components
-        S_recency = np.clip((ewma + 1) / 2 * 100, 0, 100)
+        # Dual EWMA — different half-lives for 1d vs 3d
+        hours_ago_vals = (now - g["published_utc"]).dt.total_seconds().values / 3600.0
+        w_1d = np.array([ewma_weight(h, HALF_LIFE_1D) for h in hours_ago_vals])
+        w_3d = np.array([ewma_weight(h, HALF_LIFE_3D) for h in hours_ago_vals])
+
+        # Combined weights with tier/source/confidence
+        w_total_1d = w_1d * tier_w * src_w * conf_w
+        w_total_3d = w_3d * tier_w * src_w * conf_w
+
+        ewma_1d = float(np.average(s, weights=w_total_1d)) if w_total_1d.sum() > 0 else float(np.mean(s))
+        ewma_3d = float(np.average(s, weights=w_total_3d)) if w_total_3d.sum() > 0 else float(np.mean(s))
+
+        # S_recency split by horizon
+        S_recency_1d = float(np.clip((ewma_1d + 1) / 2 * 100, 0, 100))
+        S_recency_3d = float(np.clip((ewma_3d + 1) / 2 * 100, 0, 100))
+
+        # Keep combined for SmartScore (use 1d for primary signal)
+        ewma = ewma_1d
+        S_recency = S_recency_1d
         S_breadth_raw = (pos - neg) / max(1, total)
         S_volume_raw = np.log1p(total)
 
@@ -143,7 +164,8 @@ def main():
         out_rows.append(dict(
             date=str(today),
             ticker=tk,
-            S_recency=S_recency,
+            S_recency=S_recency,          # 8h half-life (1d signal)
+            S_recency_3d=S_recency_3d,    # 36h half-life (3d signal)
             S_breadth_raw=S_breadth_raw,
             S_volume_raw=S_volume_raw,
             S_events=S_events,
