@@ -199,7 +199,7 @@ STOCKS_FOR_GOOGLE = [
 
     # Renewables / Energy
     "Suzlon Energy", "Torrent Power", "Adani Total Gas",
-    "Gujarat Gas", "Indraprastha Gas", "Mahanagar Gas",
+    "Indraprastha Gas", "Mahanagar Gas",
     "CESC", "Tata Power Renewables",
 
     # Telecom
@@ -485,7 +485,6 @@ ALIAS_TO_TICKER_PATTERNS = [
     (r"\bTorrent\s*Power\b",                 "TORNTPOWER.NS"),
     (r"\bSuzlon\b",                          "SUZLON.NS"),
     (r"\bAdani\s*Total\s*Gas\b",             "ATGL.NS"),
-    (r"\bGujarat\s*Gas\b",                   "GUJGAS.NS"),
     (r"\bIGL\b|\bIndraprastha\s*Gas\b",      "IGL.NS"),
     (r"\bMahanagar\s*Gas\b|\bMGL\b",         "MGL.NS"),
     (r"\bCESC\b",                            "CESC.NS"),
