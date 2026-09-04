@@ -9,12 +9,11 @@ import os
 import pandas as pd
 import yfinance as yf
 
-def fetch_actual_returns(tickers: list, date: str) -> dict:
-    """Fetch actual next-day return for a given prediction date"""
+def fetch_actual_returns(tickers: list, date: str, horizon: int = 1) -> dict:
+    """Fetch actual return for a given prediction date and horizon (1 or 3 days)"""
     try:
         start = (pd.Timestamp(date) - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-        end   = (pd.Timestamp(date) + pd.Timedelta(days=5)).strftime("%Y-%m-%d")
-        
+        end   = (pd.Timestamp(date) + pd.Timedelta(days=horizon+5)).strftime("%Y-%m-%d")
         data = yf.download(
             tickers, start=start, end=end,
             progress=False, auto_adjust=True, group_by="ticker"
@@ -30,8 +29,8 @@ def fetch_actual_returns(tickers: list, date: str) -> dict:
                     dates = close.index.strftime("%Y-%m-%d").tolist()
                     if date in dates:
                         idx = dates.index(date)
-                        if idx + 1 < len(close):
-                            ret = (close.iloc[idx+1] / close.iloc[idx] - 1) * 100
+                        if idx + horizon < len(close):
+                            ret = (close.iloc[idx+horizon] / close.iloc[idx] - 1) * 100
                             returns[tk] = {
                                 "actual_ret_pct": round(float(ret), 4),
                                 "actual_dir":     1 if ret > 0 else 0
@@ -43,8 +42,8 @@ def fetch_actual_returns(tickers: list, date: str) -> dict:
             dates = close.index.strftime("%Y-%m-%d").tolist()
             if date in dates:
                 idx = dates.index(date)
-                if idx + 1 < len(close):
-                    ret = (close.iloc[idx+1] / close.iloc[idx] - 1) * 100
+                if idx + horizon < len(close):
+                    ret = (close.iloc[idx+horizon] / close.iloc[idx] - 1) * 100
                     returns[tickers[0]] = {
                         "actual_ret_pct": round(float(ret), 4),
                         "actual_dir":     1 if ret > 0 else 0
@@ -81,10 +80,12 @@ def compute_stock_accuracy(history: pd.DataFrame) -> pd.DataFrame:
             if a >= 53: return "🟡 MODERATE"
             return "❌ WEAK"
         
-        ss_acc  = acc("ss_correct")
-        xgb_acc = acc("xgb_correct")
-        com_acc = acc("combined_correct")
-        
+        ss_acc   = acc("ss_correct")
+        xgb_acc  = acc("xgb_correct")
+        com_acc  = acc("combined_correct")
+        xgb_3d_acc = acc("xgb_3d_correct")
+        ens_3d_acc = acc("ens_3d_correct")
+
         results.append({
             "ticker":          ticker,
             "total_signals":   n,
@@ -92,13 +93,16 @@ def compute_stock_accuracy(history: pd.DataFrame) -> pd.DataFrame:
             "ss_acc_overall":  ss_acc,
             "ss_acc_10d":      acc("ss_correct", 10),
             "ss_trust":        trust(ss_acc),
-            # XGBoost signal
+            # XGBoost 1d signal
             "xgb_acc_overall": xgb_acc,
             "xgb_acc_10d":     acc("xgb_correct", 10),
             "xgb_trust":       trust(xgb_acc),
             # Combined signal
             "combined_acc":    com_acc,
             "combined_trust":  trust(com_acc),
+            # 3d signal accuracy
+            "xgb_3d_acc":      xgb_3d_acc,
+            "ens_3d_acc":      ens_3d_acc,
             # Best signal
             "best_signal":     max(
                 [("SmartScore", ss_acc or 0),
@@ -235,7 +239,46 @@ def main():
         
         history.to_csv(history_path, index=False)
         print(f"Updated signal history → {history_path}")
-    
+        # ── Settle 3-day signals ──
+        if "xgb_3d_signal" in history.columns:
+            cutoff_3d = (pd.Timestamp.now() - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
+            unsettled_3d = history[
+                history["xgb_3d_correct"].isna() &
+                history["xgb_3d_signal"].notna() &
+                (history["pred_date"] < cutoff_3d)
+            ].copy()
+
+            dates_3d = unsettled_3d["pred_date"].unique()
+            if len(dates_3d) > 0:
+                print(f"\nSettling 3-day signals for {len(dates_3d)} dates...")
+                for date in sorted(dates_3d):
+                    tickers_3d = unsettled_3d[
+                        unsettled_3d["pred_date"] == date
+                    ]["ticker"].unique().tolist()
+
+                    actuals_3d = fetch_actual_returns(tickers_3d, date, horizon=3)
+                    if not actuals_3d:
+                        continue
+
+                    for idx, row in history[history["pred_date"] == date].iterrows():
+                        ticker = row["ticker"]
+                        if ticker not in actuals_3d:
+                            continue
+                        actual_dir_3d = actuals_3d[ticker]["actual_dir"]
+                        history.loc[idx, "actual_dir_3d"] = actual_dir_3d
+
+                        if pd.notna(row.get("xgb_3d_signal")):
+                            history.loc[idx, "xgb_3d_correct"] = (
+                                1 if int(row["xgb_3d_signal"]) == actual_dir_3d else 0
+                            )
+                        if pd.notna(row.get("ens_3d_signal")):
+                            history.loc[idx, "ens_3d_correct"] = (
+                                1 if int(row["ens_3d_signal"]) == actual_dir_3d else 0
+                            )
+
+                history.to_csv(history_path, index=False)
+                print("Updated 3d signal history")
+
     # Compute accuracy
     acc_df = compute_stock_accuracy(history)
     if not acc_df.empty:

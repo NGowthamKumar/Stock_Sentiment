@@ -32,7 +32,7 @@ import hashlib
 from datetime import datetime, timezone
 from turtle import title
 from urllib.parse import urlparse, urlunparse, parse_qsl, urlencode
-from src.keyword_sector_router import GLOBAL_KEYWORD_ROUTING, PRICE_MOVEMENT_KEYWORDS
+from src.keyword_sector_router import GLOBAL_KEYWORD_ROUTING, get_sentiment_for_ticker
 from concurrent.futures import ThreadPoolExecutor
 
 import feedparser
@@ -181,7 +181,7 @@ STOCKS_FOR_GOOGLE = [
     "Hindustan Aeronautics", "BEL", "Mazagon Dock",
     "Cochin Shipyard", "Garden Reach Shipbuilders",
     "Solar Industries", "Data Patterns", "Paras Defence",
-    "MTAR Technologies", "Bharat Dynamics",
+    "MTAR Technologies India", "Bharat Dynamics",
     "HUDCO", "Jaiprakash Power", "Adani Power",
     "RVNL", "Ircon International", "KEC International",
     "Kalpataru Projects", "PNC Infratech",
@@ -326,7 +326,6 @@ ALIAS_TO_TICKER_PATTERNS = [
     (r"\bRadico\b",                          "RADICO.NS"),
     (r"\bJyothy\b",                          "JYOTHYLAB.NS"),
     (r"\bBikaji\b",                          "BIKAJI.NS"),
-    (r"\bCCL\s*Products\b",                  "CCLPROD.NS"),
     (r"\bHindustan\s*Zinc\b",                "HINDZINC.NS"),
 
     # ── Pharma / Healthcare ──
@@ -456,7 +455,7 @@ ALIAS_TO_TICKER_PATTERNS = [
     (r"\bSolar\s*Industries\b",              "SOLARINDS.NS"),
     (r"\bData\s*Patterns\b",                 "DATAPATTNS.NS"),
     (r"\bParas\s*Defence\b",                 "PDRP.NS"),
-    (r"\bMTAR\s*Technologies\b|\bMTAR\b",    "MTAR.NS"),
+    (r"\bMTAR\s*Technologies\b|\bMTAR\b",    "MTARTECH.NS"),
     (r"\bBharat\s*Dynamics\b|\bBDL\b",       "BDL.NS"),
     (r"\bHUDCO\b",                           "HUDCO.NS"),
     (r"\bJaiprakash\s*Power\b|\bJP\s*Power\b","JPPOWER.NS"),
@@ -486,7 +485,7 @@ ALIAS_TO_TICKER_PATTERNS = [
     (r"\bTorrent\s*Power\b",                 "TORNTPOWER.NS"),
     (r"\bSuzlon\b",                          "SUZLON.NS"),
     (r"\bAdani\s*Total\s*Gas\b",             "ATGL.NS"),
-    (r"\bGujarat\s*Gas\b",                   "GUJGASLTD.NS"),
+    (r"\bGujarat\s*Gas\b",                   "GUJGAS.NS"),
     (r"\bIGL\b|\bIndraprastha\s*Gas\b",      "IGL.NS"),
     (r"\bMahanagar\s*Gas\b|\bMGL\b",         "MGL.NS"),
     (r"\bCESC\b",                            "CESC.NS"),
@@ -726,15 +725,22 @@ def route_global_news(title: str, ticker: str) -> list:
         keywords = config["keywords"]
         if any(kw in title_lower for kw in keywords):
             affected = config["affected_tickers"]
-            direction = config["sentiment_direction"]
-            
-            if affected == "ALL" or affected == "BROAD":
-                # Market-wide signal — add to all major indices
-                routed.append(("NIFTY_BROAD", direction))
+
+            if affected in ("ALL", "BROAD", "CONTEXT"):
+                routed.append(("NIFTY_BROAD", "positive"))
             elif isinstance(affected, list):
                 for tk in affected:
+                    # Use get_sentiment_for_ticker to handle override_for
+                    # e.g. ONGC gets POSITIVE when oil rises (producer)
+                    # while IOC/BPCL get NEGATIVE (importers)
+                    direction = get_sentiment_for_ticker(config, tk)
                     routed.append((tk, direction))
-    
+            elif isinstance(affected, dict):
+                # Split sentiment already defined per ticker group
+                for sentiment_type, tickers in affected.items():
+                    for tk in tickers:
+                        routed.append((tk, sentiment_type))
+
     return routed
 
 def fetch_one_source(name_url: tuple) -> list:

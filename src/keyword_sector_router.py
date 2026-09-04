@@ -314,9 +314,9 @@ GLOBAL_KEYWORD_ROUTING = {
             "scrappage policy", "ev subsidy", "fame scheme"
         ],
         "affected_tickers": [
-            "TATAMOTORS.NS", "MARUTI.NS", "M&M.NS",
-            "BAJAJ-AUTO.NS", "HEROMOTOCO.NS", "EICHER.NS",
-            "OLECTRIC.NS"
+            "TMCV.NS", "MARUTI.NS", "M&M.NS",
+            "BAJAJ-AUTO.NS", "HEROMOTOCO.NS", "EICHERMOT.NS",
+            "OLAELEC.NS"
         ],
         "sentiment_direction": "positive",
     },
@@ -381,13 +381,79 @@ GLOBAL_KEYWORD_ROUTING = {
             "make in india", "atmanirbhar"
         ],
         "affected_tickers": [
-            "L&T.NS", "NTPC.NS", "POWERGRID.NS",
+            "LT.NS", "NTPC.NS", "POWERGRID.NS",
             "HAL.NS", "BEL.NS", "IRFC.NS", "RVNL.NS",
             "DIXON.NS", "KAYNES.NS"
         ],
         "sentiment_direction": "positive",
     },
 }
+
+def get_sentiment_for_ticker(category_config: dict, ticker: str) -> str:
+    """
+    Returns correct sentiment direction for a specific ticker.
+    Handles override_for — e.g. ONGC benefits when oil rises
+    even though Iran disruption is negative for importers.
+    """
+    direction = category_config.get("sentiment_direction", "negative")
+    override_for = category_config.get("override_for", [])
+
+    if isinstance(direction, dict):
+        # Split sentiment (e.g. crude oil)
+        for sentiment_type, tickers in direction.items():
+            if ticker in tickers:
+                return sentiment_type
+        return "negative"
+
+    if ticker in override_for:
+        # Flip direction for override tickers
+        if direction == "negative":
+            return "positive"
+        elif direction == "positive":
+            return "negative"
+
+    return direction if isinstance(direction, str) else "negative"
+
+
+def route_global_news(title: str, ticker) -> list:
+    """
+    If ticker is None/NaN, route article to affected sector stocks.
+    Returns list of (ticker, sentiment_direction) tuples.
+    """
+    import pandas as pd
+    if pd.notna(ticker):
+        return []  # already mapped — no routing needed
+
+    title_lower = title.lower()
+    routed = []
+    seen = set()
+
+    for category, config in GLOBAL_KEYWORD_ROUTING.items():
+        keywords = config.get("keywords", [])
+        if not any(kw in title_lower for kw in keywords):
+            continue
+
+        affected = config.get("affected_tickers", [])
+
+        if affected in ("ALL", "BROAD", "CONTEXT"):
+            routed.append(("NIFTY_BROAD", "positive"))
+            continue
+
+        if isinstance(affected, list):
+            for tk in affected:
+                if tk not in seen:
+                    direction = get_sentiment_for_ticker(config, tk)
+                    routed.append((tk, direction))
+                    seen.add(tk)
+
+        elif isinstance(affected, dict):
+            for sentiment_type, tickers in affected.items():
+                for tk in tickers:
+                    if tk not in seen:
+                        routed.append((tk, sentiment_type))
+                        seen.add(tk)
+
+    return routed
 
 # ═══════════════════════════════════════════════════════
 # SENTIMENT MULTIPLIERS (for price movement language)
