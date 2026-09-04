@@ -742,7 +742,7 @@ def fetch_one_source(name_url: tuple) -> list:
     title_c = ""  # initialize at the very top before anything
     # Add small delay for Google sources to avoid rate limiting
     if name.startswith("Google_"):
-        time.sleep(random.uniform(0.3, 0.8))
+        time.sleep(random.uniform(1.0, 2.5))
     try:
         feed = parse_with_retry(url, source_name=name)
         rows = []
@@ -834,8 +834,22 @@ def main():
     all_rows = []
     source_items = list(sources.items())
 
+    # Split Google and non-Google sources
+    google_sources = [(n,u) for n,u in source_items if n.startswith("Google_")]
+    other_sources  = [(n,u) for n,u in source_items if not n.startswith("Google_")]
+
+    # Fetch non-Google sources in parallel (fast)
+    all_rows = []
     with ThreadPoolExecutor(max_workers=8) as executor:
-        results = list(executor.map(fetch_one_source, source_items))
+        results = list(executor.map(fetch_one_source, other_sources))
+    for r in results:
+        all_rows.extend(r)
+
+    # Fetch Google sources with more delay (avoid rate limiting)
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        results = list(executor.map(fetch_one_source, google_sources))
+    for r in results:
+        all_rows.extend(r)
 
     for result in results:
         all_rows.extend(result)

@@ -239,6 +239,108 @@ def save_signal_history(latest: pd.DataFrame, out: pd.DataFrame,
         new_df.to_csv(history_path, index=False)
         print(f"Created signal history with {len(new_df)} rows → {history_path}")
 
+def compute_macro_risk(latest: pd.DataFrame) -> dict:
+    """
+    Compute macro risk score (0-100) from current market conditions
+    Higher score = more macro risk = suppress weak bullish signals
+    """
+    risk_score = 0
+    reasons = []
+
+    # US VIX — global fear gauge
+    us_vix = latest["us_vix"].median() if "us_vix" in latest.columns else 20
+    if us_vix > 25:
+        risk_score += 30
+        reasons.append(f"US VIX high ({us_vix:.1f})")
+    elif us_vix > 20:
+        risk_score += 15
+        reasons.append(f"US VIX elevated ({us_vix:.1f})")
+
+    # India VIX
+    india_vix = latest["india_vix"].median() if "india_vix" in latest.columns else 15
+    if india_vix > 20:
+        risk_score += 20
+        reasons.append(f"India VIX high ({india_vix:.1f})")
+    elif india_vix > 15:
+        risk_score += 10
+        reasons.append(f"India VIX elevated ({india_vix:.1f})")
+
+    # Oil price change — rising oil bad for India
+    oil_change = latest["oil_change"].median() if "oil_change" in latest.columns else 0
+    if oil_change > 3:
+        risk_score += 20
+        reasons.append(f"Crude oil surging (+{oil_change:.1f}%)")
+    elif oil_change > 1.5:
+        risk_score += 10
+        reasons.append(f"Crude oil rising (+{oil_change:.1f}%)")
+
+    # US 10yr yield rising = FII selling India
+    us_10y = latest["us_10y_change"].median() if "us_10y_change" in latest.columns else 0
+    if us_10y > 0.5:
+        risk_score += 15
+        reasons.append(f"US yield rising (+{us_10y:.2f}%)")
+
+    # FII net selling
+    fii_net = latest["fii_net"].median() if "fii_net" in latest.columns else 0
+    if fii_net < -5:       # -5000 crores normalized
+        risk_score += 25
+        reasons.append(f"Heavy FII selling ({fii_net*1000:.0f}cr)")
+    elif fii_net < -2:
+        risk_score += 12
+        reasons.append(f"FII selling ({fii_net*1000:.0f}cr)")
+
+    # S&P 500 falling
+    sp500 = latest["sp500_change"].median() if "sp500_change" in latest.columns else 0
+    if sp500 < -1.5:
+        risk_score += 15
+        reasons.append(f"S&P 500 falling ({sp500:.1f}%)")
+
+    return {
+        "risk_score": min(risk_score, 100),
+        "risk_level": "HIGH" if risk_score >= 50 else "MEDIUM" if risk_score >= 25 else "LOW",
+        "reasons": reasons
+    }
+
+
+def apply_macro_filter(signals_df: pd.DataFrame,
+                       macro_risk: dict,
+                       prob_col: str = "ensemble_probability",
+                       signal_col: str = "signal") -> pd.DataFrame:
+    """
+    Suppress weak bullish signals when macro environment is hostile
+    Only suppresses signals below 65% — strong signals remain unchanged
+    """
+    risk_score = macro_risk["risk_score"]
+    reasons = macro_risk["reasons"]
+
+    if risk_score < 25:
+        return signals_df  # LOW risk — no suppression
+
+    signals_df = signals_df.copy()
+
+    if risk_score >= 50:
+        # HIGH macro risk — suppress all weak bullish signals
+        threshold = 65
+        warning = f"MACRO RISK ({risk_score}/100)"
+        reason_str = " | ".join(reasons[:2])
+        mask = signals_df[prob_col] < threshold
+        signals_df.loc[mask, signal_col] = f"{warning} — {reason_str}"
+        print(f"\n MACRO RISK FILTER ACTIVE (score={risk_score}/100)")
+        print(f"   Reasons: {', '.join(reasons)}")
+        print(f"   Suppressed {mask.sum()} signals below {threshold}%")
+
+    elif risk_score >= 25:
+        # MEDIUM macro risk — suppress only very weak signals
+        threshold = 58
+        warning = "MACRO CAUTION"
+        reason_str = " | ".join(reasons[:1])
+        mask = signals_df[prob_col] < threshold
+        signals_df.loc[mask, signal_col] = f"{warning} — {reason_str}"
+        print(f"\n MACRO CAUTION (score={risk_score}/100)")
+        print(f"   Reason: {', '.join(reasons)}")
+        print(f"   Suppressed {mask.sum()} signals below {threshold}%")
+
+    return signals_df
 
 def main():
     latest = pd.read_csv("data/stock_sentiment_summary.csv")
@@ -269,6 +371,12 @@ def main():
     print("Wrote predictions → data/predictions_nextday.csv")
     print(out.head(10))
 
+    # ── Compute macro risk for signal filtering ──
+    macro_risk = compute_macro_risk(latest)
+    print(f"\nMacro Risk: {macro_risk['risk_level']} ({macro_risk['risk_score']}/100)")
+    if macro_risk["reasons"]:
+        print(f"  Drivers: {', '.join(macro_risk['reasons'])}")
+
     # ── XGBoost Classifier signals ──
     xgb_path = "models/xgb_classifier.pkl"
     if os.path.exists(xgb_path):
@@ -283,6 +391,11 @@ def main():
         signals["up_probability"] = (probs * 100).round(1)
         signals["signal"] = [get_signal_label(p) for p in probs]
         signals["confidence"] = [get_confidence(p) for p in probs]
+        signals = apply_macro_filter(
+            signals, macro_risk,
+            prob_col="up_probability",
+            signal_col="signal"
+        )
         signals = signals.sort_values("up_probability", ascending=False)
 
         signals.to_csv("data/xgb_signals.csv", index=False)
@@ -335,6 +448,11 @@ def main():
                 return "⚪ NEUTRAL — Models uncertain"
 
         ens_signals["signal"] = ens_signals.apply(ensemble_signal, axis=1)
+        ens_signals = apply_macro_filter(
+            ens_signals, macro_risk,
+            prob_col="ensemble_probability",
+            signal_col="signal"
+        )
         ens_signals = ens_signals.sort_values("ensemble_probability", ascending=False)
         ens_signals.to_csv("data/ensemble_signals.csv", index=False)
         print("\nVoting Ensemble Signals:")

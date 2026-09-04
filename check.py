@@ -8,12 +8,12 @@ import numpy as np
 import os
 from datetime import datetime
 
-TODAY = "2026-09-01"
-DATE_LABEL = "Sep 1, 2026"
+TODAY = "2026-09-04"
+DATE_LABEL = "Sep 4, 2026"
 
 print("=" * 70)
 print(f"FULL PIPELINE AUDIT — {DATE_LABEL}")
-print(f"First trading day of September 2026")
+print(f"First day of trading week — Thursday Sep 4, 2026")
 print(f"Run at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 print("=" * 70)
 
