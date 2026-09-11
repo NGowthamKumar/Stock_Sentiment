@@ -29,6 +29,11 @@ def build_features(latest):
             # Lag features
             prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
             prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
+
+            # Shift technical indicators 1 day — remove data leakage
+            # Yesterday's RSI predicts today, not today's RSI
+            for col in ["rsi","macd_diff","bb_pct","bb_width","price_vs_sma"]:
+                prices[col] = prices.groupby("ticker")[col].shift(1)
             
             # Take most recent row per ticker for all features
             today = prices.groupby("ticker").tail(1)[[
