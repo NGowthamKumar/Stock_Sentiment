@@ -1,196 +1,79 @@
 ticker,ensemble_probability,xgb_prob,lgbm_prob,rf_prob,models_agree,signal
-SPICEJET.NS,51.5,64.2,44.6,45.8,1,MACRO CAUTION — Crude oil surging (+6.3%)
-PHOENIXLTD.NS,49.8,55.5,49.2,44.6,1,MACRO CAUTION — Crude oil surging (+6.3%)
-IOC.NS,47.1,52.8,43.7,44.6,1,MACRO CAUTION — Crude oil surging (+6.3%)
-ICICIBANK.NS,46.5,48.7,45.8,45.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-INDUSINDBK.NS,46.2,45.8,49.1,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-RELIANCE.NS,46.1,49.7,44.1,44.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BPCL.NS,45.0,47.1,43.1,44.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HAVELLS.NS,44.1,44.2,43.1,45.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NESTLEIND.NS,44.0,47.1,40.3,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-IDEA.NS,43.3,41.9,43.9,44.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NATIONALUM.NS,43.3,42.4,43.5,44.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SUZLON.NS,42.6,42.4,39.6,45.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-YESBANK.NS,42.5,41.3,41.7,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SHREECEM.NS,42.4,44.3,38.4,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-IRCTC.NS,42.4,43.6,39.7,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NMDC.NS,42.2,40.5,41.4,44.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NIFTYBEES.NS,42.1,41.3,40.0,45.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HINDALCO.NS,42.1,39.0,42.5,44.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BANKBARODA.NS,42.1,39.6,43.7,43.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-COFORGE.NS,42.1,36.4,46.7,43.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-GOLDBEES.NS,41.8,41.0,40.4,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ADANIPORTS.NS,41.6,40.0,41.5,43.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-IEX.NS,41.5,37.5,43.1,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-M&M.NS,41.5,40.3,39.3,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TORNTPHARM.NS,41.5,40.0,40.5,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BRITANNIA.NS,41.0,36.6,40.5,45.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-AUROPHARMA.NS,40.9,40.1,38.2,44.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-PAYTM.NS,40.9,37.5,43.2,41.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BHARATFORG.NS,40.7,37.4,39.9,44.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-APOLLOHOSP.NS,40.7,41.4,36.2,44.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LEMONTREE.NS,40.6,38.5,39.6,43.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-JSWSTEEL.NS,40.6,38.8,39.7,43.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ZENSARTECH.NS,40.5,39.5,36.5,45.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LT.NS,40.3,38.5,38.3,44.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TATATECH.NS,40.2,35.4,39.8,45.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-INDHOTEL.NS,40.1,34.8,40.8,44.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ADANIENSOL.NS,40.1,35.1,41.3,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HINDCOPPER.NS,40.0,36.2,40.1,43.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LTIM.NS,39.8,39.5,34.9,45.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-VEDL.NS,39.8,34.7,41.3,43.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BAJFINANCE.NS,39.8,38.1,37.0,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SIEMENS.NS,39.8,38.6,36.6,44.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-PNB.NS,39.7,36.1,40.3,42.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ABBOTINDIA.NS,39.6,34.4,40.8,43.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-INDIGO.NS,39.6,39.4,35.1,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DMART.NS,39.6,37.1,36.1,45.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LTM.NS,39.5,39.1,34.1,45.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NAUKRI.NS,39.5,36.3,37.6,44.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ASIANPAINT.NS,39.5,35.8,39.1,43.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-GODREJCP.NS,39.5,37.8,36.9,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LUPIN.NS,39.3,39.7,33.1,45.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-CAMS.NS,39.3,37.2,35.7,45.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HUDCO.NS,39.3,38.4,34.6,44.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-EIHOTEL.NS,39.3,36.2,36.4,45.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TATACOMM.NS,39.2,39.0,35.2,43.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LICI.NS,39.1,33.4,39.1,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TATASTEEL.NS,39.1,36.2,36.5,44.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SYNGENE.NS,39.1,37.9,34.9,44.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SCHAEFFLER.NS,39.0,35.8,37.8,43.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-VINATIORGA.NS,39.0,37.7,34.5,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ZYDUSLIFE.NS,39.0,39.4,33.0,44.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-FIVESTAR.NS,38.9,38.6,34.0,44.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MON100.NS,38.9,37.5,36.0,43.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-PRESTIGE.NS,38.8,36.2,35.8,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-JIOFIN.NS,38.8,35.7,36.0,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MUTHOOTFIN.NS,38.8,37.2,36.0,43.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-KPIL.NS,38.7,33.8,39.7,42.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ABB.NS,38.7,34.9,36.6,44.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DELTACORP.NS,38.7,36.8,34.0,45.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ADANIGREEN.NS,38.7,36.0,36.5,43.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MRF.NS,38.6,35.7,35.7,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MARICO.NS,38.5,34.8,35.8,45.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-AJANTPHARM.NS,38.5,36.2,35.2,44.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-JPPOWER.NS,38.5,36.8,34.4,44.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ONGC.NS,38.4,39.1,34.5,41.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HDFCLIFE.NS,38.4,38.0,34.3,42.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NTPC.NS,38.4,34.2,38.5,42.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-UBL.NS,38.2,33.0,37.0,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SAIL.NS,38.2,37.4,32.9,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-INDIAMART.NS,38.1,34.2,34.6,45.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NAVINFLUOR.NS,38.0,35.6,34.6,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TRENT.NS,38.0,34.2,36.1,43.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ITC.NS,37.9,34.1,35.9,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-GODREJPROP.NS,37.9,34.8,35.0,43.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-GAIL.NS,37.9,37.0,33.7,43.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SUNPHARMA.NS,37.9,33.3,36.7,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BALKRISIND.NS,37.8,33.7,35.0,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-COCHINSHIP.NS,37.8,34.3,35.5,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NBCC.NS,37.8,36.5,33.1,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ALKEM.NS,37.7,32.8,36.4,44.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-JYOTHYLAB.NS,37.7,30.6,39.1,43.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LODHA.NS,37.7,34.2,35.1,44.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-IOB.NS,37.7,36.6,32.9,43.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-AXISBANK.NS,37.7,39.4,32.3,41.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-PAGEIND.NS,37.7,33.1,36.4,43.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DRREDDY.NS,37.6,35.0,33.4,44.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-JUBLFOOD.NS,37.5,34.1,33.3,45.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ADANIENT.NS,37.5,34.1,35.9,42.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-WESTLIFE.NS,37.3,36.4,32.1,43.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BIOCON.NS,37.3,31.1,36.7,44.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-COLPAL.NS,37.3,34.2,34.4,43.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HINDUNILVR.NS,37.1,30.3,37.2,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TITAN.NS,37.0,30.6,37.3,43.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SONACOMS.NS,37.0,33.3,33.5,44.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DLF.NS,37.0,35.9,30.9,44.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ATGL.NS,36.9,33.1,32.7,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HEROMOTOCO.NS,36.9,29.4,37.5,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MANKIND.NS,36.8,29.3,35.4,45.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BOSCHLTD.NS,36.8,31.2,35.9,43.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HINDZINC.NS,36.7,36.1,30.1,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MARUTI.NS,36.7,33.1,33.2,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SJVN.NS,36.7,28.2,38.9,43.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BERGEPAINT.NS,36.7,31.8,34.0,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-GRSE.NS,36.6,29.8,35.8,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TMCV.NS,36.6,31.9,33.2,44.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BAJAJFINSV.NS,36.6,33.0,32.2,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MRPL.NS,36.5,33.7,32.0,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DIVISLAB.NS,36.4,31.8,34.7,42.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HDFCAMC.NS,36.4,33.6,32.0,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TIINDIA.NS,36.3,31.6,33.5,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-RVNL.NS,36.3,34.4,30.7,44.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HDFCBANK.NS,36.3,33.2,33.6,42.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SAPPHIRE.NS,36.2,29.6,34.2,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-PDRP.NS,36.1,32.5,31.5,44.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-UTIAMC.NS,36.0,29.9,36.5,41.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-KAYNES.NS,36.0,29.2,34.3,44.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ABCAPITAL.NS,35.9,30.3,34.4,43.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BALAMINES.NS,35.8,31.6,32.7,43.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-GRANULES.NS,35.8,33.4,32.2,41.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BHARAT22ETF.NS,35.8,33.9,28.8,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TECHM.NS,35.7,31.8,31.2,44.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SUNTV.NS,35.6,32.3,31.5,43.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TORNTPOWER.NS,35.6,31.3,33.0,42.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BANSALWIRE.NS,35.5,35.0,27.7,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-OBEROIRLTY.NS,35.5,30.8,30.9,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TATAPOWER.NS,35.4,30.6,32.6,43.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DEVYANI.NS,35.4,29.8,31.8,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ADANIPOWER.NS,35.3,30.0,33.5,42.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DATAPATTNS.NS,35.3,32.1,31.3,42.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MMTC.NS,35.3,31.0,30.1,44.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BRIGADE.NS,35.2,31.3,31.2,42.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-CUMMINSIND.NS,35.1,28.9,33.4,43.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-POWERGRID.NS,35.1,30.4,33.2,41.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-IRFC.NS,35.1,30.4,31.4,43.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-EMAMILTD.NS,35.0,26.5,36.9,41.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HAL.NS,35.0,31.9,31.2,42.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MTARTECH.NS,35.0,33.2,28.3,43.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MAZDOCK.NS,35.0,30.3,31.1,43.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-CIPLA.NS,34.8,31.6,28.6,44.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-IIFL.NS,34.7,28.4,31.8,43.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BHEL.NS,34.6,28.9,31.4,43.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NAM-INDIA.NS,34.5,29.8,31.3,42.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NYKAA.NS,34.5,29.4,31.4,42.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MGL.NS,34.5,32.5,28.1,43.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-LAURUSLABS.NS,34.5,29.7,32.4,41.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MOTHERSON.NS,34.4,29.2,30.6,43.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DABUR.NS,34.2,29.5,30.2,42.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SILVERBEES.NS,34.1,31.1,28.7,42.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BHARTIARTL.NS,34.1,29.3,30.3,42.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TATAELXSI.NS,34.1,32.1,26.7,43.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BDL.NS,34.1,28.1,29.6,44.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ANGELONE.NS,34.1,27.7,31.8,42.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-ULTRACEMCO.NS,33.9,29.6,28.3,43.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-KEC.NS,33.8,29.7,29.1,42.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SKFINDIA.NS,33.6,27.8,29.7,43.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BAJAJ-AUTO.NS,33.5,28.2,29.5,42.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MPHASIS.NS,33.5,27.9,27.8,44.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-KOTAKBANK.NS,33.5,29.4,29.5,41.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SHRIRAMFIN.NS,33.5,28.6,28.5,43.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HOMEFIRST.NS,33.4,26.8,31.2,42.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BSE.NS,33.3,32.1,24.8,43.0,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HCLTECH.NS,33.2,29.6,27.7,42.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-IGL.NS,33.2,27.4,30.1,42.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TIMKEN.NS,33.1,31.2,26.6,41.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-OIL.NS,33.0,29.4,27.9,41.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-COALINDIA.NS,32.6,30.6,24.9,42.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-WIPRO.NS,32.3,29.1,25.8,42.1,0,MACRO CAUTION — Crude oil surging (+6.3%)
-RADICO.NS,32.2,26.8,27.3,42.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-DIXON.NS,32.0,26.4,26.8,42.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
-APLAPOLLO.NS,32.0,26.1,27.2,42.5,0,MACRO CAUTION — Crude oil surging (+6.3%)
-KIMS.NS,31.8,25.0,27.6,42.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-HINDPETRO.NS,31.6,26.3,25.7,42.7,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BEL.NS,31.5,24.6,29.1,40.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-BLUESTARCO.NS,31.2,23.6,28.1,41.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-TCS.NS,31.1,23.2,28.6,41.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-MANAPPURAM.NS,31.0,26.3,23.0,43.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-NHPC.NS,31.0,25.0,23.5,44.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-PERSISTENT.NS,30.9,22.7,26.7,43.2,0,MACRO CAUTION — Crude oil surging (+6.3%)
-OLAELEC.NS,30.8,25.6,24.5,42.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SOLARINDS.NS,30.7,25.4,24.3,42.3,0,MACRO CAUTION — Crude oil surging (+6.3%)
-AARTIIND.NS,30.6,23.7,25.4,42.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-AMBER.NS,30.3,23.3,25.3,42.4,0,MACRO CAUTION — Crude oil surging (+6.3%)
-SBIN.NS,29.9,25.0,23.9,40.8,0,MACRO CAUTION — Crude oil surging (+6.3%)
-VBL.NS,29.6,23.6,22.6,42.6,0,MACRO CAUTION — Crude oil surging (+6.3%)
-INFY.NS,29.1,26.7,18.6,41.9,0,MACRO CAUTION — Crude oil surging (+6.3%)
+OBEROIRLTY.NS,66.4,72.2,68.5,58.4,3,🟡 MILD BUY — 2-3 models agree
+COCHINSHIP.NS,64.9,68.5,69.3,56.7,3,🟡 MILD BUY — 2-3 models agree
+RELIANCE.NS,64.6,72.0,64.5,57.3,3,🟡 MILD BUY — 2-3 models agree
+DLF.NS,64.5,69.5,67.5,56.6,3,🟡 MILD BUY — 2-3 models agree
+PRESTIGE.NS,64.2,68.7,67.3,56.7,3,🟡 MILD BUY — 2-3 models agree
+HINDUNILVR.NS,63.3,68.0,65.1,56.9,3,🟡 MILD BUY — 2-3 models agree
+GODREJPROP.NS,63.3,66.2,66.2,57.4,3,🟡 MILD BUY — 2-3 models agree
+TMCV.NS,62.8,65.7,64.0,58.7,3,🟡 MILD BUY — 2-3 models agree
+NESTLEIND.NS,62.0,65.4,63.9,56.7,3,🟡 MILD BUY — 2-3 models agree
+NMDC.NS,62.0,66.1,65.0,54.8,3,🟡 MILD BUY — 2-3 models agree
+PAYTM.NS,61.8,61.0,72.1,52.3,3,🟡 MILD BUY — 2-3 models agree
+PHOENIXLTD.NS,61.7,61.8,68.6,54.8,3,🟡 MILD BUY — 2-3 models agree
+LT.NS,60.4,65.0,61.5,54.8,3,🟡 MILD BUY — 2-3 models agree
+VEDL.NS,60.4,63.1,64.1,53.8,3,🟡 MILD BUY — 2-3 models agree
+BRITANNIA.NS,60.3,60.1,64.8,56.0,3,🟡 MILD BUY — 2-3 models agree
+LUPIN.NS,60.0,64.4,59.6,55.9,3,🟡 MILD BUY — 2-3 models agree
+GRANULES.NS,59.9,58.1,67.6,54.0,3,🟡 MILD BUY — 2-3 models agree
+CIPLA.NS,59.9,64.0,59.8,56.1,3,🟡 MILD BUY — 2-3 models agree
+BAJFINANCE.NS,59.7,61.6,61.1,56.3,3,🟡 MILD BUY — 2-3 models agree
+ICICIBANK.NS,59.7,68.2,57.0,53.9,3,🟡 MILD BUY — 2-3 models agree
+INDUSINDBK.NS,59.5,65.9,60.4,52.2,3,🟡 MILD BUY — 2-3 models agree
+MUTHOOTFIN.NS,59.4,60.0,63.6,54.6,3,🟡 MILD BUY — 2-3 models agree
+IRCTC.NS,59.2,61.9,59.8,55.9,3,🟡 MILD BUY — 2-3 models agree
+HDFCAMC.NS,59.1,58.2,62.9,56.1,3,🟡 MILD BUY — 2-3 models agree
+YESBANK.NS,58.9,57.2,66.0,53.6,3,🟡 MILD BUY — 2-3 models agree
+CAMS.NS,58.9,58.6,60.8,57.2,3,🟡 MILD BUY — 2-3 models agree
+NTPC.NS,58.9,59.3,63.1,54.4,3,🟡 MILD BUY — 2-3 models agree
+GOLDBEES.NS,58.8,59.5,62.9,54.0,3,🟡 MILD BUY — 2-3 models agree
+SAIL.NS,58.5,61.2,59.1,55.2,3,🟡 MILD BUY — 2-3 models agree
+TATASTEEL.NS,58.4,60.9,60.0,54.4,3,🟡 MILD BUY — 2-3 models agree
+ITC.NS,58.1,58.5,63.1,52.7,3,🟡 MILD BUY — 2-3 models agree
+AUROPHARMA.NS,58.1,55.4,64.3,54.6,3,🟡 MILD BUY — 2-3 models agree
+ADANIPORTS.NS,58.1,54.5,67.4,52.3,3,🟡 MILD BUY — 2-3 models agree
+MAZDOCK.NS,58.0,59.4,59.9,54.7,3,🟡 MILD BUY — 2-3 models agree
+SUNPHARMA.NS,57.9,58.8,60.5,54.5,3,⚪ NEUTRAL — Models uncertain
+JSWSTEEL.NS,57.8,57.8,61.3,54.3,3,⚪ NEUTRAL — Models uncertain
+ASIANPAINT.NS,57.7,57.8,60.4,55.0,3,⚪ NEUTRAL — Models uncertain
+DRREDDY.NS,57.5,57.4,61.0,54.2,3,⚪ NEUTRAL — Models uncertain
+DMART.NS,57.4,55.5,61.8,55.0,3,⚪ NEUTRAL — Models uncertain
+HDFCBANK.NS,57.4,64.3,55.2,52.5,3,⚪ NEUTRAL — Models uncertain
+MPHASIS.NS,57.2,57.5,57.1,56.9,3,⚪ NEUTRAL — Models uncertain
+M&M.NS,57.1,56.0,59.9,55.5,3,⚪ NEUTRAL — Models uncertain
+BHARTIARTL.NS,57.1,56.7,60.8,53.6,3,⚪ NEUTRAL — Models uncertain
+TECHM.NS,56.9,54.6,60.2,55.9,3,⚪ NEUTRAL — Models uncertain
+ONGC.NS,56.9,58.0,60.0,52.7,3,⚪ NEUTRAL — Models uncertain
+HAL.NS,56.8,59.6,57.7,53.2,3,⚪ NEUTRAL — Models uncertain
+COLPAL.NS,56.8,57.2,58.2,55.1,3,⚪ NEUTRAL — Models uncertain
+ULTRACEMCO.NS,56.7,53.1,63.0,54.1,3,⚪ NEUTRAL — Models uncertain
+SUZLON.NS,56.5,55.8,58.2,55.7,3,⚪ NEUTRAL — Models uncertain
+GRSE.NS,56.4,55.8,59.5,54.0,3,⚪ NEUTRAL — Models uncertain
+KAYNES.NS,55.8,52.2,58.9,56.2,3,⚪ NEUTRAL — Models uncertain
+HINDALCO.NS,55.7,54.5,58.8,53.8,3,⚪ NEUTRAL — Models uncertain
+DEVYANI.NS,55.3,53.3,59.5,53.2,3,⚪ NEUTRAL — Models uncertain
+COFORGE.NS,55.2,53.2,58.8,53.7,3,⚪ NEUTRAL — Models uncertain
+POWERGRID.NS,54.5,49.9,59.2,54.5,2,⚪ NEUTRAL — Models uncertain
+IGL.NS,54.4,51.3,59.3,52.5,3,⚪ NEUTRAL — Models uncertain
+OLAELEC.NS,53.9,49.5,59.5,52.6,2,⚪ NEUTRAL — Models uncertain
+DABUR.NS,53.8,50.8,57.6,52.9,3,⚪ NEUTRAL — Models uncertain
+IOC.NS,53.2,53.4,53.3,53.0,3,⚪ NEUTRAL — Models uncertain
+DIXON.NS,52.7,49.0,56.0,53.3,2,⚪ NEUTRAL — Models uncertain
+SBIN.NS,52.3,57.9,46.7,52.2,2,⚪ NEUTRAL — Models uncertain
+AXISBANK.NS,51.9,52.7,52.0,51.0,3,⚪ NEUTRAL — Models uncertain
+MOTHERSON.NS,51.4,48.2,54.1,52.0,2,⚪ NEUTRAL — Models uncertain
+KOTAKBANK.NS,51.1,52.3,50.0,51.1,2,⚪ NEUTRAL — Models uncertain
+BPCL.NS,50.8,47.8,48.9,55.6,1,⚪ NEUTRAL — Models uncertain
+INDIGO.NS,50.8,46.1,51.9,54.2,2,⚪ NEUTRAL — Models uncertain
+VBL.NS,50.4,45.8,54.1,51.3,2,⚪ NEUTRAL — Models uncertain
+TITAN.NS,49.3,46.0,49.4,52.4,1,⚪ NEUTRAL — Models uncertain
+BEL.NS,48.9,44.3,51.3,51.1,2,⚪ NEUTRAL — Models uncertain
+EMAMILTD.NS,48.6,41.7,53.2,50.8,2,⚪ NEUTRAL — Models uncertain
+LTIM.NS,48.3,44.4,45.5,55.0,1,⚪ NEUTRAL — Models uncertain
+PDRP.NS,48.2,45.0,44.5,55.2,1,⚪ NEUTRAL — Models uncertain
+SPICEJET.NS,47.4,42.1,45.2,54.7,1,⚪ NEUTRAL — Models uncertain
+TCS.NS,47.0,39.2,49.9,51.9,1,⚪ NEUTRAL — Models uncertain
+HAVELLS.NS,46.8,38.8,45.6,56.0,1,⚪ NEUTRAL — Models uncertain
+HCLTECH.NS,45.6,38.8,46.1,51.8,1,⚪ NEUTRAL — Models uncertain
+INFY.NS,41.4,32.9,38.8,52.4,1,🟠 MILD AVOID — 2-3 models agree
+WIPRO.NS,38.4,27.8,34.5,52.8,1,🟠 MILD AVOID — 2-3 models agree
