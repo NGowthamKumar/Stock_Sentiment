@@ -25,3 +25,4 @@ data/raw_news.csv
 data/processed_sentiment.csv 
 data/modeling/dataset.parquet 
 scripts/push_fii_dii.bat 
+scripts/push_fii_dii.bat 
