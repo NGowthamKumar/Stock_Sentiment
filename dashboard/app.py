@@ -271,7 +271,8 @@ with tab1:
                 raw_news["published_utc"] = pd.to_datetime(
                     raw_news["published_utc"], utc=True, errors="coerce"
                 )
-                today_news = raw_news[raw_news["published_utc"].dt.date.astype(str) >= today_str]
+                cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=24)
+                today_news = raw_news[raw_news["published_utc"] >= cutoff]
                 topics = {
                     "Oil/Crude":      ["crude","brent","oil price"],
                     "RBI":            ["rbi","repo rate","monetary policy"],
