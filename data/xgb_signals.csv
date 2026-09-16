@@ -1,183 +1,185 @@
 ticker,up_probability,signal,confidence
-TMCV.NS,79.2,🟢 STRONG BULLISH,High Confidence
-GODREJPROP.NS,79.0,🟢 STRONG BULLISH,High Confidence
-BALKRISIND.NS,78.3,🟢 STRONG BULLISH,High Confidence
-MAZDOCK.NS,78.2,🟢 STRONG BULLISH,High Confidence
-DLF.NS,77.6,🟢 STRONG BULLISH,High Confidence
-LODHA.NS,77.4,🟢 STRONG BULLISH,High Confidence
-COCHINSHIP.NS,75.7,🟢 STRONG BULLISH,High Confidence
-SBIN.NS,75.5,🟢 STRONG BULLISH,High Confidence
-INDUSINDBK.NS,74.7,🟢 STRONG BULLISH,High Confidence
-OBEROIRLTY.NS,74.4,🟢 STRONG BULLISH,High Confidence
+GODREJPROP.NS,82.2,🟢 STRONG BULLISH,High Confidence
+BALKRISIND.NS,78.7,🟢 STRONG BULLISH,High Confidence
+LODHA.NS,77.9,🟢 STRONG BULLISH,High Confidence
+MAZDOCK.NS,77.9,🟢 STRONG BULLISH,High Confidence
+OBEROIRLTY.NS,75.5,🟢 STRONG BULLISH,High Confidence
+COCHINSHIP.NS,75.1,🟢 STRONG BULLISH,High Confidence
 NAUKRI.NS,74.4,🟢 STRONG BULLISH,High Confidence
-PRESTIGE.NS,74.3,🟢 STRONG BULLISH,High Confidence
-BIKAJI.NS,74.2,🟢 STRONG BULLISH,High Confidence
+BIKAJI.NS,74.1,🟢 STRONG BULLISH,High Confidence
+DLF.NS,73.9,🟢 STRONG BULLISH,High Confidence
+INDUSINDBK.NS,73.3,🟢 STRONG BULLISH,High Confidence
+PRESTIGE.NS,73.1,🟢 STRONG BULLISH,High Confidence
 HINDALCO.NS,72.8,🟢 STRONG BULLISH,High Confidence
-NBCC.NS,72.6,🟢 STRONG BULLISH,High Confidence
-SUZLON.NS,71.6,🟡 MILD BULLISH,High Confidence
-IEX.NS,71.3,🟡 MILD BULLISH,High Confidence
-EASEMYTRIP.NS,71.1,🟡 MILD BULLISH,High Confidence
-AXISBANK.NS,70.7,🟡 MILD BULLISH,High Confidence
-SRF.NS,69.4,🟡 MILD BULLISH,High Confidence
-ALKEM.NS,69.2,🟡 MILD BULLISH,High Confidence
-AARTIIND.NS,69.0,🟡 MILD BULLISH,High Confidence
+TMCV.NS,72.5,🟢 STRONG BULLISH,High Confidence
+NBCC.NS,72.4,🟢 STRONG BULLISH,High Confidence
+IEX.NS,72.3,🟢 STRONG BULLISH,High Confidence
+SUZLON.NS,72.1,🟢 STRONG BULLISH,High Confidence
+ALKEM.NS,71.8,🟡 MILD BULLISH,High Confidence
+SBIN.NS,71.5,🟡 MILD BULLISH,High Confidence
+FORTIS.NS,71.1,🟡 MILD BULLISH,High Confidence
+ICICIBANK.NS,71.1,🟡 MILD BULLISH,High Confidence
+EASEMYTRIP.NS,70.2,🟡 MILD BULLISH,High Confidence
+RELIANCE.NS,70.1,🟡 MILD BULLISH,High Confidence
+SRF.NS,70.0,🟡 MILD BULLISH,High Confidence
+AARTIIND.NS,68.7,🟡 MILD BULLISH,High Confidence
+LT.NS,68.5,🟡 MILD BULLISH,High Confidence
 BRITANNIA.NS,68.4,🟡 MILD BULLISH,High Confidence
-LT.NS,68.3,🟡 MILD BULLISH,High Confidence
-TITAN.NS,68.1,🟡 MILD BULLISH,High Confidence
+GRSE.NS,68.1,🟡 MILD BULLISH,High Confidence
 ROUTE.NS,68.0,🟡 MILD BULLISH,High Confidence
 DATAPATTNS.NS,67.8,🟡 MILD BULLISH,High Confidence
-RELIANCE.NS,67.7,🟡 MILD BULLISH,High Confidence
 ABCAPITAL.NS,67.5,🟡 MILD BULLISH,High Confidence
-GRSE.NS,67.4,🟡 MILD BULLISH,High Confidence
-BANKBARODA.NS,67.1,🟡 MILD BULLISH,High Confidence
-ICICIBANK.NS,67.0,🟡 MILD BULLISH,High Confidence
-DIXON.NS,66.5,🟡 MILD BULLISH,High Confidence
+COFORGE.NS,67.4,🟡 MILD BULLISH,High Confidence
+TITAN.NS,67.0,🟡 MILD BULLISH,High Confidence
+DIXON.NS,67.0,🟡 MILD BULLISH,High Confidence
+AXISBANK.NS,66.8,🟡 MILD BULLISH,High Confidence
+KEC.NS,66.6,🟡 MILD BULLISH,High Confidence
+VEDL.NS,66.4,🟡 MILD BULLISH,High Confidence
+JINDALSTEL.NS,66.4,🟡 MILD BULLISH,High Confidence
 SHREECEM.NS,66.1,🟡 MILD BULLISH,High Confidence
-KEC.NS,66.1,🟡 MILD BULLISH,High Confidence
-MUTHOOTFIN.NS,66.0,🟡 MILD BULLISH,High Confidence
-IDEA.NS,65.8,🟡 MILD BULLISH,High Confidence
-COFORGE.NS,65.7,🟡 MILD BULLISH,High Confidence
-BPCL.NS,65.6,🟡 MILD BULLISH,High Confidence
-JINDALSTEL.NS,65.6,🟡 MILD BULLISH,High Confidence
-ATGL.NS,65.5,🟡 MILD BULLISH,High Confidence
+NMDC.NS,65.9,🟡 MILD BULLISH,High Confidence
 INDIAMART.NS,65.5,🟡 MILD BULLISH,High Confidence
-NMDC.NS,65.3,🟡 MILD BULLISH,High Confidence
+ATGL.NS,65.5,🟡 MILD BULLISH,High Confidence
+BANKBARODA.NS,65.4,🟡 MILD BULLISH,High Confidence
 AUROPHARMA.NS,65.3,🟡 MILD BULLISH,High Confidence
 IRCTC.NS,64.9,🟡 MILD BULLISH,Medium Confidence
+JSWSTEEL.NS,64.8,🟡 MILD BULLISH,Medium Confidence
+IDEA.NS,64.8,🟡 MILD BULLISH,Medium Confidence
 BAJAJFINSV.NS,64.7,🟡 MILD BULLISH,Medium Confidence
-ASIANPAINT.NS,64.2,🟡 MILD BULLISH,Medium Confidence
-JSWSTEEL.NS,64.1,🟡 MILD BULLISH,Medium Confidence
-NATIONALUM.NS,64.1,🟡 MILD BULLISH,Medium Confidence
-SAIL.NS,64.0,🟡 MILD BULLISH,Medium Confidence
+CIPLA.NS,64.6,🟡 MILD BULLISH,Medium Confidence
+EICHERMOT.NS,64.4,🟡 MILD BULLISH,Medium Confidence
+IRCON.NS,64.4,🟡 MILD BULLISH,Medium Confidence
+BDL.NS,64.3,🟡 MILD BULLISH,Medium Confidence
+NATIONALUM.NS,64.3,🟡 MILD BULLISH,Medium Confidence
+ASIANPAINT.NS,64.3,🟡 MILD BULLISH,Medium Confidence
+HAL.NS,64.0,🟡 MILD BULLISH,Medium Confidence
 HAVELLS.NS,64.0,🟡 MILD BULLISH,Medium Confidence
-CIPLA.NS,63.9,🟡 MILD BULLISH,Medium Confidence
-VEDL.NS,63.9,🟡 MILD BULLISH,Medium Confidence
-IRCON.NS,63.8,🟡 MILD BULLISH,Medium Confidence
-IIFL.NS,63.7,🟡 MILD BULLISH,Medium Confidence
-BDL.NS,63.7,🟡 MILD BULLISH,Medium Confidence
-PNCINFRA.NS,63.7,🟡 MILD BULLISH,Medium Confidence
+SJVN.NS,63.9,🟡 MILD BULLISH,Medium Confidence
+LICI.NS,63.9,🟡 MILD BULLISH,Medium Confidence
+BAJAJ-AUTO.NS,63.9,🟡 MILD BULLISH,Medium Confidence
 BLUESTARCO.NS,63.7,🟡 MILD BULLISH,Medium Confidence
-LICI.NS,63.3,🟡 MILD BULLISH,Medium Confidence
+IIFL.NS,63.7,🟡 MILD BULLISH,Medium Confidence
+HEROMOTOCO.NS,63.6,🟡 MILD BULLISH,Medium Confidence
+SAIL.NS,63.5,🟡 MILD BULLISH,Medium Confidence
+JPPOWER.NS,63.3,🟡 MILD BULLISH,Medium Confidence
 YESBANK.NS,63.2,🟡 MILD BULLISH,Medium Confidence
-HEROMOTOCO.NS,63.1,🟡 MILD BULLISH,Medium Confidence
 HUDCO.NS,63.0,🟡 MILD BULLISH,Medium Confidence
-JPPOWER.NS,62.8,🟡 MILD BULLISH,Medium Confidence
-BAJAJ-AUTO.NS,62.8,🟡 MILD BULLISH,Medium Confidence
-PAYTM.NS,62.7,🟡 MILD BULLISH,Medium Confidence
-HINDCOPPER.NS,62.7,🟡 MILD BULLISH,Medium Confidence
-IOC.NS,62.7,🟡 MILD BULLISH,Medium Confidence
+BAJFINANCE.NS,62.9,🟡 MILD BULLISH,Medium Confidence
 ZYDUSLIFE.NS,62.7,🟡 MILD BULLISH,Medium Confidence
+HINDCOPPER.NS,62.7,🟡 MILD BULLISH,Medium Confidence
+JUBLFOOD.NS,62.6,🟡 MILD BULLISH,Medium Confidence
 BANSALWIRE.NS,62.6,🟡 MILD BULLISH,Medium Confidence
+PNCINFRA.NS,62.6,🟡 MILD BULLISH,Medium Confidence
 TORNTPHARM.NS,62.6,🟡 MILD BULLISH,Medium Confidence
 ALKYLAMINE.NS,62.5,🟡 MILD BULLISH,Medium Confidence
-KAYNES.NS,62.2,🟡 MILD BULLISH,Medium Confidence
+MUTHOOTFIN.NS,62.4,🟡 MILD BULLISH,Medium Confidence
 SHRIRAMFIN.NS,62.2,🟡 MILD BULLISH,Medium Confidence
-JUBLFOOD.NS,62.0,🟡 MILD BULLISH,Medium Confidence
-INDIGO.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+KAYNES.NS,62.2,🟡 MILD BULLISH,Medium Confidence
+INFY.NS,62.1,🟡 MILD BULLISH,Medium Confidence
+ABB.NS,61.9,🟡 MILD BULLISH,Medium Confidence
 HDFCAMC.NS,61.8,🟡 MILD BULLISH,Medium Confidence
-HDFCLIFE.NS,61.6,🟡 MILD BULLISH,Medium Confidence
-HINDZINC.NS,61.6,🟡 MILD BULLISH,Medium Confidence
-HAL.NS,61.5,🟡 MILD BULLISH,Medium Confidence
-VINATIORGA.NS,61.3,🟡 MILD BULLISH,Medium Confidence
-MARUTI.NS,61.3,🟡 MILD BULLISH,Medium Confidence
-BERGEPAINT.NS,61.2,🟡 MILD BULLISH,Medium Confidence
-ADANIENT.NS,61.0,🟡 MILD BULLISH,Medium Confidence
-ADANIPOWER.NS,60.9,🟡 MILD BULLISH,Medium Confidence
+INDIGO.NS,61.7,🟡 MILD BULLISH,Medium Confidence
+IOC.NS,61.4,🟡 MILD BULLISH,Medium Confidence
+BHARATFORG.NS,61.3,🟡 MILD BULLISH,Medium Confidence
+ADANIENT.NS,61.2,🟡 MILD BULLISH,Medium Confidence
+DIVISLAB.NS,61.2,🟡 MILD BULLISH,Medium Confidence
+HDFCLIFE.NS,61.1,🟡 MILD BULLISH,Medium Confidence
+BPCL.NS,61.0,🟡 MILD BULLISH,Medium Confidence
 ETERNAL.NS,60.9,🟡 MILD BULLISH,Medium Confidence
-BHARATFORG.NS,60.7,🟡 MILD BULLISH,Medium Confidence
+PAGEIND.NS,60.6,🟡 MILD BULLISH,Medium Confidence
 TRENT.NS,60.6,🟡 MILD BULLISH,Medium Confidence
-DIVISLAB.NS,60.6,🟡 MILD BULLISH,Medium Confidence
-INFY.NS,60.3,🟡 MILD BULLISH,Medium Confidence
 IRFC.NS,60.3,🟡 MILD BULLISH,Medium Confidence
-RVNL.NS,60.3,🟡 MILD BULLISH,Medium Confidence
+BERGEPAINT.NS,60.1,🟡 MILD BULLISH,Medium Confidence
 NIFTYBEES.NS,60.1,🟡 MILD BULLISH,Medium Confidence
 HOMEFIRST.NS,59.9,⚪ NEUTRAL,Medium Confidence
+VINATIORGA.NS,59.9,⚪ NEUTRAL,Medium Confidence
+BEL.NS,59.8,⚪ NEUTRAL,Medium Confidence
 HCLTECH.NS,59.8,⚪ NEUTRAL,Medium Confidence
-PAGEIND.NS,59.8,⚪ NEUTRAL,Medium Confidence
-BHEL.NS,59.6,⚪ NEUTRAL,Medium Confidence
+ADANIPOWER.NS,59.6,⚪ NEUTRAL,Medium Confidence
+OLAELEC.NS,59.5,⚪ NEUTRAL,Medium Confidence
+MARUTI.NS,59.5,⚪ NEUTRAL,Medium Confidence
+RVNL.NS,59.5,⚪ NEUTRAL,Medium Confidence
 SIEMENS.NS,59.4,⚪ NEUTRAL,Medium Confidence
-CUMMINSIND.NS,59.4,⚪ NEUTRAL,Medium Confidence
-SPICEJET.NS,59.4,⚪ NEUTRAL,Medium Confidence
-ADANIPORTS.NS,59.3,⚪ NEUTRAL,Medium Confidence
-SJVN.NS,59.2,⚪ NEUTRAL,Medium Confidence
-ABB.NS,59.0,⚪ NEUTRAL,Medium Confidence
+LUPIN.NS,59.2,⚪ NEUTRAL,Medium Confidence
+ADANIPORTS.NS,59.2,⚪ NEUTRAL,Medium Confidence
+BHEL.NS,59.1,⚪ NEUTRAL,Medium Confidence
+NAM-INDIA.NS,59.1,⚪ NEUTRAL,Medium Confidence
+SPICEJET.NS,59.1,⚪ NEUTRAL,Medium Confidence
+ADANIENSOL.NS,59.0,⚪ NEUTRAL,Medium Confidence
 DELTACORP.NS,58.9,⚪ NEUTRAL,Medium Confidence
-OLAELEC.NS,58.9,⚪ NEUTRAL,Medium Confidence
 ULTRACEMCO.NS,58.9,⚪ NEUTRAL,Medium Confidence
+TIINDIA.NS,58.8,⚪ NEUTRAL,Medium Confidence
+BSE.NS,58.8,⚪ NEUTRAL,Medium Confidence
+M&M.NS,58.8,⚪ NEUTRAL,Medium Confidence
 SYNGENE.NS,58.6,⚪ NEUTRAL,Medium Confidence
-LUPIN.NS,58.6,⚪ NEUTRAL,Medium Confidence
 MTARTECH.NS,58.6,⚪ NEUTRAL,Medium Confidence
-ADANIENSOL.NS,58.4,⚪ NEUTRAL,Medium Confidence
-BAJFINANCE.NS,57.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+PAYTM.NS,58.5,⚪ NEUTRAL,Medium Confidence
+IGL.NS,58.1,⚪ NEUTRAL,Medium Confidence
 APOLLOHOSP.NS,57.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-M&M.NS,57.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-NAM-INDIA.NS,57.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 MGL.NS,57.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 LEMONTREE.NS,57.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-IGL.NS,57.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-JIOFIN.NS,57.4,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-BIOCON.NS,57.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+MOTHERSON.NS,57.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 JYOTHYLAB.NS,57.1,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-MOTHERSON.NS,57.0,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 ANGELONE.NS,56.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 ADANIGREEN.NS,56.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-SCHAEFFLER.NS,56.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-HDFCBANK.NS,56.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-POWERGRID.NS,55.8,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-BEL.NS,55.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+HINDZINC.NS,56.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+SUNPHARMA.NS,56.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+SCHAEFFLER.NS,56.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+VBL.NS,56.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+JIOFIN.NS,56.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+KOTAKBANK.NS,56.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+HDFCBANK.NS,55.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+BIOCON.NS,55.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 DRREDDY.NS,55.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 NESTLEIND.NS,55.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-LTIM.NS,55.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-VBL.NS,55.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-FIVESTAR.NS,55.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+PDRP.NS,55.4,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+ITC.NS,55.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 SOLARINDS.NS,55.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-PDRP.NS,54.8,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-BSE.NS,54.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-LAURUSLABS.NS,54.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+LAURUSLABS.NS,54.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 COALINDIA.NS,54.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 UBL.NS,54.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-AMBER.NS,53.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+FIVESTAR.NS,54.0,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+LTM.NS,53.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 APLAPOLLO.NS,53.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-NTPC.NS,53.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 BHARTIARTL.NS,53.4,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-GOLDBEES.NS,53.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-LTM.NS,52.8,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-ITC.NS,52.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-OIL.NS,52.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-BOSCHLTD.NS,52.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+NTPC.NS,53.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+POWERGRID.NS,53.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+BOSCHLTD.NS,52.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+GOLDBEES.NS,52.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+ZENSARTECH.NS,52.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+AMBER.NS,52.1,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 GAIL.NS,51.8,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-ZENSARTECH.NS,51.8,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-ONGC.NS,50.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+TATACONSUM.NS,51.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+EIHOTEL.NS,51.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+LTIM.NS,51.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 KIMS.NS,50.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-ABBOTINDIA.NS,50.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+OIL.NS,50.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 COLPAL.NS,50.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-EIHOTEL.NS,49.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+ABBOTINDIA.NS,49.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+WIPRO.NS,49.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 MARICO.NS,49.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-CAMS.NS,49.1,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-TATAPOWER.NS,48.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-INDHOTEL.NS,48.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+CAMS.NS,49.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+TATAPOWER.NS,48.9,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 PERSISTENT.NS,48.1,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-TATASTEEL.NS,48.0,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-KOTAKBANK.NS,47.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-TATACONSUM.NS,47.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 MON100.NS,47.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-WIPRO.NS,46.4,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-SUNPHARMA.NS,46.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-EMAMILTD.NS,45.1,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-RADICO.NS,45.0,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+TCS.NS,46.0,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+EMAMILTD.NS,45.7,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+RADICO.NS,45.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+SKFINDIA.NS,45.2,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 SAPPHIRE.NS,45.0,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 SILVERBEES.NS,44.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-SKFINDIA.NS,44.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 HINDUNILVR.NS,44.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-TCS.NS,43.6,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-TATACOMM.NS,42.5,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-DABUR.NS,42.0,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
-TORNTPOWER.NS,41.5,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+DABUR.NS,43.3,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
+TATACOMM.NS,43.1,MACRO CAUTION — Crude oil rising (+2.9%),Low Confidence
 MAXHEALTH.NS,41.5,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+TORNTPOWER.NS,41.5,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
 BAJAJHLDNG.NS,41.4,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
-AJANTPHARM.NS,40.9,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
-GRANULES.NS,38.2,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
-NH.NS,36.9,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
-TIMKEN.NS,34.7,MACRO CAUTION — Crude oil rising (+2.9%),High Confidence
+AJANTPHARM.NS,41.2,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+KPIL.NS,40.7,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+TIMKEN.NS,40.5,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+TATASTEEL.NS,40.3,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+ONGC.NS,40.0,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+NH.NS,37.5,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
+GRANULES.NS,36.9,MACRO CAUTION — Crude oil rising (+2.9%),Medium Confidence
 DEVYANI.NS,33.0,MACRO CAUTION — Crude oil rising (+2.9%),High Confidence
 IOB.NS,30.5,MACRO CAUTION — Crude oil rising (+2.9%),High Confidence
