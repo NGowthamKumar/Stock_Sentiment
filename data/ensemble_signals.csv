@@ -1,192 +1,194 @@
 ticker,ensemble_probability,xgb_prob,lgbm_prob,rf_prob,models_agree,signal
-HINDALCO.NS,68.9,71.9,75.6,59.3,3,🟢 STRONG BUY — All 3 agree
-ICICIBANK.NS,68.7,72.4,77.0,56.6,3,🟢 STRONG BUY — All 3 agree
-RELIANCE.NS,68.7,72.2,76.2,57.7,3,🟢 STRONG BUY — All 3 agree
-SBIN.NS,68.4,73.4,76.1,55.8,3,🟢 STRONG BUY — All 3 agree
-GODREJPROP.NS,68.3,72.1,75.4,57.4,3,🟢 STRONG BUY — All 3 agree
-DLF.NS,68.2,71.3,75.0,58.2,3,🟢 STRONG BUY — All 3 agree
-PRESTIGE.NS,67.6,69.5,75.4,58.0,3,🟡 MILD BUY — 2-3 models agree
-MUTHOOTFIN.NS,67.3,72.3,73.9,55.8,3,🟡 MILD BUY — 2-3 models agree
-ALKYLAMINE.NS,66.8,71.3,72.7,56.4,3,🟡 MILD BUY — 2-3 models agree
-OBEROIRLTY.NS,66.5,67.6,73.7,58.3,3,🟡 MILD BUY — 2-3 models agree
-TITAN.NS,66.4,71.8,73.8,53.7,3,🟡 MILD BUY — 2-3 models agree
-RVNL.NS,66.2,73.1,69.3,56.1,3,🟡 MILD BUY — 2-3 models agree
-HDFCLIFE.NS,65.9,73.7,71.7,52.3,3,🟡 MILD BUY — 2-3 models agree
-TMCV.NS,65.7,68.5,71.5,57.1,3,🟡 MILD BUY — 2-3 models agree
-BALKRISIND.NS,65.4,67.6,70.6,57.9,3,🟡 MILD BUY — 2-3 models agree
-EICHERMOT.NS,65.3,66.5,73.3,56.2,3,🟡 MILD BUY — 2-3 models agree
-BAJAJFINSV.NS,65.3,67.5,71.3,56.9,3,🟡 MILD BUY — 2-3 models agree
-INDUSINDBK.NS,64.9,67.5,71.0,56.1,3,🟡 MILD BUY — 2-3 models agree
-M&M.NS,64.4,67.4,69.7,56.1,3,🟡 MILD BUY — 2-3 models agree
-ABB.NS,64.3,66.6,70.5,55.9,3,🟡 MILD BUY — 2-3 models agree
-IEX.NS,64.2,64.3,71.3,56.9,3,🟡 MILD BUY — 2-3 models agree
-NATIONALUM.NS,64.1,68.2,68.9,55.1,3,🟡 MILD BUY — 2-3 models agree
-ASIANPAINT.NS,63.9,66.4,69.3,56.2,3,🟡 MILD BUY — 2-3 models agree
-HAVELLS.NS,63.9,66.2,68.5,57.1,3,🟡 MILD BUY — 2-3 models agree
-SHREECEM.NS,63.8,65.1,69.5,56.8,3,🟡 MILD BUY — 2-3 models agree
-VEDL.NS,63.6,70.4,66.1,54.2,3,🟡 MILD BUY — 2-3 models agree
-BPCL.NS,63.5,70.5,66.3,53.9,3,🟡 MILD BUY — 2-3 models agree
-EASEMYTRIP.NS,63.4,66.5,68.4,55.4,3,🟡 MILD BUY — 2-3 models agree
-FORTIS.NS,63.4,66.8,69.6,53.7,3,🟡 MILD BUY — 2-3 models agree
-SYNGENE.NS,63.2,63.8,69.2,56.5,3,🟡 MILD BUY — 2-3 models agree
-HUDCO.NS,63.0,62.2,70.6,56.3,3,🟡 MILD BUY — 2-3 models agree
-BANSALWIRE.NS,62.9,66.9,66.5,55.3,3,🟡 MILD BUY — 2-3 models agree
-BAJFINANCE.NS,62.6,64.6,69.6,53.6,3,🟡 MILD BUY — 2-3 models agree
-SAPPHIRE.NS,62.5,65.9,66.5,55.0,3,🟡 MILD BUY — 2-3 models agree
-VINATIORGA.NS,62.2,63.8,70.1,52.9,3,🟡 MILD BUY — 2-3 models agree
-BERGEPAINT.NS,62.2,65.2,66.4,55.0,3,🟡 MILD BUY — 2-3 models agree
-AXISBANK.NS,62.2,66.0,68.6,52.1,3,🟡 MILD BUY — 2-3 models agree
-JSWSTEEL.NS,62.2,62.4,68.5,55.7,3,🟡 MILD BUY — 2-3 models agree
-DIXON.NS,62.0,60.0,71.3,54.6,3,🟡 MILD BUY — 2-3 models agree
-JPPOWER.NS,61.9,65.4,66.1,54.2,3,🟡 MILD BUY — 2-3 models agree
-COCHINSHIP.NS,61.8,62.4,68.2,54.7,3,🟡 MILD BUY — 2-3 models agree
-NMDC.NS,61.8,62.3,68.7,54.4,3,🟡 MILD BUY — 2-3 models agree
-HINDZINC.NS,61.7,65.2,66.3,53.8,3,🟡 MILD BUY — 2-3 models agree
-IOC.NS,61.5,65.7,67.9,50.8,3,🟡 MILD BUY — 2-3 models agree
-CIPLA.NS,61.5,63.1,65.9,55.4,3,🟡 MILD BUY — 2-3 models agree
-BDL.NS,61.5,63.0,65.7,55.7,3,🟡 MILD BUY — 2-3 models agree
-IIFL.NS,61.5,62.5,67.3,54.9,3,🟡 MILD BUY — 2-3 models agree
-GOLDBEES.NS,61.4,65.0,66.7,52.5,3,🟡 MILD BUY — 2-3 models agree
-INDIGO.NS,61.2,67.8,62.9,52.9,3,🟡 MILD BUY — 2-3 models agree
-SUZLON.NS,61.1,61.8,67.2,54.3,3,🟡 MILD BUY — 2-3 models agree
-ULTRACEMCO.NS,61.0,61.3,66.9,54.7,3,🟡 MILD BUY — 2-3 models agree
-ADANIPOWER.NS,60.9,63.8,66.1,52.9,3,🟡 MILD BUY — 2-3 models agree
-NBCC.NS,60.9,64.8,61.7,56.1,3,🟡 MILD BUY — 2-3 models agree
-PAGEIND.NS,60.9,63.6,67.0,52.1,3,🟡 MILD BUY — 2-3 models agree
-MARUTI.NS,60.8,59.4,67.5,55.7,3,🟡 MILD BUY — 2-3 models agree
-LODHA.NS,60.8,58.6,67.7,56.3,3,🟡 MILD BUY — 2-3 models agree
-COFORGE.NS,60.7,64.1,64.8,53.3,3,🟡 MILD BUY — 2-3 models agree
-ZYDUSLIFE.NS,60.7,64.4,65.8,51.9,3,🟡 MILD BUY — 2-3 models agree
-INDIAMART.NS,60.7,63.8,64.9,53.3,3,🟡 MILD BUY — 2-3 models agree
-BRITANNIA.NS,60.7,65.3,63.2,53.6,3,🟡 MILD BUY — 2-3 models agree
-BANKBARODA.NS,60.5,66.2,60.8,54.4,3,🟡 MILD BUY — 2-3 models agree
-BAJAJ-AUTO.NS,60.5,62.5,66.6,52.4,3,🟡 MILD BUY — 2-3 models agree
-BIKAJI.NS,60.5,59.4,67.5,54.6,3,🟡 MILD BUY — 2-3 models agree
-TRENT.NS,60.4,61.8,64.6,54.7,3,🟡 MILD BUY — 2-3 models agree
-ABCAPITAL.NS,60.3,61.7,66.2,53.0,3,🟡 MILD BUY — 2-3 models agree
-MAZDOCK.NS,60.1,61.8,65.8,52.7,3,🟡 MILD BUY — 2-3 models agree
-UBL.NS,60.1,61.0,66.2,53.1,3,🟡 MILD BUY — 2-3 models agree
-JIOFIN.NS,60.0,60.2,65.4,54.4,3,🟡 MILD BUY — 2-3 models agree
-ITC.NS,59.9,62.2,64.0,53.4,3,🟡 MILD BUY — 2-3 models agree
-JUBLFOOD.NS,59.9,60.3,64.3,54.9,3,🟡 MILD BUY — 2-3 models agree
-DATAPATTNS.NS,59.8,64.0,62.5,53.0,3,🟡 MILD BUY — 2-3 models agree
-SILVERBEES.NS,59.7,60.3,66.0,53.0,3,🟡 MILD BUY — 2-3 models agree
-SHRIRAMFIN.NS,59.6,59.9,64.0,54.8,3,🟡 MILD BUY — 2-3 models agree
-GAIL.NS,59.5,64.1,64.4,50.0,3,🟡 MILD BUY — 2-3 models agree
-PNCINFRA.NS,59.4,59.8,64.4,53.8,3,🟡 MILD BUY — 2-3 models agree
-AARTIIND.NS,59.3,62.0,61.4,54.6,3,🟡 MILD BUY — 2-3 models agree
-HDFCBANK.NS,59.3,63.7,66.5,47.8,2,🟡 MILD BUY — 2-3 models agree
-NAM-INDIA.NS,59.1,64.5,61.9,51.0,3,🟡 MILD BUY — 2-3 models agree
-SAIL.NS,59.1,58.7,63.9,54.8,3,🟡 MILD BUY — 2-3 models agree
-MTARTECH.NS,59.1,64.5,62.1,50.8,3,🟡 MILD BUY — 2-3 models agree
-MOTHERSON.NS,59.0,62.0,62.8,52.1,3,🟡 MILD BUY — 2-3 models agree
-GRSE.NS,58.8,57.1,66.8,52.4,3,🟡 MILD BUY — 2-3 models agree
-HDFCAMC.NS,58.7,56.8,67.3,52.0,3,🟡 MILD BUY — 2-3 models agree
-TIINDIA.NS,58.7,56.3,66.3,53.4,3,🟡 MILD BUY — 2-3 models agree
-MARICO.NS,58.6,54.9,66.1,54.8,3,🟡 MILD BUY — 2-3 models agree
-KOTAKBANK.NS,58.6,60.6,63.8,51.3,3,🟡 MILD BUY — 2-3 models agree
-HEROMOTOCO.NS,58.6,59.8,62.9,53.1,3,🟡 MILD BUY — 2-3 models agree
-KAYNES.NS,58.3,61.6,59.6,53.6,3,🟡 MILD BUY — 2-3 models agree
-GRANULES.NS,58.2,62.6,61.1,50.8,3,🟡 MILD BUY — 2-3 models agree
-EIHOTEL.NS,58.1,59.1,62.9,52.5,3,🟡 MILD BUY — 2-3 models agree
-SRF.NS,58.0,57.3,63.5,53.2,3,🟡 MILD BUY — 2-3 models agree
-HINDUNILVR.NS,58.0,60.1,60.3,53.6,3,🟡 MILD BUY — 2-3 models agree
-BLUESTARCO.NS,57.8,61.7,61.2,50.7,3,MACRO CAUTION — Crude oil rising (+2.9%)
-AUROPHARMA.NS,57.8,62.3,61.1,49.9,2,MACRO CAUTION — Crude oil rising (+2.9%)
-DELTACORP.NS,57.5,55.5,63.2,53.7,3,MACRO CAUTION — Crude oil rising (+2.9%)
-IOB.NS,57.5,56.1,66.0,50.3,3,MACRO CAUTION — Crude oil rising (+2.9%)
-NIFTYBEES.NS,57.4,56.6,61.8,53.9,3,MACRO CAUTION — Crude oil rising (+2.9%)
-TIMKEN.NS,57.4,60.8,59.0,52.4,3,MACRO CAUTION — Crude oil rising (+2.9%)
-LICI.NS,57.3,59.2,60.9,52.0,3,MACRO CAUTION — Crude oil rising (+2.9%)
-SIEMENS.NS,57.3,61.6,60.2,50.2,3,MACRO CAUTION — Crude oil rising (+2.9%)
-ROUTE.NS,57.2,59.4,59.7,52.6,3,MACRO CAUTION — Crude oil rising (+2.9%)
-IRFC.NS,57.1,55.5,61.3,54.5,3,MACRO CAUTION — Crude oil rising (+2.9%)
-ATGL.NS,56.9,55.4,62.3,53.1,3,MACRO CAUTION — Crude oil rising (+2.9%)
-BSE.NS,56.9,57.8,61.0,52.1,3,MACRO CAUTION — Crude oil rising (+2.9%)
-PHOENIXLTD.NS,56.9,59.3,59.4,52.0,3,MACRO CAUTION — Crude oil rising (+2.9%)
-ADANIPORTS.NS,56.9,61.1,59.2,50.5,3,MACRO CAUTION — Crude oil rising (+2.9%)
-IRCON.NS,56.8,57.0,57.1,56.2,3,MACRO CAUTION — Crude oil rising (+2.9%)
-LEMONTREE.NS,56.6,57.5,60.4,52.0,3,MACRO CAUTION — Crude oil rising (+2.9%)
-APLAPOLLO.NS,56.6,60.8,58.8,50.1,3,MACRO CAUTION — Crude oil rising (+2.9%)
-YESBANK.NS,56.5,63.7,53.4,52.3,3,MACRO CAUTION — Crude oil rising (+2.9%)
-NESTLEIND.NS,56.4,59.3,58.9,51.1,3,MACRO CAUTION — Crude oil rising (+2.9%)
-ETERNAL.NS,56.2,61.3,56.2,51.1,3,MACRO CAUTION — Crude oil rising (+2.9%)
-NAUKRI.NS,56.2,55.6,61.7,51.5,3,MACRO CAUTION — Crude oil rising (+2.9%)
-PNB.NS,56.2,52.6,65.5,50.3,3,MACRO CAUTION — Crude oil rising (+2.9%)
-PAYTM.NS,56.1,60.2,59.3,48.7,2,MACRO CAUTION — Crude oil rising (+2.9%)
-JYOTHYLAB.NS,56.1,59.5,57.6,51.3,3,MACRO CAUTION — Crude oil rising (+2.9%)
-MGL.NS,56.0,55.5,62.5,50.1,3,MACRO CAUTION — Crude oil rising (+2.9%)
-HAL.NS,56.0,56.2,62.1,49.8,2,MACRO CAUTION — Crude oil rising (+2.9%)
-ONGC.NS,55.9,58.8,61.1,47.9,2,MACRO CAUTION — Crude oil rising (+2.9%)
-PERSISTENT.NS,55.7,54.9,62.1,50.3,3,MACRO CAUTION — Crude oil rising (+2.9%)
-ADANIENT.NS,55.7,58.1,58.3,50.8,3,MACRO CAUTION — Crude oil rising (+2.9%)
-BHARATFORG.NS,55.5,55.7,57.7,53.0,3,MACRO CAUTION — Crude oil rising (+2.9%)
-AMBER.NS,55.5,57.6,57.3,51.6,3,MACRO CAUTION — Crude oil rising (+2.9%)
-COLPAL.NS,55.5,61.7,54.0,50.6,3,MACRO CAUTION — Crude oil rising (+2.9%)
-SOLARINDS.NS,55.4,54.3,61.8,50.2,3,MACRO CAUTION — Crude oil rising (+2.9%)
-IDEA.NS,55.3,60.2,55.1,50.6,3,MACRO CAUTION — Crude oil rising (+2.9%)
-HINDCOPPER.NS,55.1,56.4,59.3,49.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-CAMS.NS,55.1,55.9,57.6,51.9,3,MACRO CAUTION — Crude oil rising (+2.9%)
-BHEL.NS,54.9,57.0,57.4,50.2,3,MACRO CAUTION — Crude oil rising (+2.9%)
-COALINDIA.NS,54.9,57.8,57.5,49.5,2,MACRO CAUTION — Crude oil rising (+2.9%)
-TORNTPHARM.NS,54.9,56.4,58.2,50.2,3,MACRO CAUTION — Crude oil rising (+2.9%)
-AJANTPHARM.NS,54.8,53.5,62.4,48.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-ANGELONE.NS,54.6,57.8,56.2,49.7,2,MACRO CAUTION — Crude oil rising (+2.9%)
-BALAMINES.NS,54.6,55.0,58.8,50.1,3,MACRO CAUTION — Crude oil rising (+2.9%)
-BOSCHLTD.NS,54.6,53.4,60.4,50.2,3,MACRO CAUTION — Crude oil rising (+2.9%)
-DIVISLAB.NS,54.5,54.2,58.8,50.5,3,MACRO CAUTION — Crude oil rising (+2.9%)
-ADANIENSOL.NS,54.5,54.0,55.9,53.7,3,MACRO CAUTION — Crude oil rising (+2.9%)
-SUNPHARMA.NS,54.2,51.0,60.1,51.5,3,MACRO CAUTION — Crude oil rising (+2.9%)
-LT.NS,54.1,53.4,57.9,51.0,3,MACRO CAUTION — Crude oil rising (+2.9%)
-DEVYANI.NS,53.9,51.2,59.1,51.3,3,MACRO CAUTION — Crude oil rising (+2.9%)
-IGL.NS,53.9,54.6,57.7,49.4,2,MACRO CAUTION — Crude oil rising (+2.9%)
-FIVESTAR.NS,53.8,56.8,54.7,49.8,2,MACRO CAUTION — Crude oil rising (+2.9%)
-LUPIN.NS,53.5,52.9,55.4,52.2,3,MACRO CAUTION — Crude oil rising (+2.9%)
-KPIL.NS,53.4,55.6,53.7,50.9,3,MACRO CAUTION — Crude oil rising (+2.9%)
-BHARTIARTL.NS,53.2,55.3,55.0,49.3,2,MACRO CAUTION — Crude oil rising (+2.9%)
-ALKEM.NS,53.1,56.2,52.7,50.5,3,MACRO CAUTION — Crude oil rising (+2.9%)
-MASTEK.NS,53.1,55.0,55.9,48.3,2,MACRO CAUTION — Crude oil rising (+2.9%)
-DMART.NS,53.1,53.2,53.7,52.3,3,MACRO CAUTION — Crude oil rising (+2.9%)
-BIOCON.NS,53.0,55.0,54.6,49.4,2,MACRO CAUTION — Crude oil rising (+2.9%)
-OLAELEC.NS,52.9,53.7,55.3,49.7,2,MACRO CAUTION — Crude oil rising (+2.9%)
-VBL.NS,52.9,56.0,51.6,51.0,3,MACRO CAUTION — Crude oil rising (+2.9%)
-BEL.NS,52.9,53.6,55.5,49.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-GODREJCP.NS,52.8,52.4,54.5,51.5,3,MACRO CAUTION — Crude oil rising (+2.9%)
-SKFINDIA.NS,52.8,51.5,57.2,49.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-IRCTC.NS,52.5,52.8,49.8,55.0,2,MACRO CAUTION — Crude oil rising (+2.9%)
-LAURUSLABS.NS,52.4,52.5,55.3,49.2,2,MACRO CAUTION — Crude oil rising (+2.9%)
-MON100.NS,52.4,54.0,53.8,49.3,2,MACRO CAUTION — Crude oil rising (+2.9%)
-RADICO.NS,52.3,49.6,57.4,49.9,1,MACRO CAUTION — Crude oil rising (+2.9%)
-IPCALAB.NS,52.2,51.8,56.1,48.7,2,MACRO CAUTION — Crude oil rising (+2.9%)
-ADANIGREEN.NS,52.0,53.3,54.0,48.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-TATASTEEL.NS,52.0,51.3,57.2,47.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-SPICEJET.NS,51.8,44.9,59.7,50.9,2,MACRO CAUTION — Crude oil rising (+2.9%)
-HCLTECH.NS,51.8,43.8,62.7,48.8,1,MACRO CAUTION — Crude oil rising (+2.9%)
-BHARAT22ETF.NS,51.6,50.5,54.4,49.9,2,MACRO CAUTION — Crude oil rising (+2.9%)
-TATACONSUM.NS,51.4,49.0,52.7,52.5,2,MACRO CAUTION — Crude oil rising (+2.9%)
-HOMEFIRST.NS,51.4,54.0,51.6,48.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-NTPC.NS,51.3,47.9,58.1,47.8,1,MACRO CAUTION — Crude oil rising (+2.9%)
-EMAMILTD.NS,51.2,55.8,48.6,49.1,1,MACRO CAUTION — Crude oil rising (+2.9%)
-KEC.NS,51.0,51.2,55.8,46.0,2,MACRO CAUTION — Crude oil rising (+2.9%)
-APOLLOHOSP.NS,50.9,53.6,50.1,49.2,2,MACRO CAUTION — Crude oil rising (+2.9%)
-SCHAEFFLER.NS,50.6,52.5,51.7,47.6,2,MACRO CAUTION — Crude oil rising (+2.9%)
-DRREDDY.NS,50.5,53.1,49.7,48.7,1,MACRO CAUTION — Crude oil rising (+2.9%)
-MAXHEALTH.NS,50.0,48.4,51.9,49.6,1,MACRO CAUTION — Crude oil rising (+2.9%)
-LTIM.NS,49.7,49.3,50.5,49.4,1,MACRO CAUTION — Crude oil rising (+2.9%)
-ABBOTINDIA.NS,49.6,46.9,56.2,45.8,1,MACRO CAUTION — Crude oil rising (+2.9%)
-TATACOMM.NS,49.1,48.2,51.9,47.1,1,MACRO CAUTION — Crude oil rising (+2.9%)
-TATAPOWER.NS,49.0,54.5,45.4,47.0,1,MACRO CAUTION — Crude oil rising (+2.9%)
-OIL.NS,48.8,47.5,51.7,47.2,1,MACRO CAUTION — Crude oil rising (+2.9%)
-POWERGRID.NS,48.2,51.5,44.4,48.8,1,MACRO CAUTION — Crude oil rising (+2.9%)
-TCS.NS,47.3,43.9,50.7,47.4,1,MACRO CAUTION — Crude oil rising (+2.9%)
-KIMS.NS,46.8,47.1,45.2,48.2,0,MACRO CAUTION — Crude oil rising (+2.9%)
-TORNTPOWER.NS,46.6,43.7,49.6,46.6,0,MACRO CAUTION — Crude oil rising (+2.9%)
-PDRP.NS,46.4,46.8,44.5,47.9,0,MACRO CAUTION — Crude oil rising (+2.9%)
-ZENSARTECH.NS,46.2,42.0,48.6,48.1,0,MACRO CAUTION — Crude oil rising (+2.9%)
-SJVN.NS,46.0,48.5,42.6,46.9,0,MACRO CAUTION — Crude oil rising (+2.9%)
-TATATECH.NS,45.8,44.3,43.7,49.4,0,MACRO CAUTION — Crude oil rising (+2.9%)
-DABUR.NS,45.8,49.8,41.6,46.0,0,MACRO CAUTION — Crude oil rising (+2.9%)
-WIPRO.NS,45.4,41.5,46.2,48.5,0,MACRO CAUTION — Crude oil rising (+2.9%)
-NH.NS,44.9,47.9,41.3,45.5,0,MACRO CAUTION — Crude oil rising (+2.9%)
-BAJAJHLDNG.NS,44.7,43.3,44.6,46.1,0,MACRO CAUTION — Crude oil rising (+2.9%)
-INFY.NS,44.2,40.6,43.3,48.6,0,MACRO CAUTION — Crude oil rising (+2.9%)
+GODREJPROP.NS,53.0,59.0,50.2,49.9,2,⚪ NEUTRAL — Models uncertain
+JPPOWER.NS,52.9,53.4,57.1,48.1,2,⚪ NEUTRAL — Models uncertain
+DLF.NS,50.6,56.1,47.8,47.8,1,⚪ NEUTRAL — Models uncertain
+BAJAJFINSV.NS,49.5,52.4,50.0,46.1,1,⚪ NEUTRAL — Models uncertain
+VINATIORGA.NS,49.5,55.1,47.6,45.7,1,⚪ NEUTRAL — Models uncertain
+EICHERMOT.NS,49.2,51.6,50.0,45.9,2,⚪ NEUTRAL — Models uncertain
+INDIGO.NS,48.2,49.4,47.8,47.5,0,⚪ NEUTRAL — Models uncertain
+LT.NS,48.1,53.0,46.5,44.7,1,⚪ NEUTRAL — Models uncertain
+INDUSINDBK.NS,48.1,50.0,46.8,47.4,0,⚪ NEUTRAL — Models uncertain
+AMBER.NS,47.8,47.5,51.7,44.3,1,⚪ NEUTRAL — Models uncertain
+FORTIS.NS,47.5,51.8,45.7,45.1,1,⚪ NEUTRAL — Models uncertain
+TITAN.NS,47.5,55.7,45.4,41.4,1,⚪ NEUTRAL — Models uncertain
+TMCV.NS,47.3,55.6,39.9,46.5,1,⚪ NEUTRAL — Models uncertain
+UBL.NS,46.9,51.0,43.4,46.4,1,⚪ NEUTRAL — Models uncertain
+EASEMYTRIP.NS,46.8,48.8,46.3,45.3,0,⚪ NEUTRAL — Models uncertain
+NAM-INDIA.NS,46.3,51.7,42.5,44.6,1,⚪ NEUTRAL — Models uncertain
+ALKYLAMINE.NS,46.3,51.6,40.0,47.3,1,⚪ NEUTRAL — Models uncertain
+BALKRISIND.NS,45.7,45.4,45.6,46.2,0,⚪ NEUTRAL — Models uncertain
+COFORGE.NS,45.7,49.2,41.8,46.0,0,⚪ NEUTRAL — Models uncertain
+SHREECEM.NS,45.6,49.0,40.8,47.1,0,⚪ NEUTRAL — Models uncertain
+HEROMOTOCO.NS,45.5,45.2,46.8,44.4,0,⚪ NEUTRAL — Models uncertain
+HDFCAMC.NS,45.4,46.2,44.4,45.6,0,⚪ NEUTRAL — Models uncertain
+LTM.NS,45.3,48.1,43.8,43.9,0,⚪ NEUTRAL — Models uncertain
+COCHINSHIP.NS,45.2,45.1,45.3,45.0,0,⚪ NEUTRAL — Models uncertain
+NMDC.NS,44.9,43.9,46.7,44.0,0,⚪ NEUTRAL — Models uncertain
+DATAPATTNS.NS,44.8,43.6,44.4,46.3,0,⚪ NEUTRAL — Models uncertain
+INDIAMART.NS,44.6,50.5,40.6,42.7,1,⚪ NEUTRAL — Models uncertain
+MUTHOOTFIN.NS,44.5,45.4,43.3,44.8,0,⚪ NEUTRAL — Models uncertain
+BANSALWIRE.NS,44.2,48.3,40.6,43.7,0,⚪ NEUTRAL — Models uncertain
+SKFINDIA.NS,44.1,51.4,39.2,41.6,1,⚪ NEUTRAL — Models uncertain
+GAIL.NS,43.9,50.5,42.4,38.8,1,⚪ NEUTRAL — Models uncertain
+TRENT.NS,43.9,46.8,41.2,43.7,0,⚪ NEUTRAL — Models uncertain
+HDFCLIFE.NS,43.8,51.3,37.9,42.1,1,⚪ NEUTRAL — Models uncertain
+CUMMINSIND.NS,43.6,44.5,43.4,42.9,0,⚪ NEUTRAL — Models uncertain
+JIOFIN.NS,43.6,44.7,42.7,43.5,0,⚪ NEUTRAL — Models uncertain
+ASIANPAINT.NS,43.6,42.6,43.0,45.3,0,⚪ NEUTRAL — Models uncertain
+BIOCON.NS,43.6,47.4,39.8,43.5,0,⚪ NEUTRAL — Models uncertain
+TATATECH.NS,43.3,43.7,42.1,44.2,0,⚪ NEUTRAL — Models uncertain
+SONACOMS.NS,43.3,45.8,42.1,41.9,0,⚪ NEUTRAL — Models uncertain
+AUROPHARMA.NS,43.1,51.0,39.1,39.1,1,⚪ NEUTRAL — Models uncertain
+SYNGENE.NS,43.1,44.0,39.5,45.9,0,⚪ NEUTRAL — Models uncertain
+TORNTPHARM.NS,42.9,48.5,38.3,41.9,0,⚪ NEUTRAL — Models uncertain
+GRSE.NS,42.9,44.5,40.2,43.9,0,⚪ NEUTRAL — Models uncertain
+IIFL.NS,42.8,45.2,38.5,44.8,0,⚪ NEUTRAL — Models uncertain
+VEDL.NS,42.7,44.3,38.6,45.2,0,⚪ NEUTRAL — Models uncertain
+MTARTECH.NS,42.6,49.6,37.6,40.5,0,⚪ NEUTRAL — Models uncertain
+IOB.NS,42.5,47.3,36.3,43.7,0,⚪ NEUTRAL — Models uncertain
+ABB.NS,42.1,44.7,35.2,46.3,0,⚪ NEUTRAL — Models uncertain
+BAJFINANCE.NS,41.8,41.7,41.3,42.4,0,🟠 MILD AVOID — 2-3 models agree
+SIEMENS.NS,41.8,46.1,40.8,38.6,0,🟠 MILD AVOID — 2-3 models agree
+ROUTE.NS,41.5,44.6,37.3,42.7,0,🟠 MILD AVOID — 2-3 models agree
+BPCL.NS,41.5,42.2,39.1,43.1,0,🟠 MILD AVOID — 2-3 models agree
+MOTHERSON.NS,41.5,42.4,39.3,42.9,0,🟠 MILD AVOID — 2-3 models agree
+CAMS.NS,41.5,43.4,37.6,43.5,0,🟠 MILD AVOID — 2-3 models agree
+ULTRACEMCO.NS,41.4,42.5,37.5,44.2,0,🟠 MILD AVOID — 2-3 models agree
+KAYNES.NS,41.3,43.4,37.1,43.5,0,🟠 MILD AVOID — 2-3 models agree
+HINDCOPPER.NS,41.3,40.5,40.2,43.1,0,🟠 MILD AVOID — 2-3 models agree
+BAJAJ-AUTO.NS,41.2,43.5,38.1,42.1,0,🟠 MILD AVOID — 2-3 models agree
+PNCINFRA.NS,41.2,44.3,30.4,48.9,0,🟠 MILD AVOID — 2-3 models agree
+EIHOTEL.NS,40.8,41.7,39.4,41.1,0,🟠 MILD AVOID — 2-3 models agree
+GRANULES.NS,40.8,44.6,39.9,38.0,0,🟠 MILD AVOID — 2-3 models agree
+JSWSTEEL.NS,40.8,41.6,37.1,43.6,0,🟠 MILD AVOID — 2-3 models agree
+MARICO.NS,40.8,41.7,37.8,43.0,0,🟠 MILD AVOID — 2-3 models agree
+NESTLEIND.NS,40.8,42.6,38.2,41.7,0,🟠 MILD AVOID — 2-3 models agree
+SJVN.NS,40.7,44.2,37.9,39.9,0,🟠 MILD AVOID — 2-3 models agree
+IOC.NS,40.6,40.1,38.9,42.8,0,🟠 MILD AVOID — 2-3 models agree
+GOLDBEES.NS,40.5,43.5,36.9,41.2,0,🟠 MILD AVOID — 2-3 models agree
+ABCAPITAL.NS,40.4,42.7,35.0,43.5,0,🟠 MILD AVOID — 2-3 models agree
+JYOTHYLAB.NS,40.3,39.6,38.7,42.7,0,🟠 MILD AVOID — 2-3 models agree
+IDEA.NS,40.3,43.2,38.8,38.9,0,🟠 MILD AVOID — 2-3 models agree
+BALAMINES.NS,40.3,39.9,40.6,40.3,0,🟠 MILD AVOID — 2-3 models agree
+APLAPOLLO.NS,40.3,43.7,36.5,40.5,0,🟠 MILD AVOID — 2-3 models agree
+AARTIIND.NS,40.1,40.4,36.9,43.1,0,🟠 MILD AVOID — 2-3 models agree
+SAPPHIRE.NS,39.9,38.1,38.3,43.3,0,🟠 MILD AVOID — 2-3 models agree
+BOSCHLTD.NS,39.8,39.4,41.4,38.5,0,🟠 MILD AVOID — 2-3 models agree
+ADANIENSOL.NS,39.7,37.0,39.9,42.1,0,🟠 MILD AVOID — 2-3 models agree
+ICICIBANK.NS,39.7,39.9,34.7,44.6,0,🟠 MILD AVOID — 2-3 models agree
+LUPIN.NS,39.6,36.7,41.3,40.8,0,🟠 MILD AVOID — 2-3 models agree
+AJANTPHARM.NS,39.4,38.7,39.4,40.0,0,🟠 MILD AVOID — 2-3 models agree
+DIVISLAB.NS,39.4,43.1,35.4,39.8,0,🟠 MILD AVOID — 2-3 models agree
+SOLARINDS.NS,39.3,34.6,39.1,44.1,0,🟠 MILD AVOID — 2-3 models agree
+PERSISTENT.NS,39.3,39.9,37.0,41.0,0,🟠 MILD AVOID — 2-3 models agree
+BLUESTARCO.NS,39.3,43.3,34.7,39.9,0,🟠 MILD AVOID — 2-3 models agree
+BSE.NS,39.0,42.5,34.7,39.9,0,🟠 MILD AVOID — 2-3 models agree
+COLPAL.NS,39.0,43.4,32.5,41.2,0,🟠 MILD AVOID — 2-3 models agree
+OLAELEC.NS,38.9,40.4,36.4,39.8,0,🟠 MILD AVOID — 2-3 models agree
+SUZLON.NS,38.9,40.4,31.0,45.3,0,🟠 MILD AVOID — 2-3 models agree
+BAJAJHLDNG.NS,38.9,37.5,41.3,37.9,0,🟠 MILD AVOID — 2-3 models agree
+SAIL.NS,38.8,35.8,37.5,43.1,0,🟠 MILD AVOID — 2-3 models agree
+HINDALCO.NS,38.7,37.0,35.3,43.9,0,🟠 MILD AVOID — 2-3 models agree
+SILVERBEES.NS,38.6,38.3,36.1,41.4,0,🟠 MILD AVOID — 2-3 models agree
+BANKBARODA.NS,38.6,38.7,33.7,43.4,0,🟠 MILD AVOID — 2-3 models agree
+MGL.NS,38.6,38.8,36.8,40.2,0,🟠 MILD AVOID — 2-3 models agree
+PHOENIXLTD.NS,38.5,41.5,33.2,40.7,0,🟠 MILD AVOID — 2-3 models agree
+INFY.NS,38.5,36.8,38.6,40.0,0,🟠 MILD AVOID — 2-3 models agree
+IPCALAB.NS,38.3,40.2,37.3,37.6,0,🟠 MILD AVOID — 2-3 models agree
+ZYDUSLIFE.NS,38.2,38.1,36.6,40.0,0,🟠 MILD AVOID — 2-3 models agree
+ITC.NS,38.1,38.7,33.9,41.8,0,🟠 MILD AVOID — 2-3 models agree
+CIPLA.NS,38.1,40.3,29.9,44.2,0,🟠 MILD AVOID — 2-3 models agree
+RELIANCE.NS,38.1,37.2,34.3,42.9,0,🟠 MILD AVOID — 2-3 models agree
+AXISBANK.NS,38.1,36.6,35.6,42.0,0,🟠 MILD AVOID — 2-3 models agree
+POLICYBZR.NS,37.9,36.9,33.9,43.0,0,🟠 MILD AVOID — 2-3 models agree
+EMAMILTD.NS,37.8,37.1,36.1,40.2,0,🟠 MILD AVOID — 2-3 models agree
+SRF.NS,37.8,37.8,35.1,40.4,0,🟠 MILD AVOID — 2-3 models agree
+LODHA.NS,37.8,29.1,40.1,44.0,0,🟠 MILD AVOID — 2-3 models agree
+ADANIPORTS.NS,37.8,38.5,35.5,39.5,0,🟠 MILD AVOID — 2-3 models agree
+ADANIPOWER.NS,37.7,37.6,36.0,39.5,0,🟠 MILD AVOID — 2-3 models agree
+LAURUSLABS.NS,37.6,37.0,39.0,36.9,0,🟠 MILD AVOID — 2-3 models agree
+NIFTYBEES.NS,37.3,36.8,29.5,45.5,0,🟠 MILD AVOID — 2-3 models agree
+TATASTEEL.NS,37.3,38.7,34.4,38.8,0,🟠 MILD AVOID — 2-3 models agree
+KPIL.NS,37.2,38.3,34.2,39.2,0,🟠 MILD AVOID — 2-3 models agree
+BERGEPAINT.NS,37.1,36.1,33.2,41.9,0,🟠 MILD AVOID — 2-3 models agree
+NATIONALUM.NS,37.1,33.5,34.4,43.4,0,🟠 MILD AVOID — 2-3 models agree
+BHEL.NS,37.0,40.7,31.6,38.7,0,🟠 MILD AVOID — 2-3 models agree
+SCHAEFFLER.NS,36.8,39.3,33.1,37.9,0,🟠 MILD AVOID — 2-3 models agree
+SUNPHARMA.NS,36.8,39.2,29.1,42.1,0,🟠 MILD AVOID — 2-3 models agree
+TATAPOWER.NS,36.8,38.3,32.5,39.6,0,🟠 MILD AVOID — 2-3 models agree
+ANGELONE.NS,36.8,37.2,33.1,40.0,0,🟠 MILD AVOID — 2-3 models agree
+JUBLFOOD.NS,36.7,35.1,32.4,42.5,0,🟠 MILD AVOID — 2-3 models agree
+KEC.NS,36.7,33.1,37.6,39.5,0,🟠 MILD AVOID — 2-3 models agree
+IGL.NS,36.7,39.8,31.8,38.4,0,🟠 MILD AVOID — 2-3 models agree
+MASTEK.NS,36.6,33.7,35.3,40.7,0,🟠 MILD AVOID — 2-3 models agree
+HAL.NS,36.6,34.6,34.5,40.8,0,🟠 MILD AVOID — 2-3 models agree
+BHARTIARTL.NS,36.4,35.6,34.5,39.2,0,🟠 MILD AVOID — 2-3 models agree
+PRESTIGE.NS,36.3,37.0,26.9,45.1,0,🟠 MILD AVOID — 2-3 models agree
+LICI.NS,36.3,34.0,33.5,41.4,0,🟠 MILD AVOID — 2-3 models agree
+TATACONSUM.NS,36.3,39.0,25.1,44.9,0,🟠 MILD AVOID — 2-3 models agree
+NH.NS,36.3,33.7,35.2,40.0,0,🟠 MILD AVOID — 2-3 models agree
+APOLLOHOSP.NS,36.2,38.4,32.1,38.1,0,🟠 MILD AVOID — 2-3 models agree
+MON100.NS,36.1,38.3,31.5,38.7,0,🟠 MILD AVOID — 2-3 models agree
+ZENSARTECH.NS,35.9,34.5,33.9,39.3,0,🟠 MILD AVOID — 2-3 models agree
+DABUR.NS,35.8,33.7,34.1,39.6,0,🟠 MILD AVOID — 2-3 models agree
+WIPRO.NS,35.7,35.5,31.0,40.5,0,🟠 MILD AVOID — 2-3 models agree
+NAUKRI.NS,35.7,31.6,31.2,44.5,0,🟠 MILD AVOID — 2-3 models agree
+VBL.NS,35.6,33.2,33.7,40.0,0,🟠 MILD AVOID — 2-3 models agree
+HINDZINC.NS,35.5,35.2,29.3,42.0,0,🟠 MILD AVOID — 2-3 models agree
+NTPC.NS,35.4,36.9,32.1,37.3,0,🟠 MILD AVOID — 2-3 models agree
+BHARATFORG.NS,35.4,34.1,29.7,42.4,0,🟠 MILD AVOID — 2-3 models agree
+PNB.NS,35.3,33.8,32.5,39.6,0,🟠 MILD AVOID — 2-3 models agree
+ETERNAL.NS,35.2,35.3,27.5,42.7,0,🟠 MILD AVOID — 2-3 models agree
+RVNL.NS,35.0,34.5,24.4,46.0,0,🟠 MILD AVOID — 2-3 models agree
+HUDCO.NS,34.9,32.0,25.5,47.1,0,🟠 MILD AVOID — 2-3 models agree
+ABBOTINDIA.NS,34.9,33.6,31.6,39.6,0,🟠 MILD AVOID — 2-3 models agree
+FIVESTAR.NS,34.9,33.8,33.6,37.3,0,🟠 MILD AVOID — 2-3 models agree
+BEL.NS,34.8,31.1,31.1,42.1,0,🟠 MILD AVOID — 2-3 models agree
+IRCON.NS,34.5,31.8,24.8,46.8,0,🟠 MILD AVOID — 2-3 models agree
+GODREJCP.NS,34.3,30.8,27.9,44.4,0,🟠 MILD AVOID — 2-3 models agree
+DRREDDY.NS,34.1,35.5,29.6,37.3,0,🟠 MILD AVOID — 2-3 models agree
+POWERGRID.NS,33.9,35.5,28.2,38.1,0,🟠 MILD AVOID — 2-3 models agree
+ALKEM.NS,33.9,35.9,22.4,43.4,0,🟠 MILD AVOID — 2-3 models agree
+ADANIENT.NS,33.8,32.8,32.2,36.5,0,🟠 MILD AVOID — 2-3 models agree
+MARUTI.NS,33.8,31.4,23.8,46.1,0,🟠 MILD AVOID — 2-3 models agree
+TORNTPOWER.NS,33.7,33.1,31.0,36.8,0,🟠 MILD AVOID — 2-3 models agree
+SHRIRAMFIN.NS,33.7,30.0,27.2,43.9,0,🟠 MILD AVOID — 2-3 models agree
+HDFCBANK.NS,33.3,28.5,32.2,39.2,0,🟠 MILD AVOID — 2-3 models agree
+HINDUNILVR.NS,33.3,35.8,25.7,38.5,0,🟠 MILD AVOID — 2-3 models agree
+KIMS.NS,33.2,33.2,28.2,38.2,0,🟠 MILD AVOID — 2-3 models agree
+HOMEFIRST.NS,32.8,32.9,28.9,36.6,0,🟠 MILD AVOID — 2-3 models agree
+RADICO.NS,32.8,32.7,27.5,38.2,0,🟠 MILD AVOID — 2-3 models agree
+TCS.NS,32.7,30.8,28.2,39.0,0,🟠 MILD AVOID — 2-3 models agree
+ONGC.NS,32.0,27.4,30.1,38.5,0,🔴 STRONG AVOID — All 3 agree
+MAXHEALTH.NS,32.0,29.3,27.8,38.8,0,🔴 STRONG AVOID — All 3 agree
+DELTACORP.NS,32.0,30.8,20.3,45.0,0,🔴 STRONG AVOID — All 3 agree
+TIMKEN.NS,31.9,31.7,26.3,37.8,0,🔴 STRONG AVOID — All 3 agree
+TIINDIA.NS,31.7,29.4,24.8,41.0,0,🔴 STRONG AVOID — All 3 agree
+HCLTECH.NS,31.6,27.1,30.3,37.3,0,🔴 STRONG AVOID — All 3 agree
+KOTAKBANK.NS,31.6,29.1,26.4,39.4,0,🔴 STRONG AVOID — All 3 agree
+ADANIGREEN.NS,31.5,30.8,27.1,36.7,0,🔴 STRONG AVOID — All 3 agree
+DMART.NS,31.3,26.8,25.4,41.6,0,🔴 STRONG AVOID — All 3 agree
+IRCTC.NS,31.0,25.7,21.0,46.3,0,🔴 STRONG AVOID — All 3 agree
+IEX.NS,30.9,27.3,21.5,44.1,0,🔴 STRONG AVOID — All 3 agree
+TATACOMM.NS,30.7,28.2,29.9,34.1,0,🔴 STRONG AVOID — All 3 agree
+YESBANK.NS,30.4,29.5,23.3,38.2,0,🔴 STRONG AVOID — All 3 agree
+BDL.NS,30.4,25.8,21.5,43.9,0,🔴 STRONG AVOID — All 3 agree
+PDRP.NS,30.1,29.0,19.9,41.4,0,🔴 STRONG AVOID — All 3 agree
+BHARAT22ETF.NS,30.1,29.0,19.9,41.4,0,🔴 STRONG AVOID — All 3 agree
+MAZDOCK.NS,30.0,28.4,18.3,43.3,0,🔴 STRONG AVOID — All 3 agree
+NBCC.NS,29.9,26.7,19.3,43.5,0,🔴 STRONG AVOID — All 3 agree
+OIL.NS,29.7,28.7,25.1,35.2,0,🔴 STRONG AVOID — All 3 agree
+DEVYANI.NS,29.7,26.3,23.8,39.1,0,🔴 STRONG AVOID — All 3 agree
+LTIM.NS,29.7,29.0,18.4,41.6,0,🔴 STRONG AVOID — All 3 agree
+IRFC.NS,29.3,26.1,17.6,44.1,0,🔴 STRONG AVOID — All 3 agree
+HAVELLS.NS,28.5,23.8,16.2,45.3,0,🔴 STRONG AVOID — All 3 agree
+LEMONTREE.NS,28.4,28.3,15.4,41.4,0,🔴 STRONG AVOID — All 3 agree
+COALINDIA.NS,28.3,24.7,23.9,36.3,0,🔴 STRONG AVOID — All 3 agree
+BRITANNIA.NS,28.0,23.0,18.5,42.3,0,🔴 STRONG AVOID — All 3 agree
+OBEROIRLTY.NS,27.9,24.4,14.9,44.4,0,🔴 STRONG AVOID — All 3 agree
+PAYTM.NS,27.7,25.7,23.8,33.6,0,🔴 STRONG AVOID — All 3 agree
+M&M.NS,27.4,26.1,15.9,40.1,0,🔴 STRONG AVOID — All 3 agree
+ATGL.NS,26.9,23.9,15.3,41.4,0,🔴 STRONG AVOID — All 3 agree
+SBIN.NS,26.4,20.8,16.7,41.6,0,🔴 STRONG AVOID — All 3 agree
+SPICEJET.NS,25.6,19.0,16.3,41.5,0,🔴 STRONG AVOID — All 3 agree
+DIXON.NS,25.3,21.8,11.2,42.8,0,🔴 STRONG AVOID — All 3 agree
