@@ -1,200 +1,201 @@
 ticker,ensemble_probability,xgb_prob,lgbm_prob,rf_prob,models_agree,signal
-LTIM.NS,69.3,76.4,74.9,56.6,3,🟢 STRONG BUY — All 3 agree
-ATGL.NS,67.1,76.1,68.8,56.5,3,🟡 MILD BUY — 2-3 models agree
-SPICEJET.NS,66.7,70.9,72.9,56.4,3,🟡 MILD BUY — 2-3 models agree
-LTM.NS,66.5,72.5,70.1,57.1,3,🟡 MILD BUY — 2-3 models agree
-HAVELLS.NS,66.1,68.4,71.2,58.7,3,🟡 MILD BUY — 2-3 models agree
-MAZDOCK.NS,65.9,69.4,68.8,59.4,3,🟡 MILD BUY — 2-3 models agree
-KOTAKBANK.NS,65.8,73.4,68.4,55.5,3,🟡 MILD BUY — 2-3 models agree
-BAJAJFINSV.NS,65.6,70.2,68.5,58.2,3,🟡 MILD BUY — 2-3 models agree
-SUZLON.NS,65.5,68.2,71.4,56.9,3,🟡 MILD BUY — 2-3 models agree
-CUMMINSIND.NS,65.5,69.9,70.6,56.1,3,🟡 MILD BUY — 2-3 models agree
-UBL.NS,65.4,70.8,66.6,58.6,3,🟡 MILD BUY — 2-3 models agree
-TANLA.NS,65.4,70.5,68.5,57.3,3,🟡 MILD BUY — 2-3 models agree
-IOB.NS,65.3,71.3,67.0,57.7,3,🟡 MILD BUY — 2-3 models agree
-SJVN.NS,65.2,69.4,67.6,58.4,3,🟡 MILD BUY — 2-3 models agree
-BALAMINES.NS,65.2,71.1,66.3,58.3,3,🟡 MILD BUY — 2-3 models agree
-TATAELXSI.NS,65.1,69.9,67.0,58.4,3,🟡 MILD BUY — 2-3 models agree
-HUDCO.NS,65.0,69.9,68.0,56.9,3,🟡 MILD BUY — 2-3 models agree
-COCHINSHIP.NS,64.9,68.7,69.7,56.3,3,🟡 MILD BUY — 2-3 models agree
-RELIANCE.NS,64.9,68.8,68.7,57.1,3,🟡 MILD BUY — 2-3 models agree
-BHARAT22ETF.NS,64.9,68.5,69.9,56.3,3,🟡 MILD BUY — 2-3 models agree
-HINDUNILVR.NS,64.8,71.5,66.7,56.3,3,🟡 MILD BUY — 2-3 models agree
-MPHASIS.NS,64.6,70.0,67.0,56.8,3,🟡 MILD BUY — 2-3 models agree
-BANKBARODA.NS,64.6,68.2,68.4,57.1,3,🟡 MILD BUY — 2-3 models agree
-BAJAJ-AUTO.NS,64.5,70.1,66.4,57.0,3,🟡 MILD BUY — 2-3 models agree
-AMBER.NS,64.5,70.9,65.1,57.5,3,🟡 MILD BUY — 2-3 models agree
-COFORGE.NS,64.5,70.1,65.9,57.6,3,🟡 MILD BUY — 2-3 models agree
-OIL.NS,64.5,68.4,68.7,56.4,3,🟡 MILD BUY — 2-3 models agree
-FIVESTAR.NS,64.5,70.2,66.6,56.5,3,🟡 MILD BUY — 2-3 models agree
-INDIAMART.NS,64.4,69.2,65.9,58.1,3,🟡 MILD BUY — 2-3 models agree
-IRFC.NS,64.4,67.5,69.2,56.7,3,🟡 MILD BUY — 2-3 models agree
-MARUTI.NS,64.3,68.0,68.3,56.7,3,🟡 MILD BUY — 2-3 models agree
-TATACONSUM.NS,64.2,68.2,67.7,56.7,3,🟡 MILD BUY — 2-3 models agree
-MASTEK.NS,64.0,68.8,66.0,57.2,3,🟡 MILD BUY — 2-3 models agree
-ONGC.NS,63.9,66.4,71.6,53.7,3,🟡 MILD BUY — 2-3 models agree
-IGL.NS,63.9,67.6,67.9,56.3,3,🟡 MILD BUY — 2-3 models agree
-INDUSINDBK.NS,63.8,68.0,66.2,57.3,3,🟡 MILD BUY — 2-3 models agree
-TIINDIA.NS,63.7,65.9,67.9,57.4,3,🟡 MILD BUY — 2-3 models agree
-NESTLEIND.NS,63.5,68.5,65.8,56.1,3,🟡 MILD BUY — 2-3 models agree
-NH.NS,63.3,67.7,66.3,55.9,3,🟡 MILD BUY — 2-3 models agree
-NAVINFLUOR.NS,63.3,67.9,66.2,55.8,3,🟡 MILD BUY — 2-3 models agree
-IRCON.NS,63.2,62.3,69.9,57.5,3,🟡 MILD BUY — 2-3 models agree
-KEC.NS,63.2,67.4,65.7,56.4,3,🟡 MILD BUY — 2-3 models agree
-EIHOTEL.NS,63.1,68.3,65.2,55.7,3,🟡 MILD BUY — 2-3 models agree
-SYNGENE.NS,63.1,67.2,65.7,56.4,3,🟡 MILD BUY — 2-3 models agree
-MAXHEALTH.NS,63.0,69.0,65.8,54.1,3,🟡 MILD BUY — 2-3 models agree
-GOLDBEES.NS,63.0,67.5,66.4,54.9,3,🟡 MILD BUY — 2-3 models agree
-ABCAPITAL.NS,63.0,67.0,66.0,56.0,3,🟡 MILD BUY — 2-3 models agree
-POLICYBZR.NS,62.9,68.4,65.1,55.2,3,🟡 MILD BUY — 2-3 models agree
-RADICO.NS,62.8,68.6,64.3,55.6,3,🟡 MILD BUY — 2-3 models agree
-ANGELONE.NS,62.8,68.2,65.0,55.3,3,🟡 MILD BUY — 2-3 models agree
-HINDZINC.NS,62.8,66.9,66.5,54.9,3,🟡 MILD BUY — 2-3 models agree
-BIKAJI.NS,62.7,64.9,65.1,58.1,3,🟡 MILD BUY — 2-3 models agree
-EICHERMOT.NS,62.7,66.9,64.7,56.7,3,🟡 MILD BUY — 2-3 models agree
-JYOTHYLAB.NS,62.6,66.7,65.3,55.8,3,🟡 MILD BUY — 2-3 models agree
-NIFTYBEES.NS,62.6,66.7,65.2,56.1,3,🟡 MILD BUY — 2-3 models agree
-ASIANPAINT.NS,62.6,68.2,63.1,56.5,3,🟡 MILD BUY — 2-3 models agree
-ICICIBANK.NS,62.6,67.0,63.7,57.0,3,🟡 MILD BUY — 2-3 models agree
-PERSISTENT.NS,62.6,65.7,65.6,56.5,3,🟡 MILD BUY — 2-3 models agree
-GODREJPROP.NS,62.6,65.8,65.0,57.2,3,🟡 MILD BUY — 2-3 models agree
-MOTHERSON.NS,62.5,67.9,64.6,54.9,3,🟡 MILD BUY — 2-3 models agree
-M&M.NS,62.5,64.3,66.7,56.5,3,🟡 MILD BUY — 2-3 models agree
-HEROMOTOCO.NS,62.4,67.7,65.2,54.5,3,🟡 MILD BUY — 2-3 models agree
-SILVERBEES.NS,62.4,68.0,64.6,54.7,3,🟡 MILD BUY — 2-3 models agree
-PNCINFRA.NS,62.4,70.4,58.4,58.3,3,🟡 MILD BUY — 2-3 models agree
-ABB.NS,62.4,66.0,64.8,56.3,3,🟡 MILD BUY — 2-3 models agree
-ALKEM.NS,62.3,67.4,63.9,55.5,3,🟡 MILD BUY — 2-3 models agree
-MGL.NS,62.3,67.3,63.7,55.7,3,🟡 MILD BUY — 2-3 models agree
-ZENSARTECH.NS,62.2,66.1,64.2,56.4,3,🟡 MILD BUY — 2-3 models agree
-PRESTIGE.NS,62.2,67.0,63.7,55.8,3,🟡 MILD BUY — 2-3 models agree
-ACC.NS,62.1,65.6,64.6,56.0,3,🟡 MILD BUY — 2-3 models agree
-INDHOTEL.NS,62.1,68.0,64.5,53.9,3,🟡 MILD BUY — 2-3 models agree
-SHRIRAMFIN.NS,62.0,65.6,63.8,56.7,3,🟡 MILD BUY — 2-3 models agree
-MANAPPURAM.NS,62.0,65.6,63.0,57.3,3,🟡 MILD BUY — 2-3 models agree
-SAIL.NS,61.9,63.5,64.9,57.2,3,🟡 MILD BUY — 2-3 models agree
-UTIAMC.NS,61.8,67.1,64.5,53.9,3,🟡 MILD BUY — 2-3 models agree
-BAJAJHLDNG.NS,61.8,67.6,63.0,54.9,3,🟡 MILD BUY — 2-3 models agree
-TATACOMM.NS,61.8,67.6,61.2,56.5,3,🟡 MILD BUY — 2-3 models agree
-HDFCAMC.NS,61.8,65.7,63.7,56.0,3,🟡 MILD BUY — 2-3 models agree
-BHARTIARTL.NS,61.5,64.8,62.5,57.2,3,🟡 MILD BUY — 2-3 models agree
-ITC.NS,61.4,64.2,65.6,54.6,3,🟡 MILD BUY — 2-3 models agree
-COLPAL.NS,61.3,66.7,61.8,55.4,3,🟡 MILD BUY — 2-3 models agree
-JPPOWER.NS,61.3,67.7,61.3,54.9,3,🟡 MILD BUY — 2-3 models agree
-NMDC.NS,61.3,64.0,63.0,56.9,3,🟡 MILD BUY — 2-3 models agree
-BERGEPAINT.NS,61.2,62.4,63.7,57.6,3,🟡 MILD BUY — 2-3 models agree
-SHREECEM.NS,61.1,64.3,62.7,56.3,3,🟡 MILD BUY — 2-3 models agree
-IEX.NS,61.1,61.5,65.1,56.7,3,🟡 MILD BUY — 2-3 models agree
-NATIONALUM.NS,61.0,63.0,63.3,56.8,3,🟡 MILD BUY — 2-3 models agree
-AUROPHARMA.NS,61.0,65.3,62.7,54.9,3,🟡 MILD BUY — 2-3 models agree
-HINDALCO.NS,61.0,60.5,65.2,57.4,3,🟡 MILD BUY — 2-3 models agree
-TECHM.NS,60.9,64.8,63.0,54.9,3,🟡 MILD BUY — 2-3 models agree
-NATCOPHARM.NS,60.9,62.6,64.4,55.7,3,🟡 MILD BUY — 2-3 models agree
-DABUR.NS,60.9,63.4,64.4,55.0,3,🟡 MILD BUY — 2-3 models agree
-NAUKRI.NS,60.9,65.4,62.9,54.4,3,🟡 MILD BUY — 2-3 models agree
-SHYAMMETL.NS,60.9,66.3,62.5,54.0,3,🟡 MILD BUY — 2-3 models agree
-NBCC.NS,60.8,64.1,62.2,56.2,3,🟡 MILD BUY — 2-3 models agree
-SKFINDIA.NS,60.8,61.0,64.7,56.8,3,🟡 MILD BUY — 2-3 models agree
-PNB.NS,60.8,66.3,62.0,54.1,3,🟡 MILD BUY — 2-3 models agree
-FORTIS.NS,60.8,65.3,62.0,55.1,3,🟡 MILD BUY — 2-3 models agree
-BDL.NS,60.7,60.8,63.5,57.8,3,🟡 MILD BUY — 2-3 models agree
-SUNTV.NS,60.7,65.9,61.7,54.4,3,🟡 MILD BUY — 2-3 models agree
-ALKYLAMINE.NS,60.7,63.3,62.9,56.0,3,🟡 MILD BUY — 2-3 models agree
-ITBEES.NS,60.7,63.2,61.8,57.2,3,🟡 MILD BUY — 2-3 models agree
-DATAPATTNS.NS,60.6,62.6,62.6,56.5,3,🟡 MILD BUY — 2-3 models agree
-WESTLIFE.NS,60.6,61.9,66.2,53.6,3,🟡 MILD BUY — 2-3 models agree
-BAJFINANCE.NS,60.6,62.2,61.9,57.7,3,🟡 MILD BUY — 2-3 models agree
-TATASTEEL.NS,60.6,63.7,62.0,56.1,3,🟡 MILD BUY — 2-3 models agree
-SIEMENS.NS,60.5,61.5,63.2,56.8,3,🟡 MILD BUY — 2-3 models agree
-JINDALSTEL.NS,60.5,64.0,62.2,55.2,3,🟡 MILD BUY — 2-3 models agree
-OBEROIRLTY.NS,60.4,64.8,62.2,54.2,3,🟡 MILD BUY — 2-3 models agree
-TIMKEN.NS,60.3,61.5,64.3,55.0,3,🟡 MILD BUY — 2-3 models agree
-SCHAEFFLER.NS,60.3,65.0,60.8,55.0,3,🟡 MILD BUY — 2-3 models agree
-BSE.NS,60.2,61.5,60.6,58.4,3,🟡 MILD BUY — 2-3 models agree
-LT.NS,60.1,63.7,61.1,55.4,3,🟡 MILD BUY — 2-3 models agree
-MON100.NS,60.1,63.5,62.8,54.1,3,🟡 MILD BUY — 2-3 models agree
-AXISBANK.NS,60.0,61.5,63.5,54.9,3,🟡 MILD BUY — 2-3 models agree
-DMART.NS,59.9,63.3,61.6,55.0,3,🟡 MILD BUY — 2-3 models agree
-SAPPHIRE.NS,59.9,64.0,61.5,54.2,3,🟡 MILD BUY — 2-3 models agree
-TMCV.NS,59.7,61.3,62.1,55.7,3,🟡 MILD BUY — 2-3 models agree
-ULTRACEMCO.NS,59.7,62.3,61.6,55.2,3,🟡 MILD BUY — 2-3 models agree
-PIDILITIND.NS,59.7,63.2,60.8,55.2,3,🟡 MILD BUY — 2-3 models agree
-DLF.NS,59.7,63.5,61.3,54.2,3,🟡 MILD BUY — 2-3 models agree
-ADANIGREEN.NS,59.7,60.3,63.9,55.1,3,🟡 MILD BUY — 2-3 models agree
-YESBANK.NS,59.6,61.7,63.1,54.1,3,🟡 MILD BUY — 2-3 models agree
-MTARTECH.NS,59.6,58.7,63.4,56.6,3,🟡 MILD BUY — 2-3 models agree
-GRANULES.NS,59.5,63.3,60.7,54.5,3,🟡 MILD BUY — 2-3 models agree
-EASEMYTRIP.NS,59.5,63.8,59.3,55.5,3,🟡 MILD BUY — 2-3 models agree
-BOSCHLTD.NS,59.5,62.7,60.6,55.2,3,🟡 MILD BUY — 2-3 models agree
-HAL.NS,59.5,62.4,61.7,54.4,3,🟡 MILD BUY — 2-3 models agree
-BANSALWIRE.NS,59.4,61.1,63.0,54.0,3,🟡 MILD BUY — 2-3 models agree
-LAURUSLABS.NS,59.4,62.8,61.4,53.9,3,🟡 MILD BUY — 2-3 models agree
-BHEL.NS,59.4,62.7,59.9,55.5,3,🟡 MILD BUY — 2-3 models agree
-HDFCLIFE.NS,59.3,63.5,60.4,54.1,3,🟡 MILD BUY — 2-3 models agree
-TITAN.NS,59.3,61.9,59.8,56.1,3,🟡 MILD BUY — 2-3 models agree
-MUTHOOTFIN.NS,59.3,59.6,62.8,55.5,3,🟡 MILD BUY — 2-3 models agree
-BLUESTARCO.NS,59.2,62.4,61.2,54.1,3,🟡 MILD BUY — 2-3 models agree
-ZYDUSLIFE.NS,59.2,63.1,60.4,54.0,3,🟡 MILD BUY — 2-3 models agree
-LODHA.NS,59.2,62.1,59.3,56.2,3,🟡 MILD BUY — 2-3 models agree
-LUPIN.NS,59.2,62.3,61.3,53.8,3,🟡 MILD BUY — 2-3 models agree
-BPCL.NS,59.2,64.4,59.2,54.0,3,🟡 MILD BUY — 2-3 models agree
-APLAPOLLO.NS,59.2,61.0,61.3,55.4,3,🟡 MILD BUY — 2-3 models agree
-BRITANNIA.NS,59.1,61.2,60.0,56.0,3,🟡 MILD BUY — 2-3 models agree
-AJANTPHARM.NS,59.0,62.7,59.3,55.0,3,🟡 MILD BUY — 2-3 models agree
-IPCALAB.NS,59.0,63.8,59.5,53.7,3,🟡 MILD BUY — 2-3 models agree
-KAYNES.NS,58.8,61.9,59.8,54.8,3,🟡 MILD BUY — 2-3 models agree
-AFFLE.NS,58.8,60.9,61.8,53.8,3,🟡 MILD BUY — 2-3 models agree
-KPIL.NS,58.7,60.1,61.0,54.9,3,🟡 MILD BUY — 2-3 models agree
-IOC.NS,58.7,61.6,60.7,53.8,3,🟡 MILD BUY — 2-3 models agree
-GRSE.NS,58.6,58.9,59.7,57.1,3,🟡 MILD BUY — 2-3 models agree
-VEDL.NS,58.6,58.3,60.3,57.1,3,🟡 MILD BUY — 2-3 models agree
-RVNL.NS,58.5,59.8,61.0,54.9,3,🟡 MILD BUY — 2-3 models agree
-JSWSTEEL.NS,58.5,58.9,60.8,55.9,3,🟡 MILD BUY — 2-3 models agree
-ADANIENSOL.NS,58.4,57.7,59.6,57.9,3,🟡 MILD BUY — 2-3 models agree
-LICI.NS,58.3,59.0,59.7,56.4,3,🟡 MILD BUY — 2-3 models agree
-CAMS.NS,58.3,57.9,60.0,57.0,3,🟡 MILD BUY — 2-3 models agree
-TORNTPOWER.NS,58.2,59.5,60.2,55.0,3,🟡 MILD BUY — 2-3 models agree
-ETERNAL.NS,58.2,60.7,61.2,52.8,3,🟡 MILD BUY — 2-3 models agree
-IIFL.NS,58.1,60.7,58.4,55.2,3,🟡 MILD BUY — 2-3 models agree
-PHOENIXLTD.NS,58.1,60.7,60.0,53.6,3,🟡 MILD BUY — 2-3 models agree
-KIMS.NS,58.0,60.6,58.8,54.6,3,🟡 MILD BUY — 2-3 models agree
-JIOFIN.NS,57.9,60.6,58.1,55.0,3,⚪ NEUTRAL — Models uncertain
-HINDCOPPER.NS,57.9,60.1,58.2,55.3,3,⚪ NEUTRAL — Models uncertain
-VBL.NS,57.7,60.6,58.7,53.8,3,⚪ NEUTRAL — Models uncertain
-ADANIPORTS.NS,57.6,60.0,58.2,54.4,3,⚪ NEUTRAL — Models uncertain
-HOMEFIRST.NS,57.5,60.9,57.8,53.9,3,⚪ NEUTRAL — Models uncertain
-OLAELEC.NS,57.4,57.2,59.9,55.1,3,⚪ NEUTRAL — Models uncertain
-POWERGRID.NS,57.2,58.9,58.2,54.6,3,⚪ NEUTRAL — Models uncertain
-PAYTM.NS,57.2,58.9,58.1,54.7,3,⚪ NEUTRAL — Models uncertain
-VOLTAS.NS,57.0,57.4,57.6,55.8,3,⚪ NEUTRAL — Models uncertain
-SUNPHARMA.NS,56.9,57.3,58.3,55.1,3,⚪ NEUTRAL — Models uncertain
-ABBOTINDIA.NS,56.9,57.4,59.4,54.1,3,⚪ NEUTRAL — Models uncertain
-DRREDDY.NS,56.9,61.0,56.6,53.2,3,⚪ NEUTRAL — Models uncertain
-NTPC.NS,56.8,55.3,60.3,54.8,3,⚪ NEUTRAL — Models uncertain
-MANKIND.NS,56.5,58.5,57.6,53.5,3,⚪ NEUTRAL — Models uncertain
-SRF.NS,56.5,60.0,55.3,54.1,3,⚪ NEUTRAL — Models uncertain
-IRCTC.NS,56.4,56.6,57.5,55.0,3,⚪ NEUTRAL — Models uncertain
-DIXON.NS,56.4,59.3,54.0,56.0,3,⚪ NEUTRAL — Models uncertain
-INDIGO.NS,56.0,56.4,56.8,54.7,3,⚪ NEUTRAL — Models uncertain
-SONACOMS.NS,55.8,56.3,56.3,54.8,3,⚪ NEUTRAL — Models uncertain
-ADANIPOWER.NS,55.5,56.6,55.8,54.0,3,⚪ NEUTRAL — Models uncertain
-ADANIENT.NS,55.5,54.6,56.8,55.0,3,⚪ NEUTRAL — Models uncertain
-PAGEIND.NS,55.4,54.6,57.8,53.9,3,⚪ NEUTRAL — Models uncertain
-LEMONTREE.NS,55.2,55.6,55.9,54.0,3,⚪ NEUTRAL — Models uncertain
-COALINDIA.NS,55.1,53.0,58.6,53.6,3,⚪ NEUTRAL — Models uncertain
-HINDPETRO.NS,55.0,55.2,55.9,54.0,3,⚪ NEUTRAL — Models uncertain
-EMAMILTD.NS,54.4,53.3,56.7,53.2,3,⚪ NEUTRAL — Models uncertain
-GAIL.NS,54.4,56.0,52.3,54.9,3,⚪ NEUTRAL — Models uncertain
-NHPC.NS,54.4,55.8,52.8,54.8,3,⚪ NEUTRAL — Models uncertain
-MARICO.NS,53.9,53.9,54.7,53.2,3,⚪ NEUTRAL — Models uncertain
-NAM-INDIA.NS,53.6,50.9,54.0,56.0,3,⚪ NEUTRAL — Models uncertain
-BHARATFORG.NS,53.1,51.6,54.1,53.7,3,⚪ NEUTRAL — Models uncertain
-SOLARINDS.NS,52.8,53.7,49.2,55.4,2,⚪ NEUTRAL — Models uncertain
-TATAPOWER.NS,52.6,51.7,51.6,54.5,3,⚪ NEUTRAL — Models uncertain
-SBIN.NS,52.4,51.8,50.1,55.3,3,⚪ NEUTRAL — Models uncertain
-BEL.NS,51.7,50.7,49.7,54.8,2,⚪ NEUTRAL — Models uncertain
-HDFCBANK.NS,51.2,48.0,53.6,52.1,2,⚪ NEUTRAL — Models uncertain
-HCLTECH.NS,48.1,40.9,51.9,51.6,2,⚪ NEUTRAL — Models uncertain
-TCS.NS,46.0,51.9,31.2,54.8,2,⚪ NEUTRAL — Models uncertain
-INFY.NS,39.0,38.6,24.2,54.2,1,🟠 MILD AVOID — 2-3 models agree
-WIPRO.NS,35.2,33.3,18.8,53.6,1,🟠 MILD AVOID — 2-3 models agree
+LTIM.NS,68.2,72.9,76.0,55.9,3,🟢 STRONG BUY — All 3 agree
+ATGL.NS,64.8,73.3,65.3,55.8,3,🟡 MILD BUY — 2-3 models agree
+SPICEJET.NS,64.4,66.9,70.7,55.6,3,🟡 MILD BUY — 2-3 models agree
+BALAMINES.NS,64.1,69.4,65.7,57.3,3,🟡 MILD BUY — 2-3 models agree
+KOTAKBANK.NS,63.5,71.0,64.7,54.7,3,🟡 MILD BUY — 2-3 models agree
+LTM.NS,63.5,67.5,66.7,56.2,3,🟡 MILD BUY — 2-3 models agree
+HAVELLS.NS,63.3,64.3,67.6,58.1,3,🟡 MILD BUY — 2-3 models agree
+MAZDOCK.NS,63.2,65.1,65.8,58.6,3,🟡 MILD BUY — 2-3 models agree
+CUMMINSIND.NS,63.1,66.8,67.2,55.4,3,🟡 MILD BUY — 2-3 models agree
+BANKBARODA.NS,62.8,65.8,66.2,56.3,3,🟡 MILD BUY — 2-3 models agree
+FIVESTAR.NS,62.8,68.0,64.6,55.6,3,🟡 MILD BUY — 2-3 models agree
+BAJAJFINSV.NS,62.7,65.7,65.2,57.3,3,🟡 MILD BUY — 2-3 models agree
+COFORGE.NS,62.6,67.5,63.4,56.8,3,🟡 MILD BUY — 2-3 models agree
+UBL.NS,62.5,67.5,62.2,57.8,3,🟡 MILD BUY — 2-3 models agree
+SAIL.NS,62.5,67.0,64.0,56.4,3,🟡 MILD BUY — 2-3 models agree
+BHARAT22ETF.NS,62.5,64.4,67.6,55.5,3,🟡 MILD BUY — 2-3 models agree
+TANLA.NS,62.3,65.8,64.6,56.4,3,🟡 MILD BUY — 2-3 models agree
+TATAELXSI.NS,62.2,65.4,63.7,57.5,3,🟡 MILD BUY — 2-3 models agree
+SJVN.NS,62.1,64.7,64.0,57.5,3,🟡 MILD BUY — 2-3 models agree
+IOB.NS,62.1,66.2,63.3,56.8,3,🟡 MILD BUY — 2-3 models agree
+INDIAMART.NS,62.1,65.7,63.5,57.2,3,🟡 MILD BUY — 2-3 models agree
+RELIANCE.NS,62.0,64.9,64.9,56.2,3,🟡 MILD BUY — 2-3 models agree
+HUDCO.NS,61.9,65.7,63.9,56.0,3,🟡 MILD BUY — 2-3 models agree
+INDUSINDBK.NS,61.8,65.1,63.9,56.4,3,🟡 MILD BUY — 2-3 models agree
+SUZLON.NS,61.8,62.1,67.0,56.1,3,🟡 MILD BUY — 2-3 models agree
+IRFC.NS,61.7,63.9,65.3,55.9,3,🟡 MILD BUY — 2-3 models agree
+AMBER.NS,61.6,66.4,61.5,56.7,3,🟡 MILD BUY — 2-3 models agree
+MPHASIS.NS,61.6,65.4,63.5,56.0,3,🟡 MILD BUY — 2-3 models agree
+MARUTI.NS,61.5,63.8,65.0,55.8,3,🟡 MILD BUY — 2-3 models agree
+ONGC.NS,61.5,62.3,69.1,53.0,3,🟡 MILD BUY — 2-3 models agree
+OIL.NS,61.5,64.2,64.9,55.5,3,🟡 MILD BUY — 2-3 models agree
+KEC.NS,61.3,64.9,63.1,55.8,3,🟡 MILD BUY — 2-3 models agree
+HINDUNILVR.NS,61.3,66.4,62.0,55.5,3,🟡 MILD BUY — 2-3 models agree
+IGL.NS,61.2,63.8,64.4,55.5,3,🟡 MILD BUY — 2-3 models agree
+BAJAJ-AUTO.NS,61.2,65.1,62.4,56.0,3,🟡 MILD BUY — 2-3 models agree
+TIINDIA.NS,61.2,62.3,64.7,56.5,3,🟡 MILD BUY — 2-3 models agree
+MASTEK.NS,61.0,64.2,62.5,56.3,3,🟡 MILD BUY — 2-3 models agree
+NAVINFLUOR.NS,60.7,64.5,62.6,54.9,3,🟡 MILD BUY — 2-3 models agree
+ASIANPAINT.NS,60.7,65.9,60.7,55.6,3,🟡 MILD BUY — 2-3 models agree
+TATACONSUM.NS,60.7,63.0,63.1,55.9,3,🟡 MILD BUY — 2-3 models agree
+EIHOTEL.NS,60.7,65.0,61.9,55.1,3,🟡 MILD BUY — 2-3 models agree
+IRCON.NS,60.6,58.1,67.1,56.6,3,🟡 MILD BUY — 2-3 models agree
+ABCAPITAL.NS,60.5,63.6,62.7,55.2,3,🟡 MILD BUY — 2-3 models agree
+HINDZINC.NS,60.4,64.2,63.0,54.1,3,🟡 MILD BUY — 2-3 models agree
+POLICYBZR.NS,60.2,64.1,62.3,54.3,3,🟡 MILD BUY — 2-3 models agree
+CAMS.NS,60.2,62.2,62.2,56.4,3,🟡 MILD BUY — 2-3 models agree
+RADICO.NS,60.2,65.2,60.6,54.9,3,🟡 MILD BUY — 2-3 models agree
+ALKEM.NS,60.2,64.6,61.1,54.8,3,🟡 MILD BUY — 2-3 models agree
+ANGELONE.NS,60.1,64.6,61.4,54.4,3,🟡 MILD BUY — 2-3 models agree
+SYNGENE.NS,60.1,62.9,61.7,55.6,3,🟡 MILD BUY — 2-3 models agree
+NESTLEIND.NS,60.0,62.6,62.1,55.3,3,🟡 MILD BUY — 2-3 models agree
+GOLDBEES.NS,59.9,63.0,62.4,54.2,3,🟡 MILD BUY — 2-3 models agree
+BIKAJI.NS,59.9,60.6,61.7,57.4,3,🟡 MILD BUY — 2-3 models agree
+EICHERMOT.NS,59.9,62.8,61.1,55.9,3,🟡 MILD BUY — 2-3 models agree
+NIFTYBEES.NS,59.9,62.2,62.1,55.2,3,🟡 MILD BUY — 2-3 models agree
+PRESTIGE.NS,59.8,63.6,60.9,54.8,3,🟡 MILD BUY — 2-3 models agree
+MOTHERSON.NS,59.7,63.9,60.9,54.2,3,🟡 MILD BUY — 2-3 models agree
+NMDC.NS,59.7,61.5,61.5,56.0,3,🟡 MILD BUY — 2-3 models agree
+JYOTHYLAB.NS,59.7,62.6,61.7,54.8,3,🟡 MILD BUY — 2-3 models agree
+ABB.NS,59.6,62.0,61.2,55.5,3,🟡 MILD BUY — 2-3 models agree
+GODREJPROP.NS,59.5,62.2,60.0,56.3,3,🟡 MILD BUY — 2-3 models agree
+PERSISTENT.NS,59.4,61.1,61.6,55.6,3,🟡 MILD BUY — 2-3 models agree
+PNCINFRA.NS,59.4,62.4,58.5,57.3,3,🟡 MILD BUY — 2-3 models agree
+MGL.NS,59.4,63.3,59.8,55.0,3,🟡 MILD BUY — 2-3 models agree
+ICICIBANK.NS,59.4,61.2,60.8,56.2,3,🟡 MILD BUY — 2-3 models agree
+HEROMOTOCO.NS,59.3,63.1,61.1,53.8,3,🟡 MILD BUY — 2-3 models agree
+ZENSARTECH.NS,59.3,61.9,60.5,55.5,3,🟡 MILD BUY — 2-3 models agree
+ACC.NS,59.3,61.7,61.0,55.3,3,🟡 MILD BUY — 2-3 models agree
+NAUKRI.NS,59.3,62.3,62.2,53.5,3,🟡 MILD BUY — 2-3 models agree
+TATACOMM.NS,59.3,64.3,57.8,55.9,3,🟡 MILD BUY — 2-3 models agree
+JSWSTEEL.NS,59.3,62.5,60.2,55.2,3,🟡 MILD BUY — 2-3 models agree
+SILVERBEES.NS,59.3,63.6,60.5,53.9,3,🟡 MILD BUY — 2-3 models agree
+DABUR.NS,59.1,60.9,62.2,54.2,3,🟡 MILD BUY — 2-3 models agree
+SHRIRAMFIN.NS,59.1,61.5,60.1,55.8,3,🟡 MILD BUY — 2-3 models agree
+GRANULES.NS,59.0,63.7,59.0,54.3,3,🟡 MILD BUY — 2-3 models agree
+SUNTV.NS,59.0,63.9,59.5,53.6,3,🟡 MILD BUY — 2-3 models agree
+INDHOTEL.NS,59.0,63.6,60.4,53.2,3,🟡 MILD BUY — 2-3 models agree
+M&M.NS,58.9,58.5,62.5,55.8,3,🟡 MILD BUY — 2-3 models agree
+ITBEES.NS,58.9,60.7,59.9,56.3,3,🟡 MILD BUY — 2-3 models agree
+BAJAJHLDNG.NS,58.8,63.2,58.9,54.3,3,🟡 MILD BUY — 2-3 models agree
+TATASTEEL.NS,58.7,61.2,59.6,55.2,3,🟡 MILD BUY — 2-3 models agree
+UTIAMC.NS,58.7,62.6,60.5,53.2,3,🟡 MILD BUY — 2-3 models agree
+NATIONALUM.NS,58.7,59.7,60.5,55.8,3,🟡 MILD BUY — 2-3 models agree
+SAPPHIRE.NS,58.7,62.1,60.6,53.3,3,🟡 MILD BUY — 2-3 models agree
+FORTIS.NS,58.7,62.1,59.7,54.2,3,🟡 MILD BUY — 2-3 models agree
+HDFCAMC.NS,58.6,61.1,59.5,55.0,3,🟡 MILD BUY — 2-3 models agree
+SHYAMMETL.NS,58.6,62.9,59.4,53.3,3,🟡 MILD BUY — 2-3 models agree
+BERGEPAINT.NS,58.6,58.2,60.9,56.7,3,🟡 MILD BUY — 2-3 models agree
+AUROPHARMA.NS,58.5,62.1,59.3,54.2,3,🟡 MILD BUY — 2-3 models agree
+HINDALCO.NS,58.4,56.6,62.0,56.5,3,🟡 MILD BUY — 2-3 models agree
+TECHM.NS,58.4,60.2,61.0,54.0,3,🟡 MILD BUY — 2-3 models agree
+IEX.NS,58.4,57.7,61.8,55.8,3,🟡 MILD BUY — 2-3 models agree
+PNB.NS,58.4,61.7,60.0,53.4,3,🟡 MILD BUY — 2-3 models agree
+BSE.NS,58.4,58.5,58.9,57.7,3,🟡 MILD BUY — 2-3 models agree
+ITC.NS,58.3,59.6,61.5,53.8,3,🟡 MILD BUY — 2-3 models agree
+ALKYLAMINE.NS,58.3,60.7,59.2,55.1,3,🟡 MILD BUY — 2-3 models agree
+SHREECEM.NS,58.2,60.1,59.0,55.6,3,🟡 MILD BUY — 2-3 models agree
+NATCOPHARM.NS,58.2,58.6,61.3,54.8,3,🟡 MILD BUY — 2-3 models agree
+SKFINDIA.NS,58.2,57.3,61.1,56.1,3,🟡 MILD BUY — 2-3 models agree
+MTARTECH.NS,58.0,57.0,61.3,55.7,3,🟡 MILD BUY — 2-3 models agree
+COLPAL.NS,58.0,63.0,56.2,54.6,3,🟡 MILD BUY — 2-3 models agree
+JINDALSTEL.NS,57.9,60.2,59.3,54.2,3,⚪ NEUTRAL — Models uncertain
+TIMKEN.NS,57.9,58.0,61.5,54.1,3,⚪ NEUTRAL — Models uncertain
+ADANIGREEN.NS,57.9,57.8,61.7,54.2,3,⚪ NEUTRAL — Models uncertain
+WESTLIFE.NS,57.9,58.7,62.2,52.9,3,⚪ NEUTRAL — Models uncertain
+APOLLOHOSP.NS,57.8,59.4,60.4,53.5,3,⚪ NEUTRAL — Models uncertain
+MON100.NS,57.8,60.1,59.9,53.3,3,⚪ NEUTRAL — Models uncertain
+MAXHEALTH.NS,57.8,61.4,58.7,53.4,3,⚪ NEUTRAL — Models uncertain
+BHARTIARTL.NS,57.7,57.6,59.1,56.4,3,⚪ NEUTRAL — Models uncertain
+BAJFINANCE.NS,57.7,57.8,58.4,57.0,3,⚪ NEUTRAL — Models uncertain
+BDL.NS,57.7,56.8,59.3,57.0,3,⚪ NEUTRAL — Models uncertain
+SCHAEFFLER.NS,57.7,61.4,57.3,54.4,3,⚪ NEUTRAL — Models uncertain
+DATAPATTNS.NS,57.6,58.0,59.3,55.6,3,⚪ NEUTRAL — Models uncertain
+SIEMENS.NS,57.6,57.5,59.5,55.8,3,⚪ NEUTRAL — Models uncertain
+JPPOWER.NS,57.6,60.6,57.9,54.1,3,⚪ NEUTRAL — Models uncertain
+PIDILITIND.NS,57.6,60.2,58.4,54.2,3,⚪ NEUTRAL — Models uncertain
+OBEROIRLTY.NS,57.5,61.3,57.8,53.4,3,⚪ NEUTRAL — Models uncertain
+AARTIIND.NS,57.4,56.1,61.4,54.7,3,⚪ NEUTRAL — Models uncertain
+DLF.NS,57.3,59.9,58.4,53.4,3,⚪ NEUTRAL — Models uncertain
+APLAPOLLO.NS,57.2,57.0,60.0,54.7,3,⚪ NEUTRAL — Models uncertain
+LODHA.NS,57.2,59.7,56.9,55.2,3,⚪ NEUTRAL — Models uncertain
+YESBANK.NS,57.2,58.2,60.2,53.3,3,⚪ NEUTRAL — Models uncertain
+BPCL.NS,57.2,61.7,56.8,53.2,3,⚪ NEUTRAL — Models uncertain
+MANAPPURAM.NS,57.2,57.5,57.8,56.3,3,⚪ NEUTRAL — Models uncertain
+BOSCHLTD.NS,57.1,59.3,57.7,54.2,3,⚪ NEUTRAL — Models uncertain
+ZYDUSLIFE.NS,57.1,60.1,57.9,53.2,3,⚪ NEUTRAL — Models uncertain
+ULTRACEMCO.NS,57.1,59.0,57.7,54.5,3,⚪ NEUTRAL — Models uncertain
+HDFCLIFE.NS,57.0,60.4,57.5,53.2,3,⚪ NEUTRAL — Models uncertain
+AXISBANK.NS,57.0,56.9,59.9,54.3,3,⚪ NEUTRAL — Models uncertain
+LUPIN.NS,56.9,58.9,58.7,53.1,3,⚪ NEUTRAL — Models uncertain
+TMCV.NS,56.8,57.1,58.3,54.8,3,⚪ NEUTRAL — Models uncertain
+DMART.NS,56.7,58.6,57.4,54.2,3,⚪ NEUTRAL — Models uncertain
+LT.NS,56.7,58.5,56.9,54.6,3,⚪ NEUTRAL — Models uncertain
+RVNL.NS,56.7,57.3,58.8,54.0,3,⚪ NEUTRAL — Models uncertain
+BHEL.NS,56.7,58.9,56.4,54.8,3,⚪ NEUTRAL — Models uncertain
+COCHINSHIP.NS,56.6,56.7,57.5,55.6,3,⚪ NEUTRAL — Models uncertain
+EASEMYTRIP.NS,56.6,58.8,56.3,54.8,3,⚪ NEUTRAL — Models uncertain
+BRITANNIA.NS,56.6,56.6,57.9,55.2,3,⚪ NEUTRAL — Models uncertain
+AJANTPHARM.NS,56.5,59.7,55.6,54.2,3,⚪ NEUTRAL — Models uncertain
+TITAN.NS,56.5,57.5,56.9,55.1,3,⚪ NEUTRAL — Models uncertain
+VEDL.NS,56.5,54.9,58.1,56.4,3,⚪ NEUTRAL — Models uncertain
+GRSE.NS,56.4,55.5,57.4,56.3,3,⚪ NEUTRAL — Models uncertain
+IOC.NS,56.4,58.5,57.6,53.1,3,⚪ NEUTRAL — Models uncertain
+NBCC.NS,56.4,56.5,57.3,55.4,3,⚪ NEUTRAL — Models uncertain
+BANSALWIRE.NS,56.4,57.1,58.8,53.3,3,⚪ NEUTRAL — Models uncertain
+LICI.NS,56.2,55.6,57.5,55.5,3,⚪ NEUTRAL — Models uncertain
+HAL.NS,56.2,57.4,57.5,53.7,3,⚪ NEUTRAL — Models uncertain
+BLUESTARCO.NS,56.1,57.8,57.0,53.4,3,⚪ NEUTRAL — Models uncertain
+IPCALAB.NS,56.1,59.5,55.7,53.1,3,⚪ NEUTRAL — Models uncertain
+TATAPOWER.NS,56.1,57.0,57.3,54.0,3,⚪ NEUTRAL — Models uncertain
+KIMS.NS,56.1,58.0,56.5,53.9,3,⚪ NEUTRAL — Models uncertain
+KPIL.NS,56.0,56.4,57.3,54.3,3,⚪ NEUTRAL — Models uncertain
+KAYNES.NS,55.9,57.9,55.5,54.4,3,⚪ NEUTRAL — Models uncertain
+ETERNAL.NS,55.9,57.2,58.3,52.1,3,⚪ NEUTRAL — Models uncertain
+MUTHOOTFIN.NS,55.9,54.6,58.6,54.6,3,⚪ NEUTRAL — Models uncertain
+AFFLE.NS,55.9,57.4,56.8,53.4,3,⚪ NEUTRAL — Models uncertain
+PHOENIXLTD.NS,55.7,57.2,57.1,52.8,3,⚪ NEUTRAL — Models uncertain
+JIOFIN.NS,55.7,57.4,55.6,54.2,3,⚪ NEUTRAL — Models uncertain
+ADANIPORTS.NS,55.7,57.3,56.0,53.7,3,⚪ NEUTRAL — Models uncertain
+ADANIENSOL.NS,55.7,53.7,56.1,57.3,3,⚪ NEUTRAL — Models uncertain
+LAURUSLABS.NS,55.6,57.9,55.4,53.4,3,⚪ NEUTRAL — Models uncertain
+IIFL.NS,55.6,57.0,55.4,54.3,3,⚪ NEUTRAL — Models uncertain
+POWERGRID.NS,55.3,56.2,56.0,53.8,3,⚪ NEUTRAL — Models uncertain
+SUNPHARMA.NS,55.3,57.9,53.0,55.0,3,⚪ NEUTRAL — Models uncertain
+PAYTM.NS,55.2,55.8,55.9,53.9,3,⚪ NEUTRAL — Models uncertain
+TORNTPOWER.NS,55.2,55.0,56.4,54.3,3,⚪ NEUTRAL — Models uncertain
+ABBOTINDIA.NS,55.0,54.6,56.9,53.4,3,⚪ NEUTRAL — Models uncertain
+OLAELEC.NS,54.9,53.5,57.0,54.1,3,⚪ NEUTRAL — Models uncertain
+IRCTC.NS,54.7,55.1,54.8,54.2,3,⚪ NEUTRAL — Models uncertain
+MANKIND.NS,54.7,55.1,56.1,52.8,3,⚪ NEUTRAL — Models uncertain
+NTPC.NS,54.3,51.5,57.3,53.9,3,⚪ NEUTRAL — Models uncertain
+HOMEFIRST.NS,54.3,56.1,53.5,53.2,3,⚪ NEUTRAL — Models uncertain
+INDIGO.NS,54.3,53.1,55.8,53.8,3,⚪ NEUTRAL — Models uncertain
+DRREDDY.NS,54.0,57.6,51.9,52.4,3,⚪ NEUTRAL — Models uncertain
+SRF.NS,54.0,56.5,52.3,53.3,3,⚪ NEUTRAL — Models uncertain
+HINDCOPPER.NS,54.0,54.7,52.9,54.4,3,⚪ NEUTRAL — Models uncertain
+SONACOMS.NS,53.9,53.5,54.1,54.1,3,⚪ NEUTRAL — Models uncertain
+PAGEIND.NS,53.7,51.9,55.9,53.2,3,⚪ NEUTRAL — Models uncertain
+VOLTAS.NS,53.7,52.6,53.3,55.1,3,⚪ NEUTRAL — Models uncertain
+ADANIENT.NS,53.6,51.9,54.5,54.2,3,⚪ NEUTRAL — Models uncertain
+HINDPETRO.NS,53.6,52.0,55.7,53.1,3,⚪ NEUTRAL — Models uncertain
+VBL.NS,53.3,52.9,53.7,53.1,3,⚪ NEUTRAL — Models uncertain
+LEMONTREE.NS,53.2,53.0,53.4,53.3,3,⚪ NEUTRAL — Models uncertain
+ADANIPOWER.NS,52.7,53.4,51.5,53.2,3,⚪ NEUTRAL — Models uncertain
+NHPC.NS,52.6,53.1,50.5,54.1,3,⚪ NEUTRAL — Models uncertain
+COALINDIA.NS,52.3,50.1,53.9,53.0,3,⚪ NEUTRAL — Models uncertain
+EMAMILTD.NS,52.1,50.2,53.7,52.4,3,⚪ NEUTRAL — Models uncertain
+GAIL.NS,52.0,52.4,49.3,54.2,2,⚪ NEUTRAL — Models uncertain
+NAM-INDIA.NS,51.6,47.9,51.5,55.3,2,⚪ NEUTRAL — Models uncertain
+MARICO.NS,51.5,50.2,51.7,52.5,3,⚪ NEUTRAL — Models uncertain
+DIXON.NS,51.3,50.4,48.3,55.1,2,⚪ NEUTRAL — Models uncertain
+BHARATFORG.NS,51.1,49.0,51.5,52.9,2,⚪ NEUTRAL — Models uncertain
+HDFCBANK.NS,49.4,46.1,50.6,51.5,2,⚪ NEUTRAL — Models uncertain
+SBIN.NS,49.2,46.6,46.5,54.6,1,⚪ NEUTRAL — Models uncertain
+BEL.NS,48.9,46.1,46.7,53.9,1,⚪ NEUTRAL — Models uncertain
+SOLARINDS.NS,48.3,45.5,44.9,54.3,1,⚪ NEUTRAL — Models uncertain
+TCS.NS,46.8,55.2,30.2,54.9,2,⚪ NEUTRAL — Models uncertain
+HCLTECH.NS,43.0,39.2,37.7,52.1,1,⚪ NEUTRAL — Models uncertain
+INFY.NS,41.4,46.0,23.4,54.7,1,🟠 MILD AVOID — 2-3 models agree
+WIPRO.NS,38.1,40.2,20.3,53.9,1,🟠 MILD AVOID — 2-3 models agree
