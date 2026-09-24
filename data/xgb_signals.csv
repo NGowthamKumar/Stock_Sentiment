@@ -1,205 +1,206 @@
 ticker,up_probability,signal,confidence
 KOTAKBANK.NS,66.7,🟡 MILD BULLISH,High Confidence
-BAJAJHLDNG.NS,65.5,🟡 MILD BULLISH,High Confidence
-LTIM.NS,63.5,🟡 MILD BULLISH,Medium Confidence
 AXISBANK.NS,63.2,🟡 MILD BULLISH,Medium Confidence
 NESTLEIND.NS,62.8,🟡 MILD BULLISH,Medium Confidence
-TITAN.NS,62.6,🟡 MILD BULLISH,Medium Confidence
-PAYTM.NS,62.3,🟡 MILD BULLISH,Medium Confidence
+LTIM.NS,62.4,🟡 MILD BULLISH,Medium Confidence
+PAYTM.NS,62.2,🟡 MILD BULLISH,Medium Confidence
 MON100.NS,62.2,🟡 MILD BULLISH,Medium Confidence
-SUNPHARMA.NS,61.4,🟡 MILD BULLISH,Medium Confidence
+BAJAJHLDNG.NS,61.2,🟡 MILD BULLISH,Medium Confidence
+TITAN.NS,60.9,🟡 MILD BULLISH,Medium Confidence
+SPICEJET.NS,60.7,🟡 MILD BULLISH,Medium Confidence
 ABCAPITAL.NS,59.9,⚪ NEUTRAL,Medium Confidence
-ONGC.NS,59.8,⚪ NEUTRAL,Medium Confidence
+SUNPHARMA.NS,59.7,⚪ NEUTRAL,Medium Confidence
 PERSISTENT.NS,59.7,⚪ NEUTRAL,Medium Confidence
-TATACOMM.NS,59.4,⚪ NEUTRAL,Medium Confidence
+ONGC.NS,59.5,⚪ NEUTRAL,Medium Confidence
 HOMEFIRST.NS,59.3,⚪ NEUTRAL,Medium Confidence
 SYNGENE.NS,59.2,⚪ NEUTRAL,Medium Confidence
 BRITANNIA.NS,58.9,⚪ NEUTRAL,Medium Confidence
 MGL.NS,58.9,⚪ NEUTRAL,Medium Confidence
-AUROPHARMA.NS,58.7,⚪ NEUTRAL,Medium Confidence
+IOC.NS,58.8,⚪ NEUTRAL,Medium Confidence
 LTM.NS,58.5,⚪ NEUTRAL,Medium Confidence
-COFORGE.NS,58.0,⚪ NEUTRAL,Medium Confidence
+TATACOMM.NS,58.4,⚪ NEUTRAL,Medium Confidence
+AUROPHARMA.NS,58.0,⚪ NEUTRAL,Medium Confidence
 SKFINDIA.NS,58.0,⚪ NEUTRAL,Low Confidence
+YESBANK.NS,57.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 CUMMINSIND.NS,57.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-AMBER.NS,57.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-GRANULES.NS,57.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-IOC.NS,56.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ADANIPOWER.NS,56.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-UPL.NS,56.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-SUZLON.NS,56.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+AMBER.NS,57.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+COFORGE.NS,57.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+GRANULES.NS,57.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+SHREECEM.NS,56.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+INDIGO.NS,56.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ZENSARTECH.NS,56.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BEL.NS,56.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 NIFTYBEES.NS,56.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-SHREECEM.NS,56.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ABB.NS,56.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-GRSE.NS,55.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-GOLDBEES.NS,55.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+SOLARINDS.NS,55.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BAJAJ-AUTO.NS,55.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SJVN.NS,55.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-FORTIS.NS,55.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+UPL.NS,55.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+GOLDBEES.NS,55.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+GRSE.NS,55.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TIMKEN.NS,55.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BAJAJ-AUTO.NS,54.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-NTPC.NS,54.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-SPICEJET.NS,54.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-HEROMOTOCO.NS,54.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-MPHASIS.NS,54.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-IRCTC.NS,54.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BHEL.NS,55.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ADANIPOWER.NS,54.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+FORTIS.NS,54.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+MASTEK.NS,54.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TIINDIA.NS,54.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-HAL.NS,54.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+HEROMOTOCO.NS,54.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+MPHASIS.NS,54.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SAPPHIRE.NS,54.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 COCHINSHIP.NS,54.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ZYDUSLIFE.NS,53.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-MASTEK.NS,53.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BHEL.NS,53.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BEL.NS,53.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-M&M.NS,53.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-PRESTIGE.NS,53.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ULTRACEMCO.NS,53.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-IPCALAB.NS,53.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-INDIGO.NS,52.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-OBEROIRLTY.NS,52.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+SUZLON.NS,53.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+JSWSTEEL.NS,53.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+IPCALAB.NS,53.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+PRESTIGE.NS,52.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BHARAT22ETF.NS,52.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+NTPC.NS,52.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 NAUKRI.NS,52.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SHYAMMETL.NS,52.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BHARAT22ETF.NS,52.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-YESBANK.NS,52.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-MOTHERSON.NS,52.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SCHAEFFLER.NS,52.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-SOLARINDS.NS,52.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-AFFLE.NS,52.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ASIANPAINT.NS,52.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+IRCTC.NS,52.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+MOTHERSON.NS,52.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 DATAPATTNS.NS,52.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-MARUTI.NS,52.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-INDUSINDBK.NS,52.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ITBEES.NS,52.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+EICHERMOT.NS,52.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+AFFLE.NS,52.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 INDIAMART.NS,52.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-COALINDIA.NS,52.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-LUPIN.NS,51.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-EICHERMOT.NS,51.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ITBEES.NS,52.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+CIPLA.NS,52.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+COALINDIA.NS,52.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+M&M.NS,51.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+HDFCAMC.NS,51.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+OBEROIRLTY.NS,51.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TECHM.NS,51.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 UTIAMC.NS,51.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 LICI.NS,51.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-DLF.NS,51.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-IGL.NS,51.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-HDFCAMC.NS,51.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+MARUTI.NS,51.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ULTRACEMCO.NS,51.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+HAL.NS,51.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+INDUSINDBK.NS,51.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 HUDCO.NS,50.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-LT.NS,50.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-DRREDDY.NS,50.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 IEX.NS,50.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+DRREDDY.NS,50.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+DLF.NS,50.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 PHOENIXLTD.NS,50.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BSE.NS,50.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+LUPIN.NS,50.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BDL.NS,50.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 KPIL.NS,50.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ZENSARTECH.NS,50.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BSE.NS,50.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 BANKBARODA.NS,50.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-HINDUNILVR.NS,50.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+APLAPOLLO.NS,50.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+HINDUNILVR.NS,50.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 POLICYBZR.NS,50.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 JYOTHYLAB.NS,50.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-JIOFIN.NS,50.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 NAVINFLUOR.NS,50.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-CIPLA.NS,50.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ACC.NS,50.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ADANIENT.NS,49.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BPCL.NS,49.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+JIOFIN.NS,50.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+UBL.NS,49.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 KEC.NS,49.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SRF.NS,49.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ALKEM.NS,49.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BANSALWIRE.NS,49.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-JSWSTEEL.NS,49.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-APLAPOLLO.NS,49.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ADANIENT.NS,49.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 HINDPETRO.NS,48.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TATAELXSI.NS,48.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-UBL.NS,48.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+IIFL.NS,48.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BANSALWIRE.NS,48.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 AJANTPHARM.NS,48.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 BHARTIARTL.NS,48.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ASIANPAINT.NS,48.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-POWERGRID.NS,48.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-SIEMENS.NS,48.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+SUNTV.NS,48.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 BOSCHLTD.NS,48.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+SIEMENS.NS,48.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 KAYNES.NS,48.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BPCL.NS,47.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ATGL.NS,47.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-SUNTV.NS,47.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-TMCV.NS,47.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ICICIBANK.NS,47.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 WESTLIFE.NS,47.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 IOB.NS,47.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 PIDILITIND.NS,47.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+LT.NS,47.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SILVERBEES.NS,47.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-NHPC.NS,47.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SHRIRAMFIN.NS,46.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-JINDALSTEL.NS,46.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ALKYLAMINE.NS,46.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-MUTHOOTFIN.NS,46.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-TORNTPOWER.NS,46.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BDL.NS,46.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-RELIANCE.NS,46.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ICICIBANK.NS,46.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TATACONSUM.NS,46.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-LEMONTREE.NS,46.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+IRFC.NS,46.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ADANIPORTS.NS,46.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+HDFCLIFE.NS,46.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+LEMONTREE.NS,46.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 HINDCOPPER.NS,46.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 GODREJPROP.NS,46.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-GAIL.NS,46.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ABBOTINDIA.NS,46.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+JINDALSTEL.NS,46.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 BLUESTARCO.NS,46.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ALKYLAMINE.NS,45.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 LODHA.NS,45.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+OIL.NS,45.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 RADICO.NS,45.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-JPPOWER.NS,45.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 DABUR.NS,45.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 HINDZINC.NS,45.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-LAURUSLABS.NS,45.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-IRFC.NS,45.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-FIVESTAR.NS,45.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-OIL.NS,45.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-IIFL.NS,45.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+MUTHOOTFIN.NS,45.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 BIKAJI.NS,45.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+HAVELLS.NS,45.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+FIVESTAR.NS,45.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ADANIGREEN.NS,45.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-PNB.NS,44.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 ANGELONE.NS,44.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+PNB.NS,44.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BHARATFORG.NS,44.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TATATECH.NS,44.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-MAZDOCK.NS,44.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ITC.NS,44.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+TORNTPOWER.NS,44.7,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 KIMS.NS,44.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BAJAJFINSV.NS,44.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-HAVELLS.NS,44.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-JUBLFOOD.NS,44.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-MARICO.NS,44.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-HDFCLIFE.NS,44.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-CAMS.NS,44.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-BHARATFORG.NS,43.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+CAMS.NS,44.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+JPPOWER.NS,44.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+ABBOTINDIA.NS,44.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+MAZDOCK.NS,44.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+LAURUSLABS.NS,44.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+GAIL.NS,43.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+JUBLFOOD.NS,43.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+APOLLOHOSP.NS,43.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+NHPC.NS,43.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+RELIANCE.NS,43.8,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TANLA.NS,43.4,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-VOLTAS.NS,43.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 TATASTEEL.NS,43.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-NAM-INDIA.NS,43.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-APOLLOHOSP.NS,43.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+TMCV.NS,43.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 RVNL.NS,43.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+NATCOPHARM.NS,43.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+NAM-INDIA.NS,43.0,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 DMART.NS,42.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+IRCON.NS,42.9,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 SONACOMS.NS,42.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-NATCOPHARM.NS,42.3,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-ITC.NS,42.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-WIPRO.NS,42.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-TCS.NS,42.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
-HDFCBANK.NS,42.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+POWERGRID.NS,42.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+WIPRO.NS,42.6,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+VOLTAS.NS,42.5,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+BALAMINES.NS,42.2,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
+GODREJCP.NS,42.1,MACRO CAUTION — Crude oil surging (+3.9%),Low Confidence
 MAXHEALTH.NS,41.9,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-COLPAL.NS,41.8,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-IRCON.NS,41.8,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-MANAPPURAM.NS,41.8,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 VEDL.NS,41.8,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-BAJFINANCE.NS,41.6,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+MANAPPURAM.NS,41.8,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+HDFCBANK.NS,41.6,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+ETERNAL.NS,41.3,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 INDHOTEL.NS,41.3,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 EASEMYTRIP.NS,41.2,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-BALAMINES.NS,41.1,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 VBL.NS,41.0,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+BAJAJFINSV.NS,41.0,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 OLAELEC.NS,40.9,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-ETERNAL.NS,40.7,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+MRPL.NS,40.6,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 MTARTECH.NS,40.5,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-PNCINFRA.NS,40.5,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+MARICO.NS,40.5,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 ADANIENSOL.NS,40.4,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-MRPL.NS,40.3,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+BAJFINANCE.NS,40.4,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 NMDC.NS,40.1,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+PNCINFRA.NS,40.0,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 BERGEPAINT.NS,39.9,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+DELTACORP.NS,39.7,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 MANKIND.NS,39.6,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-EMAMILTD.NS,39.5,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 NBCC.NS,39.1,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 PAGEIND.NS,38.9,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-INFY.NS,38.8,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+EMAMILTD.NS,38.9,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 EIHOTEL.NS,38.7,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 HINDALCO.NS,38.3,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+INFY.NS,38.1,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
 NATIONALUM.NS,37.8,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-HCLTECH.NS,35.9,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
-SAIL.NS,34.9,MACRO CAUTION — Crude oil surging (+3.9%),High Confidence
+TCS.NS,37.7,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+COLPAL.NS,35.9,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+SAIL.NS,35.2,MACRO CAUTION — Crude oil surging (+3.9%),Medium Confidence
+HCLTECH.NS,34.9,MACRO CAUTION — Crude oil surging (+3.9%),High Confidence
 TATAPOWER.NS,34.8,MACRO CAUTION — Crude oil surging (+3.9%),High Confidence
-SBIN.NS,32.3,MACRO CAUTION — Crude oil surging (+3.9%),High Confidence
-DIXON.NS,25.7,MACRO CAUTION — Crude oil surging (+3.9%),High Confidence
+SBIN.NS,31.8,MACRO CAUTION — Crude oil surging (+3.9%),High Confidence
+DIXON.NS,24.7,MACRO CAUTION — Crude oil surging (+3.9%),High Confidence
