@@ -1,87 +1,87 @@
 ticker,up_probability,signal,confidence
-PNB.NS,67.8,🟡 MILD BULLISH,High Confidence
-HINDUNILVR.NS,66.1,🟡 MILD BULLISH,High Confidence
-POLICYBZR.NS,65.3,🟡 MILD BULLISH,High Confidence
-TIINDIA.NS,64.4,🟡 MILD BULLISH,Medium Confidence
-TITAN.NS,63.1,🟡 MILD BULLISH,Medium Confidence
-BAJFINANCE.NS,62.1,🟡 MILD BULLISH,Medium Confidence
-BAJAJ-AUTO.NS,62.1,🟡 MILD BULLISH,Medium Confidence
-BAJAJFINSV.NS,62.0,🟡 MILD BULLISH,Medium Confidence
-MUTHOOTFIN.NS,61.7,🟡 MILD BULLISH,Medium Confidence
-LT.NS,61.4,🟡 MILD BULLISH,Medium Confidence
-MAZDOCK.NS,60.9,🟡 MILD BULLISH,Medium Confidence
-GRSE.NS,60.8,🟡 MILD BULLISH,Medium Confidence
-RELIANCE.NS,60.7,🟡 MILD BULLISH,Medium Confidence
-HDFCAMC.NS,60.4,🟡 MILD BULLISH,Medium Confidence
-IOC.NS,59.9,⚪ NEUTRAL,Medium Confidence
-SIEMENS.NS,59.3,⚪ NEUTRAL,Medium Confidence
-LTIM.NS,58.9,⚪ NEUTRAL,Medium Confidence
-NMDC.NS,58.7,⚪ NEUTRAL,Medium Confidence
-INDUSINDBK.NS,58.7,⚪ NEUTRAL,Medium Confidence
-M&M.NS,58.6,⚪ NEUTRAL,Medium Confidence
-EICHERMOT.NS,58.0,⚪ NEUTRAL,Medium Confidence
-BRITANNIA.NS,57.9,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-FORTIS.NS,57.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-LUPIN.NS,57.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-NESTLEIND.NS,57.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-NIFTYBEES.NS,56.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-TORNTPOWER.NS,56.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-ITBEES.NS,56.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-IDEA.NS,56.3,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-ONGC.NS,56.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-HOMEFIRST.NS,55.1,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-POWERGRID.NS,54.9,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-MARUTI.NS,54.8,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-SAIL.NS,54.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-LEMONTREE.NS,54.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-LTM.NS,54.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-PAGEIND.NS,54.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-PRESTIGE.NS,54.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-TRENT.NS,54.1,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-SPICEJET.NS,53.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-ICICIBANK.NS,52.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-COFORGE.NS,52.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-HAL.NS,52.3,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-BANKBARODA.NS,52.3,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-LICI.NS,52.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-BPCL.NS,52.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-BHARTIARTL.NS,51.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-NTPC.NS,50.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-NAUKRI.NS,49.8,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-TMCV.NS,49.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-BEL.NS,49.3,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-DLF.NS,49.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-MAXHEALTH.NS,48.8,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-KOTAKBANK.NS,47.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-OBEROIRLTY.NS,46.9,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-GODREJPROP.NS,46.1,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-SBIN.NS,45.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-COCHINSHIP.NS,45.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-AXISBANK.NS,45.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-DABUR.NS,45.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-DMART.NS,44.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-ETERNAL.NS,43.8,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-VEDL.NS,42.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-HEROMOTOCO.NS,42.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
-GOLDBEES.NS,42.0,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-SUNTV.NS,41.8,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-ITC.NS,41.6,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-INDIGO.NS,41.5,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-BLUESTARCO.NS,39.4,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-NATCOPHARM.NS,38.9,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-MANAPPURAM.NS,38.9,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-MON100.NS,37.7,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-KIMS.NS,36.4,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-MTARTECH.NS,35.7,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
-SUNPHARMA.NS,34.1,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-TATASTEEL.NS,34.0,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-COALINDIA.NS,33.7,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-ALKEM.NS,32.9,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-SONACOMS.NS,32.0,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-MRPL.NS,31.9,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-DIXON.NS,29.6,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-TCS.NS,28.9,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-WIPRO.NS,26.9,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-HCLTECH.NS,26.8,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-HDFCBANK.NS,26.6,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
-INFY.NS,19.0,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+MAZDOCK.NS,69.5,🟡 MILD BULLISH,High Confidence
+PNB.NS,68.1,🟡 MILD BULLISH,High Confidence
+HINDUNILVR.NS,67.8,🟡 MILD BULLISH,High Confidence
+HDFCAMC.NS,65.6,🟡 MILD BULLISH,High Confidence
+BAJAJ-AUTO.NS,63.8,🟡 MILD BULLISH,Medium Confidence
+IOC.NS,63.0,🟡 MILD BULLISH,Medium Confidence
+GRSE.NS,62.6,🟡 MILD BULLISH,Medium Confidence
+RELIANCE.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+TITAN.NS,60.0,🟡 MILD BULLISH,Medium Confidence
+M&M.NS,59.2,⚪ NEUTRAL,Medium Confidence
+INDUSINDBK.NS,59.2,⚪ NEUTRAL,Medium Confidence
+GODREJPROP.NS,59.1,⚪ NEUTRAL,Medium Confidence
+SIEMENS.NS,58.8,⚪ NEUTRAL,Medium Confidence
+ICICIBANK.NS,58.7,⚪ NEUTRAL,Medium Confidence
+LT.NS,58.3,⚪ NEUTRAL,Medium Confidence
+HAL.NS,58.0,⚪ NEUTRAL,Low Confidence
+HOMEFIRST.NS,57.9,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+POLICYBZR.NS,57.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+BAJFINANCE.NS,57.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+MUTHOOTFIN.NS,56.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+FORTIS.NS,56.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+DLF.NS,56.3,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+BANKBARODA.NS,56.1,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+COFORGE.NS,56.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+TORNTPOWER.NS,55.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+BRITANNIA.NS,55.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+MAXHEALTH.NS,55.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+NIFTYBEES.NS,54.9,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+TIINDIA.NS,54.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+LTM.NS,54.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+WIPRO.NS,54.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+PRESTIGE.NS,53.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+NMDC.NS,53.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+BHARTIARTL.NS,53.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+ONGC.NS,52.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+LICI.NS,52.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+MARUTI.NS,52.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+OBEROIRLTY.NS,52.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+NESTLEIND.NS,51.3,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+BPCL.NS,50.8,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+TCS.NS,50.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+ITBEES.NS,50.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+EICHERMOT.NS,49.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+SAIL.NS,49.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+LTIM.NS,49.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+BAJAJFINSV.NS,49.3,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+PAGEIND.NS,49.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+TMCV.NS,48.7,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+LUPIN.NS,48.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+DMART.NS,47.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+SBIN.NS,46.8,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+POWERGRID.NS,45.8,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+ETERNAL.NS,45.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+TRENT.NS,45.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+BEL.NS,44.9,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+NAUKRI.NS,44.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+DABUR.NS,44.4,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+INDIGO.NS,44.2,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+NTPC.NS,44.0,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+IDEA.NS,43.9,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+AXISBANK.NS,43.6,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+HEROMOTOCO.NS,42.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+GOLDBEES.NS,42.5,MACRO CAUTION — Heavy FII selling (-10000cr),Low Confidence
+LEMONTREE.NS,40.3,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+ITC.NS,40.0,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+BLUESTARCO.NS,39.5,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+MANAPPURAM.NS,39.4,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+MON100.NS,39.3,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+KOTAKBANK.NS,39.2,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+SPICEJET.NS,38.7,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+SUNTV.NS,37.6,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+COCHINSHIP.NS,37.4,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+VEDL.NS,37.0,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+MTARTECH.NS,36.1,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+KIMS.NS,35.3,MACRO CAUTION — Heavy FII selling (-10000cr),Medium Confidence
+HCLTECH.NS,34.7,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+INFY.NS,33.7,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+COALINDIA.NS,33.4,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+DIXON.NS,32.9,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+SONACOMS.NS,31.8,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+MRPL.NS,31.1,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+TATASTEEL.NS,31.0,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+SUNPHARMA.NS,29.8,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+NATCOPHARM.NS,26.4,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+ALKEM.NS,25.9,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
+HDFCBANK.NS,25.0,MACRO CAUTION — Heavy FII selling (-10000cr),High Confidence
