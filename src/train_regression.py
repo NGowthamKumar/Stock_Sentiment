@@ -14,6 +14,8 @@ from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier      
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler    
+from sklearn.dummy import DummyClassifier
+from scipy import stats
 
 FEATURES = ["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",        
             "vix_change","oil_change","usdinr_change","rsi","macd_diff","bb_pct","bb_width","price_vs_sma",
@@ -67,6 +69,76 @@ def evaluate_classifier(model, X, y, folds=5):
         spearman=0.0
     )
 
+def evaluate_baselines(X, y, folds=5):
+    """
+    Evaluate naive baseline models to compare against ML models.
+    Critical for proving our models add genuine predictive value.
+    """
+    y_bin = (y > 0).astype(int)
+    tscv = TimeSeriesSplit(n_splits=folds)
+
+    baselines = {
+        "Always_UP":        DummyClassifier(strategy="constant", constant=1),
+        "Always_DOWN":      DummyClassifier(strategy="constant", constant=0),
+        "Most_Frequent":    DummyClassifier(strategy="most_frequent"),
+        "Prior_Day_Direction": None,  # handled separately below
+    }
+
+    results = {}
+    for name, clf in baselines.items():
+        if clf is None:
+            continue
+        accs = []
+        for tr, va in tscv.split(X):
+            Xtr = X.iloc[tr]; Xva = X.iloc[va]
+            ytr = y_bin.iloc[tr]; yva = y_bin.iloc[va]
+            clf.fit(Xtr, ytr)
+            accs.append(accuracy_score(yva, clf.predict(Xva)))
+        results[name] = float(np.mean(accs))
+
+    # Prior day direction baseline
+    if "ret_lag1" in X.columns:
+        accs = []
+        for tr, va in tscv.split(X):
+            Xva = X.iloc[va]
+            yva = y_bin.iloc[va]
+            prior_dir = (Xva["ret_lag1"] > 0).astype(int)
+            accs.append(accuracy_score(yva, prior_dir))
+        results["Prior_Day_Direction"] = float(np.mean(accs))
+
+    return results
+
+
+def compute_statistical_significance(dir_acc, n_samples, baseline=0.50):
+    """
+    Compute p-value and confidence interval for direction accuracy.
+    Tests whether accuracy is significantly better than baseline (default 50%).
+    """
+    n_correct = int(dir_acc * n_samples)
+
+    # One-sided binomial test: is accuracy > baseline?
+    p_value = stats.binomtest(n_correct, n_samples, baseline,
+                              alternative="greater").pvalue
+
+    # 95% confidence interval (Wilson method — better for proportions)
+    z = 1.96
+    p = dir_acc
+    n = n_samples
+    denominator = 1 + z**2 / n
+    centre = (p + z**2 / (2*n)) / denominator
+    margin  = z * np.sqrt(p*(1-p)/n + z**2/(4*n**2)) / denominator
+    ci_low  = round(centre - margin, 4)
+    ci_high = round(centre + margin, 4)
+
+    return {
+        "p_value":    round(float(p_value), 6),
+        "ci_low":     ci_low,
+        "ci_high":    ci_high,
+        "significant": p_value < 0.05,
+        "n_samples":  n_samples,
+        "n_correct":  n_correct,
+    }
+
 def main():
     os.makedirs("models", exist_ok=True)
     df = pd.read_parquet("data/modeling/dataset.parquet").sort_values(["date","ticker"])
@@ -84,6 +156,13 @@ def main():
         
     X, y = df[FEATURES], df[TARGET_1D]
     y_bin = (y > 0).astype(int)
+    n_samples = len(y)
+
+    # ── Baseline models ──
+    print("\n── Baseline Models ──")
+    baseline_scores = evaluate_baselines(X, y)
+    for name, acc in baseline_scores.items():
+        print(f"  {name}: {acc:.4f} ({acc*100:.2f}%)")
     reg_models = {
         "Ridge": Pipeline([
         ("scaler", StandardScaler()),
@@ -153,6 +232,25 @@ def main():
         ],
         voting="soft"  # uses probabilities — more accurate than hard voting
     )
+
+    # ── Statistical significance ──
+    print("\n── Statistical Significance ──")
+    sig_xgb = compute_statistical_significance(xgb_scores["accuracy"], n_samples)
+    print(f"XGBoost vs 50% baseline:")
+    print(f"  Accuracy: {xgb_scores['accuracy']*100:.2f}%")
+    print(f"  p-value:  {sig_xgb['p_value']:.6f} {'✅ SIGNIFICANT' if sig_xgb['significant'] else '❌ NOT SIGNIFICANT'}")
+    print(f"  95% CI:   [{sig_xgb['ci_low']*100:.2f}%, {sig_xgb['ci_high']*100:.2f}%]")
+    print(f"  Edge vs Always-UP: {(xgb_scores['accuracy'] - baseline_scores.get('Always_UP', 0.5))*100:+.2f}%")
+
+    ensemble_scores = evaluate_classifier(voting, X, y)
+    print(f"Voting Ensemble: {ensemble_scores}")
+    sig_ens = compute_statistical_significance(ensemble_scores["accuracy"], n_samples)
+    print(f"Ensemble vs 50% baseline:")
+    print(f"  Accuracy: {ensemble_scores['accuracy']*100:.2f}%")
+    print(f"  p-value:  {sig_ens['p_value']:.6f} {'✅ SIGNIFICANT' if sig_ens['significant'] else '❌ NOT SIGNIFICANT'}")
+    print(f"  95% CI:   [{sig_ens['ci_low']*100:.2f}%, {sig_ens['ci_high']*100:.2f}%]")
+    print(f"  Edge vs Always-UP: {(ensemble_scores['accuracy'] - baseline_scores.get('Always_UP', 0.5))*100:+.2f}%")
+    voting.fit(X, y_bin)
     
     ensemble_scores = evaluate_classifier(voting, X, y)
     print(f"Voting Ensemble: {ensemble_scores}")
@@ -270,6 +368,34 @@ def main():
         "spearman": 0.0,
         "rows": len(df)
     })
+
+    # Save baseline scores
+    for bname, bacc in baseline_scores.items():
+        rows.append({
+            "train_date": run_time,
+            "model": f"Baseline_{bname}",
+            "is_best": False,
+            "mae": 0.0, "r2": 0.0,
+            "direction_accuracy": bacc,
+            "spearman": 0.0,
+            "rows": len(df)
+        })
+
+    # Save statistical significance
+    for model_name, sig in [
+        ("XGBoost_Classifier", sig_xgb),
+        ("Voting_Ensemble",    sig_ens),
+    ]:
+        rows.append({
+            "train_date": run_time,
+            "model": f"Significance_{model_name}",
+            "is_best": False,
+            "mae": sig["p_value"],
+            "r2": sig["ci_low"],
+            "direction_accuracy": sig["ci_high"],
+            "spearman": 1.0 if sig["significant"] else 0.0,
+            "rows": sig["n_samples"]
+        })
 
     new_rows = pd.DataFrame(rows)
 

@@ -1082,6 +1082,76 @@ with tab6:
                 hide_index=True
             )
 
+            st.markdown("---")
+            st.markdown("### 📊 Baseline Comparison")
+            st.caption("Proving our models add genuine predictive value beyond naive approaches")
+
+            baseline_models = metrics[metrics["model"].str.startswith("Baseline_")]
+            ml_models = metrics[metrics["model"].isin(["XGBoost_Classifier","Voting_Ensemble"])].groupby("model").last().reset_index()
+
+            if not baseline_models.empty:
+                latest_baselines = baseline_models.groupby("model").last().reset_index()
+
+                comparison_data = []
+                for _, row in latest_baselines.iterrows():
+                    comparison_data.append({
+                        "Model": row["model"].replace("Baseline_","").replace("_"," "),
+                        "Accuracy": row["direction_accuracy"]*100,
+                        "Type": "Baseline"
+                    })
+                for _, row in ml_models.iterrows():
+                    comparison_data.append({
+                        "Model": row["model"].replace("_"," "),
+                        "Accuracy": row["direction_accuracy"]*100,
+                        "Type": "ML Model"
+                    })
+
+                comp_df = pd.DataFrame(comparison_data).sort_values("Accuracy")
+                fig_comp = px.bar(
+                    comp_df, x="Model", y="Accuracy",
+                    color="Type",
+                    color_discrete_map={"Baseline": "#95a5a6", "ML Model": "#2ecc71"},
+                    title="ML Models vs Naive Baselines",
+                    labels={"Accuracy": "Direction Accuracy (%)"}
+                )
+                fig_comp.add_hline(y=50, line_dash="dash",
+                                annotation_text="50% random",
+                                line_color="red")
+                st.plotly_chart(fig_comp, use_container_width=True)
+
+                best_ml  = ml_models["direction_accuracy"].max() * 100
+                best_bl  = latest_baselines["direction_accuracy"].max() * 100
+                edge     = best_ml - best_bl
+                st.success(f"✅ ML model edge over best baseline: **+{edge:.2f}%** "
+                        f"({best_ml:.2f}% vs {best_bl:.2f}%)")
+
+            st.markdown("---")
+            st.markdown("### 📐 Statistical Significance")
+            st.caption("Is the accuracy genuinely better than chance?")
+
+            sig_rows = metrics[metrics["model"].str.startswith("Significance_")]
+            if not sig_rows.empty:
+                latest_sig = sig_rows.groupby("model").last().reset_index()
+                for _, row in latest_sig.iterrows():
+                    model_label = row["model"].replace("Significance_","").replace("_"," ")
+                    p_val      = row["mae"]
+                    ci_low     = row["r2"] * 100
+                    ci_high    = row["direction_accuracy"] * 100
+                    significant = row["spearman"] == 1.0
+                    n_samples  = int(row["rows"])
+
+                    col1, col2, col3, col4 = st.columns(4)
+                    col1.metric(f"{model_label}", f"{(ci_low+ci_high)/2:.2f}%")
+                    col2.metric("p-value", f"{p_val:.6f}",
+                                delta="Significant ✅" if significant else "Not significant ❌",
+                                delta_color="normal" if significant else "inverse")
+                    col3.metric("95% CI Low",  f"{ci_low:.2f}%")
+                    col4.metric("95% CI High", f"{ci_high:.2f}%")
+                    st.caption(f"Based on {n_samples:,} samples. "
+                            f"{'Statistically significant improvement over 50% baseline.' if significant else 'Not yet statistically significant.'}")
+            else:
+                st.info("Statistical significance data will appear after next training run.")
+
     else:
         st.info("Model metrics not found yet. They will appear after the first weekly training run.")
 
