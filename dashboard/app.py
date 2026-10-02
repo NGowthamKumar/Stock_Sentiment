@@ -273,6 +273,10 @@ with tab1:
                 )
                 cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=24)
                 today_news = raw_news[raw_news["published_utc"] >= cutoff]
+                # Fallback: if no articles in last 24h use last 48h
+                if len(today_news) < 50:
+                    cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=48)
+                    today_news = raw_news[raw_news["published_utc"] >= cutoff]
                 topics = {
                     "Oil/Crude":      ["crude","brent","oil price"],
                     "RBI":            ["rbi","repo rate","monetary policy"],
