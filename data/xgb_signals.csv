@@ -1,197 +1,77 @@
 ticker,up_probability,signal,confidence
-CHOLAFIN.NS,71.4,🟡 MILD BULLISH,High Confidence
-PNB.NS,71.2,🟡 MILD BULLISH,High Confidence
-AMBER.NS,70.9,🟡 MILD BULLISH,High Confidence
-OIL.NS,70.0,🟡 MILD BULLISH,High Confidence
-BALAMINES.NS,69.8,🟡 MILD BULLISH,High Confidence
-MARUTI.NS,69.6,🟡 MILD BULLISH,High Confidence
-BAJAJ-AUTO.NS,69.0,🟡 MILD BULLISH,High Confidence
-NH.NS,68.8,🟡 MILD BULLISH,High Confidence
-GRSE.NS,68.4,🟡 MILD BULLISH,High Confidence
-INDUSINDBK.NS,68.3,🟡 MILD BULLISH,High Confidence
-UPL.NS,68.2,🟡 MILD BULLISH,High Confidence
-TITAN.NS,68.2,🟡 MILD BULLISH,High Confidence
-IDEA.NS,67.5,🟡 MILD BULLISH,High Confidence
-SKFINDIA.NS,67.5,🟡 MILD BULLISH,High Confidence
-HAL.NS,67.3,🟡 MILD BULLISH,High Confidence
-DELTACORP.NS,67.3,🟡 MILD BULLISH,High Confidence
-ADANIENT.NS,66.9,🟡 MILD BULLISH,High Confidence
-BIKAJI.NS,66.8,🟡 MILD BULLISH,High Confidence
-SUZLON.NS,66.7,🟡 MILD BULLISH,High Confidence
-SHYAMMETL.NS,66.6,🟡 MILD BULLISH,High Confidence
-VOLTAS.NS,66.5,🟡 MILD BULLISH,High Confidence
-KPIL.NS,66.5,🟡 MILD BULLISH,High Confidence
-NAM-INDIA.NS,66.1,🟡 MILD BULLISH,High Confidence
-ADANIPOWER.NS,66.0,🟡 MILD BULLISH,High Confidence
-KAYNES.NS,65.8,🟡 MILD BULLISH,High Confidence
-SAIL.NS,65.7,🟡 MILD BULLISH,High Confidence
-JPPOWER.NS,65.6,🟡 MILD BULLISH,High Confidence
-YESBANK.NS,65.6,🟡 MILD BULLISH,High Confidence
-TATAPOWER.NS,65.4,🟡 MILD BULLISH,High Confidence
-GRANULES.NS,65.4,🟡 MILD BULLISH,High Confidence
-NAVINFLUOR.NS,65.3,🟡 MILD BULLISH,High Confidence
-AFFLE.NS,65.2,🟡 MILD BULLISH,High Confidence
-BSE.NS,65.1,🟡 MILD BULLISH,High Confidence
-MAZDOCK.NS,65.1,🟡 MILD BULLISH,High Confidence
-NMDC.NS,64.9,🟡 MILD BULLISH,Medium Confidence
-DRREDDY.NS,64.9,🟡 MILD BULLISH,Medium Confidence
-IRFC.NS,64.9,🟡 MILD BULLISH,Medium Confidence
-JSWSTEEL.NS,64.8,🟡 MILD BULLISH,Medium Confidence
-BLUESTARCO.NS,64.8,🟡 MILD BULLISH,Medium Confidence
-ADANIPORTS.NS,64.3,🟡 MILD BULLISH,Medium Confidence
-NAUKRI.NS,64.2,🟡 MILD BULLISH,Medium Confidence
-TIINDIA.NS,63.8,🟡 MILD BULLISH,Medium Confidence
-DEEPAKNTR.NS,63.6,🟡 MILD BULLISH,Medium Confidence
-LTM.NS,63.5,🟡 MILD BULLISH,Medium Confidence
-TMCV.NS,63.3,🟡 MILD BULLISH,Medium Confidence
-EICHERMOT.NS,63.3,🟡 MILD BULLISH,Medium Confidence
-HINDCOPPER.NS,63.2,🟡 MILD BULLISH,Medium Confidence
-BOSCHLTD.NS,62.9,🟡 MILD BULLISH,Medium Confidence
-HEROMOTOCO.NS,62.9,🟡 MILD BULLISH,Medium Confidence
-ACC.NS,62.9,🟡 MILD BULLISH,Medium Confidence
-JUBLFOOD.NS,62.8,🟡 MILD BULLISH,Medium Confidence
-BAJFINANCE.NS,62.8,🟡 MILD BULLISH,Medium Confidence
-LODHA.NS,62.6,🟡 MILD BULLISH,Medium Confidence
-POWERGRID.NS,62.6,🟡 MILD BULLISH,Medium Confidence
-SHREECEM.NS,62.5,🟡 MILD BULLISH,Medium Confidence
-RADICO.NS,62.4,🟡 MILD BULLISH,Medium Confidence
-ONGC.NS,62.3,🟡 MILD BULLISH,Medium Confidence
-MRPL.NS,62.0,🟡 MILD BULLISH,Medium Confidence
-EASEMYTRIP.NS,62.0,🟡 MILD BULLISH,Medium Confidence
-ABCAPITAL.NS,61.9,🟡 MILD BULLISH,Medium Confidence
-LT.NS,61.9,🟡 MILD BULLISH,Medium Confidence
-SJVN.NS,61.9,🟡 MILD BULLISH,Medium Confidence
-INDHOTEL.NS,61.8,🟡 MILD BULLISH,Medium Confidence
-BEL.NS,61.8,🟡 MILD BULLISH,Medium Confidence
-COLPAL.NS,61.6,🟡 MILD BULLISH,Medium Confidence
-ETERNAL.NS,61.6,🟡 MILD BULLISH,Medium Confidence
-IOB.NS,61.5,🟡 MILD BULLISH,Medium Confidence
-TATATECH.NS,61.5,🟡 MILD BULLISH,Medium Confidence
-APLAPOLLO.NS,61.5,🟡 MILD BULLISH,Medium Confidence
-DIXON.NS,61.4,🟡 MILD BULLISH,Medium Confidence
-TRENT.NS,61.4,🟡 MILD BULLISH,Medium Confidence
-JINDALSTEL.NS,61.4,🟡 MILD BULLISH,Medium Confidence
-ITC.NS,61.2,🟡 MILD BULLISH,Medium Confidence
-JYOTHYLAB.NS,61.2,🟡 MILD BULLISH,Medium Confidence
-POLICYBZR.NS,61.1,🟡 MILD BULLISH,Medium Confidence
-BDL.NS,61.0,🟡 MILD BULLISH,Medium Confidence
-AARTIIND.NS,60.8,🟡 MILD BULLISH,Medium Confidence
-MUTHOOTFIN.NS,60.5,🟡 MILD BULLISH,Medium Confidence
-JIOFIN.NS,60.5,🟡 MILD BULLISH,Medium Confidence
-COCHINSHIP.NS,60.4,🟡 MILD BULLISH,Medium Confidence
-SOLARINDS.NS,60.2,🟡 MILD BULLISH,Medium Confidence
-TATASTEEL.NS,60.1,🟡 MILD BULLISH,Medium Confidence
-EMAMILTD.NS,59.8,⚪ NEUTRAL,Medium Confidence
-MRF.NS,59.8,⚪ NEUTRAL,Medium Confidence
-TORNTPHARM.NS,59.6,⚪ NEUTRAL,Medium Confidence
-GODREJPROP.NS,59.5,⚪ NEUTRAL,Medium Confidence
-PAYTM.NS,59.4,⚪ NEUTRAL,Medium Confidence
-ABBOTINDIA.NS,59.4,⚪ NEUTRAL,Medium Confidence
-RVNL.NS,59.4,⚪ NEUTRAL,Medium Confidence
-VEDL.NS,59.3,⚪ NEUTRAL,Medium Confidence
-NTPC.NS,58.6,⚪ NEUTRAL,Medium Confidence
-BERGEPAINT.NS,58.4,⚪ NEUTRAL,Medium Confidence
-HINDUNILVR.NS,58.3,⚪ NEUTRAL,Medium Confidence
-FIVESTAR.NS,58.3,⚪ NEUTRAL,Medium Confidence
-IIFL.NS,58.2,⚪ NEUTRAL,Medium Confidence
-TIMKEN.NS,58.2,⚪ NEUTRAL,Medium Confidence
-SUNPHARMA.NS,58.1,⚪ NEUTRAL,Medium Confidence
-TANLA.NS,58.0,⚪ NEUTRAL,Low Confidence
-ZYDUSLIFE.NS,58.0,⚪ NEUTRAL,Low Confidence
-HUDCO.NS,57.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-MANAPPURAM.NS,57.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BALKRISIND.NS,57.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-SAPPHIRE.NS,57.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-KEC.NS,57.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BLS.NS,57.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-SHRIRAMFIN.NS,57.2,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-VBL.NS,57.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-LICI.NS,57.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-MOTHERSON.NS,57.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-HDFCAMC.NS,57.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-DABUR.NS,56.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ICICIBANK.NS,56.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ATGL.NS,56.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-IGL.NS,56.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-IPCALAB.NS,56.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-IEX.NS,56.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-GODREJCP.NS,55.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-TMPV.NS,55.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-EIHOTEL.NS,55.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-VINATIORGA.NS,55.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BHARTIARTL.NS,55.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-COALINDIA.NS,55.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-NESTLEIND.NS,55.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-CUMMINSIND.NS,54.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+PNB.NS,69.5,🟡 MILD BULLISH,High Confidence
+TITAN.NS,69.1,🟡 MILD BULLISH,High Confidence
+NMDC.NS,69.0,🟡 MILD BULLISH,High Confidence
+SUNPHARMA.NS,67.8,🟡 MILD BULLISH,High Confidence
+GRSE.NS,66.3,🟡 MILD BULLISH,High Confidence
+SHYAMMETL.NS,66.0,🟡 MILD BULLISH,High Confidence
+POWERGRID.NS,65.8,🟡 MILD BULLISH,High Confidence
+MUTHOOTFIN.NS,65.2,🟡 MILD BULLISH,High Confidence
+TATASTEEL.NS,64.4,🟡 MILD BULLISH,Medium Confidence
+POLICYBZR.NS,64.3,🟡 MILD BULLISH,Medium Confidence
+YESBANK.NS,64.2,🟡 MILD BULLISH,Medium Confidence
+JYOTHYLAB.NS,63.9,🟡 MILD BULLISH,Medium Confidence
+NTPC.NS,63.7,🟡 MILD BULLISH,Medium Confidence
+BDL.NS,63.7,🟡 MILD BULLISH,Medium Confidence
+ONGC.NS,63.5,🟡 MILD BULLISH,Medium Confidence
+MAZDOCK.NS,63.1,🟡 MILD BULLISH,Medium Confidence
+EICHERMOT.NS,62.9,🟡 MILD BULLISH,Medium Confidence
+MRPL.NS,62.9,🟡 MILD BULLISH,Medium Confidence
+BAJAJ-AUTO.NS,62.7,🟡 MILD BULLISH,Medium Confidence
+EASEMYTRIP.NS,62.3,🟡 MILD BULLISH,Medium Confidence
+LT.NS,62.0,🟡 MILD BULLISH,Medium Confidence
+MARUTI.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+M&M.NS,61.6,🟡 MILD BULLISH,Medium Confidence
+JSWSTEEL.NS,61.5,🟡 MILD BULLISH,Medium Confidence
+LTM.NS,61.1,🟡 MILD BULLISH,Medium Confidence
+HAL.NS,60.2,🟡 MILD BULLISH,Medium Confidence
+TMCV.NS,59.6,⚪ NEUTRAL,Medium Confidence
+VEDL.NS,58.7,⚪ NEUTRAL,Medium Confidence
+HINDUNILVR.NS,58.7,⚪ NEUTRAL,Medium Confidence
+ICICIBANK.NS,58.3,⚪ NEUTRAL,Medium Confidence
+GOLDBEES.NS,58.1,⚪ NEUTRAL,Medium Confidence
+GODREJPROP.NS,57.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+HEROMOTOCO.NS,57.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+AXISBANK.NS,57.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+LICI.NS,57.2,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+BAJFINANCE.NS,57.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+IOC.NS,56.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+DIXON.NS,56.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+DABUR.NS,56.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+BEL.NS,56.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+RELIANCE.NS,56.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+ITC.NS,55.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+APOLLOHOSP.NS,55.2,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+ABB.NS,55.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
 SBIN.NS,54.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-IOC.NS,54.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-AXISBANK.NS,54.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+NESTLEIND.NS,54.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+HDFCAMC.NS,54.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
 WIPRO.NS,54.2,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-SYNGENE.NS,54.2,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-MARICO.NS,54.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-GOLDBEES.NS,53.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-IRCON.NS,53.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ADANIENSOL.NS,53.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-DLF.NS,53.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-CIPLA.NS,53.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-NBCC.NS,53.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-SOBHA.NS,53.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-TORNTPOWER.NS,53.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ABB.NS,52.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-NATCOPHARM.NS,52.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ITBEES.NS,52.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BHEL.NS,52.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-OBEROIRLTY.NS,52.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-TATACOMM.NS,52.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-NYKAA.NS,52.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-TATACONSUM.NS,52.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-RELIANCE.NS,51.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-MASTEK.NS,51.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BRITANNIA.NS,51.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BANKBARODA.NS,51.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-TATAELXSI.NS,51.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-INDIGO.NS,50.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-PNCINFRA.NS,50.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-UTIAMC.NS,50.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BPCL.NS,49.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-MAXHEALTH.NS,49.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-HOMEFIRST.NS,49.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BAJAJFINSV.NS,48.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-APOLLOHOSP.NS,48.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-KOTAKBANK.NS,48.7,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-PHOENIXLTD.NS,48.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-SCHAEFFLER.NS,48.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-GAIL.NS,48.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-PIDILITIND.NS,48.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ASIANPAINT.NS,47.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-PERSISTENT.NS,47.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-AUROPHARMA.NS,47.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+TCS.NS,53.2,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+DLF.NS,53.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+ANGELONE.NS,53.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+BPCL.NS,52.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+OBEROIRLTY.NS,52.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+BRITANNIA.NS,52.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+TATAELXSI.NS,51.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+NYKAA.NS,51.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+INFY.NS,50.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+COALINDIA.NS,50.0,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+KOTAKBANK.NS,49.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+SIEMENS.NS,49.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+INDIGO.NS,49.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+LEMONTREE.NS,48.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+GAIL.NS,48.2,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+HCLTECH.NS,47.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
 LTIM.NS,46.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-AJANTPHARM.NS,46.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ALKEM.NS,46.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ADANIGREEN.NS,46.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-PDRP.NS,45.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-COFORGE.NS,45.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-ZENSARTECH.NS,45.1,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-HDFCLIFE.NS,44.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-TCS.NS,44.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-IRCTC.NS,44.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-DMART.NS,44.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-MANKIND.NS,44.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-M&M.NS,44.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-LEMONTREE.NS,43.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-BANSALWIRE.NS,43.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-SRF.NS,43.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-PAGEIND.NS,42.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-HCLTECH.NS,42.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-HINDALCO.NS,42.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-INFY.NS,42.6,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-HDFCBANK.NS,42.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
-FORTIS.NS,41.7,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
-LAURUSLABS.NS,41.6,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
-SIEMENS.NS,40.9,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
-MTARTECH.NS,39.9,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
-PRESTIGE.NS,39.5,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
-HAVELLS.NS,39.3,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
-SPICEJET.NS,38.9,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
-SUNTV.NS,37.1,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
+HDFCLIFE.NS,44.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+AUROPHARMA.NS,43.9,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+MANKIND.NS,43.8,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+HDFCBANK.NS,42.5,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+HINDALCO.NS,42.4,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+DMART.NS,42.3,MACRO CAUTION — US yield rising (+0.76%),Low Confidence
+IRCTC.NS,40.9,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
+SPICEJET.NS,39.4,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
+ALKEM.NS,39.2,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
+MTARTECH.NS,37.9,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
+PRESTIGE.NS,37.6,MACRO CAUTION — US yield rising (+0.76%),Medium Confidence
