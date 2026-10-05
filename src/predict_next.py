@@ -120,6 +120,61 @@ def build_features(latest):
     for col in change_cols:
         if col in latest.columns:
             latest[col] = latest[col].fillna(0)
+
+    # ── PCR (Put/Call Ratio) features ──
+    if "pcr_oi" not in latest.columns:
+        pcr_path = os.path.join(os.path.dirname(__file__), "../data/pcr_history.csv")
+        if os.path.exists(pcr_path):
+            try:
+                pcr = pd.read_csv(pcr_path, parse_dates=["date"])
+                pcr = pcr.sort_values("date")
+
+                # Compute rolling features
+                pcr["pcr_oi_5d_avg"]  = pcr["pcr_oi"].rolling(5,  min_periods=1).mean()
+                pcr["pcr_oi_20d_avg"] = pcr["pcr_oi"].rolling(20, min_periods=1).mean()
+                pcr["pcr_change"]     = pcr["pcr_oi"].diff()
+                pcr["pcr_zscore"] = (
+                    (pcr["pcr_oi"] - pcr["pcr_oi"].rolling(20, min_periods=5).mean()) /
+                    pcr["pcr_oi"].rolling(20, min_periods=5).std().clip(lower=0.01)
+                )
+                pcr["pcr_regime"] = 0
+                pcr.loc[pcr["pcr_oi"] >= 1.2, "pcr_regime"] = -1
+                pcr.loc[pcr["pcr_oi"] <= 0.7, "pcr_regime"] =  1
+
+                today_pcr = pcr.iloc[-1]
+                latest["pcr_oi"]        = float(today_pcr.get("pcr_oi",       1.0))
+                latest["pcr_vol"]       = float(today_pcr.get("pcr_vol",       1.0))
+                latest["pcr_change"]    = float(today_pcr.get("pcr_change",    0.0))
+                latest["pcr_zscore"]    = float(today_pcr.get("pcr_zscore",    0.0))
+                latest["pcr_oi_5d_avg"] = float(today_pcr.get("pcr_oi_5d_avg",1.0))
+                latest["pcr_oi_20d_avg"]= float(today_pcr.get("pcr_oi_20d_avg",1.0))
+                latest["pcr_regime"]    = float(today_pcr.get("pcr_regime",    0.0))
+
+                # PCR signal for display
+                pcr_val = latest["pcr_oi"].iloc[0] if hasattr(latest["pcr_oi"], "iloc") else latest["pcr_oi"]
+                if pcr_val >= 1.3:
+                    pcr_signal = f"🔴 HIGH HEDGING ({pcr_val:.2f}) — bearish"
+                elif pcr_val >= 1.1:
+                    pcr_signal = f"🟡 MODERATE ({pcr_val:.2f}) — mild bearish"
+                elif pcr_val >= 0.8:
+                    pcr_signal = f"⚪ NEUTRAL ({pcr_val:.2f})"
+                elif pcr_val >= 0.6:
+                    pcr_signal = f"🟡 LOW HEDGING ({pcr_val:.2f}) — mild bullish"
+                else:
+                    pcr_signal = f"🟢 EXTREME LOW ({pcr_val:.2f}) — contrarian bullish"
+                print(f"PCR signal: {pcr_signal}")
+
+            except Exception as e:
+                print(f"Warning: PCR load failed: {e}")
+                for col in ["pcr_oi","pcr_vol","pcr_change","pcr_zscore",
+                            "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime"]:
+                    latest[col] = 1.0 if "oi" in col or "vol" in col or "avg" in col else 0.0
+        else:
+            print("PCR history not found — using neutral values")
+            for col in ["pcr_oi","pcr_vol","pcr_change","pcr_zscore",
+                        "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime"]:
+                latest[col] = 1.0 if "oi" in col or "vol" in col or "avg" in col else 0.0
+
     return latest
 
 def get_signal_label(prob):

@@ -240,6 +240,7 @@ with tab1:
     streaks     = load_csv("data/stock_streaks.csv")
     accuracy    = load_csv("data/stock_accuracy.csv")
     fii_dii     = load_csv("data/fii_dii_history.csv")
+    pcr_df      = load_csv("data/pcr_history.csv")
     signals_3d  = load_csv("data/signals_3d.csv")
     metrics_df  = load_csv("data/modeling/model_metrics.csv")
 
@@ -258,6 +259,18 @@ with tab1:
     if not fii_dii.empty:
         fii_latest = float(fii_dii.iloc[-1]["fii_net"])
         dii_latest = float(fii_dii.iloc[-1]["dii_net"])
+
+    pcr_latest     = 1.0
+    pcr_vol_latest = 1.0
+    pcr_change     = 0.0
+    pcr_date       = "N/A"
+    if not pcr_df.empty:
+        pcr_df["date"] = pd.to_datetime(pcr_df["date"])
+        pcr_row        = pcr_df.sort_values("date").iloc[-1]
+        pcr_latest     = float(pcr_row.get("pcr_oi",  1.0))
+        pcr_vol_latest = float(pcr_row.get("pcr_vol", 1.0))
+        pcr_change     = float(pcr_row.get("pcr_change", 0.0))
+        pcr_date       = str(pcr_row["date"].date())
 
     # ── Load news counts for risk scoring ──
     raw_news_path = os.path.join(BASE_DIR, "data/raw_news.csv")
@@ -318,6 +331,10 @@ with tab1:
     elif fed_count > 20:      risk_score += 10; risk_reasons.append("Fed meeting approaching")
     rbi_count = news_counts.get("RBI", 0)
     if rbi_count > 100:       risk_score += 10; risk_reasons.append("RBI policy focus")
+    # PCR contribution to risk
+    if pcr_latest >= 1.3:     risk_score += 15; risk_reasons.append(f"High PCR ({pcr_latest:.2f}) — institutions hedging")
+    elif pcr_latest >= 1.1:   risk_score += 8;  risk_reasons.append(f"Elevated PCR ({pcr_latest:.2f})")
+    elif pcr_latest <= 0.6:   risk_score += 5;  risk_reasons.append(f"Low PCR ({pcr_latest:.2f}) — overconfident market")
 
     # ── SECTION 1: MACRO ENVIRONMENT + ACCURACY ──
     st.markdown("---")
@@ -384,6 +401,27 @@ with tab1:
         if iv:
             i_ic = "⚠️" if iv["value"] > 18 else "✅" if iv["value"] < 14 else "🟡"
             st.markdown(f"{i_ic} **India VIX**: {iv['value']:.1f} ({iv['change']:+.1f}%)")
+
+        # PCR display
+        if not pcr_df.empty:
+            if pcr_latest >= 1.3:
+                pcr_ic  = "🔴"
+                pcr_lbl = "HIGH HEDGING — bearish"
+            elif pcr_latest >= 1.1:
+                pcr_ic  = "🟡"
+                pcr_lbl = "Moderate — mild bearish"
+            elif pcr_latest >= 0.8:
+                pcr_ic  = "⚪"
+                pcr_lbl = "Neutral"
+            elif pcr_latest >= 0.6:
+                pcr_ic  = "🟡"
+                pcr_lbl = "Low hedging — mild bullish"
+            else:
+                pcr_ic  = "🟢"
+                pcr_lbl = "EXTREME LOW — contrarian bullish"
+            chg_str = f" ({pcr_change:+.3f} vs prev)" if pcr_change != 0 else ""
+            st.markdown(f"{pcr_ic} **Nifty PCR**: {pcr_latest:.3f}{chg_str} — {pcr_lbl}")
+            st.caption(f"   Vol PCR: {pcr_vol_latest:.3f}  |  as of {pcr_date}")
 
     with col_v3:
         st.markdown("**System Accuracy (latest run)**")
@@ -534,6 +572,63 @@ with tab1:
         gl    = "🔴 HIGH" if gchg > 1.5 else "🟡 MEDIUM" if gchg > 0 else "🟢 LOW"
         st.markdown(f"**🌐 De-dollarisation / Gold**: {gl}")
         st.caption(f"Gold {gchg:+.1f}% today — central bank demand signal")
+
+    st.markdown("---")
+
+    # ── PCR SECTION ──
+    st.markdown("#### 📊 Options Market Sentiment (Put/Call Ratio)")
+    st.caption("PCR = Total Put OI ÷ Total Call OI. Higher PCR = more hedging = institutions cautious. Source: NSE option chain.")
+
+    if not pcr_df.empty:
+        pcr_col1, pcr_col2, pcr_col3 = st.columns(3)
+
+        with pcr_col1:
+            if pcr_latest >= 1.3:
+                st.error(f"🔴 PCR: {pcr_latest:.3f}\nHIGH HEDGING\nInstitutions buying puts")
+            elif pcr_latest >= 1.1:
+                st.warning(f"🟡 PCR: {pcr_latest:.3f}\nMODERATE\nMild bearish positioning")
+            elif pcr_latest >= 0.8:
+                st.info(f"⚪ PCR: {pcr_latest:.3f}\nNEUTRAL\nBalanced market")
+            elif pcr_latest >= 0.6:
+                st.warning(f"🟡 PCR: {pcr_latest:.3f}\nLOW HEDGING\nMild contrarian buy signal")
+            else:
+                st.success(f"🟢 PCR: {pcr_latest:.3f}\nEXTREME LOW\nStrong contrarian buy signal")
+
+        with pcr_col2:
+            st.metric("OI-based PCR",  f"{pcr_latest:.3f}",
+                      delta=f"{pcr_change:+.3f} vs prev" if pcr_change != 0 else "First reading")
+            st.metric("Volume PCR",    f"{pcr_vol_latest:.3f}")
+
+        with pcr_col3:
+            # Show PCR history mini chart if enough data
+            if len(pcr_df) >= 3:
+                pcr_df_sorted = pcr_df.sort_values("date").tail(20)
+                import plotly.express as px
+                fig_pcr = px.line(
+                    pcr_df_sorted,
+                    x="date", y="pcr_oi",
+                    title="PCR History",
+                    labels={"pcr_oi": "PCR (OI)", "date": ""}
+                )
+                fig_pcr.add_hline(y=1.2, line_dash="dash", line_color="red",
+                                  annotation_text="1.2 = High hedging")
+                fig_pcr.add_hline(y=0.7, line_dash="dash", line_color="green",
+                                  annotation_text="0.7 = Low hedging")
+                fig_pcr.update_layout(height=200, margin=dict(t=30, b=0, l=0, r=0))
+                st.plotly_chart(fig_pcr, use_container_width=True)
+            else:
+                st.info(f"PCR data: {len(pcr_df)} days collected\nChart appears after 3+ days")
+                st.caption(f"Last updated: {pcr_date}")
+
+        st.caption("""
+        **How to read PCR:**
+        🔴 PCR ≥ 1.2 = Institutions heavily buying puts = bearish signal  
+        ⚪ PCR 0.8–1.2 = Neutral / balanced market  
+        🟢 PCR ≤ 0.7 = Very low hedging = often contrarian buy signal  
+        ⚠️ PCR is a contrarian indicator — extremes often signal reversals
+        """)
+    else:
+        st.info("PCR data not yet available. Run `python -m src.fetch_pcr` after market close to start collecting.")
 
     st.markdown("---")
 

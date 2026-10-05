@@ -75,11 +75,12 @@ jobs:
           IST = timezone(timedelta(hours=5, minutes=30))
           ist_hour = datetime.now(IST).hour
           if ist_hour >= 18:
-              print("Post-market: fetching FII/DII...")
+              print("Post-market: fetching FII/DII and PCR...")
               import os
               os.system("python -m src.fetch_fii_dii")
+              os.system("python -m src.fetch_pcr")
           else:
-              print(f"Skipping FII/DII (IST hour: {ist_hour})")
+              print(f"Skipping FII/DII + PCR (IST hour: {ist_hour})")
           PY
           # keep next-day predictions fresh using the last trained model
           python -m src.predict_next || true

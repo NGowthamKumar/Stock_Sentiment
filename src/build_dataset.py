@@ -172,6 +172,66 @@ def main():
 
     df = df.dropna(subset=["smart_score","ret_fwd_1d","ret_lag1"]).copy()
 
+    # ── PCR (Put/Call Ratio) features ──
+    pcr_path = "data/pcr_history.csv"
+    if os.path.exists(pcr_path):
+        try:
+            pcr = pd.read_csv(pcr_path, parse_dates=["date"])
+            pcr["date"] = pd.to_datetime(pcr["date"]).dt.tz_localize(None)
+            pcr = pcr.sort_values("date")
+
+            # Rolling features
+            pcr["pcr_oi_5d_avg"]  = pcr["pcr_oi"].rolling(5,  min_periods=1).mean()
+            pcr["pcr_oi_20d_avg"] = pcr["pcr_oi"].rolling(20, min_periods=1).mean()
+            pcr["pcr_change"]     = pcr["pcr_oi"].diff()  # rising vs falling
+
+            # Z-score: how extreme is today's PCR vs recent history?
+            pcr["pcr_zscore"] = (
+                (pcr["pcr_oi"] - pcr["pcr_oi"].rolling(20, min_periods=5).mean()) /
+                pcr["pcr_oi"].rolling(20, min_periods=5).std().clip(lower=0.01)
+            )
+
+            # Regime signal: -1 bearish, 0 neutral, +1 bullish
+            pcr["pcr_regime"] = 0
+            pcr.loc[pcr["pcr_oi"] >= 1.2, "pcr_regime"] = -1  # high hedging = bearish
+            pcr.loc[pcr["pcr_oi"] <= 0.7, "pcr_regime"] =  1  # low hedging = contrarian bullish
+
+            pcr_cols = ["date","pcr_oi","pcr_vol","pcr_change","pcr_zscore",
+                        "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime"]
+            pcr_cols = [c for c in pcr_cols if c in pcr.columns]
+
+            df = df.merge(pcr[pcr_cols], on="date", how="left")
+
+            # Forward fill (PCR is daily — same value for all tickers on same day)
+            for col in ["pcr_oi","pcr_vol","pcr_change","pcr_zscore",
+                        "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime"]:
+                if col in df.columns:
+                    df[col] = df[col].ffill().fillna(
+                        1.0 if col in ["pcr_oi","pcr_vol","pcr_oi_5d_avg","pcr_oi_20d_avg"] else 0
+                    )
+
+            # Clip extremes
+            if "pcr_oi" in df.columns:
+                df["pcr_oi"]     = df["pcr_oi"].clip(0.3, 3.0)
+                df["pcr_zscore"] = df["pcr_zscore"].clip(-3, 3)
+                df["pcr_change"] = df["pcr_change"].clip(-0.5, 0.5)
+
+            print(f"Merged PCR features → pcr_oi range: {df['pcr_oi'].min():.2f}–{df['pcr_oi'].max():.2f}")
+        except Exception as e:
+            print(f"Warning: PCR merge failed: {e}")
+            for col in ["pcr_oi","pcr_vol","pcr_change","pcr_zscore",
+                        "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime"]:
+                df[col] = 1.0 if "oi" in col or "vol" in col or "avg" in col else 0.0
+    else:
+        print("PCR history not found — defaulting to neutral (1.0)")
+        df["pcr_oi"]       = 1.0
+        df["pcr_vol"]      = 1.0
+        df["pcr_change"]   = 0.0
+        df["pcr_zscore"]   = 0.0
+        df["pcr_oi_5d_avg"] = 1.0
+        df["pcr_oi_20d_avg"]= 1.0
+        df["pcr_regime"]   = 0.0
+
     # ── Macro indicators ──
     macro = fetch_macro_indicators(price_start, price_end)
     if not macro.empty:
