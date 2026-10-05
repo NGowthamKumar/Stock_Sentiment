@@ -272,11 +272,12 @@ with tab1:
         pcr_change     = float(pcr_row.get("pcr_change", 0.0))
         pcr_date       = str(pcr_row["date"].date())
 
-    # ── Load news counts for risk scoring ──
     raw_news_path = os.path.join(BASE_DIR, "data/raw_news.csv")
     news_counts   = {}
     today_str     = datetime.now().strftime("%Y-%m-%d")
 
+    # Try raw_news.csv first (available in local runs)
+    raw_news_loaded = False
     if os.path.exists(raw_news_path):
         try:
             raw_news = load_csv("data/raw_news.csv")
@@ -286,7 +287,6 @@ with tab1:
                 )
                 cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=24)
                 today_news = raw_news[raw_news["published_utc"] >= cutoff]
-                # Fallback: if no articles in last 24h use last 48h
                 if len(today_news) < 50:
                     cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=48)
                     today_news = raw_news[raw_news["published_utc"] >= cutoff]
@@ -309,6 +309,34 @@ with tab1:
                     )
                     if count > 0:
                         news_counts[topic] = count
+                if news_counts:
+                    raw_news_loaded = True
+        except:
+            pass
+
+    # Fallback: estimate from stock_sentiment_summary.csv (always in GitHub)
+    if not raw_news_loaded:
+        try:
+            if not summary.empty:
+                # Use article counts from summary to estimate topics
+                oil_stocks  = ["IOC.NS","BPCL.NS","ONGC.NS","INDIGO.NS","HINDPETRO.NS"]
+                it_stocks   = ["INFY.NS","TCS.NS","HCLTECH.NS","WIPRO.NS","TECHM.NS"]
+                bank_stocks = ["HDFCBANK.NS","ICICIBANK.NS","SBIN.NS","AXISBANK.NS"]
+                fmcg_stocks = ["NESTLEIND.NS","HINDUNILVR.NS","ITC.NS","BRITANNIA.NS"]
+
+                def avg_articles(tickers):
+                    rows = summary[summary["ticker"].isin(tickers)]
+                    return int(rows["total"].sum()) if not rows.empty else 0
+
+                oil_count  = avg_articles(oil_stocks)
+                it_count   = avg_articles(it_stocks)
+                bank_count = avg_articles(bank_stocks)
+                fmcg_count = avg_articles(fmcg_stocks)
+
+                if oil_count  > 0: news_counts["Oil/Crude"]  = oil_count
+                if it_count   > 0: news_counts["IT sector"]  = it_count
+                if bank_count > 0: news_counts["Nifty/Sensex"]= bank_count
+                if fmcg_count > 0: news_counts["FII/DII"]    = fmcg_count
         except:
             pass
 
