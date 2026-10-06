@@ -21,3 +21,5 @@ xgboost
 pyarrow
 pydantic-settings
 lightgbm
+indiaopt
+curl_cffi
