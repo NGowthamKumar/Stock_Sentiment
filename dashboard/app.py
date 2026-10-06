@@ -222,73 +222,71 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
 )
 
 # ================================ MARKET INTELLIGENCE BRIEF ============================
+
+# ============================================================
+# TAB 1 — MARKET INTELLIGENCE BRIEF
+# ============================================================
 with tab1:
 
     st.markdown("## 📊 Market Intelligence Brief")
     st.caption(f"Updated: {fmt_dt()} IST  •  Auto-refreshes each pipeline run")
 
-    # ── IMPORTANT DISCLAIMER ──
     st.warning(
         "⚠️ **Research tool only — not financial advice.** "
-        "This dashboard aggregates publicly available data (RSS news, yfinance prices, NSE FII/DII). "
-        "Macro risk scores are computed from available data only and do NOT include Fed/RBI meeting calendars, "
-        "earnings dates, or options expiry. Always verify independently before making any financial decisions."
+        "This dashboard aggregates publicly available data (RSS news, yfinance, NSE FII/DII, NSE options). "
+        "Macro risk scores do NOT include Fed/RBI meeting calendars or earnings dates. "
+        "Always verify independently before making any financial decisions."
     )
 
-    # Load additional data
+    # ── Load additional data ──
     ens_signals = load_csv("data/ensemble_signals.csv")
     streaks     = load_csv("data/stock_streaks.csv")
     accuracy    = load_csv("data/stock_accuracy.csv")
     fii_dii     = load_csv("data/fii_dii_history.csv")
-    pcr_df      = load_csv("data/pcr_history.csv")
-    signals_3d  = load_csv("data/signals_3d.csv")
     metrics_df  = load_csv("data/modeling/model_metrics.csv")
+    pcr_df      = load_csv("data/pcr_history.csv")
 
-    # Fetch macro
+    # ── Fetch live macro ──
     with st.spinner("Fetching live macro data..."):
         macro = get_macro_snapshot()
 
-    # ── Compute macro risk from available data only ──
+    # ── Compute values ──
     crude_chg  = macro.get("crude_oil", {}).get("change", 0)
     us_vix_val = macro.get("us_vix",    {}).get("value",  15)
     us_vix_chg = macro.get("us_vix",    {}).get("change", 0)
     us_10y_chg = macro.get("us_10y",    {}).get("change", 0)
     us_10y_val = macro.get("us_10y",    {}).get("value",  4.0)
-    fii_latest = 0
-    dii_latest = 0
+    fii_latest = 0; dii_latest = 0
     if not fii_dii.empty:
         fii_latest = float(fii_dii.iloc[-1]["fii_net"])
         dii_latest = float(fii_dii.iloc[-1]["dii_net"])
 
-    pcr_latest     = 1.0
-    pcr_vol_latest = 1.0
-    pcr_change     = 0.0
-    pcr_date       = "N/A"
+    pcr_latest = 1.0; pcr_vol_latest = 1.0
+    pcr_change = 0.0; pcr_date = "N/A"
     if not pcr_df.empty:
         pcr_df["date"] = pd.to_datetime(pcr_df["date"])
         pcr_row        = pcr_df.sort_values("date").iloc[-1]
-        pcr_latest     = float(pcr_row.get("pcr_oi",  1.0))
-        pcr_vol_latest = float(pcr_row.get("pcr_vol", 1.0))
+        pcr_latest     = float(pcr_row.get("pcr_oi",     1.0))
+        pcr_vol_latest = float(pcr_row.get("pcr_vol",    1.0))
         pcr_change     = float(pcr_row.get("pcr_change", 0.0))
         pcr_date       = str(pcr_row["date"].date())
 
+    # ── News counts (fallback from summary) ──
     raw_news_path = os.path.join(BASE_DIR, "data/raw_news.csv")
     news_counts   = {}
+    news_source   = "estimated"
     today_str     = datetime.now().strftime("%Y-%m-%d")
 
-    # Try raw_news.csv first (available in local runs)
-    raw_news_loaded = False
     if os.path.exists(raw_news_path):
         try:
             raw_news = load_csv("data/raw_news.csv")
             if not raw_news.empty and "published_utc" in raw_news.columns:
                 raw_news["published_utc"] = pd.to_datetime(
-                    raw_news["published_utc"], utc=True, errors="coerce"
-                )
-                cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=24)
+                    raw_news["published_utc"], utc=True, errors="coerce")
+                cutoff     = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=24)
                 today_news = raw_news[raw_news["published_utc"] >= cutoff]
                 if len(today_news) < 50:
-                    cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=48)
+                    cutoff     = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=48)
                     today_news = raw_news[raw_news["published_utc"] >= cutoff]
                 topics = {
                     "Oil/Crude":      ["crude","brent","oil price"],
@@ -303,77 +301,68 @@ with tab1:
                     "FII/DII":        ["fii","dii","foreign institutional"],
                 }
                 for topic, kws in topics.items():
-                    count = sum(
-                        today_news["title"].str.lower().str.contains(kw, na=False).sum()
-                        for kw in kws
-                    )
+                    count = sum(today_news["title"].str.lower().str.contains(kw, na=False).sum() for kw in kws)
                     if count > 0:
                         news_counts[topic] = count
                 if news_counts:
-                    raw_news_loaded = True
+                    news_source = "live"
         except:
             pass
 
-    # Fallback: estimate from stock_sentiment_summary.csv (always in GitHub)
-    if not raw_news_loaded:
+    if not news_counts and not summary.empty:
         try:
-            if not summary.empty:
-                # Use article counts from summary to estimate topics
-                oil_stocks  = ["IOC.NS","BPCL.NS","ONGC.NS","INDIGO.NS","HINDPETRO.NS"]
-                it_stocks   = ["INFY.NS","TCS.NS","HCLTECH.NS","WIPRO.NS","TECHM.NS"]
-                bank_stocks = ["HDFCBANK.NS","ICICIBANK.NS","SBIN.NS","AXISBANK.NS"]
-                fmcg_stocks = ["NESTLEIND.NS","HINDUNILVR.NS","ITC.NS","BRITANNIA.NS"]
-
-                def avg_articles(tickers):
-                    rows = summary[summary["ticker"].isin(tickers)]
-                    return int(rows["total"].sum()) if not rows.empty else 0
-
-                oil_count  = avg_articles(oil_stocks)
-                it_count   = avg_articles(it_stocks)
-                bank_count = avg_articles(bank_stocks)
-                fmcg_count = avg_articles(fmcg_stocks)
-
-                if oil_count  > 0: news_counts["Oil/Crude"]  = oil_count
-                if it_count   > 0: news_counts["IT sector"]  = it_count
-                if bank_count > 0: news_counts["Nifty/Sensex"]= bank_count
-                if fmcg_count > 0: news_counts["FII/DII"]    = fmcg_count
+            oil_stocks  = ["IOC.NS","BPCL.NS","ONGC.NS","INDIGO.NS","HINDPETRO.NS"]
+            it_stocks   = ["INFY.NS","TCS.NS","HCLTECH.NS","WIPRO.NS","TECHM.NS"]
+            bank_stocks = ["HDFCBANK.NS","ICICIBANK.NS","SBIN.NS","AXISBANK.NS"]
+            fmcg_stocks = ["NESTLEIND.NS","HINDUNILVR.NS","ITC.NS","BRITANNIA.NS"]
+            def avg_articles(tickers):
+                rows = summary[summary["ticker"].isin(tickers)]
+                return int(rows["total"].sum()) if not rows.empty else 0
+            oc = avg_articles(oil_stocks)
+            ic = avg_articles(it_stocks)
+            bc = avg_articles(bank_stocks)
+            fc = avg_articles(fmcg_stocks)
+            if oc > 0: news_counts["Oil/Crude"]   = oc
+            if ic > 0: news_counts["IT sector"]   = ic
+            if bc > 0: news_counts["Banking"]     = bc
+            if fc > 0: news_counts["FMCG"]        = fc
+            news_source = "estimated"
         except:
             pass
 
-    # Compute risk score
-    risk_score   = 0
-    risk_reasons = []
-    if us_vix_val > 25:       risk_score += 30; risk_reasons.append(f"US VIX high ({us_vix_val:.1f})")
-    elif us_vix_val > 20:     risk_score += 15; risk_reasons.append(f"US VIX elevated ({us_vix_val:.1f})")
-    if crude_chg > 3:         risk_score += 25; risk_reasons.append(f"Crude surging (+{crude_chg:.1f}%)")
-    elif crude_chg > 1.5:     risk_score += 12; risk_reasons.append(f"Crude rising (+{crude_chg:.1f}%)")
-    if us_10y_chg > 0.5:      risk_score += 15; risk_reasons.append(f"US yield rising (+{us_10y_chg:.2f}%)")
-    if us_10y_val > 4.8:      risk_score += 10; risk_reasons.append(f"US 10yr near 5% danger zone ({us_10y_val:.2f}%)")
-    if fii_latest < -5000:    risk_score += 25; risk_reasons.append("Heavy FII selling")
-    elif fii_latest < -2000:  risk_score += 12; risk_reasons.append("FII selling")
-    elif fii_latest < -500:   risk_score += 8;  risk_reasons.append("FII mild selling")
-    if us_vix_chg > 5:        risk_score += 10; risk_reasons.append("Global fear rising")
-    # Add Fed/RBI news count to risk
+    # ── Risk score ──
+    risk_score = 0; risk_reasons = []
+    if us_vix_val > 25:      risk_score += 30; risk_reasons.append(f"US VIX high ({us_vix_val:.1f})")
+    elif us_vix_val > 20:    risk_score += 15; risk_reasons.append(f"US VIX elevated ({us_vix_val:.1f})")
+    if crude_chg > 3:        risk_score += 25; risk_reasons.append(f"Crude surging (+{crude_chg:.1f}%)")
+    elif crude_chg > 1.5:    risk_score += 12; risk_reasons.append(f"Crude rising (+{crude_chg:.1f}%)")
+    if us_10y_chg > 0.5:     risk_score += 15; risk_reasons.append(f"US yield rising (+{us_10y_chg:.2f}%)")
+    if us_10y_val > 4.8:     risk_score += 10; risk_reasons.append(f"US 10yr near 5% ({us_10y_val:.2f}%)")
+    if fii_latest < -5000:   risk_score += 25; risk_reasons.append("Heavy FII selling")
+    elif fii_latest < -2000: risk_score += 12; risk_reasons.append("FII selling")
+    elif fii_latest < -500:  risk_score += 8;  risk_reasons.append("FII mild selling")
+    if us_vix_chg > 5:       risk_score += 10; risk_reasons.append("Global fear rising")
     fed_count = news_counts.get("Fed/Rate", 0)
-    if fed_count > 50:        risk_score += 20; risk_reasons.append("Fed decision imminent")
-    elif fed_count > 20:      risk_score += 10; risk_reasons.append("Fed meeting approaching")
+    if fed_count > 50:       risk_score += 20; risk_reasons.append("Fed decision imminent")
+    elif fed_count > 20:     risk_score += 10; risk_reasons.append("Fed meeting approaching")
     rbi_count = news_counts.get("RBI", 0)
-    if rbi_count > 100:       risk_score += 10; risk_reasons.append("RBI policy focus")
-    # PCR contribution to risk
-    if pcr_latest >= 1.3:     risk_score += 15; risk_reasons.append(f"High PCR ({pcr_latest:.2f}) — institutions hedging")
-    elif pcr_latest >= 1.1:   risk_score += 8;  risk_reasons.append(f"Elevated PCR ({pcr_latest:.2f})")
-    elif pcr_latest <= 0.6:   risk_score += 5;  risk_reasons.append(f"Low PCR ({pcr_latest:.2f}) — overconfident market")
+    if rbi_count > 100:      risk_score += 10; risk_reasons.append("RBI policy focus")
+    if pcr_latest >= 1.3:    risk_score += 15; risk_reasons.append(f"High PCR ({pcr_latest:.2f}) — institutions hedging")
+    elif pcr_latest >= 1.1:  risk_score += 8;  risk_reasons.append(f"Elevated PCR ({pcr_latest:.2f})")
+    elif pcr_latest <= 0.6:  risk_score += 5;  risk_reasons.append(f"Low PCR ({pcr_latest:.2f}) — overconfident")
 
-    # ── SECTION 1: MACRO ENVIRONMENT + ACCURACY ──
     st.markdown("---")
-    st.markdown("#### 📊 Current Macro Environment")
-    st.caption("Based on: yfinance (prices), NSE (FII/DII), RSS feeds (news counts). Does NOT include Fed/RBI meeting calendars.")
 
-    col_v1, col_v2, col_v3 = st.columns([1, 1.5, 1.5])
+    # ══════════════════════════════════════════════════
+    # SECTION 1 — MACRO ENVIRONMENT
+    # ══════════════════════════════════════════════════
+    st.markdown("#### 📊 Macro Environment")
+    st.caption("Sources: yfinance (prices), NSE (FII/DII), NSE options (PCR). Does NOT include Fed/RBI calendars.")
 
-    with col_v1:
-        st.markdown("**Macro Headwind Score**")
-        st.caption("Higher = more macro pressure on markets")
+    col_risk, col_macro, col_acc = st.columns([1, 1.4, 1.2])
+
+    with col_risk:
+        st.markdown("**Headwind Score**")
         if risk_score >= 50:
             st.error(f"### 🔴 HIGH\n{risk_score}/100")
         elif risk_score >= 25:
@@ -381,15 +370,15 @@ with tab1:
         else:
             st.success(f"### 🟢 LOW\n{risk_score}/100")
         if risk_reasons:
-            st.caption("Drivers detected:\n" + "\n".join(f"• {r}" for r in risk_reasons[:4]))
-        st.caption("⚠️ This score uses only data your system fetches. Undetected events (Fed calendar, earnings) are NOT reflected here.")
+            st.caption("Drivers:\n" + "\n".join(f"• {r}" for r in risk_reasons[:3]))
+        st.caption("⚠️ Based only on fetched data")
 
-    with col_v2:
-        st.markdown("**Live Macro Data**")
+    with col_macro:
+        st.markdown("**Live Data**")
         crude = macro.get("crude_oil", {})
         if crude:
-            ic = "✅" if crude["change"] < -1 else "❌" if crude["change"] > 2 else "⚠️"
-            st.markdown(f"{ic} **Brent Crude**: ${crude['value']:.1f} ({crude['change']:+.1f}%)")
+            ci = "✅" if crude["change"] < -1 else "❌" if crude["change"] > 2 else "⚠️"
+            st.markdown(f"{ci} **Crude**: ${crude['value']:.1f} ({crude['change']:+.1f}%)")
 
         fii_ic = "🔴" if fii_latest < -3000 else "⚠️" if fii_latest < 0 else "🟢"
         dii_ic = "🟢" if dii_latest > 1000 else "🟡"
@@ -397,69 +386,48 @@ with tab1:
 
         gold = macro.get("gold", {})
         if gold:
-            g_ic = "📈" if gold["change"] > 0.5 else "📉" if gold["change"] < -0.5 else "➡️"
-            st.markdown(f"{g_ic} **Gold**: ${gold['value']:,.0f} ({gold['change']:+.1f}%)")
+            gi = "📈" if gold["change"] > 0.5 else "📉" if gold["change"] < -0.5 else "➡️"
+            st.markdown(f"{gi} **Gold**: ${gold['value']:,.0f} ({gold['change']:+.1f}%)")
 
         uv = macro.get("us_vix", {})
         if uv:
-            v_ic = "✅" if uv["change"] < -3 else "⚠️" if uv["value"] > 20 else "🟡"
-            st.markdown(f"{v_ic} **US VIX**: {uv['value']:.1f} ({uv['change']:+.1f}%)")
+            vi = "✅" if uv["change"] < -3 else "⚠️" if uv["value"] > 20 else "🟡"
+            st.markdown(f"{vi} **US VIX**: {uv['value']:.1f} ({uv['change']:+.1f}%)")
 
         u10 = macro.get("us_10y", {})
         if u10:
-            y_ic = "⚠️" if u10["value"] > 4.8 else "🟡" if u10["change"] > 0.3 else "✅"
-            st.markdown(f"{y_ic} **US 10yr**: {u10['value']:.2f}% ({u10['change']:+.2f}%)")
+            yi = "⚠️" if u10["value"] > 4.8 else "🟡" if u10["change"] > 0.3 else "✅"
+            st.markdown(f"{yi} **US 10yr**: {u10['value']:.2f}% ({u10['change']:+.2f}%)")
 
         sp = macro.get("sp500", {})
         if sp:
-            s_ic = "✅" if sp["change"] > 0.3 else "⚠️" if sp["change"] < -0.5 else "🟡"
-            st.markdown(f"{s_ic} **S&P 500**: {sp['value']:,.0f} ({sp['change']:+.1f}%)")
+            si = "✅" if sp["change"] > 0.3 else "⚠️" if sp["change"] < -0.5 else "🟡"
+            st.markdown(f"{si} **S&P 500**: {sp['value']:,.0f} ({sp['change']:+.1f}%)")
 
-        usdvix = macro.get("usd_inr", {})
-        if usdvix:
-            r_ic = "⚠️" if usdvix["change"] > 0.3 else "✅"
-            st.markdown(f"{r_ic} **USD/INR**: {usdvix['value']:.2f} ({usdvix['change']:+.2f}%)")
-            
-        nifty = macro.get("nifty50", {})
-        if nifty:
-            n_ic = "✅" if nifty["change"] > 0.3 else "⚠️" if nifty["change"] < -0.5 else "🟡"
-            st.markdown(f"{n_ic} **Nifty 50**: {nifty['value']:,.0f} ({nifty['change']:+.1f}%)")
+        ur = macro.get("usd_inr", {})
+        if ur:
+            ri = "⚠️" if ur["change"] > 0.3 else "✅"
+            st.markdown(f"{ri} **USD/INR**: {ur['value']:.2f} ({ur['change']:+.2f}%)")
+
+        nf = macro.get("nifty50", {})
+        if nf:
+            ni = "✅" if nf["change"] > 0.3 else "⚠️" if nf["change"] < -0.5 else "🟡"
+            st.markdown(f"{ni} **Nifty 50**: {nf['value']:,.0f} ({nf['change']:+.1f}%)")
 
         iv = macro.get("india_vix", {})
         if iv:
-            i_ic = "⚠️" if iv["value"] > 18 else "✅" if iv["value"] < 14 else "🟡"
-            st.markdown(f"{i_ic} **India VIX**: {iv['value']:.1f} ({iv['change']:+.1f}%)")
+            ii = "⚠️" if iv["value"] > 18 else "✅" if iv["value"] < 14 else "🟡"
+            st.markdown(f"{ii} **India VIX**: {iv['value']:.1f} ({iv['change']:+.1f}%)")
 
-        # PCR display
-        if not pcr_df.empty:
-            if pcr_latest >= 1.3:
-                pcr_ic  = "🔴"
-                pcr_lbl = "HIGH HEDGING — bearish"
-            elif pcr_latest >= 1.1:
-                pcr_ic  = "🟡"
-                pcr_lbl = "Moderate — mild bearish"
-            elif pcr_latest >= 0.8:
-                pcr_ic  = "⚪"
-                pcr_lbl = "Neutral"
-            elif pcr_latest >= 0.6:
-                pcr_ic  = "🟡"
-                pcr_lbl = "Low hedging — mild bullish"
-            else:
-                pcr_ic  = "🟢"
-                pcr_lbl = "EXTREME LOW — contrarian bullish"
-            chg_str = f" ({pcr_change:+.3f} vs prev)" if pcr_change != 0 else ""
-            st.markdown(f"{pcr_ic} **Nifty PCR**: {pcr_latest:.3f}{chg_str} — {pcr_lbl}")
-            st.caption(f"   Vol PCR: {pcr_vol_latest:.3f}  |  as of {pcr_date}")
-
-    with col_v3:
-        st.markdown("**System Accuracy (latest run)**")
+    with col_acc:
+        st.markdown("**System Accuracy**")
         if not metrics_df.empty:
             metrics_df["train_date"] = pd.to_datetime(metrics_df["train_date"], errors="coerce")
             for model_name, label in [
-                ("Ridge",               "Ridge"),
-                ("Voting_Ensemble",     "Ensemble 1d"),
-                ("Voting_3Day_Ensemble","Ensemble 3d"),
-                ("XGBoost_Classifier",  "XGBoost 1d"),
+                ("Ridge",                "Ridge"),
+                ("Voting_Ensemble",      "Ensemble 1d"),
+                ("Voting_3Day_Ensemble", "Ensemble 3d"),
+                ("XGBoost_Classifier",   "XGBoost 1d"),
             ]:
                 rows = metrics_df[metrics_df["model"] == model_name].sort_values("train_date")
                 if not rows.empty:
@@ -471,257 +439,237 @@ with tab1:
 
     st.markdown("---")
 
-    # ── SECTION 2: SECTOR HEATMAP ──
-    st.markdown("#### 🗺️ Sector Signals (based on available macro data)")
-    st.caption("Derived from: Nifty IT/Bank change (yfinance), Crude oil change (yfinance), India/US VIX")
-    sectors = get_sector_heatmap(macro)
-    sec_cols = st.columns(min(4, len(sectors)))
+    # ══════════════════════════════════════════════════
+    # SECTION 2 — OPTIONS PCR
+    # ══════════════════════════════════════════════════
+    st.markdown("#### 📊 Options Market Sentiment (PCR)")
+    st.caption("Put/Call Ratio — higher = more hedging = institutions cautious. Source: NSE option chain.")
+
+    if not pcr_df.empty:
+        pcr_c1, pcr_c2, pcr_c3 = st.columns([1, 1, 1.5])
+
+        with pcr_c1:
+            if pcr_latest >= 1.3:
+                st.error(f"**🔴 HIGH HEDGING**\nPCR: {pcr_latest:.3f}\nInstitutions buying puts")
+            elif pcr_latest >= 1.1:
+                st.warning(f"**🟡 MODERATE**\nPCR: {pcr_latest:.3f}\nMild bearish positioning")
+            elif pcr_latest >= 0.8:
+                st.info(f"**⚪ NEUTRAL**\nPCR: {pcr_latest:.3f}\nBalanced market")
+            elif pcr_latest >= 0.6:
+                st.warning(f"**🟡 LOW HEDGING**\nPCR: {pcr_latest:.3f}\nMild contrarian buy")
+            else:
+                st.success(f"**🟢 EXTREME LOW**\nPCR: {pcr_latest:.3f}\nContrarian buy signal")
+
+        with pcr_c2:
+            chg_str = f"{pcr_change:+.3f}" if pcr_change != 0 else "First reading"
+            st.metric("OI-based PCR",  f"{pcr_latest:.3f}", delta=chg_str)
+            st.metric("Volume PCR",    f"{pcr_vol_latest:.3f}")
+            st.caption(f"As of {pcr_date}")
+
+        with pcr_c3:
+            if len(pcr_df) >= 3:
+                pcr_sorted = pcr_df.sort_values("date").tail(20)
+                fig_pcr = px.line(pcr_sorted, x="date", y="pcr_oi",
+                                  title="PCR History",
+                                  labels={"pcr_oi": "PCR", "date": ""})
+                fig_pcr.add_hline(y=1.2, line_dash="dash", line_color="red",   annotation_text="1.2 bearish")
+                fig_pcr.add_hline(y=0.7, line_dash="dash", line_color="green", annotation_text="0.7 bullish")
+                fig_pcr.update_layout(height=160, margin=dict(t=25,b=0,l=0,r=0))
+                st.plotly_chart(fig_pcr, use_container_width=True)
+            else:
+                st.caption(f"Chart appears after 3+ days of data\n({len(pcr_df)} day collected so far)")
+
+        st.caption("🔴 PCR ≥ 1.2 = heavy hedging = bearish  |  ⚪ 0.8–1.2 = neutral  |  🟢 PCR ≤ 0.7 = low hedging = contrarian buy")
+    else:
+        st.info("PCR data collecting — run `python -m src.fetch_pcr` after market close")
+
+    st.markdown("---")
+
+    # ══════════════════════════════════════════════════
+    # SECTION 3 — SECTOR HEATMAP
+    # ══════════════════════════════════════════════════
+    st.markdown("#### 🗺️ Sector Signals")
+    st.caption("Based on: Nifty IT/Bank change (yfinance), crude oil change, India/US VIX")
+
+    sectors  = get_sector_heatmap(macro)
+    n_cols   = min(4, len(sectors))
+    sec_cols = st.columns(n_cols)
     for i, (name, icon, status, reason) in enumerate(sectors):
-        with sec_cols[i % len(sec_cols)]:
+        with sec_cols[i % n_cols]:
             st.markdown(f"{icon} **{name}**")
             st.caption(f"{status} — {reason}")
 
     st.markdown("---")
 
-    # ── SECTION 3: TOP SIGNALS + AVOID ──
+    # ══════════════════════════════════════════════════
+    # SECTION 4 — SIGNALS
+    # ══════════════════════════════════════════════════
     col_buy, col_avoid = st.columns(2)
 
     with col_buy:
         st.markdown("#### 🏆 High-Trust Signals")
-        st.caption(
-            "Trust Score = 40% historical accuracy + 35% win rate (10d) + 25% current ensemble signal. "
-            "Based on your system's own past prediction history."
-        )
+        st.caption("Trust = 40% historical accuracy + 35% win rate + 25% current signal")
 
         top_signals = get_top_signals(accuracy, streaks, ens_signals, summary)
         if not top_signals.empty:
-            medals = ["🥇", "🥈", "🥉"]
+            medals = ["🥇","🥈","🥉"]
             for i, (_, row) in enumerate(top_signals.iterrows()):
-                if i >= 3:
-                    break
-                tk        = row["ticker"].replace(".NS", "")
-                trust     = row["trust_score"]
-                bar       = "█" * int(trust/10) + "░" * (10-int(trust/10))
-                t_color   = "🟢" if trust >= 75 else "🟡" if trust >= 60 else "🔴"
-                streak    = int(row.get("pos_day_streak", 0))
-                win_rate  = row.get("win_rate_10d", 0)
-                combined  = row.get("combined_acc", 0)
-                ens_prob  = row.get("ensemble_probability", 50)
-                total_sig = int(row.get("total_signals", 0))
-                ss        = row.get("smart_score", 0)
-
+                if i >= 3: break
+                tk       = row["ticker"].replace(".NS","")
+                trust    = row["trust_score"]
+                bar      = "█" * int(trust/10) + "░" * (10-int(trust/10))
+                t_color  = "🟢" if trust >= 75 else "🟡" if trust >= 60 else "🔴"
+                streak   = int(row.get("pos_day_streak",  0))
+                win_rate = row.get("win_rate_10d",         0)
+                combined = row.get("combined_acc",          0)
+                ens_prob = row.get("ensemble_probability",  50)
+                total_s  = int(row.get("total_signals",    0))
+                ss       = row.get("smart_score",           0)
                 with st.expander(f"{medals[i]} **{tk}** — {t_color} Trust: {trust:.0f}% | {bar}"):
                     c1, c2 = st.columns(2)
-                    c1.metric("Win Rate (10d)",   f"{win_rate:.1f}%")
-                    c2.metric("Positive Streak",   f"{streak} days 🔥")
+                    c1.metric("Win Rate (10d)",  f"{win_rate:.1f}%")
+                    c2.metric("Streak",           f"{streak} days 🔥")
                     c3, c4 = st.columns(2)
-                    c3.metric("Historical Acc.",   f"{combined:.1f}%")
-                    c4.metric("Ensemble Signal",   f"{ens_prob:.1f}%")
+                    c3.metric("Historical Acc.", f"{combined:.1f}%")
+                    c4.metric("Ensemble Signal", f"{ens_prob:.1f}%")
                     c5, c6 = st.columns(2)
-                    c5.metric("Total Signals",     str(total_sig))
-                    c6.metric("SmartScore",        f"{ss:.1f}")
-                    st.caption(
-                        "⚠️ Past accuracy does not guarantee future returns. "
-                        "This is a research signal, not financial advice."
-                    )
+                    c5.metric("Total Signals",   str(total_s))
+                    c6.metric("SmartScore",      f"{ss:.1f}")
+                    st.caption("⚠️ Past accuracy ≠ future returns. Research signal only.")
         else:
-            st.info("Insufficient signal history. Check back after more trading days.")
+            st.info("Insufficient history. Check back after more trading days.")
 
     with col_avoid:
-        st.markdown("#### ⚠️ Weak Signals (Negative Sentiment)")
-        st.caption("Stocks with SmartScore < 35 and negative ML signals over last 10 days")
+        st.markdown("#### ⚠️ Weak Signals")
+        st.caption("SmartScore < 35 and negative ML signals over last 10 days")
 
         avoid_df = get_avoid_list(summary, ens_signals)
         if not avoid_df.empty:
             for _, row in avoid_df.iterrows():
-                tk     = row["ticker"].replace(".NS", "")
+                tk     = row["ticker"].replace(".NS","")
                 ss     = row["smart_score"]
                 reason = get_avoid_reason(row["ticker"], ss)
                 ep     = row.get("ensemble_probability", 50)
                 with st.expander(f"⚠️ **{tk}** — SmartScore: {ss:.0f}/100"):
-                    st.markdown(f"**Reason for weak signal:** {reason}")
+                    st.markdown(f"**Why:** {reason}")
                     if pd.notna(ep):
-                        st.metric("Ensemble Signal", f"{ep:.1f}%",
+                        st.metric("Ensemble", f"{ep:.1f}%",
                                   delta="Bearish" if ep < 45 else "Neutral",
                                   delta_color="inverse")
-                    st.caption("SmartScore < 35 = negative sentiment dominates last 10 days of news")
         else:
             st.info("No strong negative signals today")
 
     st.markdown("---")
 
-    # ── SECTION 4: KEY DRIVERS ──
-    st.markdown("#### 📰 News Volume by Topic Today")
-    st.caption("Article counts from RSS feeds — higher count = more coverage of that topic today")
+    # ══════════════════════════════════════════════════
+    # SECTION 5 — NEWS + GEOPOLITICAL (side by side)
+    # ══════════════════════════════════════════════════
+    col_news, col_geo = st.columns(2)
 
-    if news_counts:
-        sorted_topics = sorted(news_counts.items(), key=lambda x: x[1], reverse=True)
-        icon_map = {
-            "Oil/Crude":"🛢️","Iran/Hormuz":"🌍","Fed/Rate":"🇺🇸",
-            "RBI":"🏛️","Gold":"💰","IT sector":"💻",
-            "FII/DII":"💵","Nifty/Sensex":"📈",
-            "Semiconductors":"🔧","Rupee":"₹"
-        }
-        n_cols = min(5, len(sorted_topics))
-        drv_cols = st.columns(n_cols)
-        for i, (topic, count) in enumerate(sorted_topics[:n_cols]):
-            with drv_cols[i]:
-                ic = icon_map.get(topic, "📰")
-                st.metric(f"{ic} {topic}", f"{count} articles")
-        st.caption("Note: Article count ≠ market impact. Use as a qualitative indicator of what the market is focused on today.")
-    else:
-        st.info("News data loading... Run pipeline to update")
+    with col_news:
+        st.markdown("#### 📰 News Volume by Topic")
+        if news_source == "estimated":
+            st.caption("Estimated from stock article counts (exact counts in local runs)")
+        else:
+            st.caption("Article counts from RSS feeds — last 24-48h")
 
-    st.markdown("---")
+        if news_counts:
+            sorted_topics = sorted(news_counts.items(), key=lambda x: x[1], reverse=True)
+            icon_map = {
+                "Oil/Crude":"🛢️","Iran/Hormuz":"🌍","Fed/Rate":"🇺🇸",
+                "RBI":"🏛️","Gold":"💰","IT sector":"💻",
+                "FII/DII":"💵","Nifty/Sensex":"📈","Banking":"🏦",
+                "FMCG":"🛒","Semiconductors":"🔧","Rupee":"₹"
+            }
+            for topic, count in sorted_topics[:6]:
+                ic = icon_map.get(topic,"📰")
+                st.markdown(f"{ic} **{topic}**: {count} articles")
+        else:
+            st.info("News data loading...")
 
-    # ── SECTION 5: GEOPOLITICAL SIGNALS FROM NEWS ──
-    st.markdown("#### 🌍 Geopolitical Signals (based on news article counts)")
-    st.caption("Levels derived from today's article counts only — not from real-time intelligence sources")
-    geo1, geo2 = st.columns(2)
+    with col_geo:
+        st.markdown("#### 🌍 Geopolitical Signals")
+        st.caption("Levels from article counts + macro data")
 
-    with geo1:
         iran  = news_counts.get("Iran/Hormuz", 0)
         il    = "🔴 HIGH" if iran > 50 else "🟡 MEDIUM" if iran > 20 else "🟢 LOW"
         st.markdown(f"**🇮🇷 Iran/Hormuz**: {il}")
-        st.caption(f"{iran} articles today — crude & shipping disruption news")
+        st.caption(f"{iran} articles — crude & shipping risk")
 
         fed   = news_counts.get("Fed/Rate", 0)
         fl    = "🔴 HIGH" if fed > 50 else "🟡 MEDIUM" if fed > 20 else "🟢 LOW"
         st.markdown(f"**🇺🇸 US Fed**: {fl}")
-        st.caption(f"{fed} articles today — rate expectations drive FII flows")
+        st.caption(f"{fed} articles — rate expectations")
 
-    with geo2:
         u10v  = macro.get("us_10y", {}).get("value", 4.5)
         jl    = "🔴 HIGH" if u10v > 4.9 else "🟡 MEDIUM" if u10v > 4.7 else "🟢 LOW"
-        st.markdown(f"**🇯🇵 Japan / Treasury selloff**: {jl}")
-        st.caption(f"US 10yr at {u10v:.2f}% — proxy for Treasury demand pressure")
+        st.markdown(f"**🇯🇵 Japan / Treasuries**: {jl}")
+        st.caption(f"US 10yr at {u10v:.2f}% — yield pressure proxy")
 
         gchg  = macro.get("gold", {}).get("change", 0)
         gl    = "🔴 HIGH" if gchg > 1.5 else "🟡 MEDIUM" if gchg > 0 else "🟢 LOW"
         st.markdown(f"**🌐 De-dollarisation / Gold**: {gl}")
-        st.caption(f"Gold {gchg:+.1f}% today — central bank demand signal")
+        st.caption(f"Gold {gchg:+.1f}% — safe haven demand")
 
     st.markdown("---")
 
-    # ── PCR SECTION ──
-    st.markdown("#### 📊 Options Market Sentiment (Put/Call Ratio)")
-    st.caption("PCR = Total Put OI ÷ Total Call OI. Higher PCR = more hedging = institutions cautious. Source: NSE option chain.")
-
-    if not pcr_df.empty:
-        pcr_col1, pcr_col2, pcr_col3 = st.columns(3)
-
-        with pcr_col1:
-            if pcr_latest >= 1.3:
-                st.error(f"🔴 PCR: {pcr_latest:.3f}\nHIGH HEDGING\nInstitutions buying puts")
-            elif pcr_latest >= 1.1:
-                st.warning(f"🟡 PCR: {pcr_latest:.3f}\nMODERATE\nMild bearish positioning")
-            elif pcr_latest >= 0.8:
-                st.info(f"⚪ PCR: {pcr_latest:.3f}\nNEUTRAL\nBalanced market")
-            elif pcr_latest >= 0.6:
-                st.warning(f"🟡 PCR: {pcr_latest:.3f}\nLOW HEDGING\nMild contrarian buy signal")
-            else:
-                st.success(f"🟢 PCR: {pcr_latest:.3f}\nEXTREME LOW\nStrong contrarian buy signal")
-
-        with pcr_col2:
-            st.metric("OI-based PCR",  f"{pcr_latest:.3f}",
-                      delta=f"{pcr_change:+.3f} vs prev" if pcr_change != 0 else "First reading")
-            st.metric("Volume PCR",    f"{pcr_vol_latest:.3f}")
-
-        with pcr_col3:
-            # Show PCR history mini chart if enough data
-            if len(pcr_df) >= 3:
-                pcr_df_sorted = pcr_df.sort_values("date").tail(20)
-                import plotly.express as px
-                fig_pcr = px.line(
-                    pcr_df_sorted,
-                    x="date", y="pcr_oi",
-                    title="PCR History",
-                    labels={"pcr_oi": "PCR (OI)", "date": ""}
-                )
-                fig_pcr.add_hline(y=1.2, line_dash="dash", line_color="red",
-                                  annotation_text="1.2 = High hedging")
-                fig_pcr.add_hline(y=0.7, line_dash="dash", line_color="green",
-                                  annotation_text="0.7 = Low hedging")
-                fig_pcr.update_layout(height=200, margin=dict(t=30, b=0, l=0, r=0))
-                st.plotly_chart(fig_pcr, use_container_width=True)
-            else:
-                st.info(f"PCR data: {len(pcr_df)} days collected\nChart appears after 3+ days")
-                st.caption(f"Last updated: {pcr_date}")
-
-        st.caption("""
-        **How to read PCR:**
-        🔴 PCR ≥ 1.2 = Institutions heavily buying puts = bearish signal  
-        ⚪ PCR 0.8–1.2 = Neutral / balanced market  
-        🟢 PCR ≤ 0.7 = Very low hedging = often contrarian buy signal  
-        ⚠️ PCR is a contrarian indicator — extremes often signal reversals
-        """)
-    else:
-        st.info("PCR data not yet available. Run `python -m src.fetch_pcr` after market close to start collecting.")
-
-    st.markdown("---")
-
-    # ── SECTION 6: TOMORROW'S SIGNALS ──
+    # ══════════════════════════════════════════════════
+    # SECTION 6 — TOMORROW'S OUTLOOK
+    # ══════════════════════════════════════════════════
     st.markdown("#### 🔮 What to Watch Tomorrow")
-    st.caption("Based on current trends in data your system can see — NOT a forecast")
+    st.caption("Based on current data trends — NOT a forecast")
+
     tomorrow = get_tomorrow_outlook(macro, fii_dii, news_counts)
     if tomorrow:
-        for icon, event, implication in tomorrow:
-            st.markdown(f"{icon} **{event}**")
-            st.caption(f"→ {implication}")
+        t_cols = st.columns(min(3, len(tomorrow)))
+        for i, (icon, event, implication) in enumerate(tomorrow):
+            with t_cols[i % len(t_cols)]:
+                st.markdown(f"{icon} **{event}**")
+                st.caption(f"→ {implication}")
     else:
-        st.info("No major risk signals detected in current data for tomorrow")
+        st.success("✅ No major risk signals detected in current data")
 
     st.markdown("---")
 
-    # ── SECTION 7: ORIGINAL DATA (collapsed) ──
+    # ══════════════════════════════════════════════════
+    # COLLAPSED SECTIONS
+    # ══════════════════════════════════════════════════
     with st.expander("📋 Full SmartScore Table", expanded=False):
-        cols  = ["ticker","smart_score","S_recency","S_events","S_breadth","S_volume","pos","neg","total"]
-        show  = [c for c in cols if c in summary.columns]
+        cols = ["ticker","smart_score","S_recency","S_events","S_breadth","S_volume","pos","neg","total"]
+        show = [c for c in cols if c in summary.columns]
         st.dataframe(summary[show].sort_values("smart_score", ascending=False),
                      use_container_width=True, hide_index=True)
 
     with st.expander("📊 SmartScore Charts", expanded=False):
-        topn = st.slider("Top N", 5, 20, 10, key="topn_overview")
+        topn   = st.slider("Top N", 5, 20, 10, key="topn_overview")
         top_df = summary.nlargest(topn, "smart_score")
-        fig = px.bar(top_df, x="ticker", y="smart_score", color="smart_score",
-                     title=f"Top {topn} Smart Scores", color_continuous_scale="Blues")
+        fig    = px.bar(top_df, x="ticker", y="smart_score", color="smart_score",
+                        title=f"Top {topn} Smart Scores", color_continuous_scale="Blues")
         st.plotly_chart(fig, use_container_width=True)
-
         comp_cols = [c for c in ["S_recency","S_events","S_breadth","S_volume"] if c in summary.columns]
         if comp_cols:
-            comp_df = summary[["ticker", *comp_cols]].melt(
-                id_vars="ticker", var_name="component", value_name="score"
-            )
-            figc = px.bar(comp_df, x="ticker", y="score", color="component",
-                          barmode="group", title="Component Scores (0-100)")
+            comp_df = summary[["ticker",*comp_cols]].melt(id_vars="ticker", var_name="component", value_name="score")
+            figc    = px.bar(comp_df, x="ticker", y="score", color="component",
+                             barmode="group", title="Component Scores (0-100)")
             st.plotly_chart(figc, use_container_width=True)
 
     with st.expander("ℹ️ About SmartScore & Trust Score", expanded=False):
         st.markdown("""
-        **SmartScore** (0-100) combines:
-        - **S_recency** (45%) — EWMA sentiment: 8h half-life for 1d predictions, 36h for 3d
-        - **S_events** (25%) — Major event magnitude (earnings, litigation, order wins)
-        - **S_breadth** (20%) — Positive vs negative ratio (cross-sectional Z-score)
-        - **S_volume** (10%) — News volume signal (cross-sectional Z-score)
+        **SmartScore** (0-100):
+        - **S_recency** (45%) — EWMA sentiment: 8h half-life for 1d, 36h for 3d
+        - **S_events** (25%) — Event magnitude (earnings, litigation, order wins)
+        - **S_breadth** (20%) — Positive vs negative ratio (Z-score)
+        - **S_volume** (10%) — News volume signal (Z-score)
 
-        **Trust Score** (0-100) per stock:
-        - 40% historical combined accuracy (your system's own prediction history)
-        - 35% win rate last 10 days
-        - 25% current ensemble signal strength
+        **Trust Score** (0-100):
+        - 40% historical accuracy | 35% win rate (10d) | 25% current signal
 
-        🟢 Trust ≥ 75 = High confidence in signal quality  
-        🟡 Trust 60-74 = Moderate confidence  
-        🔴 Trust < 60 = Low confidence — treat with caution
+        🟢 Trust ≥ 75 = High confidence | 🟡 60-74 = Moderate | 🔴 < 60 = Low
 
-        **What this system cannot see:**
-        - Fed/RBI meeting exact dates
-        - Earnings release calendar
-        - Options expiry dates
-        - Insider information
-        - Intraday price movements
+        **What this system cannot see:** Fed/RBI exact dates, earnings calendar,
+        options expiry, intraday patterns, block deals.
         """)
 
-# ================================ PREDICTIONS =========================
 with tab2:
     st.subheader("Predicted Next-Day Returns")
 
@@ -1410,5 +1358,3 @@ with tab7:
         }
         '''
         st.graphviz_chart(dot)
-
-        st.caption("Tip: CI runs fetch→sentiment→aggregate→predict on schedule; retraining happens daily.")
