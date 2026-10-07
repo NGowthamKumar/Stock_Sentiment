@@ -121,6 +121,20 @@ def main():
         print("data/raw_news.csv is empty.")
         return
 
+    # ── Skip already-scored articles ──
+    out = "data/processed_sentiment.csv"
+    if os.path.exists(out):
+        existing = pd.read_csv(out)
+        already_scored = set(existing["title"].astype(str).tolist())
+        new_rows = df[~df["title"].astype(str).isin(already_scored)]
+        print(f"Already scored: {len(existing)} | New articles: {len(new_rows)}")
+        if new_rows.empty:
+            print("No new articles to score. Done.")
+            return
+        df = new_rows.copy()
+    else:
+        existing = None
+
     # ----- VADER -----
     vader = SentimentIntensityAnalyzer()
     df["vader"] = df["title"].astype(str).map(lambda x: vader.polarity_scores(x)["compound"]).astype(float)
@@ -137,23 +151,17 @@ def main():
         df["finbert"] = np.nan
 
     # ----- Ensemble -----
-    # If FinBERT exists for a row: 0.7*FinBERT + 0.3*VADER; else just VADER
     has_fb = df["finbert"].notna()
     df["ensemble"] = df["vader"].astype(float)
     df.loc[has_fb, "ensemble"] = 0.7 * df.loc[has_fb, "finbert"] + 0.3 * df.loc[has_fb, "vader"]
 
     # ----- Price movement override -----
-    # Headlines with clear price direction override ensemble score
-    # "HDFC Bank falls 2% to 52-week low" → force negative regardless of FinBERT
     price_signals = df["title"].astype(str).map(detect_price_movement)
     has_price_signal = price_signals.notna()
-    
-    # Blend: 60% price signal + 40% ensemble (don't completely ignore NLP)
     df.loc[has_price_signal, "ensemble"] = (
-        0.6 * price_signals[has_price_signal] + 
+        0.6 * price_signals[has_price_signal] +
         0.4 * df.loc[has_price_signal, "ensemble"]
     )
-    
     overridden = has_price_signal.sum()
     print(f"Price movement override applied to {overridden} headlines")
 
@@ -169,8 +177,11 @@ def main():
         labels=["negative", "neutral", "positive"],
     )
 
+    # ── Merge new scores with existing ──
+    if existing is not None:
+        df = pd.concat([existing, df], ignore_index=True).drop_duplicates(subset=["title"])
+
     # Persist
-    out = "data/processed_sentiment.csv"
     df.to_csv(out, index=False)
     print(f"Sentiment done for {len(df)} rows → {out}")
     print(df[["vader", "finbert", "ensemble", "model_confidence", "label"]].head(8))
