@@ -8,7 +8,7 @@ def fetch_prices(tickers: list[str], start: str, end: str) -> pd.DataFrame:
     DELISTED_BLACKLIST = {
         "L&T.NS", "LTIM.NS", "SPICEJET.NS", "BHARAT22ETF.NS",
         "PDRP.NS", "MINDAIND.NS", "OLECTRIC.NS", "CCLPROD.NS",
-        "MTAR.NS", "GUJGASLTD.NS", "GUJGAS.NS", "EICHER.NS"
+        "MTAR.NS", "GUJGASLTD.NS", "GUJGAS.NS", "EICHER.NS", "TATAMOTORS.NS"
     }
     tickers = [t for t in tickers if t not in DELISTED_BLACKLIST]
     

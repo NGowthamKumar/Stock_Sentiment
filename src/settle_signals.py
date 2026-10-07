@@ -11,6 +11,14 @@ import yfinance as yf
 
 def fetch_actual_returns(tickers: list, date: str, horizon: int = 1) -> dict:
     """Fetch actual return for a given prediction date and horizon (1 or 3 days)"""
+    DELISTED_BLACKLIST = {
+        "L&T.NS", "LTIM.NS", "SPICEJET.NS", "BHARAT22ETF.NS",
+        "PDRP.NS", "MINDAIND.NS", "OLECTRIC.NS", "CCLPROD.NS",
+        "MTAR.NS", "GUJGASLTD.NS", "GUJGAS.NS", "EICHER.NS", "TATAMOTORS.NS"
+    }
+    tickers = [t for t in tickers if t not in DELISTED_BLACKLIST]
+    if not tickers:
+        return {}
     try:
         start = (pd.Timestamp(date) - pd.Timedelta(days=5)).strftime("%Y-%m-%d")
         end   = (pd.Timestamp(date) + pd.Timedelta(days=horizon+5)).strftime("%Y-%m-%d")
