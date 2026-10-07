@@ -85,7 +85,18 @@ def add_technical_indicators(df: pd.DataFrame) -> pd.DataFrame:
         grp["macd_diff"]    = grp["macd_diff"].clip(-5, 5)
         grp["bb_pct"]       = grp["bb_pct"].clip(-0.5, 1.5)
         grp["price_vs_sma"] = grp["price_vs_sma"].clip(-20, 20)
-        
+
+        # ── SMA 200 ──
+        sma200 = close.rolling(200, min_periods=100).mean()
+        grp["price_vs_200sma"] = ((close - sma200) / sma200 * 100).clip(-30, 30)
+
+        # ── Volume ratio ──
+        if "volume" in grp.columns:
+            vol_sma20 = grp["volume"].rolling(20, min_periods=5).mean()
+            grp["volume_ratio"] = (grp["volume"] / vol_sma20.replace(0, 1)).clip(0, 5)
+        else:
+            grp["volume_ratio"] = 1.0
+            
         result.append(grp)
 
     return pd.concat(result, ignore_index=True)

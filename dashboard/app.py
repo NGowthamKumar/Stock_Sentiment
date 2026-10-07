@@ -200,6 +200,98 @@ def get_tomorrow_outlook(macro, fii_df, news_counts):
 
     return events
 
+def classify_market_regime(macro, fii_df):
+    """Classify current market regime based on macro + FII data"""
+    fii_5d_avg = 0
+    if not fii_df.empty and len(fii_df) >= 3:
+        fii_5d_avg = fii_df["fii_net"].tail(5).mean()
+
+    nifty_chg  = macro.get("nifty50",   {}).get("change", 0)
+    us_10y_val = macro.get("us_10y",    {}).get("value",  4.0)
+    india_vix  = macro.get("india_vix", {}).get("value",  15)
+    us_vix     = macro.get("us_vix",    {}).get("value",  15)
+
+    if fii_5d_avg < -3000 or us_10y_val > 4.8 or us_vix > 25:
+        return "RISK-OFF", "🔴", "Trust 3d signals more. Avoid weak 1d signals."
+    elif fii_5d_avg > 1000 and nifty_chg > 0 and us_vix < 18:
+        return "RISK-ON", "🟢", "Both 1d and 3d signals reliable."
+    elif india_vix > 18 or us_vix > 22:
+        return "HIGH VOLATILITY", "🟠", "Signals less reliable. Use conviction matrix only."
+    else:
+        return "NEUTRAL", "🟡", "Moderate signal reliability. Filter by conviction."
+
+def detect_unusual_activity(summary_df, hist_df):
+    """Detect stocks with unusual sentiment or volume activity"""
+    alerts = []
+    if summary_df.empty or hist_df.empty:
+        return alerts
+    try:
+        if "date" not in hist_df.columns:
+            return alerts
+        hist_df["date"] = pd.to_datetime(hist_df["date"])
+        cutoff = hist_df["date"].max() - pd.Timedelta(days=30)
+        recent_hist = hist_df[hist_df["date"] >= cutoff]
+        for _, row in summary_df.iterrows():
+            tk = row["ticker"]
+            tk_hist = recent_hist[recent_hist["ticker"] == tk]
+            if len(tk_hist) < 5:
+                continue
+            avg_score = tk_hist["smart_score"].mean()
+            avg_arts  = tk_hist["total"].mean() if "total" in tk_hist.columns else 0
+            today_score = row.get("smart_score", avg_score)
+            today_arts  = row.get("total", 0)
+            if today_score > avg_score + 20:
+                alerts.append(("🚨", tk.replace(".NS",""), f"Sentiment surge +{today_score-avg_score:.0f} vs 30d avg ({avg_score:.0f}→{today_score:.0f})"))
+            elif today_score < avg_score - 20:
+                alerts.append(("🚨", tk.replace(".NS",""), f"Sentiment crash -{avg_score-today_score:.0f} vs 30d avg ({avg_score:.0f}→{today_score:.0f})"))
+            if avg_arts > 2 and today_arts > avg_arts * 2.5:
+                alerts.append(("📢", tk.replace(".NS",""), f"News volume {today_arts/avg_arts:.1f}x normal ({int(today_arts)} vs avg {int(avg_arts)})"))
+    except Exception as e:
+        pass
+    return alerts[:6]
+
+def get_fundamental_signal(ticker_ns):
+    """Get key fundamentals from yfinance for display"""
+    try:
+        import yfinance as yf
+        info = yf.Ticker(ticker_ns).info
+        pe      = info.get("trailingPE")
+        fpe     = info.get("forwardPE")
+        eps_g   = info.get("earningsGrowth")
+        de      = info.get("debtToEquity")
+        roe     = info.get("returnOnEquity")
+        target  = info.get("targetMeanPrice")
+        current = info.get("currentPrice") or info.get("regularMarketPrice")
+        rec     = info.get("recommendationKey","").upper()
+        n_anal  = info.get("numberOfAnalystOpinions", 0)
+        hi52    = info.get("fiftyTwoWeekHigh", 0)
+        lo52    = info.get("fiftyTwoWeekLow",  0)
+        pos52   = round((current - lo52) / max(hi52 - lo52, 1) * 100, 1) if current and hi52 > lo52 else None
+        score   = 0
+        if pe and pe < 15:   score += 2
+        elif pe and pe > 40: score -= 2
+        if eps_g and eps_g > 0.10: score += 2
+        elif eps_g and eps_g < 0:  score -= 2
+        if de and de < 0.5:  score += 1
+        elif de and de > 2:  score -= 2
+        if roe and roe > 0.15: score += 1
+        if pos52 and pos52 < 30: score += 1
+        elif pos52 and pos52 > 85: score -= 1
+        if score >= 4:   fsig, fcolor = "STRONG 🟢", "success"
+        elif score >= 2: fsig, fcolor = "MODERATE 🟡", "warning"
+        elif score >= 0: fsig, fcolor = "NEUTRAL ⚪", "info"
+        else:            fsig, fcolor = "WEAK 🔴", "error"
+        upside = round((target - current) / current * 100, 1) if target and current else None
+        return {
+            "pe": pe, "forward_pe": fpe, "eps_growth": eps_g,
+            "debt_equity": de, "roe": roe,
+            "target": target, "current": current, "upside": upside,
+            "recommendation": rec, "n_analysts": n_anal,
+            "pos_52w": pos52, "signal": fsig, "color": fcolor, "score": score
+        }
+    except Exception as e:
+        return None
+
 # ---------- load data ----------
 summary     = load_csv("data/stock_sentiment_summary.csv")
 hist        = load_csv("data/history/stock_sentiment_summary_history.csv", parse_dates=["date"])
@@ -218,7 +310,7 @@ if "date" in hist.columns:
 
 # -------------------------------- TABS --------------------------------
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
-    ["📊 Market Brief", "Predictions", "Signals", "Stock Accuracy", "Stock Drilldown", "Model Health", "Tech & Workflow"]
+    ["Market Brief", "Trade Ideas", "Signals", "Stock Accuracy", "Stock Intelligence", "Model Health", "Tech & Workflow"]
 )
 
 # ================================ MARKET INTELLIGENCE BRIEF ============================
@@ -228,7 +320,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
 # ============================================================
 with tab1:
 
-    st.markdown("## 📊 Market Intelligence Brief")
+    st.markdown("## Market Intelligence Brief")
     st.caption(f"Updated: {fmt_dt()} IST  •  Auto-refreshes each pipeline run")
 
     st.warning(
@@ -352,6 +444,38 @@ with tab1:
     elif pcr_latest <= 0.6:  risk_score += 5;  risk_reasons.append(f"Low PCR ({pcr_latest:.2f}) — overconfident")
 
     st.markdown("---")
+
+    # ── Market Regime ──
+    regime_label, regime_icon, regime_advice = classify_market_regime(macro, fii_dii)
+    reg_col1, reg_col2 = st.columns([1, 3])
+    with reg_col1:
+        if regime_icon == "🔴":
+            st.error(f"## {regime_icon} {regime_label}")
+        elif regime_icon == "🟢":
+            st.success(f"## {regime_icon} {regime_label}")
+        elif regime_icon == "🟠":
+            st.warning(f"## {regime_icon} {regime_label}")
+        else:
+            st.info(f"## {regime_icon} {regime_label}")
+    with reg_col2:
+        st.markdown(f"**Signal advice:** {regime_advice}")
+        if regime_label == "RISK-OFF":
+            st.caption("FII heavy selling and/or US yields high — macro suppressing signals. 3d models more reliable than 1d.")
+        elif regime_label == "RISK-ON":
+            st.caption("FII buying + low volatility — both 1d and 3d signals reliable.")
+
+    st.markdown("---")
+
+    # ── Unusual Activity Alerts ──
+    alerts = detect_unusual_activity(summary, hist)
+    if alerts:
+        st.markdown("#### ⚡ Unusual Activity Detected")
+        al_cols = st.columns(min(3, len(alerts)))
+        for i, (icon, tk, msg) in enumerate(alerts):
+            with al_cols[i % 3]:
+                st.markdown(f"{icon} **{tk}**")
+                st.caption(msg)
+        st.markdown("---")
 
     # ══════════════════════════════════════════════════
     # SECTION 1 — MACRO ENVIRONMENT
@@ -1017,39 +1141,218 @@ with tab4:
 
 # ================================ DRILLDOWN ===========================
 with tab5:
-    st.subheader("Stock Drilldown")
+    st.markdown("## 🔍 Stock Intelligence")
+    st.caption("Deep dive on any stock — sentiment + technical + fundamental + ML signals")
 
-    tickers = sorted(summary["ticker"].unique().tolist())
-    tk = st.selectbox("Choose ticker", tickers, index=0)
+    tickers_list = sorted(summary["ticker"].unique().tolist())
+    col_search, col_btn = st.columns([3, 1])
+    with col_search:
+        tk = st.selectbox("Search stock", tickers_list,
+                          index=0,
+                          format_func=lambda x: x.replace(".NS",""))
+    with col_btn:
+        st.markdown("<br>", unsafe_allow_html=True)
+        run_analysis = st.button("🔍 Analyse", type="primary")
 
-    left, right = st.columns([2, 1])
-    with left:
-        if not hist.empty:
-            date_col = "pred_date" if "pred_date" in hist.columns else "date"
-            h = hist[hist["ticker"] == tk].sort_values(date_col)
-            if not h.empty:
-                fig3 = px.line(h, x=date_col, y="smart_score",
-                            title=f"{tk} — SmartScore History")
-                st.plotly_chart(fig3, use_container_width=True)
+    if tk:
+        row = summary[summary["ticker"] == tk]
+        if row.empty:
+            st.warning("No data for this stock")
+        else:
+            row = row.iloc[0]
+            tk_clean = tk.replace(".NS","")
 
-                if "xgb_prob" in h.columns:
-                    fig4 = px.line(h, x=date_col, y="xgb_prob",
-                                title=f"{tk} — XGBoost UP Probability (%)")
-                    fig4.add_hline(y=55, line_dash="dash",
-                                annotation_text="55% threshold")
-                    st.plotly_chart(fig4, use_container_width=True)
+            # ── Conviction Matrix ──
+            st.markdown(f"### {tk_clean} — Conviction Matrix")
+
+            # Sentiment signal
+            ss = float(row.get("smart_score", 50))
+            if ss >= 65:   sent_sig, sent_col = "🟢 STRONG",   "green"
+            elif ss >= 50: sent_sig, sent_col = "🟡 MODERATE", "orange"
+            elif ss >= 35: sent_sig, sent_col = "⚪ NEUTRAL",  "gray"
+            else:          sent_sig, sent_col = "🔴 WEAK",     "red"
+
+            # Technical signal from signals CSV
+            tech_sig, tech_col = "⚪ N/A", "gray"
+            if not signals.empty:
+                sig_row = signals[signals["ticker"] == tk]
+                if not sig_row.empty:
+                    prob = float(sig_row.iloc[0].get("up_probability", 50))
+                    if prob >= 60:   tech_sig, tech_col = "🟢 BULLISH",  "green"
+                    elif prob >= 50: tech_sig, tech_col = "🟡 MODERATE", "orange"
+                    else:            tech_sig, tech_col = "🔴 BEARISH",  "red"
+
+            # Macro signal
+            regime_l, regime_i, _ = classify_market_regime(macro, fii_dii)
+            if regime_l == "RISK-ON":      mac_sig, mac_col = "🟢 POSITIVE", "green"
+            elif regime_l == "NEUTRAL":    mac_sig, mac_col = "🟡 NEUTRAL",  "orange"
+            else:                          mac_sig, mac_col = "🔴 CAUTION",  "red"
+
+            # PCR signal
+            if pcr_latest >= 1.2:  pcr_sig, pcr_col = "🔴 BEARISH",  "red"
+            elif pcr_latest <= 0.7: pcr_sig, pcr_col = "🟢 BULLISH",  "green"
+            else:                   pcr_sig, pcr_col = "⚪ NEUTRAL",  "gray"
+
+            # Count greens for conviction score
+            greens = sum([
+                1 if "🟢" in sent_sig else 0,
+                1 if "🟢" in tech_sig else 0,
+                1 if "🟢" in mac_sig  else 0,
+                1 if "🟢" in pcr_sig  else 0,
+            ])
+
+            # Matrix display
+            m1, m2, m3, m4, m5 = st.columns(5)
+            with m1:
+                st.markdown(f"**Sentiment**\n\n{sent_sig}")
+                st.caption(f"SmartScore: {ss:.0f}/100")
+            with m2:
+                st.markdown(f"**Technical**\n\n{tech_sig}")
+                st.caption("RSI + MACD + MA")
+            with m3:
+                st.markdown(f"**Macro**\n\n{mac_sig}")
+                st.caption(f"Regime: {regime_l}")
+            with m4:
+                st.markdown(f"**PCR/Options**\n\n{pcr_sig}")
+                st.caption(f"PCR: {pcr_latest:.3f}")
+            with m5:
+                fund_placeholder = "Loading..."
+                st.markdown(f"**Fundamental**\n\n⚪ Click Analyse")
+                st.caption("P/E, ROE, Debt")
+
+            if greens >= 4:   conv_label = "🟢 VERY HIGH CONVICTION"
+            elif greens >= 3: conv_label = "🟡 HIGH CONVICTION"
+            elif greens >= 2: conv_label = "🟠 MODERATE CONVICTION"
+            else:             conv_label = "🔴 LOW CONVICTION"
+            st.info(f"**Conviction: {conv_label}** ({greens}/4 factors aligned)")
+
+            st.markdown("---")
+
+            # ── ML Signals ──
+            c1, c2, c3 = st.columns(3)
+            with c1:
+                if not signals.empty:
+                    sig_row = signals[signals["ticker"] == tk]
+                    if not sig_row.empty:
+                        prob_1d = float(sig_row.iloc[0].get("up_probability", 50))
+                        st.metric("1-Day ML Signal", f"{prob_1d:.1f}% UP")
+            with c2:
+                sig3d_path = os.path.join(BASE_DIR, "data/signals_3d.csv")
+                if os.path.exists(sig3d_path):
+                    sig3d = load_csv(sig3d_path)
+                    if not sig3d.empty:
+                        r3d = sig3d[sig3d["ticker"] == tk]
+                        if not r3d.empty:
+                            prob_3d = float(r3d.iloc[0].get("ensemble_3d_prob", 50))
+                            st.metric("3-Day ML Signal", f"{prob_3d:.1f}% UP")
+            with c3:
+                acc_path = os.path.join(BASE_DIR, "data/stock_accuracy.csv")
+                if os.path.exists(acc_path):
+                    acc_df = load_csv(acc_path)
+                    if not acc_df.empty:
+                        acc_row = acc_df[acc_df["ticker"] == tk]
+                        if not acc_row.empty:
+                            trust = acc_row.iloc[0].get("combined_trust","N/A")
+                            acc   = acc_row.iloc[0].get("combined_acc", 0)
+                            st.metric("Historical Accuracy", f"{acc:.1f}%", delta=trust)
+
+            st.markdown("---")
+
+            # ── Sentiment Analysis ──
+            st.markdown("#### 📰 Sentiment Analysis")
+            sc1, sc2, sc3 = st.columns(3)
+            with sc1:
+                total_arts = int(row.get("total", 0))
+                pos_arts   = int(row.get("pos",   0))
+                neg_arts   = int(row.get("neg",   0))
+                st.metric("SmartScore",  f"{ss:.0f}/100")
+                st.metric("Articles",    f"{pos_arts}✅ {neg_arts}❌ {total_arts} total")
+
+            with sc2:
+                # Sentiment velocity
+                if not hist.empty:
+                    tk_hist = hist[hist["ticker"] == tk].sort_values("date")
+                    if len(tk_hist) >= 4:
+                        score_now  = float(tk_hist["smart_score"].iloc[-1])
+                        score_3ago = float(tk_hist["smart_score"].iloc[-4])
+                        velocity   = score_now - score_3ago
+                        v_icon = "📈" if velocity > 5 else "📉" if velocity < -5 else "➡️"
+                        st.metric("Sentiment Velocity (3d)", f"{velocity:+.1f}",
+                                  delta="Improving" if velocity > 5 else "Falling" if velocity < -5 else "Stable")
+                    else:
+                        st.caption("Need more history for velocity")
+
+            with sc3:
+                # News freshness
+                if not hist.empty:
+                    tk_hist = hist[hist["ticker"] == tk].sort_values("date")
+                    if not tk_hist.empty:
+                        last_date = pd.to_datetime(tk_hist["date"].iloc[-1])
+                        days_ago  = (pd.Timestamp.now() - last_date).days
+                        freshness = "🟢 FRESH" if days_ago == 0 else "🟡 RECENT" if days_ago <= 2 else "🔴 STALE"
+                        st.metric("News Freshness", freshness)
+                        st.caption(f"Last article: {days_ago} day(s) ago")
+
+            # Sentiment history chart
+            if not hist.empty:
+                tk_hist = hist[hist["ticker"] == tk].sort_values("date").tail(30)
+                if not tk_hist.empty and "smart_score" in tk_hist.columns:
+                    fig_vel = px.line(tk_hist, x="date", y="smart_score",
+                                      title=f"{tk_clean} — SmartScore Trend (30 days)",
+                                      labels={"smart_score": "SmartScore", "date": ""})
+                    fig_vel.add_hline(y=65, line_dash="dash", line_color="green",  annotation_text="Bullish zone")
+                    fig_vel.add_hline(y=35, line_dash="dash", line_color="red",    annotation_text="Bearish zone")
+                    fig_vel.update_layout(height=200, margin=dict(t=30,b=0,l=0,r=0))
+                    st.plotly_chart(fig_vel, use_container_width=True)
+
+            st.markdown("---")
+
+            # ── Fundamentals (on button click) ──
+            st.markdown("#### 📊 Fundamental Check")
+            if run_analysis:
+                with st.spinner(f"Fetching fundamentals for {tk_clean}..."):
+                    fund = get_fundamental_signal(tk)
+                if fund:
+                    fc1, fc2, fc3 = st.columns(3)
+                    with fc1:
+                        if fund["pe"]:
+                            st.metric("P/E Ratio",    f"{fund['pe']:.1f}")
+                        if fund["forward_pe"]:
+                            st.metric("Forward P/E",  f"{fund['forward_pe']:.1f}")
+                        if fund["eps_growth"] is not None:
+                            st.metric("EPS Growth",   f"{fund['eps_growth']*100:.1f}%")
+                    with fc2:
+                        if fund["roe"] is not None:
+                            st.metric("ROE",          f"{fund['roe']*100:.1f}%")
+                        if fund["debt_equity"] is not None:
+                            st.metric("Debt/Equity",  f"{fund['debt_equity']:.2f}")
+                        if fund["pos_52w"] is not None:
+                            st.metric("52W Position", f"{fund['pos_52w']:.0f}%",
+                                      delta="Near low ✅" if fund["pos_52w"] < 30 else "Near high ⚠️" if fund["pos_52w"] > 80 else "Mid range")
+                    with fc3:
+                        if fund["target"] and fund["current"]:
+                            st.metric("Analyst Target", f"₹{fund['target']:,.0f}",
+                                      delta=f"{fund['upside']:+.1f}% upside" if fund["upside"] else None)
+                        if fund["recommendation"]:
+                            st.metric("Consensus",    fund["recommendation"])
+                        if fund["n_analysts"]:
+                            st.metric("# Analysts",   str(fund["n_analysts"]))
+
+                    if fund["color"] == "success":
+                        st.success(f"Fundamental Signal: {fund['signal']}")
+                    elif fund["color"] == "warning":
+                        st.warning(f"Fundamental Signal: {fund['signal']}")
+                    elif fund["color"] == "error":
+                        st.error(f"Fundamental Signal: {fund['signal']}")
+                    else:
+                        st.info(f"Fundamental Signal: {fund['signal']}")
+                else:
+                    st.caption("Fundamental data unavailable for this stock")
             else:
-                st.info("No signal history yet for this stock.")
+                st.caption("Click **Analyse** button above to load fundamentals (fetches live from yfinance)")
 
-    with right:
-        row = summary[summary["ticker"] == tk].iloc[0]
-        st.metric("Smart Score", f"{row.smart_score:.2f}")
-        st.metric("S_recency", f"{row.S_recency:.1f}")
-        st.metric("S_events", f"{row.S_events:.1f}")
-        st.metric("S_breadth", f"{row.S_breadth:.1f}")
-        st.metric("S_volume", f"{row.S_volume:.1f}")
-        st.write(f" Pos: **{int(row.pos)}** Neg: **{int(row.neg)}** Total: **{int(row.total)}**")
-
+            st.caption("⚠️ Research tool only — not financial advice. Verify independently.")
+            
 # ================================ MODEL HEALTH =======================
 with tab6:
     st.subheader("Model Health Dashboard")

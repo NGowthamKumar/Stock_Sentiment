@@ -27,7 +27,8 @@ FEATURES = ["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_v
             "us_10y_change",      # US 10yr yield, FII flow predictor
             "gold_change",        # Gold price
             "pcr_oi","pcr_vol","pcr_change","pcr_zscore",     
-            "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime",]
+            "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime",
+            "price_vs_200sma","volume_ratio","smartscore_velocity_3d",]
 TARGET = "ret_fwd_1d"
 TARGET_1D = "ret_fwd_1d"
 TARGET_3D = "ret_fwd_3d"

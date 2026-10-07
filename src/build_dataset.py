@@ -91,6 +91,13 @@ def main():
     feats = feats.sort_values(["ticker","date"])
     feats[["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg"]] = \
         feats.groupby("ticker")[["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg"]].shift(1)
+
+    # ── Sentiment velocity — how fast is SmartScore changing ──
+    feats = feats.sort_values(["ticker","date"])
+    feats["smartscore_3d_ago"] = feats.groupby("ticker")["smart_score"].shift(3)
+    feats["smartscore_velocity_3d"] = (
+        feats["smart_score"] - feats["smartscore_3d_ago"]
+    ).clip(-30, 30).fillna(0)
     
     # Fill NaN for S_recency_3d — new column, missing in older history rows
     feats["S_recency_3d"] = feats["S_recency_3d"].fillna(feats["S_recency"])

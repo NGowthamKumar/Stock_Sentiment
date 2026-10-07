@@ -30,6 +30,18 @@ def build_features(latest):
             prices["ret_lag1"] = prices.groupby("ticker")["ret_fwd"].shift(1)
             prices["ret_lag2"] = prices.groupby("ticker")["ret_fwd"].shift(2)
 
+            # SMA 200 and volume ratio
+            prices["price_vs_200sma"] = prices.groupby("ticker").apply(
+                lambda g: ((g["close"] - g["close"].rolling(200, min_periods=100).mean()) /
+                           g["close"].rolling(200, min_periods=100).mean() * 100).clip(-30, 30)
+            ).reset_index(level=0, drop=True)
+            if "volume" in prices.columns:
+                prices["volume_ratio"] = prices.groupby("ticker").apply(
+                    lambda g: (g["volume"] / g["volume"].rolling(20, min_periods=5).mean().replace(0,1)).clip(0,5)
+                ).reset_index(level=0, drop=True)
+            else:
+                prices["volume_ratio"] = 1.0
+
             # Shift technical indicators 1 day — remove data leakage
             # Yesterday's RSI predicts today, not today's RSI
             for col in ["rsi","macd_diff","bb_pct","bb_width","price_vs_sma"]:
@@ -38,7 +50,8 @@ def build_features(latest):
             # Take most recent row per ticker for all features
             today = prices.groupby("ticker").tail(1)[[
                 "ticker","ret_lag1","ret_lag2",
-                "rsi","macd_diff","bb_pct","bb_width","price_vs_sma"
+                "rsi","macd_diff","bb_pct","bb_width","price_vs_sma",
+                "price_vs_200sma","volume_ratio"
             ]]
             latest = latest.merge(today, on="ticker", how="left")
             print(f"Fetched price features for {len(today)} tickers")
@@ -174,7 +187,29 @@ def build_features(latest):
             for col in ["pcr_oi","pcr_vol","pcr_change","pcr_zscore",
                         "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime"]:
                 latest[col] = 1.0 if "oi" in col or "vol" in col or "avg" in col else 0.0
-
+    # ── Sentiment velocity ──
+    if "smartscore_velocity_3d" not in latest.columns:
+        hist_path = os.path.join(os.path.dirname(__file__), "../data/history/stock_sentiment_summary_history.csv")
+        if os.path.exists(hist_path):
+            try:
+                hist = pd.read_csv(hist_path, parse_dates=["date"])
+                hist = hist.sort_values(["ticker","date"])
+                latest_date = hist["date"].max()
+                cutoff = latest_date - pd.Timedelta(days=5)
+                recent = hist[hist["date"] >= cutoff]
+                vel = {}
+                for tk, grp in recent.groupby("ticker"):
+                    grp = grp.sort_values("date")
+                    if len(grp) >= 3:
+                        vel[tk] = float(grp["smart_score"].iloc[-1] - grp["smart_score"].iloc[-3])
+                    else:
+                        vel[tk] = 0.0
+                latest["smartscore_velocity_3d"] = latest["ticker"].map(vel).fillna(0).clip(-30, 30)
+            except Exception as e:
+                print(f"Warning: velocity calc failed: {e}")
+                latest["smartscore_velocity_3d"] = 0.0
+        else:
+            latest["smartscore_velocity_3d"] = 0.0
     return latest
 
 def get_signal_label(prob):
