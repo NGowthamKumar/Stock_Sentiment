@@ -23,7 +23,7 @@ permissions:
 # prevent overlapping runs (useful when a run takes longer than the interval)
 concurrency:
   group: daily-ingest-and-score
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   run:
