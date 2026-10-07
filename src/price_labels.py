@@ -4,6 +4,14 @@ import yfinance as yf
 
 def fetch_prices(tickers: list[str], start: str, end: str) -> pd.DataFrame:
     """Download daily Adjusted Close; returns long df: date, ticker, close."""
+    # ── Remove known delisted/wrong tickers ──
+    DELISTED_BLACKLIST = {
+        "L&T.NS", "LTIM.NS", "SPICEJET.NS", "BHARAT22ETF.NS",
+        "PDRP.NS", "MINDAIND.NS", "OLECTRIC.NS", "CCLPROD.NS",
+        "MTAR.NS", "GUJGASLTD.NS", "GUJGAS.NS", "EICHER.NS"
+    }
+    tickers = [t for t in tickers if t not in DELISTED_BLACKLIST]
+    
     if not tickers:
         return pd.DataFrame(columns=["date","ticker","close"])
     data = yf.download(tickers, start=start, end=end, progress=False, auto_adjust=True, group_by="ticker")
@@ -96,7 +104,7 @@ def add_technical_indicators(df: pd.DataFrame) -> pd.DataFrame:
             grp["volume_ratio"] = (grp["volume"] / vol_sma20.replace(0, 1)).clip(0, 5)
         else:
             grp["volume_ratio"] = 1.0
-            
+
         result.append(grp)
 
     return pd.concat(result, ignore_index=True)
