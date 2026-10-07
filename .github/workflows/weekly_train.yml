@@ -42,6 +42,13 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: pip-${{ runner.os }}-
+
       - name: Cache FinBERT / HF models
         uses: actions/cache@v4
         with:
