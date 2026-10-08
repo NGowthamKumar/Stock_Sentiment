@@ -1,6 +1,9 @@
 """
 Reads:  data/modeling/dataset.parquet
 Writes: models/nextday_regressor.pkl
+        reports/shap/beeswarm.png
+        reports/shap/feature_importance.png
+        reports/shap/shap_summary.csv
 """
 import os, joblib
 import numpy as np
@@ -9,15 +12,15 @@ from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.linear_model import Ridge
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, VotingClassifier
-from sklearn.metrics import accuracy_score  
-from xgboost import XGBClassifier 
-from lightgbm import LGBMClassifier      
+from sklearn.metrics import accuracy_score
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler    
+from sklearn.preprocessing import StandardScaler
 from sklearn.dummy import DummyClassifier
 from scipy import stats
 
-FEATURES = ["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",        
+FEATURES = ["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",
             "vix_change","oil_change","usdinr_change","rsi","macd_diff","bb_pct","bb_width","price_vs_sma",
             "us_vix_change",      # US fear → IT sector pressure
             "nifty_ret_change",   # Market-wide momentum
@@ -26,7 +29,9 @@ FEATURES = ["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_v
             #"bond_yield_change",  # Interest rate sensitivity
             "us_10y_change",      # US 10yr yield, FII flow predictor
             "gold_change",        # Gold price
-            "pcr_oi","pcr_vol","pcr_change","pcr_zscore",     
+            "dxy_change",         # US Dollar Index — upstream of USDINR + FII flows
+            "us_yield_spread",    # 3m10s spread — curve inversion = FII EM outflow regime
+            "pcr_oi","pcr_vol","pcr_change","pcr_zscore",
             "pcr_oi_5d_avg","pcr_oi_20d_avg","pcr_regime",
             "price_vs_200sma","volume_ratio","smartscore_velocity_3d",]
 TARGET = "ret_fwd_1d"
@@ -146,7 +151,7 @@ def main():
     df = pd.read_parquet("data/modeling/dataset.parquet").sort_values(["date","ticker"])
     if df.empty:
         raise SystemExit("dataset is empty. You need at least ~2 days of history.")
-    
+
     # Fill any NaN in features (e.g. new columns not in historical data)
     df[FEATURES] = df[FEATURES].fillna(df[FEATURES].median())
 
@@ -155,7 +160,7 @@ def main():
         if feat not in df.columns:
             df[feat] = df["S_recency"] if "recency" in feat else 0
         df[feat] = df[feat].fillna(df[feat].median())
-        
+
     X, y = df[FEATURES], df[TARGET_1D]
     y_bin = (y > 0).astype(int)
     n_samples = len(y)
@@ -171,7 +176,7 @@ def main():
         ("ridge", Ridge(alpha=1.0))
         ]),
         "RandomForest": RandomForestRegressor(
-            n_estimators=400, max_depth=6, min_samples_leaf=4, n_jobs=-1, random_state=42, 
+            n_estimators=400, max_depth=6, min_samples_leaf=4, n_jobs=-1, random_state=42,
         )
     }
 
@@ -196,7 +201,7 @@ def main():
     )
     xgb_scores = evaluate_classifier(xgb, X, y)
     print(f"XGBoost Classifier: {xgb_scores}")
-    
+
     # Compute class balance for XGBoost
     neg_count = (y_bin == 0).sum()
     pos_count = (y_bin == 1).sum()
@@ -209,10 +214,60 @@ def main():
     )
     xgb_balanced.fit(X, y_bin)
     joblib.dump(dict(model=xgb_balanced, features=FEATURES), "models/xgb_classifier.pkl")
-    xgb.fit(X, y_bin)
-
-    joblib.dump(dict(model=xgb, features=FEATURES), "models/xgb_classifier.pkl")
     print(f"Saved XGBoost Classifier → models/xgb_classifier.pkl")
+
+    # ── SHAP Attribution (beeswarm + bar + CSV) ──────────────────────────────
+    try:
+        import shap
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+
+        os.makedirs("reports/shap", exist_ok=True)
+
+        print("\n── SHAP Attribution ──")
+        explainer   = shap.TreeExplainer(xgb_balanced)
+        shap_values = explainer(X)        # Explanation object, shape (n, n_features)
+
+        # ── 1. Beeswarm plot — primary: feature impact + direction ──
+        plt.figure(figsize=(10, 8))
+        shap.plots.beeswarm(shap_values, max_display=20, show=False)
+        plt.title("SHAP Beeswarm — XGBoost (1-day UP signal)", fontsize=13, pad=12)
+        plt.tight_layout()
+        plt.savefig("reports/shap/beeswarm.png", dpi=150, bbox_inches="tight")
+        plt.close()
+
+        # ── 2. Summary bar plot — mean |SHAP| ranking ──
+        plt.figure(figsize=(9, 7))
+        shap.plots.bar(shap_values, max_display=20, show=False)
+        plt.title("SHAP Feature Importance — XGBoost (mean |SHAP|)", fontsize=13, pad=12)
+        plt.tight_layout()
+        plt.savefig("reports/shap/feature_importance.png", dpi=150, bbox_inches="tight")
+        plt.close()
+
+        # ── 3. CSV — consumed by dashboard (Model Health tab) ──
+        shap_df = pd.DataFrame({
+            "feature":       FEATURES,
+            "mean_abs_shap": np.abs(shap_values.values).mean(axis=0),
+        }).sort_values("mean_abs_shap", ascending=False).reset_index(drop=True)
+        shap_df["rank"] = shap_df.index + 1
+        shap_df.to_csv("reports/shap/shap_summary.csv", index=False)
+
+        print("  Top-10 SHAP features:")
+        for _, row in shap_df.head(10).iterrows():
+            print(f"  {int(row['rank']):>2}. {row['feature']:<30}  {row['mean_abs_shap']:.4f}")
+        print(f"  Beeswarm  → reports/shap/beeswarm.png")
+        print(f"  Bar chart → reports/shap/feature_importance.png")
+        print(f"  CSV       → reports/shap/shap_summary.csv")
+
+    except ImportError:
+        print("  ⚠  shap not installed — skipping (pip install shap)")
+    except Exception as _shap_err:
+        print(f"  ⚠  SHAP failed: {_shap_err}")
+    # ─────────────────────────────────────────────────────────────────────────
+
+    xgb.fit(X, y_bin)
+    # (xgb used only inside VotingClassifier below — xgb_balanced is the saved model)
 
     # ── Voting Ensemble ──
     lgbm = LGBMClassifier(
@@ -222,7 +277,7 @@ def main():
     )
     rf_clf = RandomForestClassifier(
         n_estimators=300, max_depth=6, min_samples_leaf=4,
-        n_jobs=-1, random_state=42, class_weight="balanced" 
+        n_jobs=-1, random_state=42, class_weight="balanced"
     )
     voting = VotingClassifier(
         estimators=[
@@ -253,7 +308,7 @@ def main():
     print(f"  95% CI:   [{sig_ens['ci_low']*100:.2f}%, {sig_ens['ci_high']*100:.2f}%]")
     print(f"  Edge vs Always-UP: {(ensemble_scores['accuracy'] - baseline_scores.get('Always_UP', 0.5))*100:+.2f}%")
     voting.fit(X, y_bin)
-    
+
     ensemble_scores = evaluate_classifier(voting, X, y)
     print(f"Voting Ensemble: {ensemble_scores}")
     voting.fit(X, y_bin)
@@ -270,12 +325,12 @@ def main():
     if TARGET_3D in df.columns:
         y_3d = df[TARGET_3D]
         y_bin_3d = (y_3d > 0).astype(int)
-        
+
         # Drop rows where 3d return is NaN (last 3 rows per ticker)
         mask_3d = y_3d.notna()
         X_3d = X[mask_3d]
         y_bin_3d = y_bin_3d[mask_3d]
-        
+
         xgb_3d = XGBClassifier(
             n_estimators=300, max_depth=4, learning_rate=0.05,
             subsample=0.8, colsample_bytree=0.8,
@@ -286,7 +341,7 @@ def main():
         xgb_3d.fit(X_3d, y_bin_3d)
         joblib.dump(dict(model=xgb_3d, features=FEATURES), "models/xgb_3d_classifier.pkl")
         print(f"Saved XGBoost 3-Day → models/xgb_3d_classifier.pkl")
-        
+
         # ── 3-Day Voting Ensemble ──
         lgbm_3d = LGBMClassifier(
             n_estimators=300, max_depth=4, learning_rate=0.05,
@@ -312,7 +367,7 @@ def main():
         voting_3d.fit(X_3d, y_bin_3d)
         joblib.dump(dict(model=voting_3d, features=FEATURES), "models/voting_3d_ensemble.pkl")
         print(f"Saved 3-Day Voting Ensemble → models/voting_3d_ensemble.pkl")
-        
+
         # Save 3-day metrics
         rows_3d = [
             {
@@ -338,7 +393,7 @@ def main():
     # ---------------------------------------------------------
     # Save all metrics
     # ---------------------------------------------------------
-    
+
     rows = []
     for name, s in scores.items():
         rows.append({

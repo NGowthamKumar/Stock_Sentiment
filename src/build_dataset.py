@@ -70,7 +70,6 @@ def fetch_macro_indicators(start: str, end: str) -> pd.DataFrame:
         macro["us_10y_change"] = macro["us_10y_yield"].pct_change(fill_method=None) * 100
     if "gold_price" in macro.columns:
         macro["gold_change"] = macro["gold_price"].pct_change(fill_method=None) * 100
-    
     # Forward fill missing values (weekends/holidays)
     macro = macro.ffill()
     
@@ -239,6 +238,22 @@ def main():
         df["pcr_oi_20d_avg"]= 1.0
         df["pcr_regime"]   = 0.0
 
+    # ── DXY + Yield Spread (from fetch_dxy.py) ──
+    dxy_path = "data/dxy_history.csv"
+    if os.path.exists(dxy_path):
+        dxy_df = pd.read_csv(dxy_path, parse_dates=["date"])
+        dxy_df["date"] = pd.to_datetime(dxy_df["date"]).dt.tz_localize(None)
+        df = df.merge(dxy_df[["date","dxy_change","us_yield_spread"]], on="date", how="left")
+        df = df.sort_values(["ticker","date"])
+        df["dxy_change"]      = df["dxy_change"].ffill().fillna(0).clip(-3, 3)
+        df["us_yield_spread"] = df["us_yield_spread"].ffill().fillna(0).clip(-3, 4)
+        print(f"Merged DXY + yield spread → dxy_change range: "
+              f"{df['dxy_change'].min():.3f} to {df['dxy_change'].max():.3f}")
+    else:
+        df["dxy_change"]      = 0.0
+        df["us_yield_spread"] = 0.0
+        print("DXY history not found — run: python src/fetch_dxy.py")
+
     # ── Macro indicators ──
     macro = fetch_macro_indicators(price_start, price_end)
     if not macro.empty:
@@ -263,11 +278,13 @@ def main():
             ("bond_yield_change",  -2,  2),
             ("us_10y_change",      -1,  1),   
             ("gold_change",        -5,  5),
+            ("dxy_change",         -3,  3),
+            ("us_yield_spread",   -3,   4),   # spread in % points; inversion floor ~-3
         ]:
             if col in df.columns:
                 df[col] = df[col].clip(lower=lo, upper=hi)
         
-        existing_macro = [c for c in df.columns if any(x in c for x in 
+        existing_macro = [c for c in df.columns if any(x in c for x in
                         ['vix','oil','usd','nifty','us_10y','gold','sp500'])]
         print(f"Merged macro indicators → {existing_macro}")
     else:
@@ -276,8 +293,9 @@ def main():
                     "nifty_it","nifty_bank","bond_yield",
                     "vix_change","oil_change","usdinr_change","us_vix_change",
                     "nifty_ret_change","nifty_it_change","nifty_bank_change",
-                    "bond_yield_change","us_10y_yield","us_10y_change",  
-                    "gold_price","gold_change"]:
+                    "bond_yield_change","us_10y_yield","us_10y_change",
+                    "gold_price","gold_change",
+                    "dxy_change","us_yield_spread"]:
             df[col] = 0
 
     os.makedirs("data/modeling", exist_ok=True)

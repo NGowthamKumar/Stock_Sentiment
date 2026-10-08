@@ -84,10 +84,11 @@ jobs:
           IST = timezone(timedelta(hours=5, minutes=30))
           ist_hour = datetime.now(IST).hour
           if ist_hour >= 18:
-              print("Post-market: fetching FII/DII and PCR...")
+              print("Post-market: fetching FII/DII, PCR and DXY...")
               import os
               os.system("python -m src.fetch_fii_dii")
               os.system("python -m src.fetch_pcr")
+              os.system("python src/fetch_dxy.py")
           else:
               print(f"Skipping FII/DII + PCR (IST hour: {ist_hour})")
           PY
@@ -100,7 +101,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/*.csv data/history/*.csv || true
-          git add data/fii_dii_history.csv || true
+          git add data/fii_dii_history.csv data/dxy_history.csv || true
           git commit -m "daily auto-update (ingest/sentiment/aggregate/predict)" || echo "no changes"
           git pull origin main --rebase || true
           git push || true
