@@ -1,203 +1,203 @@
 ticker,up_probability,signal,confidence
-TATAPOWER.NS,66.6,🟡 MILD BULLISH,High Confidence
-KEC.NS,66.1,🟡 MILD BULLISH,High Confidence
-IOC.NS,65.8,🟡 MILD BULLISH,High Confidence
-ADANIPOWER.NS,65.7,🟡 MILD BULLISH,High Confidence
-SHRIRAMFIN.NS,65.7,🟡 MILD BULLISH,High Confidence
-BPCL.NS,64.9,🟡 MILD BULLISH,Medium Confidence
-LT.NS,64.7,🟡 MILD BULLISH,Medium Confidence
-ADANIENT.NS,63.2,🟡 MILD BULLISH,Medium Confidence
-ASIANPAINT.NS,62.9,🟡 MILD BULLISH,Medium Confidence
-JINDALSTEL.NS,62.5,🟡 MILD BULLISH,Medium Confidence
-GRSE.NS,62.5,🟡 MILD BULLISH,Medium Confidence
-RVNL.NS,62.4,🟡 MILD BULLISH,Medium Confidence
-NMDC.NS,62.0,🟡 MILD BULLISH,Medium Confidence
+ADANIENT.NS,71.0,🟡 MILD BULLISH,High Confidence
+KEC.NS,66.0,🟡 MILD BULLISH,High Confidence
+HINDZINC.NS,65.3,🟡 MILD BULLISH,High Confidence
+INDUSINDBK.NS,64.8,🟡 MILD BULLISH,Medium Confidence
+M&M.NS,64.7,🟡 MILD BULLISH,Medium Confidence
+NMDC.NS,64.3,🟡 MILD BULLISH,Medium Confidence
+ASIANPAINT.NS,64.0,🟡 MILD BULLISH,Medium Confidence
+TATAPOWER.NS,63.6,🟡 MILD BULLISH,Medium Confidence
+POWERGRID.NS,63.5,🟡 MILD BULLISH,Medium Confidence
+SKFINDIA.NS,62.9,🟡 MILD BULLISH,Medium Confidence
+JSWSTEEL.NS,62.7,🟡 MILD BULLISH,Medium Confidence
+MUTHOOTFIN.NS,62.4,🟡 MILD BULLISH,Medium Confidence
+LT.NS,62.2,🟡 MILD BULLISH,Medium Confidence
+ADANIPOWER.NS,62.0,🟡 MILD BULLISH,Medium Confidence
 COCHINSHIP.NS,61.8,🟡 MILD BULLISH,Medium Confidence
-MUTHOOTFIN.NS,61.7,🟡 MILD BULLISH,Medium Confidence
-POWERGRID.NS,61.4,🟡 MILD BULLISH,Medium Confidence
-HEROMOTOCO.NS,60.9,🟡 MILD BULLISH,Medium Confidence
-IRFC.NS,60.4,🟡 MILD BULLISH,Medium Confidence
-IOB.NS,60.4,🟡 MILD BULLISH,Medium Confidence
-BHARATFORG.NS,60.3,🟡 MILD BULLISH,Medium Confidence
-ACC.NS,60.3,🟡 MILD BULLISH,Medium Confidence
-ONGC.NS,60.1,🟡 MILD BULLISH,Medium Confidence
+SBIN.NS,61.4,🟡 MILD BULLISH,Medium Confidence
+ALKYLAMINE.NS,61.4,🟡 MILD BULLISH,Medium Confidence
+VINATIORGA.NS,60.4,🟡 MILD BULLISH,Medium Confidence
+JINDALSTEL.NS,60.3,🟡 MILD BULLISH,Medium Confidence
+SUZLON.NS,60.3,🟡 MILD BULLISH,Medium Confidence
+TATASTEEL.NS,60.1,🟡 MILD BULLISH,Medium Confidence
+ADANIENSOL.NS,60.0,⚪ NEUTRAL,Medium Confidence
+IOB.NS,60.0,⚪ NEUTRAL,Medium Confidence
 TIINDIA.NS,59.9,⚪ NEUTRAL,Medium Confidence
-COLPAL.NS,59.9,⚪ NEUTRAL,Medium Confidence
-MAZDOCK.NS,59.8,⚪ NEUTRAL,Medium Confidence
-SKFINDIA.NS,59.6,⚪ NEUTRAL,Medium Confidence
-BRITANNIA.NS,59.5,⚪ NEUTRAL,Medium Confidence
-BOSCHLTD.NS,59.5,⚪ NEUTRAL,Medium Confidence
-BEL.NS,59.4,⚪ NEUTRAL,Medium Confidence
-M&M.NS,59.3,⚪ NEUTRAL,Medium Confidence
-CIPLA.NS,59.3,⚪ NEUTRAL,Medium Confidence
-HINDZINC.NS,59.1,⚪ NEUTRAL,Medium Confidence
-LICI.NS,59.0,⚪ NEUTRAL,Medium Confidence
-UPL.NS,59.0,⚪ NEUTRAL,Medium Confidence
-SAIL.NS,58.8,⚪ NEUTRAL,Medium Confidence
-NTPC.NS,58.7,⚪ NEUTRAL,Medium Confidence
-SIEMENS.NS,58.6,⚪ NEUTRAL,Medium Confidence
-TITAN.NS,58.1,⚪ NEUTRAL,Medium Confidence
-JIOFIN.NS,58.0,⚪ NEUTRAL,Medium Confidence
-INDUSINDBK.NS,58.0,⚪ NEUTRAL,Medium Confidence
-LUPIN.NS,58.0,⚪ NEUTRAL,Low Confidence
-ALKYLAMINE.NS,57.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BAJAJ-AUTO.NS,57.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MARUTI.NS,57.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-PHOENIXLTD.NS,57.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-GODREJPROP.NS,57.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ULTRACEMCO.NS,57.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-YESBANK.NS,57.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-CUMMINSIND.NS,57.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-KAYNES.NS,57.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SCHAEFFLER.NS,57.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-VOLTAS.NS,57.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ABB.NS,57.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HINDUNILVR.NS,57.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-JPPOWER.NS,57.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ADANIPORTS.NS,57.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-JSWSTEEL.NS,57.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ADANIENSOL.NS,57.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BLS.NS,57.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DLF.NS,57.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BLUESTARCO.NS,56.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-NAM-INDIA.NS,56.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-AFFLE.NS,56.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+NTPC.NS,59.8,⚪ NEUTRAL,Medium Confidence
+ABB.NS,59.8,⚪ NEUTRAL,Medium Confidence
+SHRIRAMFIN.NS,59.8,⚪ NEUTRAL,Medium Confidence
+ACC.NS,59.7,⚪ NEUTRAL,Medium Confidence
+KIMS.NS,59.6,⚪ NEUTRAL,Medium Confidence
+RVNL.NS,59.5,⚪ NEUTRAL,Medium Confidence
+CIPLA.NS,59.2,⚪ NEUTRAL,Medium Confidence
+HEROMOTOCO.NS,59.0,⚪ NEUTRAL,Medium Confidence
+BOSCHLTD.NS,58.9,⚪ NEUTRAL,Medium Confidence
+KAYNES.NS,58.7,⚪ NEUTRAL,Medium Confidence
+BRITANNIA.NS,58.7,⚪ NEUTRAL,Medium Confidence
+SAIL.NS,58.7,⚪ NEUTRAL,Medium Confidence
+HOMEFIRST.NS,58.7,⚪ NEUTRAL,Medium Confidence
+BAJAJ-AUTO.NS,58.7,⚪ NEUTRAL,Medium Confidence
+LODHA.NS,58.5,⚪ NEUTRAL,Medium Confidence
+NBCC.NS,58.5,⚪ NEUTRAL,Medium Confidence
+BALKRISIND.NS,58.5,⚪ NEUTRAL,Medium Confidence
+LUPIN.NS,58.4,⚪ NEUTRAL,Medium Confidence
+SUNPHARMA.NS,58.4,⚪ NEUTRAL,Medium Confidence
+MAZDOCK.NS,58.4,⚪ NEUTRAL,Medium Confidence
+TITAN.NS,58.3,⚪ NEUTRAL,Medium Confidence
+GRSE.NS,58.2,⚪ NEUTRAL,Medium Confidence
+BPCL.NS,58.2,⚪ NEUTRAL,Medium Confidence
+IOC.NS,58.2,⚪ NEUTRAL,Medium Confidence
+SIEMENS.NS,58.1,⚪ NEUTRAL,Medium Confidence
+BRIGADE.NS,58.1,⚪ NEUTRAL,Medium Confidence
+HINDUNILVR.NS,58.1,⚪ NEUTRAL,Medium Confidence
+ROUTE.NS,57.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MARUTI.NS,57.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BEL.NS,57.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+IRFC.NS,57.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+NAM-INDIA.NS,57.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+EICHERMOT.NS,57.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BHARATFORG.NS,57.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+GODREJPROP.NS,57.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ULTRACEMCO.NS,56.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HINDALCO.NS,56.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+CESC.NS,56.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MMTC.NS,56.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+NHPC.NS,56.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+AUROPHARMA.NS,56.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TRENT.NS,56.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HDFCBANK.NS,55.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
 NATCOPHARM.NS,55.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MMTC.NS,55.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BALKRISIND.NS,55.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BDL.NS,55.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SUNPHARMA.NS,55.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-OBEROIRLTY.NS,55.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-KIMS.NS,55.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-VINATIORGA.NS,55.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SBIN.NS,55.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BALAMINES.NS,55.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BRIGADE.NS,55.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-NHPC.NS,55.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SHREECEM.NS,55.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TATACONSUM.NS,55.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DEVYANI.NS,55.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HDFCAMC.NS,54.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-NH.NS,54.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SUZLON.NS,54.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DATAPATTNS.NS,54.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-NBCC.NS,54.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-IIFL.NS,54.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ABCAPITAL.NS,54.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-LODHA.NS,54.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TMCV.NS,53.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MARICO.NS,53.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HINDCOPPER.NS,53.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-AUROPHARMA.NS,53.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-NAUKRI.NS,53.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-PRESTIGE.NS,53.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BANSALWIRE.NS,53.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TATASTEEL.NS,53.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HINDALCO.NS,53.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ROUTE.NS,53.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MAXHEALTH.NS,53.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HAL.NS,53.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BHEL.NS,53.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HOMEFIRST.NS,53.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MANAPPURAM.NS,53.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-NESTLEIND.NS,53.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TATATECH.NS,52.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-RELIANCE.NS,52.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HDFCBANK.NS,52.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TIMKEN.NS,52.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TORNTPOWER.NS,52.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MANKIND.NS,52.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-LTM.NS,52.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-IRCTC.NS,52.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-CESC.NS,52.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HAVELLS.NS,52.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BAJAJFINSV.NS,52.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-EIHOTEL.NS,52.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SAPPHIRE.NS,52.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-OIL.NS,52.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ABBOTINDIA.NS,52.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BAJFINANCE.NS,51.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-VBL.NS,51.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-APLAPOLLO.NS,51.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-EICHERMOT.NS,51.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-CHOLAFIN.NS,51.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ATGL.NS,51.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-UBL.NS,51.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-INDIGO.NS,51.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-CAMS.NS,51.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-PIDILITIND.NS,51.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MRF.NS,51.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TCS.NS,51.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-INDHOTEL.NS,51.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DMART.NS,50.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SONACOMS.NS,50.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-INFY.NS,50.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TRENT.NS,50.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DELTACORP.NS,50.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ALKEM.NS,50.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BIKAJI.NS,50.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-VEDL.NS,50.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-APOLLOHOSP.NS,50.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-COALINDIA.NS,50.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ANGELONE.NS,50.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ITBEES.NS,49.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ICICIBANK.NS,49.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DRREDDY.NS,49.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-IEX.NS,49.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-FORTIS.NS,49.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-JUBLFOOD.NS,49.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SOLARINDS.NS,49.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DIVISLAB.NS,49.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-EMAMILTD.NS,49.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-PERSISTENT.NS,49.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ETERNAL.NS,49.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-DABUR.NS,49.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-GRANULES.NS,49.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-IRCON.NS,48.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-RADICO.NS,48.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-PAGEIND.NS,48.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-AMBER.NS,48.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-GAIL.NS,48.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-PAYTM.NS,48.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-GOLDBEES.NS,48.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-OLAELEC.NS,48.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BSE.NS,48.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ADANIGREEN.NS,47.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-UTIAMC.NS,47.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-LAURUSLABS.NS,46.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-IDEA.NS,46.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TECHM.NS,46.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-INDIAMART.NS,45.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BAJAJHLDNG.NS,45.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-AARTIIND.NS,45.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-KPIL.NS,45.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-POLICYBZR.NS,44.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-GODREJCP.NS,43.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-LTIM.NS,43.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BERGEPAINT.NS,43.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-HCLTECH.NS,43.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SOBHA.NS,43.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-ITC.NS,43.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-MPHASIS.NS,42.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-JYOTHYLAB.NS,42.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-TATACOMM.NS,42.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-BANKBARODA.NS,42.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
-SPICEJET.NS,41.8,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-HDFCLIFE.NS,41.8,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-BHARTIARTL.NS,41.7,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-WIPRO.NS,41.4,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-AXISBANK.NS,41.0,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-MINDAIND.NS,40.8,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-DIXON.NS,40.3,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-PNB.NS,40.2,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-SHYAMMETL.NS,40.2,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-MASTEK.NS,39.3,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-ZENSARTECH.NS,39.3,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-LEMONTREE.NS,39.2,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-KOTAKBANK.NS,39.1,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-DEEPAKNTR.NS,38.8,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-MRPL.NS,38.5,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-SUNTV.NS,37.7,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-TANLA.NS,36.1,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-SRF.NS,35.4,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
-PDRP.NS,34.9,MACRO CAUTION — India VIX elevated (15.3),High Confidence
+IEX.NS,55.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+YESBANK.NS,55.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+IRCTC.NS,55.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ADANIPORTS.NS,55.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+VOLTAS.NS,55.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+IIFL.NS,55.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ABCAPITAL.NS,55.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+LICI.NS,55.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MARICO.NS,55.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+APLAPOLLO.NS,54.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+COLPAL.NS,54.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BAJFINANCE.NS,54.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SAPPHIRE.NS,54.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+PIDILITIND.NS,54.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+NH.NS,54.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MANKIND.NS,54.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+RELIANCE.NS,54.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BHEL.NS,54.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ANGELONE.NS,54.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+JIOFIN.NS,54.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DLF.NS,54.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DEVYANI.NS,54.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+CHOLAFIN.NS,54.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BALAMINES.NS,54.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HDFCAMC.NS,53.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+APOLLOHOSP.NS,53.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+UPL.NS,53.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SHREECEM.NS,53.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+OBEROIRLTY.NS,53.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+JPPOWER.NS,53.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TATACONSUM.NS,53.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TIMKEN.NS,53.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DELTACORP.NS,53.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+COALINDIA.NS,53.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+CAMS.NS,53.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DATAPATTNS.NS,53.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DABUR.NS,52.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BLUESTARCO.NS,52.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+LTM.NS,52.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BERGEPAINT.NS,52.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+VBL.NS,52.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+PHOENIXLTD.NS,52.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HINDCOPPER.NS,52.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TORNTPOWER.NS,52.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ONGC.NS,52.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+PAGEIND.NS,52.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+VEDL.NS,52.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+GAIL.NS,52.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HAL.NS,52.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ICICIBANK.NS,52.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DIVISLAB.NS,52.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DMART.NS,52.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+CUMMINSIND.NS,51.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+EMAMILTD.NS,51.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ITC.NS,51.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SCHAEFFLER.NS,51.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+FORTIS.NS,51.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+JUBLFOOD.NS,51.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BAJAJFINSV.NS,51.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+AFFLE.NS,51.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ABBOTINDIA.NS,51.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BLS.NS,51.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MANAPPURAM.NS,50.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+NESTLEIND.NS,50.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+PRESTIGE.NS,50.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SONACOMS.NS,50.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TMCV.NS,50.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BIKAJI.NS,50.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HAVELLS.NS,50.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+EIHOTEL.NS,50.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+UBL.NS,50.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TECHM.NS,50.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SOLARINDS.NS,50.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TATATECH.NS,50.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+GRANULES.NS,50.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ALKEM.NS,50.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ATGL.NS,49.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+IRCON.NS,49.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+INDIAMART.NS,49.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+INDIGO.NS,49.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+OLAELEC.NS,49.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BSE.NS,49.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MRF.NS,49.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+LAURUSLABS.NS,49.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DRREDDY.NS,49.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ETERNAL.NS,49.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+NAUKRI.NS,49.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+OIL.NS,49.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+INDHOTEL.NS,49.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BANSALWIRE.NS,49.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+AMBER.NS,49.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+RADICO.NS,49.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TATACOMM.NS,48.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+GOLDBEES.NS,48.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+LTIM.NS,48.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+GODREJCP.NS,48.6,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BDL.NS,48.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+AXISBANK.NS,48.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+UTIAMC.NS,48.3,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MRPL.NS,48.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MASTEK.NS,47.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+IDEA.NS,47.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ITBEES.NS,47.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+PERSISTENT.NS,47.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+PAYTM.NS,47.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+PNB.NS,47.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+JYOTHYLAB.NS,47.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BHARTIARTL.NS,47.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DIXON.NS,47.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+KOTAKBANK.NS,47.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+ZENSARTECH.NS,46.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BANKBARODA.NS,46.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+POLICYBZR.NS,46.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HDFCLIFE.NS,46.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MINDAIND.NS,46.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SUNTV.NS,46.2,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MPHASIS.NS,46.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+MAXHEALTH.NS,46.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+KPIL.NS,46.0,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+DEEPAKNTR.NS,45.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+AARTIIND.NS,45.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SOBHA.NS,44.8,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SHYAMMETL.NS,44.7,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+TCS.NS,44.5,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+INFY.NS,44.1,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+BAJAJHLDNG.NS,43.9,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+SRF.NS,43.4,MACRO CAUTION — India VIX elevated (15.3),Low Confidence
+HCLTECH.NS,41.9,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
+LEMONTREE.NS,41.8,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
+TANLA.NS,41.4,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
+SPICEJET.NS,40.4,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
+ADANIGREEN.NS,40.0,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
+WIPRO.NS,39.9,MACRO CAUTION — India VIX elevated (15.3),Medium Confidence
+PDRP.NS,32.5,MACRO CAUTION — India VIX elevated (15.3),High Confidence
