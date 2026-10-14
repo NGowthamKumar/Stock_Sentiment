@@ -313,24 +313,16 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
     ["Market Brief", "Trade Ideas", "Signals", "Stock Accuracy", "Stock Intelligence", "Model Health", "Tech & Workflow"]
 )
 
-# ================================ MARKET INTELLIGENCE BRIEF ============================
+# ============================================================
+# TAB 1 — MARKET INTELLIGENCE BRIEF  (drop-in replacement)
+# ============================================================
+# Paste this block in place of the existing `with tab1:` block
+# in dashboard/app.py. All helper functions above it are unchanged.
+# ============================================================
 
-# ============================================================
-# TAB 1 — MARKET INTELLIGENCE BRIEF
-# ============================================================
 with tab1:
 
-    st.markdown("## Market Intelligence Brief")
-    st.caption(f"Updated: {fmt_dt()} IST  •  Auto-refreshes each pipeline run")
-
-    st.warning(
-        "⚠️ **Research tool only — not financial advice.** "
-        "This dashboard aggregates publicly available data (RSS news, yfinance, NSE FII/DII, NSE options). "
-        "Macro risk scores do NOT include Fed/RBI meeting calendars or earnings dates. "
-        "Always verify independently before making any financial decisions."
-    )
-
-    # ── Load additional data ──
+    # ── Load data ──
     ens_signals = load_csv("data/ensemble_signals.csv")
     streaks     = load_csv("data/stock_streaks.csv")
     accuracy    = load_csv("data/stock_accuracy.csv")
@@ -338,11 +330,10 @@ with tab1:
     metrics_df  = load_csv("data/modeling/model_metrics.csv")
     pcr_df      = load_csv("data/pcr_history.csv")
 
-    # ── Fetch live macro ──
-    with st.spinner("Fetching live macro data..."):
+    with st.spinner("Fetching live macro data…"):
         macro = get_macro_snapshot()
 
-    # ── Compute values ──
+    # ── Compute scalar values ──
     crude_chg  = macro.get("crude_oil", {}).get("change", 0)
     us_vix_val = macro.get("us_vix",    {}).get("value",  15)
     us_vix_chg = macro.get("us_vix",    {}).get("change", 0)
@@ -355,26 +346,28 @@ with tab1:
 
     pcr_latest = 1.0; pcr_vol_latest = 1.0
     pcr_change = 0.0; pcr_date = "N/A"
+    pcr_zscore = 0.0; pcr_5d_avg = 1.0; pcr_regime = "N/A"
     if not pcr_df.empty:
         pcr_df["date"] = pd.to_datetime(pcr_df["date"])
         pcr_row        = pcr_df.sort_values("date").iloc[-1]
-        pcr_latest     = float(pcr_row.get("pcr_oi",     1.0))
-        pcr_vol_latest = float(pcr_row.get("pcr_vol",    1.0))
-        pcr_change     = float(pcr_row.get("pcr_change", 0.0))
+        pcr_latest     = float(pcr_row.get("pcr_oi",      1.0))
+        pcr_vol_latest = float(pcr_row.get("pcr_vol",     1.0))
+        pcr_change     = float(pcr_row.get("pcr_change",  0.0))
         pcr_date       = str(pcr_row["date"].date())
+        pcr_zscore     = float(pcr_row.get("pcr_zscore",  0.0))
+        pcr_5d_avg     = float(pcr_row.get("pcr_oi_5d_avg", pcr_latest))
+        pcr_regime_raw = str(pcr_row.get("pcr_regime",    ""))
+        pcr_regime     = "STRESS" if pcr_latest >= 1.2 else "NEUTRAL" if pcr_latest >= 0.8 else "BULLISH"
 
-    # ── News counts (fallback from summary) ──
+    # ── News counts ──
     raw_news_path = os.path.join(BASE_DIR, "data/raw_news.csv")
     news_counts   = {}
     news_source   = "estimated"
-    today_str     = datetime.now().strftime("%Y-%m-%d")
-
     if os.path.exists(raw_news_path):
         try:
             raw_news = load_csv("data/raw_news.csv")
             if not raw_news.empty and "published_utc" in raw_news.columns:
-                raw_news["published_utc"] = pd.to_datetime(
-                    raw_news["published_utc"], utc=True, errors="coerce")
+                raw_news["published_utc"] = pd.to_datetime(raw_news["published_utc"], utc=True, errors="coerce")
                 cutoff     = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=24)
                 today_news = raw_news[raw_news["published_utc"] >= cutoff]
                 if len(today_news) < 50:
@@ -388,8 +381,6 @@ with tab1:
                     "IT sector":      ["infosys","wipro","hcltech","it sector"],
                     "Gold":           ["gold price","bullion","gold etf"],
                     "Nifty/Sensex":   ["nifty","sensex"],
-                    "Semiconductors": ["semiconductor","chip","nvidia"],
-                    "Rupee":          ["rupee","inr"],
                     "FII/DII":        ["fii","dii","foreign institutional"],
                 }
                 for topic, kws in topics.items():
@@ -400,29 +391,23 @@ with tab1:
                     news_source = "live"
         except:
             pass
-
     if not news_counts and not summary.empty:
         try:
             oil_stocks  = ["IOC.NS","BPCL.NS","ONGC.NS","INDIGO.NS","HINDPETRO.NS"]
             it_stocks   = ["INFY.NS","TCS.NS","HCLTECH.NS","WIPRO.NS","TECHM.NS"]
             bank_stocks = ["HDFCBANK.NS","ICICIBANK.NS","SBIN.NS","AXISBANK.NS"]
-            fmcg_stocks = ["NESTLEIND.NS","HINDUNILVR.NS","ITC.NS","BRITANNIA.NS"]
             def avg_articles(tickers):
                 rows = summary[summary["ticker"].isin(tickers)]
                 return int(rows["total"].sum()) if not rows.empty else 0
-            oc = avg_articles(oil_stocks)
-            ic = avg_articles(it_stocks)
+            oc = avg_articles(oil_stocks); ic = avg_articles(it_stocks)
             bc = avg_articles(bank_stocks)
-            fc = avg_articles(fmcg_stocks)
-            if oc > 0: news_counts["Oil/Crude"]   = oc
-            if ic > 0: news_counts["IT sector"]   = ic
-            if bc > 0: news_counts["Banking"]     = bc
-            if fc > 0: news_counts["FMCG"]        = fc
-            news_source = "estimated"
+            if oc > 0: news_counts["Oil/Crude"] = oc
+            if ic > 0: news_counts["IT sector"]  = ic
+            if bc > 0: news_counts["Banking"]    = bc
         except:
             pass
 
-    # ── Risk score ──
+    # ── Headwind / risk score ──
     risk_score = 0; risk_reasons = []
     if us_vix_val > 25:      risk_score += 30; risk_reasons.append(f"US VIX high ({us_vix_val:.1f})")
     elif us_vix_val > 20:    risk_score += 15; risk_reasons.append(f"US VIX elevated ({us_vix_val:.1f})")
@@ -432,351 +417,891 @@ with tab1:
     if us_10y_val > 4.8:     risk_score += 10; risk_reasons.append(f"US 10yr near 5% ({us_10y_val:.2f}%)")
     if fii_latest < -5000:   risk_score += 25; risk_reasons.append("Heavy FII selling")
     elif fii_latest < -2000: risk_score += 12; risk_reasons.append("FII selling")
-    elif fii_latest < -500:  risk_score += 8;  risk_reasons.append("FII mild selling")
+    elif fii_latest < -500:  risk_score +=  8; risk_reasons.append("FII mild selling")
     if us_vix_chg > 5:       risk_score += 10; risk_reasons.append("Global fear rising")
     fed_count = news_counts.get("Fed/Rate", 0)
     if fed_count > 50:       risk_score += 20; risk_reasons.append("Fed decision imminent")
     elif fed_count > 20:     risk_score += 10; risk_reasons.append("Fed meeting approaching")
     rbi_count = news_counts.get("RBI", 0)
     if rbi_count > 100:      risk_score += 10; risk_reasons.append("RBI policy focus")
-    if pcr_latest >= 1.3:    risk_score += 15; risk_reasons.append(f"High PCR ({pcr_latest:.2f}) — institutions hedging")
-    elif pcr_latest >= 1.1:  risk_score += 8;  risk_reasons.append(f"Elevated PCR ({pcr_latest:.2f})")
-    elif pcr_latest <= 0.6:  risk_score += 5;  risk_reasons.append(f"Low PCR ({pcr_latest:.2f}) — overconfident")
+    if pcr_latest >= 1.3:    risk_score += 15; risk_reasons.append(f"High PCR ({pcr_latest:.2f})")
+    elif pcr_latest >= 1.1:  risk_score +=  8; risk_reasons.append(f"Elevated PCR ({pcr_latest:.2f})")
+    elif pcr_latest <= 0.6:  risk_score +=  5; risk_reasons.append(f"Low PCR ({pcr_latest:.2f})")
+    risk_score = min(risk_score, 100)
 
-    st.markdown("---")
+    risk_color  = "#dc2626" if risk_score >= 50 else "#d97706" if risk_score >= 25 else "#16a34a"
+    risk_label  = "HIGH" if risk_score >= 50 else "MODERATE" if risk_score >= 25 else "LOW"
+    risk_badge  = "badge-red" if risk_score >= 50 else "badge-amber" if risk_score >= 25 else "badge-green"
+    score_pct   = risk_score  # for arrow position
 
-    # ── Market Regime ──
+    # ── Market regime ──
     regime_label, regime_icon, regime_advice = classify_market_regime(macro, fii_dii)
-    reg_col1, reg_col2 = st.columns([1, 3])
-    with reg_col1:
-        if regime_icon == "🔴":
-            st.error(f"## {regime_icon} {regime_label}")
-        elif regime_icon == "🟢":
-            st.success(f"## {regime_icon} {regime_label}")
-        elif regime_icon == "🟠":
-            st.warning(f"## {regime_icon} {regime_label}")
-        else:
-            st.info(f"## {regime_icon} {regime_label}")
-    with reg_col2:
-        st.markdown(f"**Signal advice:** {regime_advice}")
-        if regime_label == "RISK-OFF":
-            st.caption("FII heavy selling and/or US yields high — macro suppressing signals. 3d models more reliable than 1d.")
-        elif regime_label == "RISK-ON":
-            st.caption("FII buying + low volatility — both 1d and 3d signals reliable.")
 
-    st.markdown("---")
-
-    # ── Unusual Activity Alerts ──
+    # ── Unusual activity ──
     alerts = detect_unusual_activity(summary, hist)
-    if alerts:
-        st.markdown("#### ⚡ Unusual Activity Detected")
-        al_cols = st.columns(min(3, len(alerts)))
-        for i, (icon, tk, msg) in enumerate(alerts):
-            with al_cols[i % 3]:
-                st.markdown(f"{icon} **{tk}**")
-                st.caption(msg)
-        st.markdown("---")
 
-    # ══════════════════════════════════════════════════
-    # SECTION 1 — MACRO ENVIRONMENT
-    # ══════════════════════════════════════════════════
-    st.markdown("#### 📊 Macro Environment")
-    st.caption("Sources: yfinance (prices), NSE (FII/DII), NSE options (PCR). Does NOT include Fed/RBI calendars.")
+    # ── Top signals (XGBoost ensemble) ──
+    top_signals = get_top_signals(accuracy, streaks, ens_signals, summary, top_n=5)
+    # Also get raw ens_signals sorted by probability for display
+    ens_top5 = pd.DataFrame()
+    if not ens_signals.empty and "ensemble_probability" in ens_signals.columns:
+        ens_top5 = (ens_signals[ens_signals["ensemble_probability"] >= 65]
+                    .sort_values("ensemble_probability", ascending=False)
+                    .head(5))
 
-    col_risk, col_macro, col_acc = st.columns([1, 1.4, 1.2])
+    # ── Sectors ──
+    sectors = get_sector_heatmap(macro)
 
-    with col_risk:
-        st.markdown("**Headwind Score**")
-        if risk_score >= 50:
-            st.error(f"### 🔴 HIGH\n{risk_score}/100")
-        elif risk_score >= 25:
-            st.warning(f"### 🟡 MODERATE\n{risk_score}/100")
-        else:
-            st.success(f"### 🟢 LOW\n{risk_score}/100")
-        if risk_reasons:
-            st.caption("Drivers:\n" + "\n".join(f"• {r}" for r in risk_reasons[:3]))
-        st.caption("⚠️ Based only on fetched data")
+    # ── Model accuracy ──
+    xgb_acc = ens_acc = None
+    xgb_rows_count = ens_rows_count = 0
+    if not metrics_df.empty:
+        metrics_df["train_date"] = pd.to_datetime(metrics_df["train_date"], errors="coerce")
+        xgb_r = metrics_df[metrics_df["model"] == "XGBoost_Classifier"].sort_values("train_date")
+        ens_r = metrics_df[metrics_df["model"] == "Voting_Ensemble"].sort_values("train_date")
+        if not xgb_r.empty:
+            xgb_acc = xgb_r.iloc[-1]["direction_accuracy"] * 100
+            xgb_rows_count = int(xgb_r.iloc[-1]["rows"])
+        if not ens_r.empty:
+            ens_acc = ens_r.iloc[-1]["direction_accuracy"] * 100
+            ens_rows_count = int(ens_r.iloc[-1]["rows"])
 
-    with col_macro:
-        st.markdown("**Live Data**")
-        crude = macro.get("crude_oil", {})
-        if crude:
-            ci = "✅" if crude["change"] < -1 else "❌" if crude["change"] > 2 else "⚠️"
-            st.markdown(f"{ci} **Crude**: ${crude['value']:.1f} ({crude['change']:+.1f}%)")
+    # ── Suppress counts ──
+    xgb_suppressed = 0; ens_suppressed = 0
+    if not ens_signals.empty and "ensemble_probability" in ens_signals.columns:
+        xgb_suppressed = int((ens_signals.get("up_probability", ens_signals["ensemble_probability"]) < 65).sum()) if "up_probability" in ens_signals.columns else 0
+        ens_suppressed = int((ens_signals["ensemble_probability"] < 65).sum())
 
-        fii_ic = "🔴" if fii_latest < -3000 else "⚠️" if fii_latest < 0 else "🟢"
-        dii_ic = "🟢" if dii_latest > 1000 else "🟡"
-        st.markdown(f"{fii_ic} **FII**: ₹{fii_latest:+,.0f}cr  |  {dii_ic} **DII**: ₹{dii_latest:+,.0f}cr")
+    # ── Avoid list ──
+    avoid_df = get_avoid_list(summary, ens_signals, top_n=4)
 
-        gold = macro.get("gold", {})
-        if gold:
-            gi = "📈" if gold["change"] > 0.5 else "📉" if gold["change"] < -0.5 else "➡️"
-            st.markdown(f"{gi} **Gold**: ${gold['value']:,.0f} ({gold['change']:+.1f}%)")
-
-        uv = macro.get("us_vix", {})
-        if uv:
-            vi = "✅" if uv["change"] < -3 else "⚠️" if uv["value"] > 20 else "🟡"
-            st.markdown(f"{vi} **US VIX**: {uv['value']:.1f} ({uv['change']:+.1f}%)")
-
-        u10 = macro.get("us_10y", {})
-        if u10:
-            yi = "⚠️" if u10["value"] > 4.8 else "🟡" if u10["change"] > 0.3 else "✅"
-            st.markdown(f"{yi} **US 10yr**: {u10['value']:.2f}% ({u10['change']:+.2f}%)")
-
-        sp = macro.get("sp500", {})
-        if sp:
-            si = "✅" if sp["change"] > 0.3 else "⚠️" if sp["change"] < -0.5 else "🟡"
-            st.markdown(f"{si} **S&P 500**: {sp['value']:,.0f} ({sp['change']:+.1f}%)")
-
-        ur = macro.get("usd_inr", {})
-        if ur:
-            ri = "⚠️" if ur["change"] > 0.3 else "✅"
-            st.markdown(f"{ri} **USD/INR**: {ur['value']:.2f} ({ur['change']:+.2f}%)")
-
-        nf = macro.get("nifty50", {})
-        if nf:
-            ni = "✅" if nf["change"] > 0.3 else "⚠️" if nf["change"] < -0.5 else "🟡"
-            st.markdown(f"{ni} **Nifty 50**: {nf['value']:,.0f} ({nf['change']:+.1f}%)")
-
-        iv = macro.get("india_vix", {})
-        if iv:
-            ii = "⚠️" if iv["value"] > 18 else "✅" if iv["value"] < 14 else "🟡"
-            st.markdown(f"{ii} **India VIX**: {iv['value']:.1f} ({iv['change']:+.1f}%)")
-
-    with col_acc:
-        st.markdown("**System Accuracy**")
-        if not metrics_df.empty:
-            metrics_df["train_date"] = pd.to_datetime(metrics_df["train_date"], errors="coerce")
-            for model_name, label in [
-                ("Ridge",                "Ridge"),
-                ("Voting_Ensemble",      "Ensemble 1d"),
-                ("Voting_3Day_Ensemble", "Ensemble 3d"),
-                ("XGBoost_Classifier",   "XGBoost 1d"),
-            ]:
-                rows = metrics_df[metrics_df["model"] == model_name].sort_values("train_date")
-                if not rows.empty:
-                    val = rows.iloc[-1]["direction_accuracy"] * 100
-                    n   = int(rows.iloc[-1]["rows"])
-                    st.metric(label, f"{val:.2f}%", delta=f"{n:,} rows")
-        else:
-            st.info("Run training to see accuracy")
-
-    st.markdown("---")
-
-    # ══════════════════════════════════════════════════
-    # SECTION 2 — OPTIONS PCR
-    # ══════════════════════════════════════════════════
-    st.markdown("#### 📊 Options Market Sentiment (PCR)")
-    st.caption("Put/Call Ratio — higher = more hedging = institutions cautious. Source: NSE option chain.")
-
-    if not pcr_df.empty:
-        pcr_c1, pcr_c2, pcr_c3 = st.columns([1, 1, 1.5])
-
-        with pcr_c1:
-            if pcr_latest >= 1.3:
-                st.error(f"**🔴 HIGH HEDGING**\nPCR: {pcr_latest:.3f}\nInstitutions buying puts")
-            elif pcr_latest >= 1.1:
-                st.warning(f"**🟡 MODERATE**\nPCR: {pcr_latest:.3f}\nMild bearish positioning")
-            elif pcr_latest >= 0.8:
-                st.info(f"**⚪ NEUTRAL**\nPCR: {pcr_latest:.3f}\nBalanced market")
-            elif pcr_latest >= 0.6:
-                st.warning(f"**🟡 LOW HEDGING**\nPCR: {pcr_latest:.3f}\nMild contrarian buy")
-            else:
-                st.success(f"**🟢 EXTREME LOW**\nPCR: {pcr_latest:.3f}\nContrarian buy signal")
-
-        with pcr_c2:
-            chg_str = f"{pcr_change:+.3f}" if pcr_change != 0 else "First reading"
-            st.metric("OI-based PCR",  f"{pcr_latest:.3f}", delta=chg_str)
-            st.metric("Volume PCR",    f"{pcr_vol_latest:.3f}")
-            st.caption(f"As of {pcr_date}")
-
-        with pcr_c3:
-            if len(pcr_df) >= 3:
-                pcr_sorted = pcr_df.sort_values("date").tail(20)
-                fig_pcr = px.line(pcr_sorted, x="date", y="pcr_oi",
-                                  title="PCR History",
-                                  labels={"pcr_oi": "PCR", "date": ""})
-                fig_pcr.add_hline(y=1.2, line_dash="dash", line_color="red",   annotation_text="1.2 bearish")
-                fig_pcr.add_hline(y=0.7, line_dash="dash", line_color="green", annotation_text="0.7 bullish")
-                fig_pcr.update_layout(height=160, margin=dict(t=25,b=0,l=0,r=0))
-                st.plotly_chart(fig_pcr, use_container_width=True)
-            else:
-                st.caption(f"Chart appears after 3+ days of data\n({len(pcr_df)} day collected so far)")
-
-        st.caption("🔴 PCR ≥ 1.2 = heavy hedging = bearish  |  ⚪ 0.8–1.2 = neutral  |  🟢 PCR ≤ 0.7 = low hedging = contrarian buy")
-    else:
-        st.info("PCR data collecting — run `python -m src.fetch_pcr` after market close")
-
-    st.markdown("---")
-
-    # ══════════════════════════════════════════════════
-    # SECTION 3 — SECTOR HEATMAP
-    # ══════════════════════════════════════════════════
-    st.markdown("#### 🗺️ Sector Signals")
-    st.caption("Based on: Nifty IT/Bank change (yfinance), crude oil change, India/US VIX")
-
-    sectors  = get_sector_heatmap(macro)
-    n_cols   = min(4, len(sectors))
-    sec_cols = st.columns(n_cols)
-    for i, (name, icon, status, reason) in enumerate(sectors):
-        with sec_cols[i % n_cols]:
-            st.markdown(f"{icon} **{name}**")
-            st.caption(f"{status} — {reason}")
-
-    st.markdown("---")
-
-    # ══════════════════════════════════════════════════
-    # SECTION 4 — SIGNALS
-    # ══════════════════════════════════════════════════
-    col_buy, col_avoid = st.columns(2)
-
-    with col_buy:
-        st.markdown("#### 🏆 High-Trust Signals")
-        st.caption("Trust = 40% historical accuracy + 35% win rate + 25% current signal")
-
-        top_signals = get_top_signals(accuracy, streaks, ens_signals, summary)
-        if not top_signals.empty:
-            medals = ["🥇","🥈","🥉"]
-            for i, (_, row) in enumerate(top_signals.iterrows()):
-                if i >= 3: break
-                tk       = row["ticker"].replace(".NS","")
-                trust    = row["trust_score"]
-                bar      = "█" * int(trust/10) + "░" * (10-int(trust/10))
-                t_color  = "🟢" if trust >= 75 else "🟡" if trust >= 60 else "🔴"
-                streak   = int(row.get("pos_day_streak",  0))
-                win_rate = row.get("win_rate_10d",         0)
-                combined = row.get("combined_acc",          0)
-                ens_prob = row.get("ensemble_probability",  50)
-                total_s  = int(row.get("total_signals",    0))
-                ss       = row.get("smart_score",           0)
-                with st.expander(f"{medals[i]} **{tk}** — {t_color} Trust: {trust:.0f}% | {bar}"):
-                    c1, c2 = st.columns(2)
-                    c1.metric("Win Rate (10d)",  f"{win_rate:.1f}%")
-                    c2.metric("Streak",           f"{streak} days 🔥")
-                    c3, c4 = st.columns(2)
-                    c3.metric("Historical Acc.", f"{combined:.1f}%")
-                    c4.metric("Ensemble Signal", f"{ens_prob:.1f}%")
-                    c5, c6 = st.columns(2)
-                    c5.metric("Total Signals",   str(total_s))
-                    c6.metric("SmartScore",      f"{ss:.1f}")
-                    st.caption("⚠️ Past accuracy ≠ future returns. Research signal only.")
-        else:
-            st.info("Insufficient history. Check back after more trading days.")
-
-    with col_avoid:
-        st.markdown("#### ⚠️ Weak Signals")
-        st.caption("SmartScore < 35 and negative ML signals over last 10 days")
-
-        avoid_df = get_avoid_list(summary, ens_signals)
-        if not avoid_df.empty:
-            for _, row in avoid_df.iterrows():
-                tk     = row["ticker"].replace(".NS","")
-                ss     = row["smart_score"]
-                reason = get_avoid_reason(row["ticker"], ss)
-                ep     = row.get("ensemble_probability", 50)
-                with st.expander(f"⚠️ **{tk}** — SmartScore: {ss:.0f}/100"):
-                    st.markdown(f"**Why:** {reason}")
-                    if pd.notna(ep):
-                        st.metric("Ensemble", f"{ep:.1f}%",
-                                  delta="Bearish" if ep < 45 else "Neutral",
-                                  delta_color="inverse")
-        else:
-            st.info("No strong negative signals today")
-
-    st.markdown("---")
-
-    # ══════════════════════════════════════════════════
-    # SECTION 5 — NEWS + GEOPOLITICAL (side by side)
-    # ══════════════════════════════════════════════════
-    col_news, col_geo = st.columns(2)
-
-    with col_news:
-        st.markdown("#### 📰 News Volume by Topic")
-        if news_source == "estimated":
-            st.caption("Estimated from stock article counts (exact counts in local runs)")
-        else:
-            st.caption("Article counts from RSS feeds — last 24-48h")
-
-        if news_counts:
-            sorted_topics = sorted(news_counts.items(), key=lambda x: x[1], reverse=True)
-            icon_map = {
-                "Oil/Crude":"🛢️","Iran/Hormuz":"🌍","Fed/Rate":"🇺🇸",
-                "RBI":"🏛️","Gold":"💰","IT sector":"💻",
-                "FII/DII":"💵","Nifty/Sensex":"📈","Banking":"🏦",
-                "FMCG":"🛒","Semiconductors":"🔧","Rupee":"₹"
-            }
-            for topic, count in sorted_topics[:6]:
-                ic = icon_map.get(topic,"📰")
-                st.markdown(f"{ic} **{topic}**: {count} articles")
-        else:
-            st.info("News data loading...")
-
-    with col_geo:
-        st.markdown("#### 🌍 Geopolitical Signals")
-        st.caption("Levels from article counts + macro data")
-
-        iran  = news_counts.get("Iran/Hormuz", 0)
-        il    = "🔴 HIGH" if iran > 50 else "🟡 MEDIUM" if iran > 20 else "🟢 LOW"
-        st.markdown(f"**🇮🇷 Iran/Hormuz**: {il}")
-        st.caption(f"{iran} articles — crude & shipping risk")
-
-        fed   = news_counts.get("Fed/Rate", 0)
-        fl    = "🔴 HIGH" if fed > 50 else "🟡 MEDIUM" if fed > 20 else "🟢 LOW"
-        st.markdown(f"**🇺🇸 US Fed**: {fl}")
-        st.caption(f"{fed} articles — rate expectations")
-
-        u10v  = macro.get("us_10y", {}).get("value", 4.5)
-        jl    = "🔴 HIGH" if u10v > 4.9 else "🟡 MEDIUM" if u10v > 4.7 else "🟢 LOW"
-        st.markdown(f"**🇯🇵 Japan / Treasuries**: {jl}")
-        st.caption(f"US 10yr at {u10v:.2f}% — yield pressure proxy")
-
-        gchg  = macro.get("gold", {}).get("change", 0)
-        gl    = "🔴 HIGH" if gchg > 1.5 else "🟡 MEDIUM" if gchg > 0 else "🟢 LOW"
-        st.markdown(f"**🌐 De-dollarisation / Gold**: {gl}")
-        st.caption(f"Gold {gchg:+.1f}% — safe haven demand")
-
-    st.markdown("---")
-
-    # ══════════════════════════════════════════════════
-    # SECTION 6 — TOMORROW'S OUTLOOK
-    # ══════════════════════════════════════════════════
-    st.markdown("#### 🔮 What to Watch Tomorrow")
-    st.caption("Based on current data trends — NOT a forecast")
-
+    # ── Tomorrow outlook ──
     tomorrow = get_tomorrow_outlook(macro, fii_dii, news_counts)
-    if tomorrow:
-        t_cols = st.columns(min(3, len(tomorrow)))
-        for i, (icon, event, implication) in enumerate(tomorrow):
-            with t_cols[i % len(t_cols)]:
-                st.markdown(f"{icon} **{event}**")
-                st.caption(f"→ {implication}")
-    else:
-        st.success("✅ No major risk signals detected in current data")
 
-    st.markdown("---")
+    # ── Geo signals ──
+    iran_count  = news_counts.get("Iran/Hormuz", 0)
+    iran_level  = "HIGH" if iran_count > 50 else "MEDIUM" if iran_count > 20 else "LOW"
+    iran_dot    = "dot-red" if iran_count > 50 else "dot-amber" if iran_count > 20 else "dot-green"
+    fed_level   = "HIGH" if fed_count > 50 else "MEDIUM" if fed_count > 20 else "LOW"
+    fed_dot     = "dot-red" if fed_count > 50 else "dot-amber" if fed_count > 20 else "dot-green"
+    u10v        = macro.get("us_10y", {}).get("value", 4.5)
+    jap_level   = "HIGH" if u10v > 4.9 else "MEDIUM" if u10v > 4.7 else "LOW"
+    jap_dot     = "dot-red" if u10v > 4.9 else "dot-amber" if u10v > 4.7 else "dot-green"
+    gchg        = macro.get("gold", {}).get("change", 0)
+    gold_level  = "HIGH" if gchg > 1.5 else "MEDIUM" if gchg > 0 else "LOW"
+    gold_dot    = "dot-red" if gchg > 1.5 else "dot-amber" if gchg > 0 else "dot-green"
 
-    # ══════════════════════════════════════════════════
-    # COLLAPSED SECTIONS
-    # ══════════════════════════════════════════════════
-    with st.expander("📋 Full SmartScore Table", expanded=False):
-        cols = ["ticker","smart_score","S_recency","S_events","S_breadth","S_volume","pos","neg","total"]
-        show = [c for c in cols if c in summary.columns]
-        st.dataframe(summary[show].sort_values("smart_score", ascending=False),
-                     use_container_width=True, hide_index=True)
+    # ─────────────────────────────────────────────────────────
+    # Helper: build a dot-row HTML snippet
+    # ─────────────────────────────────────────────────────────
+    def dot_row(dot_cls, label, val, chg, chg_cls="flat"):
+        return f"""
+        <div class="stat-row">
+          <div class="dot {dot_cls}"></div>
+          <div class="stat-label">{label}</div>
+          <div class="stat-val">{val}</div>
+          <div class="stat-chg {chg_cls}">{chg}</div>
+        </div>"""
 
-    with st.expander("📊 SmartScore Charts", expanded=False):
-        topn   = st.slider("Top N", 5, 20, 10, key="topn_overview")
-        top_df = summary.nlargest(topn, "smart_score")
-        fig    = px.bar(top_df, x="ticker", y="smart_score", color="smart_score",
-                        title=f"Top {topn} Smart Scores", color_continuous_scale="Blues")
-        st.plotly_chart(fig, use_container_width=True)
-        comp_cols = [c for c in ["S_recency","S_events","S_breadth","S_volume"] if c in summary.columns]
-        if comp_cols:
-            comp_df = summary[["ticker",*comp_cols]].melt(id_vars="ticker", var_name="component", value_name="score")
-            figc    = px.bar(comp_df, x="ticker", y="score", color="component",
-                             barmode="group", title="Component Scores (0-100)")
-            st.plotly_chart(figc, use_container_width=True)
+    def badge(text, cls):
+        return f'<span class="badge {cls}">{text}</span>'
 
+    def card_head(title, badge_html):
+        return f"""<div class="card-head"><h2>{title}</h2>{badge_html}</div>"""
+
+    # ─────────────────────────────────────────────────────────
+    # CSS (injected once)
+    # ─────────────────────────────────────────────────────────
+    st.html("""
+    <style>
+    /* ── Token system ── */
+    :root {
+      --bg:#f7f8fa; --surface:#ffffff; --surface2:#f0f2f5; --border:#e4e7ec;
+      --fg:#111827; --fg2:#4b5563; --fg3:#9ca3af;
+      --green:#16a34a; --green-bg:#dcfce7;
+      --red:#dc2626;   --red-bg:#fee2e2;
+      --amber:#d97706; --amber-bg:#fef3c7;
+      --accent:#2563eb; --blue-bg:#dbeafe;
+      --radius:10px;
+      --font-mono:'JetBrains Mono','Courier New',monospace;
+      --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+    }
+    @media(prefers-color-scheme:dark){
+      :root{
+        --bg:#0f1117; --surface:#1a1d27; --surface2:#22263a; --border:#2d3148;
+        --fg:#f1f5f9; --fg2:#94a3b8; --fg3:#475569;
+        --green:#22c55e; --green-bg:#14532d55;
+        --red:#f87171;   --red-bg:#7f1d1d55;
+        --amber:#fbbf24; --amber-bg:#78350f55;
+        --blue-bg:#1e3a8a55;
+      }
+    }
+    .mib *{box-sizing:border-box;margin:0;padding:0}
+    .mib{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;font-size:15px;line-height:1.5;color:var(--fg)}
+
+    /* grid */
+    .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+    .row2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px}
+    @media(max-width:900px){.row3{grid-template-columns:1fr 1fr}.row2{grid-template-columns:1fr}}
+    @media(max-width:600px){.row3{grid-template-columns:1fr}}
+
+    /* card */
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .card-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 8px;border-bottom:1px solid var(--border)}
+    .card-head h2{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--fg3)}
+    .card-body{padding:12px 14px}
+
+    /* badge */
+    .badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:20px}
+    .badge-green{background:var(--green-bg);color:var(--green)}
+    .badge-red{background:var(--red-bg);color:var(--red)}
+    .badge-amber{background:var(--amber-bg);color:var(--amber)}
+    .badge-blue{background:var(--blue-bg);color:var(--accent)}
+
+    /* stat-row */
+    .stat-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:14px}
+    .stat-row:last-child{border-bottom:none}
+    .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .dot-green{background:var(--green)}.dot-red{background:var(--red)}.dot-amber{background:var(--amber)}.dot-gray{background:var(--fg3)}
+    .stat-label{flex:1;color:var(--fg2)}
+    .stat-val{font-family:var(--font-mono);font-size:13px;font-weight:500;color:var(--fg)}
+    .stat-chg{font-family:var(--font-mono);font-size:12px;min-width:52px;text-align:right}
+    .up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--fg3)}
+
+    /* score hero */
+    .score-hero{text-align:center;padding:14px 14px 10px}
+    .score-big{font-size:58px;font-weight:700;font-family:var(--font-mono);line-height:1;margin-bottom:4px}
+    .score-label{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+    .score-bar-wrap{background:var(--surface2);border-radius:4px;height:6px;margin:8px 0 4px;overflow:hidden}
+    .score-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#16a34a 0%,#d97706 50%,#dc2626 100%);width:100%}
+    .score-pointer{position:relative;height:12px;margin-bottom:8px}
+    .score-arrow{position:absolute;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:9px solid var(--fg);transform:translateX(-50%)}
+    .score-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+    .score-sub{background:var(--surface2);border-radius:7px;padding:8px 10px;text-align:center}
+    .score-sub .val{font-family:var(--font-mono);font-size:18px;font-weight:600}
+    .score-sub .lbl{font-size:12px;color:var(--fg3);margin-top:2px}
+
+    /* signal rows */
+    .signal-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)}
+    .signal-row:last-child{border-bottom:none}
+    .signal-rank{font-size:12px;font-weight:700;color:var(--fg3);font-family:var(--font-mono);width:18px;text-align:center}
+    .signal-ticker{font-family:var(--font-mono);font-size:14px;font-weight:600;flex:1}
+    .signal-conf-bar{width:70px;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden}
+    .signal-conf-fill{height:100%;border-radius:3px;background:var(--green)}
+    .signal-pct{font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--green);min-width:42px;text-align:right}
+    .signal-dir{font-size:12px;font-weight:600;padding:2px 7px;border-radius:4px}
+    .dir-up{background:var(--green-bg);color:var(--green)}
+    .dir-down{background:var(--red-bg);color:var(--red)}
+
+    /* ua rows */
+    .ua-row{padding:7px 0;border-bottom:1px solid var(--border)}
+    .ua-row:last-child{border-bottom:none}
+    .ua-top{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+    .ua-ticker{font-family:var(--font-mono);font-size:14px;font-weight:600;flex:1}
+    .ua-vol-bar-wrap{background:var(--surface2);border-radius:3px;height:4px;overflow:hidden}
+    .ua-vol-bar-fill{height:100%;border-radius:3px}
+    .ua-detail{display:flex;gap:12px;margin-top:4px;font-size:12px;color:var(--fg3);font-family:var(--font-mono)}
+
+    /* sector rows */
+    .sector-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)}
+    .sector-row:last-child{border-bottom:none}
+    .sector-name{flex:1;font-size:14px;color:var(--fg2)}
+    .sector-bar-wrap{width:80px;background:var(--surface2);border-radius:3px;height:5px;overflow:hidden}
+    .sector-bar-fill{height:100%;border-radius:3px}
+    .sector-pct{font-family:var(--font-mono);font-size:13px;min-width:32px;text-align:right}
+    .sector-lbl{font-size:12px;font-weight:600;padding:2px 7px;border-radius:4px;min-width:52px;text-align:center}
+
+    /* PCR */
+    .pcr-main-val{font-family:var(--font-mono);font-size:26px;font-weight:700;margin-bottom:2px}
+    .pcr-sub{font-size:12px;color:var(--fg3);margin-bottom:8px}
+    .pcr-mini-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 0;border-bottom:1px solid var(--border)}
+    .pcr-mini-row:last-child{border-bottom:none}
+    .pcr-mini-label{color:var(--fg3)}
+    .pcr-mini-val{font-family:var(--font-mono);font-weight:500;font-size:13px}
+    .section-title{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--fg3);margin-bottom:8px}
+
+    /* high trust */
+    .ht-item{padding:9px 0;border-bottom:1px solid var(--border)}
+    .ht-item:last-child{border-bottom:none}
+    .ht-ticker{font-family:var(--font-mono);font-size:15px;font-weight:700}
+    .ht-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+    .ht-stat{background:var(--surface2);border-radius:7px;padding:6px 8px}
+    .ht-stat .val{font-family:var(--font-mono);font-size:16px;font-weight:600}
+    .ht-stat .lbl{font-size:12px;color:var(--fg3);margin-top:1px}
+
+    /* weak signals */
+    .weak-row{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border)}
+    .weak-row:last-child{border-bottom:none}
+    .weak-ticker{font-family:var(--font-mono);font-size:14px;font-weight:600;width:86px;flex-shrink:0}
+    .weak-info{flex:1}
+    .weak-pct{font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--fg2)}
+    .weak-reason{font-size:12px;color:var(--fg3);margin-top:2px}
+
+    /* news mini grid */
+    .news-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+    .news-mini{background:var(--surface2);border-radius:7px;padding:7px 9px;text-align:center}
+    .news-mini .val{font-family:var(--font-mono);font-size:20px;font-weight:700}
+    .news-mini .lbl{font-size:12px;color:var(--fg3);margin-top:1px}
+
+    /* watch rows */
+    .watch-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)}
+    .watch-row:last-child{border-bottom:none}
+    .watch-ticker{font-family:var(--font-mono);font-size:14px;font-weight:600;flex:1}
+    .watch-reason{font-size:12px;color:var(--fg3)}
+    .watch-tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px}
+
+    /* geo section */
+    .geo-section{padding:10px 0}
+    .geo-section+.geo-section{border-top:1px solid var(--border)}
+
+    /* risk footer */
+    .risk-footer{background:#1e1b4b;color:#e0e7ff;padding:12px 18px;border-radius:10px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border:1px solid #4338ca}
+    .risk-footer-text h3{font-size:14px;font-weight:700;color:#a5b4fc;letter-spacing:.3px}
+    .risk-footer-text p{font-size:12px;color:#818cf8;margin-top:2px}
+    .risk-pills{display:flex;gap:8px;flex-wrap:wrap}
+    .rpill{font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;font-family:var(--font-mono)}
+    .rp-score{background:#7c3aed33;color:#a78bfa;border:1px solid #7c3aed55}
+    .rp-xgb{background:#dc262633;color:#fca5a5;border:1px solid #dc262655}
+    .rp-ens{background:#ea580c33;color:#fdba74;border:1px solid #ea580c55}
+    .rp-stance{background:#16a34a33;color:#86efac;border:1px solid #16a34a55}
+
+    /* util */
+    .sub-caption{font-size:12px;color:var(--fg3);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+    </style>
+    """)
+
+    # ─────────────────────────────────────────────────────────
+    # Build top-signal rows HTML
+    # ─────────────────────────────────────────────────────────
+    def build_signal_rows():
+        rows_html = ""
+        if not ens_top5.empty:
+            for i, (_, row) in enumerate(ens_top5.iterrows()):
+                tk   = row["ticker"].replace(".NS", "")
+                prob = float(row["ensemble_probability"])
+                sig  = str(row.get("signal", "UP"))
+                dircls = "dir-up" if "UP" in sig.upper() or "BULL" in sig.upper() else "dir-down"
+                dir_lbl = "UP" if "UP" in sig.upper() or "BULL" in sig.upper() else "DOWN"
+                bar_w = min(int(prob), 100)
+                rows_html += f"""
+                <div class="signal-row">
+                  <div class="signal-rank">#{i+1}</div>
+                  <div class="signal-ticker">{tk}</div>
+                  <div class="signal-conf-bar"><div class="signal-conf-fill" style="width:{bar_w}%"></div></div>
+                  <div class="signal-pct">{prob:.1f}%</div>
+                  <div class="signal-dir {dircls}">{dir_lbl}</div>
+                </div>"""
+        elif not top_signals.empty:
+            for i, (_, row) in enumerate(top_signals.iterrows()):
+                tk   = row["ticker"].replace(".NS", "")
+                prob = float(row.get("ensemble_probability", row.get("trust_score", 65)))
+                bar_w = min(int(prob), 100)
+                rows_html += f"""
+                <div class="signal-row">
+                  <div class="signal-rank">#{i+1}</div>
+                  <div class="signal-ticker">{tk}</div>
+                  <div class="signal-conf-bar"><div class="signal-conf-fill" style="width:{bar_w}%"></div></div>
+                  <div class="signal-pct">{prob:.1f}%</div>
+                  <div class="signal-dir dir-up">UP</div>
+                </div>"""
+        else:
+            rows_html = '<div style="font-size:12px;color:var(--fg3);padding:8px 0">No signals above 65% today</div>'
+        return rows_html
+
+    # ─────────────────────────────────────────────────────────
+    # Build UA rows HTML
+    # ─────────────────────────────────────────────────────────
+    def build_ua_rows():
+        if not alerts:
+            return '<div style="font-size:12px;color:var(--fg3);padding:8px 0">No unusual activity detected</div>'
+        html = ""
+        for icon, tk, msg in alerts[:4]:
+            # classify
+            if "surge" in msg.lower() or "volume" in msg.lower():
+                type_badge = badge("Vol spike", "badge-amber")
+                bar_color  = "var(--amber)"; bar_w = 75
+            elif "crash" in msg.lower():
+                type_badge = badge("Sentiment drop", "badge-red")
+                bar_color  = "var(--red)"; bar_w = 30
+            else:
+                type_badge = badge("Alert", "badge-blue")
+                bar_color  = "var(--accent)"; bar_w = 55
+            html += f"""
+            <div class="ua-row">
+              <div class="ua-top">
+                <div class="ua-ticker">{tk}</div>{type_badge}
+              </div>
+              <div class="ua-vol-bar-wrap"><div class="ua-vol-bar-fill" style="width:{bar_w}%;background:{bar_color}"></div></div>
+              <div class="ua-detail"><span>{msg[:60]}</span></div>
+            </div>"""
+        return html
+
+    # ─────────────────────────────────────────────────────────
+    # Build sector rows HTML
+    # ─────────────────────────────────────────────────────────
+    def sector_signal_to_pct(status_str):
+        s = status_str.upper()
+        if any(w in s for w in ["BULLISH","RECOVERING","BENEFITS","POSITIVE","RELIEF"]):
+            return 70, "var(--green)", "badge-green", "Bullish"
+        elif any(w in s for w in ["NEUTRAL","MIXED","STABLE","VOLATILE"]):
+            return 55, "var(--amber)", "badge-amber", "Neutral"
+        else:
+            return 35, "var(--red)", "badge-red", "Bearish"
+
+    def build_sector_rows():
+        html = ""
+        for name, icon, status, reason in sectors[:7]:
+            pct, color, badge_cls, label = sector_signal_to_pct(status)
+            dot_cls = "dot-green" if "green" in badge_cls else "dot-red" if "red" in badge_cls else "dot-amber"
+            pct_cls = "up" if pct >= 65 else "down" if pct <= 40 else "flat"
+            html += f"""
+            <div class="sector-row">
+              <div class="dot {dot_cls}"></div>
+              <div class="sector-name">{name}</div>
+              <div class="sector-bar-wrap"><div class="sector-bar-fill" style="width:{pct}%;background:{color}"></div></div>
+              <div class="sector-pct {pct_cls}">{pct}%</div>
+              <div class="sector-lbl badge {badge_cls}">{label}</div>
+            </div>"""
+        return html
+
+    # ─────────────────────────────────────────────────────────
+    # Build High-Trust rows
+    # ─────────────────────────────────────────────────────────
+    def build_ht_rows():
+        if top_signals.empty:
+            return '<div style="font-size:12px;color:var(--fg3);padding:8px 0">Insufficient history — check back after more trading days</div>'
+        html = ""
+        for i, (_, row) in enumerate(top_signals.head(3).iterrows()):
+            tk       = row["ticker"].replace(".NS", "")
+            trust    = float(row.get("trust_score", 70))
+            win_rate = float(row.get("win_rate_10d", 0))
+            combined = float(row.get("combined_acc", 0))
+            ens_prob = float(row.get("ensemble_probability", 65))
+            streak   = int(row.get("pos_day_streak", 0))
+            ss       = float(row.get("smart_score", 50))
+            html += f"""
+            <div class="ht-item">
+              <div style="display:flex;align-items:center">
+                <span class="ht-ticker">{tk}</span>
+                <span class="badge badge-green" style="margin-left:8px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:5px">UP</span>
+              </div>
+              <div class="ht-stat-grid">
+                <div class="ht-stat"><div class="val up">{ens_prob:.1f}%</div><div class="lbl">Confidence</div></div>
+                <div class="ht-stat"><div class="val">{combined:.1f}%</div><div class="lbl">Historical acc</div></div>
+                <div class="ht-stat"><div class="val up">{win_rate:.0f}%</div><div class="lbl">Win rate 10d</div></div>
+                <div class="ht-stat"><div class="val">{ss:.0f}</div><div class="lbl">Smart score</div></div>
+              </div>
+            </div>"""
+        return html
+
+    # ─────────────────────────────────────────────────────────
+    # Build Weak Signal rows
+    # ─────────────────────────────────────────────────────────
+    def build_weak_rows():
+        if avoid_df.empty:
+            return '<div style="font-size:12px;color:var(--fg3);padding:8px 0">No strong negative signals today</div>'
+        html = ""
+        for _, row in avoid_df.head(4).iterrows():
+            tk     = row["ticker"].replace(".NS", "")
+            ss     = float(row.get("smart_score", 30))
+            reason = get_avoid_reason(row["ticker"], ss)
+            ep     = float(row.get("ensemble_probability", 40)) if pd.notna(row.get("ensemble_probability")) else 40
+            d_cls  = "dir-down" if ep < 45 else "badge-amber"
+            d_lbl  = "DOWN" if ep < 45 else "FLAT"
+            html += f"""
+            <div class="weak-row">
+              <div class="weak-ticker">{tk}</div>
+              <div class="weak-info">
+                <div class="weak-pct flat">{ep:.1f}%</div>
+                <div class="weak-reason">{reason}</div>
+              </div>
+              <div class="signal-dir {'dir-down' if ep < 45 else 'badge-amber'}">{d_lbl}</div>
+            </div>"""
+        return html
+
+    # ─────────────────────────────────────────────────────────
+    # Build Watch Tomorrow rows
+    # ─────────────────────────────────────────────────────────
+    def build_watch_rows():
+        if not tomorrow:
+            return '<div style="font-size:12px;color:var(--fg3);padding:8px 0">No major events flagged</div>'
+        html = ""
+        tag_map = {
+            "✅": ("Positive", "badge-green"),
+            "⚠️": ("Watch",   "badge-amber"),
+            "🔴": ("Risk",    "badge-red"),
+            "🟢": ("Positive","badge-green"),
+            "🏛️": ("Macro",   "badge-blue"),
+        }
+        for icon, event, impl in tomorrow[:4]:
+            tag_lbl, tag_cls = tag_map.get(icon, ("Event", "badge-blue"))
+            html += f"""
+            <div class="watch-row">
+              <div class="watch-ticker" style="font-size:12px">{event[:28]}</div>
+              <div class="watch-reason">{impl[:40]}</div>
+              <span class="watch-tag badge {tag_cls}">{tag_lbl}</span>
+            </div>"""
+        return html
+
+    # ─────────────────────────────────────────────────────────
+    # News volume stats
+    # ─────────────────────────────────────────────────────────
+    total_arts = int(summary["total"].sum()) if not summary.empty and "total" in summary.columns else 0
+    pos_arts   = int(summary["pos"].sum())   if not summary.empty and "pos"   in summary.columns else 0
+    neg_arts   = int(summary["neg"].sum())   if not summary.empty and "neg"   in summary.columns else 0
+
+    # ─────────────────────────────────────────────────────────
+    # Live data rows
+    # ─────────────────────────────────────────────────────────
+    def macro_dot(key, positive_below=None, negative_above=None, positive_above=None):
+        val = macro.get(key, {}).get("value", 0)
+        chg = macro.get(key, {}).get("change", 0)
+        if positive_below and val < positive_below:    return "dot-green"
+        if negative_above and val > negative_above:    return "dot-red"
+        if positive_above and chg > 0:                 return "dot-green"
+        if chg > 0.3:                                  return "dot-red"
+        if chg < -0.3:                                 return "dot-green"
+        return "dot-amber"
+
+    def chg_cls(v): return "up" if v > 0 else "down" if v < 0 else "flat"
+
+    live_rows = ""
+    uv  = macro.get("us_vix",    {}); gld = macro.get("gold",      {})
+    oil = macro.get("crude_oil", {}); ur  = macro.get("usd_inr",   {})
+    u10 = macro.get("us_10y",    {}); sp  = macro.get("sp500",     {})
+    nf  = macro.get("nifty50",   {}); iv  = macro.get("india_vix", {})
+
+    if uv:
+        d = "dot-red" if uv.get("value",15) > 20 else "dot-amber" if uv.get("value",15) > 15 else "dot-green"
+        live_rows += dot_row(d, "US VIX", f"{uv.get('value',0):.1f}", f"{uv.get('change',0):+.1f}%", chg_cls(-uv.get("change",0)))
+    if gld:
+        live_rows += dot_row("dot-green" if gld.get("change",0)>0 else "dot-amber", "Gold", f"${gld.get('value',0):,.0f}", f"{gld.get('change',0):+.1f}%", chg_cls(gld.get("change",0)))
+    if oil:
+        d = "dot-red" if oil.get("change",0)>2 else "dot-green" if oil.get("change",0)<-1 else "dot-amber"
+        live_rows += dot_row(d, "Brent Crude", f"${oil.get('value',0):.1f}", f"{oil.get('change',0):+.1f}%", chg_cls(-oil.get("change",0)))
+    if ur:
+        d = "dot-red" if ur.get("change",0)>0.3 else "dot-green"
+        live_rows += dot_row(d, "USD/INR", f"{ur.get('value',0):.2f}", f"{ur.get('change',0):+.2f}%", chg_cls(-ur.get("change",0)))
+    if u10:
+        d = "dot-red" if u10.get("value",4)>4.8 else "dot-amber" if u10.get("change",0)>0.2 else "dot-green"
+        live_rows += dot_row(d, "US 10Y Yield", f"{u10.get('value',0):.2f}%", f"{u10.get('change',0):+.2f}%", chg_cls(-u10.get("change",0)))
+    fii_d = "dot-red" if fii_latest < -2000 else "dot-amber" if fii_latest < 0 else "dot-green"
+    live_rows += dot_row(fii_d, "FII Net", f"₹{fii_latest:+,.0f}cr", "Selling" if fii_latest<0 else "Buying", "down" if fii_latest<0 else "up")
+    dii_d = "dot-green" if dii_latest > 1000 else "dot-amber"
+    live_rows += dot_row(dii_d, "DII Net", f"₹{dii_latest:+,.0f}cr", "Buying" if dii_latest>0 else "Selling", "up" if dii_latest>0 else "down")
+    if nf:
+        d = "dot-green" if nf.get("change",0)>0.3 else "dot-red" if nf.get("change",0)<-0.5 else "dot-amber"
+        live_rows += dot_row(d, "Nifty 50", f"{nf.get('value',0):,.0f}", f"{nf.get('change',0):+.1f}%", chg_cls(nf.get("change",0)))
+    if iv:
+        d = "dot-red" if iv.get("value",15)>18 else "dot-green" if iv.get("value",15)<14 else "dot-amber"
+        live_rows += dot_row(d, "India VIX", f"{iv.get('value',0):.1f}", f"{iv.get('change',0):+.1f}%", chg_cls(-iv.get("change",0)))
+
+    # ─────────────────────────────────────────────────────────
+    # PCR color logic
+    # ─────────────────────────────────────────────────────────
+    pcr_color  = "var(--amber)" if pcr_latest >= 1.1 else "var(--red)" if pcr_latest >= 1.3 else "var(--green)"
+    pcr_status = "OI-based · bearish" if pcr_latest >= 1.1 else "OI-based · neutral" if pcr_latest >= 0.8 else "OI-based · bullish"
+    pcr_badge  = "badge-red" if pcr_latest >= 1.3 else "badge-amber" if pcr_latest >= 1.1 else "badge-green"
+    pcr_zscore_cls = "down" if pcr_zscore > 1 else "up" if pcr_zscore < -1 else "flat"
+
+    # ─────────────────────────────────────────────────────────
+    # Suppression pill for headwind card
+    # ─────────────────────────────────────────────────────────
+    # Count from ens_signals if available
+    if not ens_signals.empty:
+        if "up_probability" in ens_signals.columns:
+            xgb_suppressed = int((ens_signals["up_probability"] < 65).sum())
+        if "ensemble_probability" in ens_signals.columns:
+            ens_suppressed = int((ens_signals["ensemble_probability"] < 65).sum())
+
+    # ─────────────────────────────────────────────────────────
+    # Render risk banner first (top of tab)
+    # ─────────────────────────────────────────────────────────
+    stance = "Reduce size · High trust only" if risk_score >= 50 else "Normal sizing · Monitor" if risk_score >= 25 else "Full sizing · All signals"
+    st.html(f"""
+    <div class="mib">
+    <div class="risk-footer">
+      <div>
+        <div class="risk-footer-text">
+          <h3>⚠️ MACRO RISK · {risk_label} HEADWIND — Score {risk_score}/100</h3>
+          <p>{" · ".join(risk_reasons[:4]) if risk_reasons else "No major risk factors active"}</p>
+        </div>
+      </div>
+      <div class="risk-pills">
+        <span class="rpill rp-score">Score {risk_score}/100</span>
+        {'<span class="rpill rp-xgb">XGB −' + str(xgb_suppressed) + '</span>' if xgb_suppressed else ''}
+        {'<span class="rpill rp-ens">Ens −' + str(ens_suppressed) + '</span>' if ens_suppressed else ''}
+        <span class="rpill rp-stance">{stance}</span>
+      </div>
+    </div>
+    </div>
+    """)
+
+    # ─────────────────────────────────────────────────────────
+    # ROW 1 — Headwind Score | Live Data | Top Signals Today
+    # ─────────────────────────────────────────────────────────
+    sig_badge_count = len(ens_top5) if not ens_top5.empty else (len(top_signals) if not top_signals.empty else 0)
+    st.html(f"""
+    <div class="mib">
+    <div class="row3">
+
+      <!-- Headwind Score -->
+      <div class="card">
+        {card_head("Headwind Score", badge(risk_label + " RISK", risk_badge))}
+        <div class="card-body">
+          <div class="score-hero">
+            <div class="score-big" style="color:{risk_color}">{risk_score}</div>
+            <div class="score-label" style="color:{risk_color}">{risk_label}</div>
+            <div class="score-bar-wrap"><div class="score-bar-fill"></div></div>
+            <div class="score-pointer"><div class="score-arrow" style="left:{score_pct}%"></div></div>
+            <div class="score-sub-grid">
+              <div class="score-sub">
+                <div class="val" style="color:var(--red)">{xgb_suppressed}</div>
+                <div class="lbl">XGB suppressed</div>
+              </div>
+              <div class="score-sub">
+                <div class="val" style="color:var(--red)">{ens_suppressed}</div>
+                <div class="lbl">Ens suppressed</div>
+              </div>
+            </div>
+          </div>
+          {"".join(dot_row(
+            "dot-red" if "VIX" in r or "selling" in r.lower() or "surge" in r.lower() else "dot-amber",
+            r, "", "", "flat"
+          ) for r in risk_reasons[:4]) if risk_reasons else dot_row("dot-green","No major risk factors","","","flat")}
+        </div>
+      </div>
+
+      <!-- Live Data -->
+      <div class="card">
+        {card_head("Live Data", badge("LIVE", "badge-blue"))}
+        <div class="card-body">{live_rows}</div>
+      </div>
+
+      <!-- Top Signals Today -->
+      <div class="card">
+        {card_head("Top Signals Today", badge(str(sig_badge_count) + " SIGNALS", "badge-green"))}
+        <div class="card-body">
+          {build_signal_rows()}
+          <div class="sub-caption">XGBoost ensemble · threshold ≥ 65% · macro filter {"active" if risk_score >= 50 else "off"}</div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    """)
+
+    # ─────────────────────────────────────────────────────────
+    # ROW 2 — Unusual Activity | Sector Signals | PCR
+    # ─────────────────────────────────────────────────────────
+    ua_badge_count = len(alerts)
+    st.html(f"""
+    <div class="mib">
+    <div class="row3">
+
+      <!-- Unusual Activity -->
+      <div class="card">
+        {card_head("Unusual Activity", badge(str(ua_badge_count) + " ALERTS" if ua_badge_count else "CLEAR", "badge-amber" if ua_badge_count else "badge-green"))}
+        <div class="card-body">{build_ua_rows()}</div>
+      </div>
+
+      <!-- Sector Signals -->
+      <div class="card">
+        {card_head("Sector Signals", badge(regime_label, "badge-red" if regime_label == "RISK-OFF" else "badge-amber" if regime_label in ["HIGH VOLATILITY","NEUTRAL"] else "badge-green"))}
+        <div class="card-body">{build_sector_rows()}</div>
+      </div>
+
+      <!-- PCR -->
+      <div class="card">
+        {card_head("Put / Call Ratio", badge(pcr_regime, pcr_badge))}
+        <div class="card-body">
+          <div class="pcr-main-val" style="color:{pcr_color}">{pcr_latest:.3f}</div>
+          <div class="pcr-sub">{pcr_status}</div>
+          <div class="pcr-mini-row"><span class="pcr-mini-label">Volume PCR</span><span class="pcr-mini-val">{pcr_vol_latest:.3f}</span></div>
+          <div class="pcr-mini-row"><span class="pcr-mini-label">5d Avg</span><span class="pcr-mini-val">{pcr_5d_avg:.3f}</span></div>
+          <div class="pcr-mini-row"><span class="pcr-mini-label">Z-score</span><span class="pcr-mini-val {pcr_zscore_cls}">{pcr_zscore:+.2f}σ</span></div>
+          <div class="pcr-mini-row"><span class="pcr-mini-label">Change</span><span class="pcr-mini-val {'down' if pcr_change>0 else 'up'}">{pcr_change:+.3f}</span></div>
+          <div class="pcr-mini-row"><span class="pcr-mini-label">Regime</span><span class="pcr-mini-val {'down' if pcr_regime=='STRESS' else 'up'}">{pcr_regime}</span></div>
+          <div class="pcr-mini-row"><span class="pcr-mini-label">As of</span><span class="pcr-mini-val flat">{pcr_date}</span></div>
+          <div class="sub-caption">🔴 PCR ≥ 1.2 bearish · ⚪ 0.8-1.2 neutral · 🟢 ≤ 0.7 contrarian buy</div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    """)
+
+    # ─────────────────────────────────────────────────────────
+    # ROW 3 — High-Trust | Weak Signals | Geo + Watch Tomorrow
+    # ─────────────────────────────────────────────────────────
+    ht_count = min(len(top_signals), 3) if not top_signals.empty else 0
+    st.html(f"""
+    <div class="mib">
+    <div class="row3">
+
+      <!-- High-Trust Signals -->
+      <div class="card">
+        {card_head("High-Trust Signals", badge(str(ht_count) + " STOCKS", "badge-green"))}
+        <div class="card-body">
+          {build_ht_rows()}
+          <div class="sub-caption">Trust = 40% hist. acc + 35% win rate + 25% signal</div>
+        </div>
+      </div>
+
+      <!-- Weak Signals + News Volume -->
+      <div class="card">
+        {card_head("Weak Signals", badge("WATCH", "badge-amber"))}
+        <div class="card-body">
+          {build_weak_rows()}
+          <div class="news-mini-grid">
+            <div class="news-mini"><div class="val">{total_arts}</div><div class="lbl">Total articles</div></div>
+            <div class="news-mini"><div class="val up">{pos_arts}</div><div class="lbl">Positive</div></div>
+            <div class="news-mini"><div class="val down">{neg_arts}</div><div class="lbl">Negative</div></div>
+            <div class="news-mini"><div class="val flat">{total_arts - pos_arts - neg_arts}</div><div class="lbl">Neutral</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Geo + Watch Tomorrow -->
+      <div class="card">
+        {card_head("Geo Signals · Watch Tomorrow", badge("CAUTION", "badge-red"))}
+        <div class="card-body">
+          <div class="geo-section">
+            <div class="section-title">Global flows</div>
+            {dot_row(iran_dot,  "Iran / Hormuz",      iran_level,  str(iran_count)+" art")}
+            {dot_row(fed_dot,   "US Fed",             fed_level,   str(fed_count)+" art")}
+            {dot_row(jap_dot,   "US 10yr / Japan",    jap_level,   f"{u10v:.2f}%")}
+            {dot_row(gold_dot,  "Gold / De-dollar",   gold_level,  f"{gchg:+.1f}%", chg_cls(gchg))}
+          </div>
+          <div class="geo-section">
+            <div class="section-title">Watch tomorrow</div>
+            {build_watch_rows()}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    """)
+
+    # ─────────────────────────────────────────────────────────
+    # ROW 4 — SmartScore Leaderboard (left) | Chart (right)
+    # ─────────────────────────────────────────────────────────
+
+    # Prepare data
+    _ss_cols = ["ticker","smart_score","S_recency","S_events","S_breadth","S_volume","pos","neg","total"]
+    _ss_show = [c for c in _ss_cols if c in summary.columns]
+    _ss_df   = summary[_ss_show].sort_values("smart_score", ascending=False).reset_index(drop=True) if not summary.empty else pd.DataFrame()
+
+    # Inject extra CSS for the leaderboard section
+    st.html("""
+    <style>
+    /* ── SmartScore section ── */
+    .ss-section{display:grid;grid-template-columns:55% 1fr;gap:14px;margin-bottom:14px}
+    @media(max-width:800px){.ss-section{grid-template-columns:1fr}}
+    .ss-divider{border:none;border-top:1px solid var(--border);margin:6px 0 14px}
+
+    /* leaderboard table */
+    .ss-table{width:100%;border-collapse:collapse}
+    .ss-th{font-size:12px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--fg3);padding:7px 9px;text-align:left;border-bottom:2px solid var(--border)}
+    .ss-th.right{text-align:right}
+    .ss-tr:nth-child(even){background:var(--surface2)}
+    .ss-tr:hover{background:var(--blue-bg)}
+    .ss-td{padding:8px 9px;font-size:14px;border-bottom:1px solid var(--border)}
+    .ss-td.mono{font-family:var(--font-mono);font-size:14px}
+    .ss-td.right{text-align:right}
+    .ss-rank{font-family:var(--font-mono);font-size:12px;color:var(--fg3);width:24px}
+    .ss-bar-wrap{width:60px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px}
+    .ss-bar-fill{height:100%;border-radius:3px}
+    .ss-score-val{font-family:var(--font-mono);font-size:14px;font-weight:600}
+    .ss-show-more{display:block;text-align:center;font-size:13px;color:var(--accent);padding:8px;cursor:pointer;background:none;border:none;width:100%;border-top:1px solid var(--border)}
+    .ss-show-more:hover{background:var(--surface2)}
+    .ss-hidden{display:none}
+    .ss-section-label{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--fg3);margin-bottom:10px}
+
+    /* signal dir badge */
+    .ss-dir{font-size:12px;font-weight:700;padding:2px 7px;border-radius:3px;display:inline-block}
+    .ss-dir-up{background:var(--green-bg);color:var(--green)}
+    .ss-dir-down{background:var(--red-bg);color:var(--red)}
+    .ss-dir-none{background:var(--surface2);color:var(--fg3)}
+    </style>
+    """)
+
+    # Build leaderboard rows HTML
+    def build_ss_table(df, show_n=10):
+        if df.empty:
+            return '<div style="font-size:12px;color:var(--fg3);padding:12px">No SmartScore data available</div>'
+
+        # Merge with ens_signals for direction
+        sig_map = {}
+        if not ens_signals.empty and "ticker" in ens_signals.columns:
+            for _, r in ens_signals.iterrows():
+                tk = r["ticker"]
+                sig = str(r.get("signal","")).upper()
+                prob = float(r.get("ensemble_probability", 0))
+                if prob >= 65:
+                    sig_map[tk] = ("UP" if "UP" in sig or "BULL" in sig else "DOWN", prob)
+
+        rows_html = ""
+        for i, row in df.head(show_n).iterrows():
+            tk   = row["ticker"].replace(".NS","") if "ticker" in row else "—"
+            ss   = float(row.get("smart_score", 0))
+            pos  = int(row.get("pos", 0))
+            neg  = int(row.get("neg", 0))
+            tot  = int(row.get("total", 0))
+            bar_w = min(int(ss), 100)
+            bar_color = "var(--green)" if ss >= 65 else "var(--amber)" if ss >= 45 else "var(--red)"
+            rank = i + 1
+            medal = "🥇" if rank == 1 else "🥈" if rank == 2 else "🥉" if rank == 3 else f"#{rank}"
+
+            # direction from ens_signals
+            tk_ns = row["ticker"] if "ticker" in row else ""
+            if tk_ns in sig_map:
+                d, prob = sig_map[tk_ns]
+                dir_badge = f'<span class="ss-dir ss-dir-{"up" if d=="UP" else "down"}">{d} {prob:.0f}%</span>'
+            else:
+                dir_badge = '<span class="ss-dir ss-dir-none">—</span>'
+
+            rows_html += f"""
+            <tr class="ss-tr">
+              <td class="ss-td ss-rank">{medal}</td>
+              <td class="ss-td mono">{tk}</td>
+              <td class="ss-td right">
+                <div style="display:flex;align-items:center;justify-content:flex-end;gap:6px">
+                  <span class="ss-bar-wrap"><span class="ss-bar-fill" style="width:{bar_w}%;background:{bar_color}"></span></span>
+                  <span class="ss-score-val" style="color:{bar_color}">{ss:.0f}</span>
+                </div>
+              </td>
+              <td class="ss-td right">{dir_badge}</td>
+              <td class="ss-td right mono" style="color:var(--green)">{pos}</td>
+              <td class="ss-td right mono" style="color:var(--red)">{neg}</td>
+              <td class="ss-td right mono" style="color:var(--fg3)">{tot}</td>
+            </tr>"""
+
+        # Extra rows (hidden by default, toggled by JS)
+        extra_html = ""
+        for i, row in df.iloc[show_n:].iterrows():
+            tk   = row["ticker"].replace(".NS","") if "ticker" in row else "—"
+            ss   = float(row.get("smart_score", 0))
+            pos  = int(row.get("pos", 0))
+            neg  = int(row.get("neg", 0))
+            tot  = int(row.get("total", 0))
+            bar_w = min(int(ss), 100)
+            bar_color = "var(--green)" if ss >= 65 else "var(--amber)" if ss >= 45 else "var(--red)"
+            rank = i + 1
+            tk_ns = row["ticker"] if "ticker" in row else ""
+            if tk_ns in sig_map:
+                d, prob = sig_map[tk_ns]
+                dir_badge = f'<span class="ss-dir ss-dir-{"up" if d=="UP" else "down"}">{d} {prob:.0f}%</span>'
+            else:
+                dir_badge = '<span class="ss-dir ss-dir-none">—</span>'
+            extra_html += f"""
+            <tr class="ss-tr ss-hidden" id="ss-extra-row">
+              <td class="ss-td ss-rank">#{rank}</td>
+              <td class="ss-td mono">{tk}</td>
+              <td class="ss-td right">
+                <div style="display:flex;align-items:center;justify-content:flex-end;gap:6px">
+                  <span class="ss-bar-wrap"><span class="ss-bar-fill" style="width:{bar_w}%;background:{bar_color}"></span></span>
+                  <span class="ss-score-val" style="color:{bar_color}">{ss:.0f}</span>
+                </div>
+              </td>
+              <td class="ss-td right">{dir_badge}</td>
+              <td class="ss-td right mono" style="color:var(--green)">{pos}</td>
+              <td class="ss-td right mono" style="color:var(--red)">{neg}</td>
+              <td class="ss-td right mono" style="color:var(--fg3)">{tot}</td>
+            </tr>"""
+
+        remaining = max(0, len(df) - show_n)
+        toggle_btn = ""
+        if remaining > 0:
+            toggle_btn = f"""
+            <tr><td colspan="7" style="padding:0">
+              <button class="ss-show-more" onclick="
+                var rows=document.querySelectorAll('#ss-extra-row');
+                var showing=this.dataset.open==='1';
+                rows.forEach(r=>r.style.display=showing?'none':'table-row');
+                this.textContent=showing?'Show all {remaining} more ↓':'Show less ↑';
+                this.dataset.open=showing?'0':'1';
+              ">Show all {remaining} more ↓</button>
+            </td></tr>"""
+
+        return f"""
+        <table class="ss-table">
+          <thead>
+            <tr>
+              <th class="ss-th">#</th>
+              <th class="ss-th">Ticker</th>
+              <th class="ss-th right">SmartScore</th>
+              <th class="ss-th right">Signal</th>
+              <th class="ss-th right">Pos</th>
+              <th class="ss-th right">Neg</th>
+              <th class="ss-th right">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows_html}
+            {extra_html}
+            {toggle_btn}
+          </tbody>
+        </table>"""
+
+    # Build chart HTML (horizontal bars, top 15)
+    def build_ss_chart_html(df, top_n=15):
+        if df.empty:
+            return '<div style="font-size:12px;color:var(--fg3);padding:12px">No data</div>'
+        chart_df = df.head(top_n)
+        max_ss = float(chart_df["smart_score"].max()) if not chart_df.empty else 100
+        bars = ""
+        for _, row in chart_df.iterrows():
+            tk = row["ticker"].replace(".NS","")
+            ss = float(row.get("smart_score", 0))
+            bar_w = int((ss / max_ss) * 100) if max_ss > 0 else 0
+            color = "var(--green)" if ss >= 65 else "var(--amber)" if ss >= 45 else "var(--red)"
+            bars += f"""
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <div style="width:72px;font-family:var(--font-mono);font-size:13px;color:var(--fg2);text-align:right;flex-shrink:0">{tk}</div>
+              <div style="flex:1;background:var(--surface2);border-radius:3px;height:14px;overflow:hidden">
+                <div style="width:{bar_w}%;background:{color};height:100%;border-radius:3px;transition:width .3s"></div>
+              </div>
+              <div style="width:28px;font-family:var(--font-mono);font-size:12px;font-weight:600;color:{color};text-align:right;flex-shrink:0">{ss:.0f}</div>
+            </div>"""
+        return bars
+
+    # Render the split section
+    top_n_ss = 10
+    st.html(f"""
+    <div class="mib">
+      <hr class="ss-divider">
+      <div class="ss-section">
+
+        <!-- Left: Leaderboard -->
+        <div class="card">
+          {card_head("SmartScore Leaderboard", badge("TOP " + str(min(top_n_ss, len(_ss_df))), "badge-blue"))}
+          <div class="card-body" style="padding:0">
+            {build_ss_table(_ss_df, show_n=top_n_ss)}
+          </div>
+        </div>
+
+        <!-- Right: Chart -->
+        <div class="card">
+          {card_head("SmartScore Chart", badge("TOP 15", "badge-blue"))}
+          <div class="card-body">
+            <div class="ss-section-label">Score out of 100 · news sentiment signal strength</div>
+            {build_ss_chart_html(_ss_df, top_n=15)}
+            <div class="sub-caption" style="margin-top:10px">
+              🟢 ≥ 65 strong · 🟡 45–64 moderate · 🔴 &lt; 45 weak<br>
+              SmartScore = 45% recency + 25% events + 20% breadth + 10% volume
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    """)
+
+    # ─────────────────────────────────────────────────────────
+    # Collapsed extras — About + Disclaimer only
+    # ─────────────────────────────────────────────────────────
     with st.expander("ℹ️ About SmartScore & Trust Score", expanded=False):
         st.markdown("""
         **SmartScore** (0-100):
@@ -788,12 +1313,19 @@ with tab1:
         **Trust Score** (0-100):
         - 40% historical accuracy | 35% win rate (10d) | 25% current signal
 
-        🟢 Trust ≥ 75 = High confidence | 🟡 60-74 = Moderate | 🔴 < 60 = Low
+        🟢 Trust ≥ 75 = High confidence | 🟡 60–74 = Moderate | 🔴 < 60 = Low
 
         **What this system cannot see:** Fed/RBI exact dates, earnings calendar,
         options expiry, intraday patterns, block deals.
         """)
 
+    with st.expander("⚠️ Research Tool Disclaimer", expanded=False):
+        st.warning(
+            "Research tool only — not financial advice. "
+            "This dashboard aggregates public data (RSS news, yfinance, NSE FII/DII, NSE options). "
+            "Macro risk scores do NOT include Fed/RBI meeting calendars or earnings dates. "
+            "Always verify independently before any financial decision."
+        )
 with tab2:
     st.subheader("Predicted Next-Day Returns")
 
@@ -1153,6 +1685,10 @@ with tab5:
     with col_btn:
         st.markdown("<br>", unsafe_allow_html=True)
         run_analysis = st.button("🔍 Analyse", type="primary")
+        if run_analysis:
+            with st.spinner(f"Fetching fundamentals for {tk.replace('.NS','')}..."):
+                st.session_state["fund_tk"]   = tk
+                st.session_state["fund_data"] = get_fundamental_signal(tk)
 
     if tk:
         row = summary[summary["ticker"] == tk]
@@ -1194,11 +1730,14 @@ with tab5:
             else:                   pcr_sig, pcr_col = "⚪ NEUTRAL",  "gray"
 
             # Count greens for conviction score
+            _fd_conv = st.session_state.get("fund_data") if st.session_state.get("fund_tk") == tk else None
+            fund_sig = _fd_conv["signal"] if _fd_conv else ""
             greens = sum([
-                1 if "🟢" in sent_sig else 0,
-                1 if "🟢" in tech_sig else 0,
-                1 if "🟢" in mac_sig  else 0,
-                1 if "🟢" in pcr_sig  else 0,
+                1 if "🟢" in sent_sig  else 0,
+                1 if "🟢" in tech_sig  else 0,
+                1 if "🟢" in mac_sig   else 0,
+                1 if "🟢" in pcr_sig   else 0,
+                1 if "🟢" in fund_sig  else 0,
             ])
 
             # Matrix display
@@ -1217,14 +1756,16 @@ with tab5:
                 st.caption(f"PCR: {pcr_latest:.3f}")
             with m5:
                 fund_placeholder = "Loading..."
-                st.markdown(f"**Fundamental**\n\n⚪ Click Analyse")
+                _fd = st.session_state.get("fund_data") if st.session_state.get("fund_tk") == tk else None
+                _fsig = _fd["signal"] if _fd else "⚪ Click Analyse"
+                st.markdown(f"**Fundamental**\n\n{_fsig}")
                 st.caption("P/E, ROE, Debt")
 
-            if greens >= 4:   conv_label = "🟢 VERY HIGH CONVICTION"
-            elif greens >= 3: conv_label = "🟡 HIGH CONVICTION"
-            elif greens >= 2: conv_label = "🟠 MODERATE CONVICTION"
+            if greens >= 5:   conv_label = "🟢 VERY HIGH CONVICTION"
+            elif greens >= 4: conv_label = "🟡 HIGH CONVICTION"
+            elif greens >= 3: conv_label = "🟠 MODERATE CONVICTION"
             else:             conv_label = "🔴 LOW CONVICTION"
-            st.info(f"**Conviction: {conv_label}** ({greens}/4 factors aligned)")
+            st.info(f"**Conviction: {conv_label}** ({greens}/5 factors aligned)")
 
             st.markdown("---")
 
@@ -1309,45 +1850,41 @@ with tab5:
 
             # ── Fundamentals (on button click) ──
             st.markdown("#### 📊 Fundamental Check")
-            if run_analysis:
-                with st.spinner(f"Fetching fundamentals for {tk_clean}..."):
-                    fund = get_fundamental_signal(tk)
-                if fund:
-                    fc1, fc2, fc3 = st.columns(3)
-                    with fc1:
-                        if fund["pe"]:
-                            st.metric("P/E Ratio",    f"{fund['pe']:.1f}")
-                        if fund["forward_pe"]:
-                            st.metric("Forward P/E",  f"{fund['forward_pe']:.1f}")
-                        if fund["eps_growth"] is not None:
-                            st.metric("EPS Growth",   f"{fund['eps_growth']*100:.1f}%")
-                    with fc2:
-                        if fund["roe"] is not None:
-                            st.metric("ROE",          f"{fund['roe']*100:.1f}%")
-                        if fund["debt_equity"] is not None:
-                            st.metric("Debt/Equity",  f"{fund['debt_equity']:.2f}")
-                        if fund["pos_52w"] is not None:
-                            st.metric("52W Position", f"{fund['pos_52w']:.0f}%",
-                                      delta="Near low ✅" if fund["pos_52w"] < 30 else "Near high ⚠️" if fund["pos_52w"] > 80 else "Mid range")
-                    with fc3:
-                        if fund["target"] and fund["current"]:
-                            st.metric("Analyst Target", f"₹{fund['target']:,.0f}",
-                                      delta=f"{fund['upside']:+.1f}% upside" if fund["upside"] else None)
-                        if fund["recommendation"]:
-                            st.metric("Consensus",    fund["recommendation"])
-                        if fund["n_analysts"]:
-                            st.metric("# Analysts",   str(fund["n_analysts"]))
+            fund = st.session_state.get("fund_data") if st.session_state.get("fund_tk") == tk else None
+            if fund:
+                fc1, fc2, fc3 = st.columns(3)
+                with fc1:
+                    if fund["pe"]:
+                        st.metric("P/E Ratio",    f"{fund['pe']:.1f}")
+                    if fund["forward_pe"]:
+                        st.metric("Forward P/E",  f"{fund['forward_pe']:.1f}")
+                    if fund["eps_growth"] is not None:
+                        st.metric("EPS Growth",   f"{fund['eps_growth']*100:.1f}%")
+                with fc2:
+                    if fund["roe"] is not None:
+                        st.metric("ROE",          f"{fund['roe']*100:.1f}%")
+                    if fund["debt_equity"] is not None:
+                        st.metric("Debt/Equity",  f"{fund['debt_equity']:.2f}")
+                    if fund["pos_52w"] is not None:
+                        st.metric("52W Position", f"{fund['pos_52w']:.0f}%",
+                                  delta="Near low ✅" if fund["pos_52w"] < 30 else "Near high ⚠️" if fund["pos_52w"] > 80 else "Mid range")
+                with fc3:
+                    if fund["target"] and fund["current"]:
+                        st.metric("Analyst Target", f"₹{fund['target']:,.0f}",
+                                  delta=f"{fund['upside']:+.1f}% upside" if fund["upside"] else None)
+                    if fund["recommendation"]:
+                        st.metric("Consensus",    fund["recommendation"])
+                    if fund["n_analysts"]:
+                        st.metric("# Analysts",   str(fund["n_analysts"]))
 
-                    if fund["color"] == "success":
-                        st.success(f"Fundamental Signal: {fund['signal']}")
-                    elif fund["color"] == "warning":
-                        st.warning(f"Fundamental Signal: {fund['signal']}")
-                    elif fund["color"] == "error":
-                        st.error(f"Fundamental Signal: {fund['signal']}")
-                    else:
-                        st.info(f"Fundamental Signal: {fund['signal']}")
+                if fund["color"] == "success":
+                    st.success(f"Fundamental Signal: {fund['signal']}")
+                elif fund["color"] == "warning":
+                    st.warning(f"Fundamental Signal: {fund['signal']}")
+                elif fund["color"] == "error":
+                    st.error(f"Fundamental Signal: {fund['signal']}")
                 else:
-                    st.caption("Fundamental data unavailable for this stock")
+                    st.info(f"Fundamental Signal: {fund['signal']}")
             else:
                 st.caption("Click **Analyse** button above to load fundamentals (fetches live from yfinance)")
 
