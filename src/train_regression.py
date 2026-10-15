@@ -260,10 +260,8 @@ def main():
         print(f"  Bar chart → reports/shap/feature_importance.png")
         print(f"  CSV       → reports/shap/shap_summary.csv")
 
-    except ImportError:
-        print("  ⚠  shap not installed — skipping (pip install shap)")
-    except Exception as _shap_err:
-        print(f"  ⚠  SHAP failed: {_shap_err}")
+    except ImportError as e:
+        print(f"  ⚠  shap import error: {e} — skipping")
     # ─────────────────────────────────────────────────────────────────────────
 
     xgb.fit(X, y_bin)
