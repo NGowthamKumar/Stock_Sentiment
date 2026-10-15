@@ -19,6 +19,9 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.dummy import DummyClassifier
 from scipy import stats
+import matplotlib
+import shap
+
 
 FEATURES = ["smart_score","S_recency","S_recency_3d","S_events","S_breadth","S_volume","total","pos","neg","ret_lag1","ret_lag2", "fii_net","dii_net",
             "vix_change","oil_change","usdinr_change","rsi","macd_diff","bb_pct","bb_width","price_vs_sma",
@@ -218,8 +221,6 @@ def main():
 
     # ── SHAP Attribution (beeswarm + bar + CSV) ──────────────────────────────
     try:
-        import shap
-        import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
 

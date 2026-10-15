@@ -24,3 +24,5 @@ lightgbm
 indiaopt
 curl_cffi
 shap>=0.44
+matplotlib>=3.7
+numpy>=1.24
