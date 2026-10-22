@@ -1,200 +1,204 @@
 ticker,up_probability,signal,confidence
-TATAELXSI.NS,64.1,🟡 MILD BULLISH,Medium Confidence
-INFY.NS,64.0,🟡 MILD BULLISH,Medium Confidence
-HCLTECH.NS,63.2,🟡 MILD BULLISH,Medium Confidence
-TATATECH.NS,62.0,🟡 MILD BULLISH,Medium Confidence
-ICICIBANK.NS,60.5,🟡 MILD BULLISH,Medium Confidence
-IGL.NS,60.0,⚪ NEUTRAL,Medium Confidence
-ITBEES.NS,59.8,⚪ NEUTRAL,Medium Confidence
-ZENSARTECH.NS,59.6,⚪ NEUTRAL,Medium Confidence
-HDFCBANK.NS,58.7,⚪ NEUTRAL,Medium Confidence
-TCS.NS,58.5,⚪ NEUTRAL,Medium Confidence
-SHYAMMETL.NS,58.4,⚪ NEUTRAL,Medium Confidence
-BHARTIARTL.NS,57.2,⚪ NEUTRAL,Low Confidence
-ZYDUSLIFE.NS,56.8,⚪ NEUTRAL,Low Confidence
-MANKIND.NS,56.8,⚪ NEUTRAL,Low Confidence
-COFORGE.NS,56.5,⚪ NEUTRAL,Low Confidence
-AXISBANK.NS,56.4,⚪ NEUTRAL,Low Confidence
-SBIN.NS,55.9,⚪ NEUTRAL,Low Confidence
-IDEA.NS,55.8,⚪ NEUTRAL,Low Confidence
-TRENT.NS,55.6,⚪ NEUTRAL,Low Confidence
-BSE.NS,55.1,⚪ NEUTRAL,Low Confidence
-MPHASIS.NS,54.9,⚪ NEUTRAL,Low Confidence
-BLS.NS,54.6,⚪ NEUTRAL,Low Confidence
-SUZLON.NS,54.4,⚪ NEUTRAL,Low Confidence
-SJVN.NS,54.3,⚪ NEUTRAL,Low Confidence
-INDHOTEL.NS,54.2,⚪ NEUTRAL,Low Confidence
-NHPC.NS,54.0,⚪ NEUTRAL,Low Confidence
-IEX.NS,53.8,⚪ NEUTRAL,Low Confidence
-BAJFINANCE.NS,53.7,⚪ NEUTRAL,Low Confidence
-NESTLEIND.NS,53.7,⚪ NEUTRAL,Low Confidence
-SRF.NS,53.6,⚪ NEUTRAL,Low Confidence
-ADANIENSOL.NS,53.5,⚪ NEUTRAL,Low Confidence
-HAVELLS.NS,53.5,⚪ NEUTRAL,Low Confidence
-ALKEM.NS,53.5,⚪ NEUTRAL,Low Confidence
-DEEPAKNTR.NS,53.3,⚪ NEUTRAL,Low Confidence
-NYKAA.NS,53.2,⚪ NEUTRAL,Low Confidence
-HDFCAMC.NS,53.2,⚪ NEUTRAL,Low Confidence
-HOMEFIRST.NS,53.0,⚪ NEUTRAL,Low Confidence
-IRCTC.NS,52.9,⚪ NEUTRAL,Low Confidence
-LICI.NS,52.8,⚪ NEUTRAL,Low Confidence
-INDIGO.NS,52.7,⚪ NEUTRAL,Low Confidence
-WIPRO.NS,52.7,⚪ NEUTRAL,Low Confidence
-AUROPHARMA.NS,52.6,⚪ NEUTRAL,Low Confidence
-BERGEPAINT.NS,52.3,⚪ NEUTRAL,Low Confidence
-SHREECEM.NS,52.2,⚪ NEUTRAL,Low Confidence
-GODREJCP.NS,52.2,⚪ NEUTRAL,Low Confidence
-SONACOMS.NS,52.2,⚪ NEUTRAL,Low Confidence
-ANGELONE.NS,51.9,⚪ NEUTRAL,Low Confidence
-WESTLIFE.NS,51.9,⚪ NEUTRAL,Low Confidence
-PAGEIND.NS,51.7,⚪ NEUTRAL,Low Confidence
-KPIL.NS,51.6,⚪ NEUTRAL,Low Confidence
-ROUTE.NS,51.6,⚪ NEUTRAL,Low Confidence
-AARTIIND.NS,51.6,⚪ NEUTRAL,Low Confidence
-LEMONTREE.NS,51.6,⚪ NEUTRAL,Low Confidence
-YESBANK.NS,51.5,⚪ NEUTRAL,Low Confidence
-IOB.NS,51.5,⚪ NEUTRAL,Low Confidence
-PNCINFRA.NS,51.4,⚪ NEUTRAL,Low Confidence
-TATACONSUM.NS,51.4,⚪ NEUTRAL,Low Confidence
-NAUKRI.NS,51.3,⚪ NEUTRAL,Low Confidence
-HAL.NS,51.2,⚪ NEUTRAL,Low Confidence
-BLUESTARCO.NS,51.1,⚪ NEUTRAL,Low Confidence
-IIFL.NS,51.1,⚪ NEUTRAL,Low Confidence
-VBL.NS,51.1,⚪ NEUTRAL,Low Confidence
-DIVISLAB.NS,51.1,⚪ NEUTRAL,Low Confidence
-RVNL.NS,51.1,⚪ NEUTRAL,Low Confidence
-IRFC.NS,50.9,⚪ NEUTRAL,Low Confidence
-GRANULES.NS,50.8,⚪ NEUTRAL,Low Confidence
-LT.NS,50.8,⚪ NEUTRAL,Low Confidence
-INDIAMART.NS,50.6,⚪ NEUTRAL,Low Confidence
-KOTAKBANK.NS,50.4,⚪ NEUTRAL,Low Confidence
-CAMS.NS,50.4,⚪ NEUTRAL,Low Confidence
-HDFCLIFE.NS,50.3,⚪ NEUTRAL,Low Confidence
-VEDL.NS,50.2,⚪ NEUTRAL,Low Confidence
-ABCAPITAL.NS,50.2,⚪ NEUTRAL,Low Confidence
-DIXON.NS,50.2,⚪ NEUTRAL,Low Confidence
-PERSISTENT.NS,50.1,⚪ NEUTRAL,Low Confidence
-HUDCO.NS,50.1,⚪ NEUTRAL,Low Confidence
-SUNPHARMA.NS,50.1,⚪ NEUTRAL,Low Confidence
-MTARTECH.NS,50.0,⚪ NEUTRAL,Low Confidence
-VOLTAS.NS,50.0,⚪ NEUTRAL,Low Confidence
-ETERNAL.NS,49.8,⚪ NEUTRAL,Low Confidence
-MUTHOOTFIN.NS,49.8,⚪ NEUTRAL,Low Confidence
-ABBOTINDIA.NS,49.8,⚪ NEUTRAL,Low Confidence
-FIVESTAR.NS,49.8,⚪ NEUTRAL,Low Confidence
-TORNTPOWER.NS,49.8,⚪ NEUTRAL,Low Confidence
-TATASTEEL.NS,49.7,⚪ NEUTRAL,Low Confidence
-LTM.NS,49.7,⚪ NEUTRAL,Low Confidence
-BRITANNIA.NS,49.6,⚪ NEUTRAL,Low Confidence
-PHOENIXLTD.NS,49.6,⚪ NEUTRAL,Low Confidence
-DEVYANI.NS,49.4,⚪ NEUTRAL,Low Confidence
-BIOCON.NS,49.4,⚪ NEUTRAL,Low Confidence
-GOLDBEES.NS,49.3,⚪ NEUTRAL,Low Confidence
-CHOLAFIN.NS,49.3,⚪ NEUTRAL,Low Confidence
-EIHOTEL.NS,49.2,⚪ NEUTRAL,Low Confidence
-SYNGENE.NS,49.2,⚪ NEUTRAL,Low Confidence
-BAJAJFINSV.NS,49.2,⚪ NEUTRAL,Low Confidence
-BHEL.NS,49.1,⚪ NEUTRAL,Low Confidence
-PRESTIGE.NS,49.1,⚪ NEUTRAL,Low Confidence
-DATAPATTNS.NS,49.0,⚪ NEUTRAL,Low Confidence
-NTPC.NS,48.9,⚪ NEUTRAL,Low Confidence
-UBL.NS,48.9,⚪ NEUTRAL,Low Confidence
-LUPIN.NS,48.9,⚪ NEUTRAL,Low Confidence
-MOTHERSON.NS,48.8,⚪ NEUTRAL,Low Confidence
-MAXHEALTH.NS,48.8,⚪ NEUTRAL,Low Confidence
-GAIL.NS,48.8,⚪ NEUTRAL,Low Confidence
-UTIAMC.NS,48.8,⚪ NEUTRAL,Low Confidence
-ASIANPAINT.NS,48.7,⚪ NEUTRAL,Low Confidence
-TATACOMM.NS,48.7,⚪ NEUTRAL,Low Confidence
-JPPOWER.NS,48.7,⚪ NEUTRAL,Low Confidence
-TANLA.NS,48.5,⚪ NEUTRAL,Low Confidence
-COALINDIA.NS,48.5,⚪ NEUTRAL,Low Confidence
-TITAN.NS,48.5,⚪ NEUTRAL,Low Confidence
-HINDCOPPER.NS,48.5,⚪ NEUTRAL,Low Confidence
-DLF.NS,48.4,⚪ NEUTRAL,Low Confidence
-NIFTYBEES.NS,48.4,⚪ NEUTRAL,Low Confidence
-BAJAJHLDNG.NS,48.4,⚪ NEUTRAL,Low Confidence
-SOLARINDS.NS,48.3,⚪ NEUTRAL,Low Confidence
-GODREJPROP.NS,48.3,⚪ NEUTRAL,Low Confidence
-PAYTM.NS,48.3,⚪ NEUTRAL,Low Confidence
-LODHA.NS,48.2,⚪ NEUTRAL,Low Confidence
-CIPLA.NS,48.1,⚪ NEUTRAL,Low Confidence
-SUNTV.NS,48.1,⚪ NEUTRAL,Low Confidence
-MAZDOCK.NS,48.1,⚪ NEUTRAL,Low Confidence
-HINDUNILVR.NS,48.0,⚪ NEUTRAL,Low Confidence
-JIOFIN.NS,47.9,⚪ NEUTRAL,Low Confidence
-JUBLFOOD.NS,47.8,⚪ NEUTRAL,Low Confidence
-BAJAJ-AUTO.NS,47.8,⚪ NEUTRAL,Low Confidence
-SHRIRAMFIN.NS,47.8,⚪ NEUTRAL,Low Confidence
-SIEMENS.NS,47.7,⚪ NEUTRAL,Low Confidence
-SKFINDIA.NS,47.7,⚪ NEUTRAL,Low Confidence
-DELTACORP.NS,47.6,⚪ NEUTRAL,Low Confidence
-AMBER.NS,47.5,⚪ NEUTRAL,Low Confidence
-COCHINSHIP.NS,47.5,⚪ NEUTRAL,Low Confidence
-EMAMILTD.NS,47.4,⚪ NEUTRAL,Low Confidence
-BDL.NS,47.4,⚪ NEUTRAL,Low Confidence
-CPSEETF.NS,47.4,⚪ NEUTRAL,Low Confidence
-UPL.NS,47.4,⚪ NEUTRAL,Low Confidence
-BOSCHLTD.NS,47.3,⚪ NEUTRAL,Low Confidence
-TIINDIA.NS,47.2,⚪ NEUTRAL,Low Confidence
-ADANIGREEN.NS,47.2,⚪ NEUTRAL,Low Confidence
-MRPL.NS,47.2,⚪ NEUTRAL,Low Confidence
-ALKYLAMINE.NS,47.2,⚪ NEUTRAL,Low Confidence
-HINDALCO.NS,47.2,⚪ NEUTRAL,Low Confidence
-DABUR.NS,47.1,⚪ NEUTRAL,Low Confidence
-ADANIPOWER.NS,47.1,⚪ NEUTRAL,Low Confidence
-LAURUSLABS.NS,47.0,⚪ NEUTRAL,Low Confidence
-HEROMOTOCO.NS,47.0,⚪ NEUTRAL,Low Confidence
-DRREDDY.NS,46.9,⚪ NEUTRAL,Low Confidence
-RADICO.NS,46.9,⚪ NEUTRAL,Low Confidence
-NMDC.NS,46.7,⚪ NEUTRAL,Low Confidence
-HINDZINC.NS,46.7,⚪ NEUTRAL,Low Confidence
-JSWSTEEL.NS,46.7,⚪ NEUTRAL,Low Confidence
-BHARATFORG.NS,46.4,⚪ NEUTRAL,Low Confidence
-BIKAJI.NS,46.4,⚪ NEUTRAL,Low Confidence
-INDUSINDBK.NS,46.3,⚪ NEUTRAL,Low Confidence
-OBEROIRLTY.NS,46.1,⚪ NEUTRAL,Low Confidence
-PIDILITIND.NS,46.1,⚪ NEUTRAL,Low Confidence
-POWERGRID.NS,46.0,⚪ NEUTRAL,Low Confidence
-ABB.NS,46.0,⚪ NEUTRAL,Low Confidence
-TIMKEN.NS,46.0,⚪ NEUTRAL,Low Confidence
-DMART.NS,45.9,⚪ NEUTRAL,Low Confidence
-ULTRACEMCO.NS,45.9,⚪ NEUTRAL,Low Confidence
-ADANIPORTS.NS,45.8,⚪ NEUTRAL,Low Confidence
-APLAPOLLO.NS,45.7,⚪ NEUTRAL,Low Confidence
-ONGC.NS,45.6,⚪ NEUTRAL,Low Confidence
-TATAPOWER.NS,45.3,⚪ NEUTRAL,Low Confidence
-RELIANCE.NS,45.3,⚪ NEUTRAL,Low Confidence
-APOLLOHOSP.NS,45.3,⚪ NEUTRAL,Low Confidence
-GRSE.NS,45.0,⚪ NEUTRAL,Low Confidence
-BANSALWIRE.NS,44.8,⚪ NEUTRAL,Low Confidence
-NBCC.NS,44.7,⚪ NEUTRAL,Low Confidence
-CUMMINSIND.NS,44.6,⚪ NEUTRAL,Low Confidence
-SAIL.NS,44.5,⚪ NEUTRAL,Low Confidence
-KAYNES.NS,44.3,⚪ NEUTRAL,Low Confidence
-ACC.NS,44.2,⚪ NEUTRAL,Low Confidence
-IRCON.NS,44.1,⚪ NEUTRAL,Low Confidence
-M&M.NS,44.0,⚪ NEUTRAL,Low Confidence
-BANKBARODA.NS,44.0,⚪ NEUTRAL,Low Confidence
-NATIONALUM.NS,43.9,⚪ NEUTRAL,Low Confidence
-KIMS.NS,43.8,⚪ NEUTRAL,Low Confidence
-MARUTI.NS,43.6,⚪ NEUTRAL,Low Confidence
-ATGL.NS,43.6,⚪ NEUTRAL,Low Confidence
-OIL.NS,43.4,⚪ NEUTRAL,Low Confidence
-MRF.NS,43.4,⚪ NEUTRAL,Low Confidence
-KEC.NS,43.3,⚪ NEUTRAL,Low Confidence
-BALKRISIND.NS,43.1,⚪ NEUTRAL,Low Confidence
-IOC.NS,42.9,⚪ NEUTRAL,Low Confidence
-ITC.NS,42.4,⚪ NEUTRAL,Low Confidence
-BEL.NS,42.4,⚪ NEUTRAL,Low Confidence
-AFFLE.NS,41.8,🟠 MILD BEARISH,Medium Confidence
-SAPPHIRE.NS,41.6,🟠 MILD BEARISH,Medium Confidence
-BPCL.NS,41.5,🟠 MILD BEARISH,Medium Confidence
-ADANIENT.NS,41.5,🟠 MILD BEARISH,Medium Confidence
-PNB.NS,41.2,🟠 MILD BEARISH,Medium Confidence
-EICHERMOT.NS,40.9,🟠 MILD BEARISH,Medium Confidence
-BHARAT22ETF.NS,40.3,🟠 MILD BEARISH,Medium Confidence
-SCHAEFFLER.NS,39.8,🟠 MILD BEARISH,Medium Confidence
-FORTIS.NS,38.0,🟠 MILD BEARISH,Medium Confidence
-SPICEJET.NS,31.8,🟠 MILD BEARISH,High Confidence
-LTIM.NS,29.4,🔴 STRONG BEARISH,High Confidence
+HINDCOPPER.NS,71.7,🟡 MILD BULLISH,High Confidence
+HDFCBANK.NS,70.8,🟡 MILD BULLISH,High Confidence
+VBL.NS,69.6,🟡 MILD BULLISH,High Confidence
+AXISBANK.NS,69.6,🟡 MILD BULLISH,High Confidence
+SJVN.NS,69.3,🟡 MILD BULLISH,High Confidence
+NESTLEIND.NS,69.0,🟡 MILD BULLISH,High Confidence
+BIOCON.NS,68.9,🟡 MILD BULLISH,High Confidence
+SUZLON.NS,68.4,🟡 MILD BULLISH,High Confidence
+LTM.NS,68.3,🟡 MILD BULLISH,High Confidence
+DEEPAKNTR.NS,67.7,🟡 MILD BULLISH,High Confidence
+AMBER.NS,67.7,🟡 MILD BULLISH,High Confidence
+BAJFINANCE.NS,67.7,🟡 MILD BULLISH,High Confidence
+TMPV.NS,67.2,🟡 MILD BULLISH,High Confidence
+RVNL.NS,67.1,🟡 MILD BULLISH,High Confidence
+SRF.NS,67.0,🟡 MILD BULLISH,High Confidence
+IDEA.NS,66.9,🟡 MILD BULLISH,High Confidence
+SBIN.NS,66.8,🟡 MILD BULLISH,High Confidence
+WESTLIFE.NS,66.7,🟡 MILD BULLISH,High Confidence
+OBEROIRLTY.NS,66.4,🟡 MILD BULLISH,High Confidence
+KEC.NS,66.3,🟡 MILD BULLISH,High Confidence
+MUTHOOTFIN.NS,66.2,🟡 MILD BULLISH,High Confidence
+IEX.NS,66.0,🟡 MILD BULLISH,High Confidence
+YESBANK.NS,66.0,🟡 MILD BULLISH,High Confidence
+SPICEJET.NS,65.8,🟡 MILD BULLISH,High Confidence
+IGL.NS,65.6,🟡 MILD BULLISH,High Confidence
+ALKYLAMINE.NS,65.4,🟡 MILD BULLISH,High Confidence
+INDUSINDBK.NS,65.3,🟡 MILD BULLISH,High Confidence
+MTARTECH.NS,65.3,🟡 MILD BULLISH,High Confidence
+KAYNES.NS,65.1,🟡 MILD BULLISH,High Confidence
+ADANIENSOL.NS,64.9,🟡 MILD BULLISH,Medium Confidence
+AUROPHARMA.NS,64.9,🟡 MILD BULLISH,Medium Confidence
+ICICIBANK.NS,64.8,🟡 MILD BULLISH,Medium Confidence
+GRANULES.NS,64.8,🟡 MILD BULLISH,Medium Confidence
+TATATECH.NS,64.6,🟡 MILD BULLISH,Medium Confidence
+APOLLOHOSP.NS,64.5,🟡 MILD BULLISH,Medium Confidence
+MARUTI.NS,64.4,🟡 MILD BULLISH,Medium Confidence
+BPCL.NS,64.4,🟡 MILD BULLISH,Medium Confidence
+DELTACORP.NS,64.3,🟡 MILD BULLISH,Medium Confidence
+NYKAA.NS,64.2,🟡 MILD BULLISH,Medium Confidence
+EICHERMOT.NS,64.1,🟡 MILD BULLISH,Medium Confidence
+NAM-INDIA.NS,64.1,🟡 MILD BULLISH,Medium Confidence
+BHARTIARTL.NS,64.0,🟡 MILD BULLISH,Medium Confidence
+FIVESTAR.NS,64.0,🟡 MILD BULLISH,Medium Confidence
+MAZDOCK.NS,64.0,🟡 MILD BULLISH,Medium Confidence
+COCHINSHIP.NS,64.0,🟡 MILD BULLISH,Medium Confidence
+HOMEFIRST.NS,63.9,🟡 MILD BULLISH,Medium Confidence
+NBCC.NS,63.9,🟡 MILD BULLISH,Medium Confidence
+AARTIIND.NS,63.5,🟡 MILD BULLISH,Medium Confidence
+IRFC.NS,63.3,🟡 MILD BULLISH,Medium Confidence
+INDIAMART.NS,63.3,🟡 MILD BULLISH,Medium Confidence
+BHEL.NS,63.3,🟡 MILD BULLISH,Medium Confidence
+ANGELONE.NS,63.1,🟡 MILD BULLISH,Medium Confidence
+GODREJPROP.NS,63.1,🟡 MILD BULLISH,Medium Confidence
+INDIGO.NS,63.0,🟡 MILD BULLISH,Medium Confidence
+COALINDIA.NS,63.0,🟡 MILD BULLISH,Medium Confidence
+SHRIRAMFIN.NS,62.9,🟡 MILD BULLISH,Medium Confidence
+BDL.NS,62.9,🟡 MILD BULLISH,Medium Confidence
+DEVYANI.NS,62.9,🟡 MILD BULLISH,Medium Confidence
+JPPOWER.NS,62.8,🟡 MILD BULLISH,Medium Confidence
+NAUKRI.NS,62.8,🟡 MILD BULLISH,Medium Confidence
+HAVELLS.NS,62.7,🟡 MILD BULLISH,Medium Confidence
+HEROMOTOCO.NS,62.6,🟡 MILD BULLISH,Medium Confidence
+SHREECEM.NS,62.6,🟡 MILD BULLISH,Medium Confidence
+CUMMINSIND.NS,62.4,🟡 MILD BULLISH,Medium Confidence
+TIINDIA.NS,62.4,🟡 MILD BULLISH,Medium Confidence
+ABBOTINDIA.NS,62.4,🟡 MILD BULLISH,Medium Confidence
+HUDCO.NS,62.3,🟡 MILD BULLISH,Medium Confidence
+BSE.NS,62.3,🟡 MILD BULLISH,Medium Confidence
+IIFL.NS,62.2,🟡 MILD BULLISH,Medium Confidence
+DLF.NS,62.0,🟡 MILD BULLISH,Medium Confidence
+DABUR.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+ABCAPITAL.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+JUBLFOOD.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+ADANIPOWER.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+VEDL.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+ZYDUSLIFE.NS,61.9,🟡 MILD BULLISH,Medium Confidence
+PAGEIND.NS,61.8,🟡 MILD BULLISH,Medium Confidence
+BLS.NS,61.8,🟡 MILD BULLISH,Medium Confidence
+ITC.NS,61.8,🟡 MILD BULLISH,Medium Confidence
+ROUTE.NS,61.7,🟡 MILD BULLISH,Medium Confidence
+BEL.NS,61.7,🟡 MILD BULLISH,Medium Confidence
+ETERNAL.NS,61.6,🟡 MILD BULLISH,Medium Confidence
+IRCON.NS,61.6,🟡 MILD BULLISH,Medium Confidence
+TORNTPOWER.NS,61.6,🟡 MILD BULLISH,Medium Confidence
+VOLTAS.NS,61.5,🟡 MILD BULLISH,Medium Confidence
+GODREJCP.NS,61.4,🟡 MILD BULLISH,Medium Confidence
+ALKEM.NS,61.3,🟡 MILD BULLISH,Medium Confidence
+JIOFIN.NS,61.3,🟡 MILD BULLISH,Medium Confidence
+BAJAJFINSV.NS,61.2,🟡 MILD BULLISH,Medium Confidence
+HDFCAMC.NS,61.2,🟡 MILD BULLISH,Medium Confidence
+COLPAL.NS,61.1,🟡 MILD BULLISH,Medium Confidence
+ADANIGREEN.NS,61.1,🟡 MILD BULLISH,Medium Confidence
+GOLDBEES.NS,61.1,🟡 MILD BULLISH,Medium Confidence
+RELIANCE.NS,61.0,🟡 MILD BULLISH,Medium Confidence
+TITAN.NS,61.0,🟡 MILD BULLISH,Medium Confidence
+IRCTC.NS,60.8,🟡 MILD BULLISH,Medium Confidence
+UPL.NS,60.8,🟡 MILD BULLISH,Medium Confidence
+TRENT.NS,60.7,🟡 MILD BULLISH,Medium Confidence
+HINDZINC.NS,60.7,🟡 MILD BULLISH,Medium Confidence
+KPIL.NS,60.7,🟡 MILD BULLISH,Medium Confidence
+NTPC.NS,60.7,🟡 MILD BULLISH,Medium Confidence
+FORTIS.NS,60.6,🟡 MILD BULLISH,Medium Confidence
+MRPL.NS,60.5,🟡 MILD BULLISH,Medium Confidence
+PRESTIGE.NS,60.5,🟡 MILD BULLISH,Medium Confidence
+BAJAJHLDNG.NS,60.5,🟡 MILD BULLISH,Medium Confidence
+DIVISLAB.NS,60.4,🟡 MILD BULLISH,Medium Confidence
+BIKAJI.NS,60.4,🟡 MILD BULLISH,Medium Confidence
+SUNPHARMA.NS,60.4,🟡 MILD BULLISH,Medium Confidence
+SIEMENS.NS,60.3,🟡 MILD BULLISH,Medium Confidence
+DATAPATTNS.NS,60.3,🟡 MILD BULLISH,Medium Confidence
+GRSE.NS,60.3,🟡 MILD BULLISH,Medium Confidence
+BAJAJ-AUTO.NS,60.2,🟡 MILD BULLISH,Medium Confidence
+CIPLA.NS,60.1,🟡 MILD BULLISH,Medium Confidence
+CAMS.NS,60.0,⚪ NEUTRAL,Medium Confidence
+KOTAKBANK.NS,59.9,⚪ NEUTRAL,Medium Confidence
+MOTHERSON.NS,59.8,⚪ NEUTRAL,Medium Confidence
+HINDPETRO.NS,59.8,⚪ NEUTRAL,Medium Confidence
+TIMKEN.NS,59.6,⚪ NEUTRAL,Medium Confidence
+SKFINDIA.NS,59.5,⚪ NEUTRAL,Medium Confidence
+GAIL.NS,59.4,⚪ NEUTRAL,Medium Confidence
+INDHOTEL.NS,59.4,⚪ NEUTRAL,Medium Confidence
+BRITANNIA.NS,59.4,⚪ NEUTRAL,Medium Confidence
+NATIONALUM.NS,59.3,⚪ NEUTRAL,Medium Confidence
+BLUESTARCO.NS,59.3,⚪ NEUTRAL,Medium Confidence
+UTIAMC.NS,59.3,⚪ NEUTRAL,Medium Confidence
+MAXHEALTH.NS,59.3,⚪ NEUTRAL,Medium Confidence
+TATACOMM.NS,59.2,⚪ NEUTRAL,Medium Confidence
+MANKIND.NS,59.2,⚪ NEUTRAL,Medium Confidence
+PNCINFRA.NS,59.1,⚪ NEUTRAL,Medium Confidence
+BOSCHLTD.NS,59.0,⚪ NEUTRAL,Medium Confidence
+PHOENIXLTD.NS,58.7,⚪ NEUTRAL,Medium Confidence
+INFY.NS,58.6,⚪ NEUTRAL,Medium Confidence
+CHOLAFIN.NS,58.6,⚪ NEUTRAL,Medium Confidence
+DMART.NS,58.5,⚪ NEUTRAL,Medium Confidence
+LT.NS,58.5,⚪ NEUTRAL,Medium Confidence
+TATASTEEL.NS,58.4,⚪ NEUTRAL,Medium Confidence
+ABB.NS,58.4,⚪ NEUTRAL,Medium Confidence
+HDFCLIFE.NS,58.4,⚪ NEUTRAL,Medium Confidence
+ITBEES.NS,58.4,⚪ NEUTRAL,Medium Confidence
+APOLLOTYRE.NS,58.4,⚪ NEUTRAL,Medium Confidence
+ATGL.NS,58.3,⚪ NEUTRAL,Medium Confidence
+RADICO.NS,58.2,⚪ NEUTRAL,Medium Confidence
+HINDALCO.NS,58.1,⚪ NEUTRAL,Medium Confidence
+JYOTHYLAB.NS,58.1,⚪ NEUTRAL,Medium Confidence
+ADANIENT.NS,58.1,⚪ NEUTRAL,Medium Confidence
+TATACONSUM.NS,58.0,⚪ NEUTRAL,Medium Confidence
+ACC.NS,58.0,⚪ NEUTRAL,Medium Confidence
+IOB.NS,57.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+PAYTM.NS,57.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+KIMS.NS,57.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+BERGEPAINT.NS,57.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+WIPRO.NS,57.6,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+TMCV.NS,57.5,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+BHARAT22ETF.NS,57.5,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+PIDILITIND.NS,57.5,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+ADANIPORTS.NS,57.4,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SCHAEFFLER.NS,57.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+DIXON.NS,57.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+BANKBARODA.NS,56.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+ASIANPAINT.NS,56.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+HAL.NS,56.8,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+NIFTYBEES.NS,56.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+LICI.NS,56.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+HINDUNILVR.NS,56.5,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+NHPC.NS,56.4,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+APLAPOLLO.NS,56.3,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+LEMONTREE.NS,56.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+ZENSARTECH.NS,56.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+DRREDDY.NS,55.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+CPSEETF.NS,55.8,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+COFORGE.NS,55.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+ULTRACEMCO.NS,55.6,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SUNTV.NS,55.6,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SOLARINDS.NS,55.5,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+TATAPOWER.NS,55.3,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SAIL.NS,55.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SAPPHIRE.NS,54.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+LUPIN.NS,54.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+NMDC.NS,54.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+BHARATFORG.NS,54.4,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+POWERGRID.NS,54.4,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+IOC.NS,54.4,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+EIHOTEL.NS,54.2,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SOBHA.NS,54.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+ONGC.NS,54.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SHYAMMETL.NS,54.0,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+PERSISTENT.NS,54.0,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+JINDALSTEL.NS,53.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+JSWSTEEL.NS,53.5,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+TATAELXSI.NS,53.4,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+EMAMILTD.NS,53.3,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+HCLTECH.NS,53.3,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+PNB.NS,52.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+LAURUSLABS.NS,52.4,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+TCS.NS,52.0,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+M&M.NS,51.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+AFFLE.NS,51.8,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+LTIM.NS,51.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+BANSALWIRE.NS,51.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+OIL.NS,50.3,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+MPHASIS.NS,50.1,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+SYNGENE.NS,49.9,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
+TANLA.NS,49.7,MACRO CAUTION — India VIX elevated (15.7),Low Confidence
