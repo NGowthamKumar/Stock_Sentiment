@@ -1,203 +1,199 @@
 ticker,up_probability,signal,confidence
-GOLDBEES.NS,73.9,🟢 STRONG BULLISH,High Confidence
-VINATIORGA.NS,71.6,🟡 MILD BULLISH,High Confidence
-APOLLOHOSP.NS,70.2,🟡 MILD BULLISH,High Confidence
-LT.NS,69.4,🟡 MILD BULLISH,High Confidence
-AARTIIND.NS,68.9,🟡 MILD BULLISH,High Confidence
-IGL.NS,68.8,🟡 MILD BULLISH,High Confidence
-POLICYBZR.NS,68.2,🟡 MILD BULLISH,High Confidence
-ETERNAL.NS,68.0,🟡 MILD BULLISH,High Confidence
-ZYDUSLIFE.NS,68.0,🟡 MILD BULLISH,High Confidence
-DRREDDY.NS,67.3,🟡 MILD BULLISH,High Confidence
-POWERGRID.NS,67.1,🟡 MILD BULLISH,High Confidence
-LAURUSLABS.NS,66.7,🟡 MILD BULLISH,High Confidence
-ADANIPORTS.NS,66.1,🟡 MILD BULLISH,High Confidence
-MTARTECH.NS,65.8,🟡 MILD BULLISH,High Confidence
-SAPPHIRE.NS,64.6,🟡 MILD BULLISH,Medium Confidence
-DATAPATTNS.NS,64.4,🟡 MILD BULLISH,Medium Confidence
-BLUESTARCO.NS,62.8,🟡 MILD BULLISH,Medium Confidence
-MUTHOOTFIN.NS,62.6,🟡 MILD BULLISH,Medium Confidence
-NESTLEIND.NS,62.6,🟡 MILD BULLISH,Medium Confidence
-DABUR.NS,62.3,🟡 MILD BULLISH,Medium Confidence
-MON100.NS,62.1,🟡 MILD BULLISH,Medium Confidence
-GRANULES.NS,62.1,🟡 MILD BULLISH,Medium Confidence
-SCHAEFFLER.NS,62.0,🟡 MILD BULLISH,Medium Confidence
-SONACOMS.NS,61.8,🟡 MILD BULLISH,Medium Confidence
-COFORGE.NS,61.0,🟡 MILD BULLISH,Medium Confidence
-KOTAKBANK.NS,61.0,🟡 MILD BULLISH,Medium Confidence
-NAVINFLUOR.NS,60.9,🟡 MILD BULLISH,Medium Confidence
-CAMS.NS,60.8,🟡 MILD BULLISH,Medium Confidence
-TATACONSUM.NS,60.8,🟡 MILD BULLISH,Medium Confidence
-KPIL.NS,60.6,🟡 MILD BULLISH,Medium Confidence
-AXISBANK.NS,60.2,🟡 MILD BULLISH,Medium Confidence
-TITAN.NS,60.2,🟡 MILD BULLISH,Medium Confidence
+GOLDBEES.NS,77.8,🟢 STRONG BULLISH,High Confidence
+AARTIIND.NS,74.0,🟢 STRONG BULLISH,High Confidence
+IGL.NS,69.3,🟡 MILD BULLISH,High Confidence
+POLICYBZR.NS,68.8,🟡 MILD BULLISH,High Confidence
+MUTHOOTFIN.NS,68.6,🟡 MILD BULLISH,High Confidence
+KEC.NS,67.7,🟡 MILD BULLISH,High Confidence
+LT.NS,66.8,🟡 MILD BULLISH,High Confidence
+POWERGRID.NS,66.1,🟡 MILD BULLISH,High Confidence
+CAMS.NS,65.7,🟡 MILD BULLISH,High Confidence
+ADANIPORTS.NS,65.6,🟡 MILD BULLISH,High Confidence
+SAPPHIRE.NS,65.4,🟡 MILD BULLISH,High Confidence
+DRREDDY.NS,65.3,🟡 MILD BULLISH,High Confidence
+MTARTECH.NS,64.7,🟡 MILD BULLISH,Medium Confidence
+DABUR.NS,64.5,🟡 MILD BULLISH,Medium Confidence
+KPIL.NS,64.2,🟡 MILD BULLISH,Medium Confidence
+BSE.NS,63.9,🟡 MILD BULLISH,Medium Confidence
+M&M.NS,63.9,🟡 MILD BULLISH,Medium Confidence
+GRANULES.NS,63.8,🟡 MILD BULLISH,Medium Confidence
+BLUESTARCO.NS,63.5,🟡 MILD BULLISH,Medium Confidence
+APOLLOHOSP.NS,63.5,🟡 MILD BULLISH,Medium Confidence
+LAURUSLABS.NS,63.4,🟡 MILD BULLISH,Medium Confidence
+ZYDUSLIFE.NS,63.2,🟡 MILD BULLISH,Medium Confidence
+TATACONSUM.NS,63.0,🟡 MILD BULLISH,Medium Confidence
+NHPC.NS,62.8,🟡 MILD BULLISH,Medium Confidence
+NESTLEIND.NS,62.5,🟡 MILD BULLISH,Medium Confidence
+ETERNAL.NS,62.2,🟡 MILD BULLISH,Medium Confidence
+SCHAEFFLER.NS,62.1,🟡 MILD BULLISH,Medium Confidence
+TITAN.NS,61.8,🟡 MILD BULLISH,Medium Confidence
+DATAPATTNS.NS,61.8,🟡 MILD BULLISH,Medium Confidence
+SUNTV.NS,61.8,🟡 MILD BULLISH,Medium Confidence
+PERSISTENT.NS,61.6,🟡 MILD BULLISH,Medium Confidence
+ABB.NS,60.8,🟡 MILD BULLISH,Medium Confidence
+AXISBANK.NS,60.7,🟡 MILD BULLISH,Medium Confidence
+LUPIN.NS,60.5,🟡 MILD BULLISH,Medium Confidence
 MANKIND.NS,60.1,🟡 MILD BULLISH,Medium Confidence
-PERSISTENT.NS,60.0,🟡 MILD BULLISH,Medium Confidence
-BOSCHLTD.NS,59.9,⚪ NEUTRAL,Medium Confidence
-AMBER.NS,59.8,⚪ NEUTRAL,Medium Confidence
-EMAMILTD.NS,59.7,⚪ NEUTRAL,Medium Confidence
-EIHOTEL.NS,59.7,⚪ NEUTRAL,Medium Confidence
-CIPLA.NS,59.3,⚪ NEUTRAL,Medium Confidence
-COLPAL.NS,59.2,⚪ NEUTRAL,Medium Confidence
-HINDUNILVR.NS,59.1,⚪ NEUTRAL,Medium Confidence
-HOMEFIRST.NS,59.0,⚪ NEUTRAL,Medium Confidence
-BSE.NS,58.9,⚪ NEUTRAL,Medium Confidence
-BDL.NS,58.9,⚪ NEUTRAL,Medium Confidence
-INDUSINDBK.NS,58.8,⚪ NEUTRAL,Medium Confidence
-NHPC.NS,58.8,⚪ NEUTRAL,Medium Confidence
-AJANTPHARM.NS,58.6,⚪ NEUTRAL,Medium Confidence
-FIVESTAR.NS,58.5,⚪ NEUTRAL,Medium Confidence
-TATAELXSI.NS,58.5,⚪ NEUTRAL,Medium Confidence
-LODHA.NS,58.4,⚪ NEUTRAL,Medium Confidence
-ICICIBANK.NS,58.3,⚪ NEUTRAL,Medium Confidence
-IOB.NS,58.3,⚪ NEUTRAL,Medium Confidence
-INDIAMART.NS,58.2,⚪ NEUTRAL,Medium Confidence
-IRCON.NS,58.2,⚪ NEUTRAL,Medium Confidence
-LEMONTREE.NS,58.1,⚪ NEUTRAL,Medium Confidence
-LICI.NS,57.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TIMKEN.NS,57.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-VBL.NS,57.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ANGELONE.NS,57.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NAUKRI.NS,57.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-INDHOTEL.NS,56.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NTPC.NS,56.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-RADICO.NS,56.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-UPL.NS,56.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-DEVYANI.NS,56.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-GODREJPROP.NS,56.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MANAPPURAM.NS,56.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ALKYLAMINE.NS,56.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MARICO.NS,56.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-DELTACORP.NS,55.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-WIPRO.NS,55.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BALAMINES.NS,55.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-INFY.NS,55.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BAJFINANCE.NS,55.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ZENSARTECH.NS,55.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TORNTPHARM.NS,55.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BRITANNIA.NS,55.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TATACOMM.NS,55.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SKFINDIA.NS,54.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MOTHERSON.NS,54.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-KAYNES.NS,54.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HUDCO.NS,54.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SOBHA.NS,54.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-FORTIS.NS,54.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-DIXON.NS,54.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-IRCTC.NS,54.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NYKAA.NS,53.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-CESC.NS,53.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-M&M.NS,53.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-IEX.NS,53.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BIKAJI.NS,53.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BHARATFORG.NS,53.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SUZLON.NS,53.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SRF.NS,53.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BHEL.NS,53.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SAIL.NS,53.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-PNB.NS,53.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-JIOFIN.NS,52.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-APOLLOTYRE.NS,52.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-JPPOWER.NS,52.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-GODREJCP.NS,52.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BEL.NS,52.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-IIFL.NS,52.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BLS.NS,52.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-PIDILITIND.NS,51.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NATIONALUM.NS,51.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ITC.NS,51.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-PAYTM.NS,51.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ABB.NS,51.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-RVNL.NS,51.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MASTEK.NS,51.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SHRIRAMFIN.NS,50.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MARUTI.NS,50.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-UBL.NS,50.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BAJAJ-AUTO.NS,50.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NMDC.NS,50.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-DLF.NS,50.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-WESTLIFE.NS,50.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BDL.NS,59.7,⚪ NEUTRAL,Medium Confidence
+NAUKRI.NS,59.6,⚪ NEUTRAL,Medium Confidence
+BALAMINES.NS,59.4,⚪ NEUTRAL,Medium Confidence
+COFORGE.NS,59.2,⚪ NEUTRAL,Medium Confidence
+COCHINSHIP.NS,58.9,⚪ NEUTRAL,Medium Confidence
+INDIAMART.NS,58.9,⚪ NEUTRAL,Medium Confidence
+KOTAKBANK.NS,58.7,⚪ NEUTRAL,Medium Confidence
+BOSCHLTD.NS,58.6,⚪ NEUTRAL,Medium Confidence
+HINDPETRO.NS,58.5,⚪ NEUTRAL,Medium Confidence
+MANAPPURAM.NS,57.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+RADICO.NS,57.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HINDUNILVR.NS,57.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+DLF.NS,57.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IRCON.NS,57.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NAVINFLUOR.NS,57.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ALKYLAMINE.NS,57.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+KAYNES.NS,56.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ZENSARTECH.NS,56.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+LODHA.NS,56.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ICICIBANK.NS,56.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HUDCO.NS,56.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+WIPRO.NS,56.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+AMBER.NS,56.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+EIHOTEL.NS,56.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ADANIENT.NS,56.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SONACOMS.NS,56.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HAVELLS.NS,56.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+INDUSINDBK.NS,56.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+VBL.NS,55.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+INDHOTEL.NS,55.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ANGELONE.NS,55.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SAIL.NS,55.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NTPC.NS,55.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MAZDOCK.NS,55.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+FIVESTAR.NS,55.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+LEMONTREE.NS,55.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+AJANTPHARM.NS,55.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+DIXON.NS,55.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TANLA.NS,55.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+GODREJPROP.NS,54.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TATAPOWER.NS,54.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IRCTC.NS,54.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TATACOMM.NS,54.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+CIPLA.NS,54.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+DEVYANI.NS,54.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+PNB.NS,53.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BHARATFORG.NS,53.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+INFY.NS,53.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MARICO.NS,53.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SKFINDIA.NS,53.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IRFC.NS,53.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+JPPOWER.NS,53.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+RVNL.NS,53.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+COLPAL.NS,53.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BHARTIARTL.NS,52.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+PIDILITIND.NS,52.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+JYOTHYLAB.NS,52.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+PAYTM.NS,52.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+FORTIS.NS,52.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SOLARINDS.NS,52.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BHEL.NS,52.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MASTEK.NS,52.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+GODREJCP.NS,51.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IDEA.NS,51.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IEX.NS,51.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SHRIRAMFIN.NS,51.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SUZLON.NS,51.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HAL.NS,51.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HINDZINC.NS,51.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ITC.NS,51.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+WESTLIFE.NS,51.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TIINDIA.NS,51.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NYKAA.NS,51.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BAJAJ-AUTO.NS,50.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+CUMMINSIND.NS,50.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BRITANNIA.NS,50.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TMPV.NS,50.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MOTHERSON.NS,50.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ATGL.NS,50.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+DEEPAKNTR.NS,50.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
 BALKRISIND.NS,50.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-UTIAMC.NS,50.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-KEC.NS,50.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SOLARINDS.NS,50.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-OBEROIRLTY.NS,50.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-COCHINSHIP.NS,50.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BPCL.NS,50.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ABBOTINDIA.NS,49.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HINDPETRO.NS,49.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SHYAMMETL.NS,49.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HAL.NS,49.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MPHASIS.NS,49.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MAZDOCK.NS,49.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ADANIENSOL.NS,49.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BAJAJHLDNG.NS,49.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-APLAPOLLO.NS,49.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SYNGENE.NS,49.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-CHOLAFIN.NS,49.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-YESBANK.NS,48.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HDFCBANK.NS,48.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BIOCON.NS,48.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BERGEPAINT.NS,48.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-IDEA.NS,48.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+CHOLAFIN.NS,50.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BEL.NS,50.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IOB.NS,50.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ADANIENSOL.NS,50.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BAJFINANCE.NS,49.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+YESBANK.NS,49.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+JUBLFOOD.NS,49.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NATCOPHARM.NS,49.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SHREECEM.NS,49.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MARUTI.NS,49.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BERGEPAINT.NS,49.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SRF.NS,49.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HDFCLIFE.NS,49.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+UTIAMC.NS,49.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MPHASIS.NS,49.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+JIOFIN.NS,49.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SIEMENS.NS,48.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
 BRIGADE.NS,48.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BHARTIARTL.NS,48.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ADANIGREEN.NS,48.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ULTRACEMCO.NS,48.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-LTM.NS,48.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ONGC.NS,48.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BANKBARODA.NS,48.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-CUMMINSIND.NS,48.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HDFCLIFE.NS,48.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TMCV.NS,48.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ADANIPOWER.NS,48.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-GAIL.NS,47.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NATCOPHARM.NS,47.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TRENT.NS,47.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SJVN.NS,47.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ACC.NS,47.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-PRESTIGE.NS,47.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-JINDALSTEL.NS,47.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-AUROPHARMA.NS,47.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HEROMOTOCO.NS,47.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-JSWSTEEL.NS,47.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TIINDIA.NS,46.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ATGL.NS,46.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ABCAPITAL.NS,46.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-VOLTAS.NS,46.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HAVELLS.NS,46.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-COALINDIA.NS,46.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ACC.NS,48.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+UBL.NS,48.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+APLAPOLLO.NS,48.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NATIONALUM.NS,48.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BIOCON.NS,48.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+DMART.NS,48.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+VOLTAS.NS,48.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ONGC.NS,47.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BANKBARODA.NS,47.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IPCALAB.NS,47.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ABBOTINDIA.NS,47.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BPCL.NS,47.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NH.NS,47.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TRENT.NS,47.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BANSALWIRE.NS,47.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TMCV.NS,47.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+KIMS.NS,47.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HOMEFIRST.NS,47.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+AUROPHARMA.NS,46.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HDFCBANK.NS,46.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NMDC.NS,46.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TATAELXSI.NS,46.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
 HDFCAMC.NS,46.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TATASTEEL.NS,46.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-PAGEIND.NS,46.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-PHOENIXLTD.NS,46.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BANSALWIRE.NS,46.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ALKEM.NS,46.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ASIANPAINT.NS,46.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-KIMS.NS,45.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NBCC.NS,45.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-AFFLE.NS,45.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SIEMENS.NS,45.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-MAXHEALTH.NS,45.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-DEEPAKNTR.NS,45.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TATAPOWER.NS,45.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-SHREECEM.NS,45.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-IOC.NS,45.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-ADANIENT.NS,45.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+RELIANCE.NS,46.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TATASTEEL.NS,46.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SHYAMMETL.NS,46.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MRPL.NS,46.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+JINDALSTEL.NS,45.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MGL.NS,45.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+COALINDIA.NS,45.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+PHOENIXLTD.NS,45.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BAJAJHLDNG.NS,45.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NBCC.NS,45.2,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
 OIL.NS,45.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-RELIANCE.NS,44.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-NH.NS,44.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-VEDL.NS,44.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-TCS.NS,43.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-HCLTECH.NS,42.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-BAJAJFINSV.NS,42.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
-LTIM.NS,41.3,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-INDIGO.NS,41.2,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-SUNPHARMA.NS,41.0,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-JUBLFOOD.NS,40.5,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-EICHERMOT.NS,40.3,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-GRSE.NS,39.3,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-NIFTYBEES.NS,39.0,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-PDRP.NS,38.3,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-SBIN.NS,37.1,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
-SPICEJET.NS,33.8,MACRO CAUTION — US VIX elevated (21.1),High Confidence
+ADANIPOWER.NS,45.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+LTM.NS,44.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+GAIL.NS,44.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+MAXHEALTH.NS,44.7,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+OBEROIRLTY.NS,44.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+JSWSTEEL.NS,44.6,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+NAM-INDIA.NS,44.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ASIANPAINT.NS,44.0,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ADANIGREEN.NS,43.9,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BAJAJFINSV.NS,43.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+SJVN.NS,43.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+IOC.NS,43.8,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+PAGEIND.NS,43.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ALKEM.NS,43.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+BLS.NS,43.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+ABCAPITAL.NS,43.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+GRSE.NS,43.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+AFFLE.NS,43.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+INDIGO.NS,42.5,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+PRESTIGE.NS,42.4,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HEROMOTOCO.NS,42.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+HCLTECH.NS,42.3,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TCS.NS,42.1,MACRO CAUTION — US VIX elevated (21.1),Low Confidence
+TIMKEN.NS,42.0,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
+EICHERMOT.NS,41.7,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
+VEDL.NS,41.2,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
+SUNPHARMA.NS,41.1,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
+LTIM.NS,37.1,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
+SPICEJET.NS,36.7,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
+SBIN.NS,35.1,MACRO CAUTION — US VIX elevated (21.1),Medium Confidence
