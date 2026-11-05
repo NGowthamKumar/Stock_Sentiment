@@ -2,7 +2,7 @@ ticker,up_probability,signal,confidence
 GRANULES.NS,77.5,🟢 STRONG BULLISH,High Confidence
 SPICEJET.NS,73.7,🟢 STRONG BULLISH,High Confidence
 MINDAIND.NS,72.9,🟢 STRONG BULLISH,High Confidence
-SUNTV.NS,72.7,🟢 STRONG BULLISH,High Confidence
+SUNTV.NS,72.6,🟢 STRONG BULLISH,High Confidence
 BSE.NS,72.6,🟢 STRONG BULLISH,High Confidence
 UTIAMC.NS,71.9,🟡 MILD BULLISH,High Confidence
 LTIM.NS,71.5,🟡 MILD BULLISH,High Confidence
@@ -79,10 +79,10 @@ TORNTPOWER.NS,61.1,🟡 MILD BULLISH,Medium Confidence
 JSWSTEEL.NS,60.8,🟡 MILD BULLISH,Medium Confidence
 MGL.NS,60.7,🟡 MILD BULLISH,Medium Confidence
 NH.NS,60.7,🟡 MILD BULLISH,Medium Confidence
-NAM-INDIA.NS,60.6,🟡 MILD BULLISH,Medium Confidence
-MPHASIS.NS,60.6,🟡 MILD BULLISH,Medium Confidence
 TATATECH.NS,60.6,🟡 MILD BULLISH,Medium Confidence
-HOMEFIRST.NS,60.6,🟡 MILD BULLISH,Medium Confidence
+MPHASIS.NS,60.6,🟡 MILD BULLISH,Medium Confidence
+NAM-INDIA.NS,60.6,🟡 MILD BULLISH,Medium Confidence
+HOMEFIRST.NS,60.5,🟡 MILD BULLISH,Medium Confidence
 DATAPATTNS.NS,60.5,🟡 MILD BULLISH,Medium Confidence
 JPPOWER.NS,60.4,🟡 MILD BULLISH,Medium Confidence
 M&M.NS,60.4,🟡 MILD BULLISH,Medium Confidence
@@ -116,12 +116,12 @@ POWERGRID.NS,57.8,⚪ NEUTRAL,Low Confidence
 NBCC.NS,57.7,⚪ NEUTRAL,Low Confidence
 GODREJPROP.NS,57.7,⚪ NEUTRAL,Low Confidence
 LUPIN.NS,57.6,⚪ NEUTRAL,Low Confidence
-CIPLA.NS,57.5,⚪ NEUTRAL,Low Confidence
 SHREECEM.NS,57.5,⚪ NEUTRAL,Low Confidence
-BHEL.NS,57.5,⚪ NEUTRAL,Low Confidence
 ADANIENSOL.NS,57.5,⚪ NEUTRAL,Low Confidence
-MOTHERSON.NS,57.4,⚪ NEUTRAL,Low Confidence
+BHEL.NS,57.5,⚪ NEUTRAL,Low Confidence
 BRITANNIA.NS,57.4,⚪ NEUTRAL,Low Confidence
+MOTHERSON.NS,57.4,⚪ NEUTRAL,Low Confidence
+CIPLA.NS,57.4,⚪ NEUTRAL,Low Confidence
 GAIL.NS,57.3,⚪ NEUTRAL,Low Confidence
 CUMMINSIND.NS,57.3,⚪ NEUTRAL,Low Confidence
 PRESTIGE.NS,57.2,⚪ NEUTRAL,Low Confidence
