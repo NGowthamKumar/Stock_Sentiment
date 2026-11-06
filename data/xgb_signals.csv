@@ -1,200 +1,194 @@
 ticker,up_probability,signal,confidence
-CUMMINSIND.NS,78.9,🟢 STRONG BULLISH,High Confidence
-NTPC.NS,76.4,🟢 STRONG BULLISH,High Confidence
-ADANIPORTS.NS,73.1,🟢 STRONG BULLISH,High Confidence
+NTPC.NS,75.4,🟢 STRONG BULLISH,High Confidence
+CUMMINSIND.NS,74.2,🟢 STRONG BULLISH,High Confidence
 DATAPATTNS.NS,73.1,🟢 STRONG BULLISH,High Confidence
-APOLLOHOSP.NS,72.7,🟢 STRONG BULLISH,High Confidence
+ADANIPORTS.NS,72.7,🟢 STRONG BULLISH,High Confidence
+APOLLOHOSP.NS,72.5,🟢 STRONG BULLISH,High Confidence
 OIL.NS,72.5,🟢 STRONG BULLISH,High Confidence
-BHEL.NS,72.4,🟢 STRONG BULLISH,High Confidence
+DABUR.NS,72.5,🟢 STRONG BULLISH,High Confidence
 MTARTECH.NS,72.4,🟢 STRONG BULLISH,High Confidence
-DABUR.NS,72.2,🟢 STRONG BULLISH,High Confidence
-KIMS.NS,72.1,🟢 STRONG BULLISH,High Confidence
+BHEL.NS,72.4,🟢 STRONG BULLISH,High Confidence
+SOLARINDS.NS,70.7,🟡 MILD BULLISH,High Confidence
 GRANULES.NS,70.6,🟡 MILD BULLISH,High Confidence
 SIEMENS.NS,70.5,🟡 MILD BULLISH,High Confidence
-AJANTPHARM.NS,70.3,🟡 MILD BULLISH,High Confidence
+AJANTPHARM.NS,70.2,🟡 MILD BULLISH,High Confidence
 BHARATFORG.NS,70.2,🟡 MILD BULLISH,High Confidence
-POWERGRID.NS,69.9,🟡 MILD BULLISH,High Confidence
+RELIANCE.NS,70.0,🟡 MILD BULLISH,High Confidence
 DEEPAKNTR.NS,69.7,🟡 MILD BULLISH,High Confidence
-NH.NS,69.7,🟡 MILD BULLISH,High Confidence
+NH.NS,69.5,🟡 MILD BULLISH,High Confidence
+MINDAIND.NS,69.3,🟡 MILD BULLISH,High Confidence
+ONGC.NS,69.0,🟡 MILD BULLISH,High Confidence
 GOLDBEES.NS,69.0,🟡 MILD BULLISH,High Confidence
-ONGC.NS,68.7,🟡 MILD BULLISH,High Confidence
+POWERGRID.NS,68.9,🟡 MILD BULLISH,High Confidence
 LTIM.NS,68.7,🟡 MILD BULLISH,High Confidence
-MINDAIND.NS,68.7,🟡 MILD BULLISH,High Confidence
 COALINDIA.NS,68.7,🟡 MILD BULLISH,High Confidence
-AFFLE.NS,68.7,🟡 MILD BULLISH,High Confidence
-NYKAA.NS,68.5,🟡 MILD BULLISH,High Confidence
 BHARTIARTL.NS,68.5,🟡 MILD BULLISH,High Confidence
-TITAN.NS,68.4,🟡 MILD BULLISH,High Confidence
-GRSE.NS,68.4,🟡 MILD BULLISH,High Confidence
+TITAN.NS,68.3,🟡 MILD BULLISH,High Confidence
 HINDALCO.NS,68.3,🟡 MILD BULLISH,High Confidence
-BEL.NS,68.2,🟡 MILD BULLISH,High Confidence
+BEL.NS,68.1,🟡 MILD BULLISH,High Confidence
+AFFLE.NS,67.9,🟡 MILD BULLISH,High Confidence
 TATACOMM.NS,67.8,🟡 MILD BULLISH,High Confidence
-SOLARINDS.NS,67.5,🟡 MILD BULLISH,High Confidence
-PAGEIND.NS,67.2,🟡 MILD BULLISH,High Confidence
-RELIANCE.NS,66.9,🟡 MILD BULLISH,High Confidence
+GRSE.NS,66.7,🟡 MILD BULLISH,High Confidence
 SPICEJET.NS,66.7,🟡 MILD BULLISH,High Confidence
-MAXHEALTH.NS,66.6,🟡 MILD BULLISH,High Confidence
-HAL.NS,66.3,🟡 MILD BULLISH,High Confidence
+HAL.NS,66.4,🟡 MILD BULLISH,High Confidence
+MAXHEALTH.NS,66.2,🟡 MILD BULLISH,High Confidence
 ZYDUSLIFE.NS,66.2,🟡 MILD BULLISH,High Confidence
-COCHINSHIP.NS,65.9,🟡 MILD BULLISH,High Confidence
+KIMS.NS,65.5,🟡 MILD BULLISH,High Confidence
+LICI.NS,65.4,🟡 MILD BULLISH,High Confidence
+PAGEIND.NS,65.3,🟡 MILD BULLISH,High Confidence
 ABB.NS,65.3,🟡 MILD BULLISH,High Confidence
-ADANIGREEN.NS,65.2,🟡 MILD BULLISH,High Confidence
 PDRP.NS,65.0,🟡 MILD BULLISH,High Confidence
-CESC.NS,64.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 APLAPOLLO.NS,64.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+SUNTV.NS,64.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+IEX.NS,64.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 NESTLEIND.NS,64.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-HINDUNILVR.NS,64.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-IGL.NS,64.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-IEX.NS,63.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+UPL.NS,63.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 INDIAMART.NS,63.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-AARTIIND.NS,63.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-MARICO.NS,63.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-BAJAJ-AUTO.NS,63.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+MARICO.NS,63.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+TORNTPHARM.NS,63.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 KPIL.NS,63.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-MANKIND.NS,63.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-UPL.NS,62.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-TATAPOWER.NS,62.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+DRREDDY.NS,62.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+ADANIGREEN.NS,62.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+IGL.NS,62.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+HINDUNILVR.NS,62.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 HAVELLS.NS,61.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-UBL.NS,61.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 SCHAEFFLER.NS,61.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 ABBOTINDIA.NS,61.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-NBCC.NS,61.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 BOSCHLTD.NS,61.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-MAZDOCK.NS,61.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-ADANIENSOL.NS,61.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+BAJAJ-AUTO.NS,61.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+NYKAA.NS,61.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 RVNL.NS,61.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 LT.NS,61.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-KAYNES.NS,60.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+ADANIPOWER.NS,61.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+KAYNES.NS,60.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+NBCC.NS,60.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 BDL.NS,60.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-DIVISLAB.NS,60.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-ADANIENT.NS,60.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-DRREDDY.NS,60.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-ITC.NS,60.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+NATIONALUM.NS,60.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+BLUESTARCO.NS,60.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+SUZLON.NS,60.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+AARTIIND.NS,60.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+GAIL.NS,60.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+IOC.NS,60.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 AMBER.NS,59.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-LUPIN.NS,59.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+ADANIENT.NS,59.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 BHARAT22ETF.NS,59.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-IPCALAB.NS,59.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-SJVN.NS,59.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-BLUESTARCO.NS,59.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+MANKIND.NS,59.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+MPHASIS.NS,59.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+MAZDOCK.NS,59.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+PERSISTENT.NS,59.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 BRITANNIA.NS,59.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-LICI.NS,59.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-VBL.NS,59.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+IPCALAB.NS,59.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 WESTLIFE.NS,59.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-MPHASIS.NS,59.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-NATIONALUM.NS,59.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+VBL.NS,59.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+IRFC.NS,59.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 TANLA.NS,59.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-MARUTI.NS,58.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-SUZLON.NS,58.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-INDHOTEL.NS,58.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 NAVINFLUOR.NS,58.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-BRIGADE.NS,58.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 CIPLA.NS,58.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-HEROMOTOCO.NS,58.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+MARUTI.NS,58.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+COCHINSHIP.NS,58.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+ADANIENSOL.NS,58.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 PRESTIGE.NS,58.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 BALKRISIND.NS,58.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-ADANIPOWER.NS,57.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-SUNTV.NS,57.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+KEC.NS,57.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 OBEROIRLTY.NS,57.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+LUPIN.NS,57.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 JIOFIN.NS,57.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TORNTPHARM.NS,57.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TMCV.NS,57.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+ITC.NS,57.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 IRCTC.NS,57.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-PAYTM.NS,56.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+MUTHOOTFIN.NS,57.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 SKFINDIA.NS,56.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BLS.NS,56.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-NMDC.NS,56.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-ETERNAL.NS,56.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-MUTHOOTFIN.NS,56.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-PIDILITIND.NS,56.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+TATAPOWER.NS,56.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+NMDC.NS,56.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+NAUKRI.NS,56.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+SJVN.NS,56.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 TORNTPOWER.NS,56.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 COFORGE.NS,56.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 SILVERBEES.NS,56.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+TATACONSUM.NS,55.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 GODREJCP.NS,55.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-GAIL.NS,55.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 JSWSTEEL.NS,55.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-PERSISTENT.NS,55.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+PIDILITIND.NS,55.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 BIKAJI.NS,55.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-ANGELONE.NS,55.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-SHREECEM.NS,55.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+INDIGO.NS,55.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 ALKEM.NS,55.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TATACONSUM.NS,55.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+SHREECEM.NS,55.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+ANGELONE.NS,55.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 SHYAMMETL.NS,55.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TRENT.NS,55.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+TRENT.NS,54.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 NATCOPHARM.NS,54.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-IRFC.NS,54.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+BPCL.NS,54.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+PAYTM.NS,54.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 LAURUSLABS.NS,54.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+TMCV.NS,54.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+EMAMILTD.NS,54.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+DLF.NS,54.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+LODHA.NS,54.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 FORTIS.NS,54.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+HEROMOTOCO.NS,54.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+ETERNAL.NS,54.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+BSE.NS,53.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+CAMS.NS,53.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 KOTAKBANK.NS,53.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+VEDL.NS,53.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+BLS.NS,53.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 ROUTE.NS,53.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-EMAMILTD.NS,53.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+UTIAMC.NS,52.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 ICICIBANK.NS,52.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 AXISBANK.NS,52.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BSE.NS,52.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-DLF.NS,52.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TMPV.NS,52.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BAJAJHLDNG.NS,52.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+SONACOMS.NS,52.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 PHOENIXLTD.NS,52.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-NAUKRI.NS,52.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-KEC.NS,52.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-SONACOMS.NS,52.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 ABCAPITAL.NS,52.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+M&M.NS,52.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 SAIL.NS,52.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BAJFINANCE.NS,52.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-HDFCAMC.NS,52.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 GODREJPROP.NS,52.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-HINDZINC.NS,51.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+HDFCAMC.NS,52.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+HINDZINC.NS,51.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 SBIN.NS,51.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 HINDPETRO.NS,51.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+COLPAL.NS,51.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+SHRIRAMFIN.NS,51.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 TIMKEN.NS,51.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+BAJFINANCE.NS,51.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+EICHERMOT.NS,51.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 DIXON.NS,50.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 HUDCO.NS,50.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-M&M.NS,50.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-WIPRO.NS,50.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 POLICYBZR.NS,50.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-IOC.NS,50.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-VEDL.NS,50.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-LODHA.NS,50.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+BANKBARODA.NS,50.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+SUNPHARMA.NS,50.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+IDEA.NS,50.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 ASIANPAINT.NS,50.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-DELTACORP.NS,49.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-HOMEFIRST.NS,49.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-IDEA.NS,49.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+HOMEFIRST.NS,50.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+PNB.NS,49.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 LEMONTREE.NS,49.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-ATGL.NS,49.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-CAMS.NS,48.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+HDFCBANK.NS,48.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+INDHOTEL.NS,48.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 NHPC.NS,48.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-HDFCBANK.NS,48.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 AUROPHARMA.NS,48.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BAJAJFINSV.NS,47.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-INDIGO.NS,47.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TATASTEEL.NS,47.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-UTIAMC.NS,47.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+UBL.NS,47.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+DELTACORP.NS,47.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+WIPRO.NS,47.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 NAM-INDIA.NS,47.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-HCLTECH.NS,46.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-COLPAL.NS,46.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+TCS.NS,47.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+IOB.NS,46.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 ACC.NS,46.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 VOLTAS.NS,46.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-IOB.NS,46.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-SHRIRAMFIN.NS,46.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TATAELXSI.NS,46.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-MOTHERSON.NS,46.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+BAJAJFINSV.NS,46.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 JYOTHYLAB.NS,46.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+TATAELXSI.NS,46.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 INDUSINDBK.NS,46.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BPCL.NS,46.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-JUBLFOOD.NS,46.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-SUNPHARMA.NS,45.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-INFY.NS,45.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TIINDIA.NS,44.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-PNB.NS,44.4,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-JPPOWER.NS,44.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BERGEPAINT.NS,44.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+MOTHERSON.NS,45.6,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+DEVYANI.NS,45.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+JPPOWER.NS,45.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+HCLTECH.NS,44.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+TATASTEEL.NS,44.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+BERGEPAINT.NS,44.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 YESBANK.NS,43.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-TCS.NS,43.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-BIOCON.NS,43.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-DEVYANI.NS,43.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
+JUBLFOOD.NS,43.5,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
 ZENSARTECH.NS,42.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Low Confidence
-EICHERMOT.NS,40.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-MGL.NS,40.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+CHOLAFIN.NS,41.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+INFY.NS,41.0,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+MGL.NS,40.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+TIINDIA.NS,40.9,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
+ATGL.NS,40.1,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 MASTEK.NS,39.8,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
 FIVESTAR.NS,39.7,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-IIFL.NS,39.3,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
-CHOLAFIN.NS,36.2,MACRO RISK (60/100) — US VIX high (28.2) | India VIX elevated (15.6),Medium Confidence
