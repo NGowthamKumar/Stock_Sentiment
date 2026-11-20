@@ -3,9 +3,9 @@ us_vix_change,0.18710846,1
 us_yield_spread,0.15808238,2
 ret_lag1,0.10949999,3
 usdinr_change,0.09673712,4
-nifty_it_change,0.09220729,5
+nifty_it_change,0.09220724,5
 gold_change,0.07849838,6
-vix_change,0.07360639,7
+vix_change,0.073606364,7
 S_recency,0.05879976,8
 oil_change,0.05153765,9
 bb_pct,0.047521815,10
@@ -22,7 +22,7 @@ fii_net,0.022274833,20
 S_events,0.021666538,21
 dii_net,0.020191751,22
 S_recency_3d,0.019939844,23
-rsi,0.019556085,24
+rsi,0.019556057,24
 smartscore_velocity_3d,0.019317428,25
 pcr_oi,0.019316072,26
 price_vs_sma,0.01920262,27
