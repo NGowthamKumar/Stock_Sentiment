@@ -1,184 +1,199 @@
 ticker,xgb_3d_prob,ensemble_3d_prob,xgb_3d_signal,ens_1d_prob,both_agree,combined_signal
-GOLDBEES.NS,86.6,79.7,🟢 STRONG BULLISH,54.3,False,🔵 3d only bullish
-COCHINSHIP.NS,84.4,77.8,🟢 STRONG BULLISH,57.3,True,🟢 STRONG — Both 1d & 3d agree
-MANAPPURAM.NS,84.4,77.5,🟢 STRONG BULLISH,52.3,False,🔵 3d only bullish
-SPICEJET.NS,86.9,77.3,🟢 STRONG BULLISH,55.2,True,🟢 STRONG — Both 1d & 3d agree
-LTIM.NS,86.0,76.6,🟢 STRONG BULLISH,53.4,False,🔵 3d only bullish
-OLAELEC.NS,83.2,76.4,🟢 STRONG BULLISH,55.3,True,🟢 STRONG — Both 1d & 3d agree
-GRSE.NS,82.0,76.2,🟢 STRONG BULLISH,58.5,True,🟢 STRONG — Both 1d & 3d agree
-KPIL.NS,82.2,76.2,🟢 STRONG BULLISH,54.0,False,🔵 3d only bullish
-HINDCOPPER.NS,80.7,76.1,🟢 STRONG BULLISH,53.3,False,🔵 3d only bullish
-APLAPOLLO.NS,82.7,75.9,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
-HOMEFIRST.NS,81.1,75.9,🟢 STRONG BULLISH,54.8,False,🔵 3d only bullish
-SUZLON.NS,83.7,75.8,🟢 STRONG BULLISH,54.5,False,🔵 3d only bullish
-TITAN.NS,80.9,75.8,🟢 STRONG BULLISH,57.2,True,🟢 STRONG — Both 1d & 3d agree
-COALINDIA.NS,82.4,75.7,🟢 STRONG BULLISH,56.1,True,🟢 STRONG — Both 1d & 3d agree
-ATGL.NS,83.2,75.7,🟢 STRONG BULLISH,55.6,True,🟢 STRONG — Both 1d & 3d agree
-ADANIENT.NS,82.7,75.7,🟢 STRONG BULLISH,54.5,False,🔵 3d only bullish
-HINDZINC.NS,81.0,75.6,🟢 STRONG BULLISH,57.2,True,🟢 STRONG — Both 1d & 3d agree
-PAGEIND.NS,83.8,75.6,🟢 STRONG BULLISH,55.9,True,🟢 STRONG — Both 1d & 3d agree
-CUMMINSIND.NS,79.4,75.5,🟢 STRONG BULLISH,61.6,True,🟢 STRONG — Both 1d & 3d agree
-NAUKRI.NS,82.4,75.3,🟢 STRONG BULLISH,53.9,False,🔵 3d only bullish
-OIL.NS,82.2,75.2,🟢 STRONG BULLISH,55.2,True,🟢 STRONG — Both 1d & 3d agree
-VEDL.NS,80.5,75.2,🟢 STRONG BULLISH,56.4,True,🟢 STRONG — Both 1d & 3d agree
-ABBOTINDIA.NS,81.5,75.1,🟢 STRONG BULLISH,49.1,False,🔵 3d only bullish
-BDL.NS,82.9,75.1,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
+GOLDBEES.NS,86.9,79.5,🟢 STRONG BULLISH,53.1,False,🔵 3d only bullish
+OLAELEC.NS,85.9,78.2,🟢 STRONG BULLISH,50.0,False,🔵 3d only bullish
+SPICEJET.NS,87.1,78.1,🟢 STRONG BULLISH,48.5,False,🔵 3d only bullish
+SILVERBEES.NS,85.1,77.3,🟢 STRONG BULLISH,49.9,False,🔵 3d only bullish
+MANAPPURAM.NS,83.5,77.0,🟢 STRONG BULLISH,52.1,False,🔵 3d only bullish
+LTIM.NS,87.2,76.7,🟢 STRONG BULLISH,57.4,True,🟢 STRONG — Both 1d & 3d agree
+COALINDIA.NS,82.2,76.4,🟢 STRONG BULLISH,60.3,True,🟢 STRONG — Both 1d & 3d agree
+GRSE.NS,82.3,76.3,🟢 STRONG BULLISH,57.1,True,🟢 STRONG — Both 1d & 3d agree
+HINDZINC.NS,82.2,76.3,🟢 STRONG BULLISH,57.1,True,🟢 STRONG — Both 1d & 3d agree
+KPIL.NS,81.8,76.1,🟢 STRONG BULLISH,53.2,False,🔵 3d only bullish
+OIL.NS,82.4,76.0,🟢 STRONG BULLISH,53.0,False,🔵 3d only bullish
+ONGC.NS,82.0,75.8,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
+VEDL.NS,82.4,75.7,🟢 STRONG BULLISH,59.8,True,🟢 STRONG — Both 1d & 3d agree
+HOMEFIRST.NS,80.3,75.6,🟢 STRONG BULLISH,53.5,False,🔵 3d only bullish
+MTARTECH.NS,81.2,75.6,🟢 STRONG BULLISH,57.9,True,🟢 STRONG — Both 1d & 3d agree
+COCHINSHIP.NS,81.6,75.5,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
+CUMMINSIND.NS,77.4,75.5,🟢 STRONG BULLISH,62.3,True,🟢 STRONG — Both 1d & 3d agree
+MAZDOCK.NS,82.8,75.5,🟢 STRONG BULLISH,57.2,True,🟢 STRONG — Both 1d & 3d agree
+SAIL.NS,84.2,75.2,🟢 STRONG BULLISH,51.5,False,🔵 3d only bullish
+SKFINDIA.NS,82.9,75.2,🟢 STRONG BULLISH,53.9,False,🔵 3d only bullish
 DEVYANI.NS,81.4,75.1,🟢 STRONG BULLISH,52.4,False,🔵 3d only bullish
-BHARATFORG.NS,80.3,75.0,🟢 STRONG BULLISH,50.5,False,🔵 3d only bullish
-BERGEPAINT.NS,79.4,75.0,🟢 STRONG BULLISH,51.9,False,🔵 3d only bullish
-MAZDOCK.NS,82.0,74.9,🟢 STRONG BULLISH,61.2,True,🟢 STRONG — Both 1d & 3d agree
-JPPOWER.NS,83.2,74.8,🟢 STRONG BULLISH,55.7,True,🟢 STRONG — Both 1d & 3d agree
-SAIL.NS,83.9,74.8,🟢 STRONG BULLISH,45.2,False,🔵 3d only bullish
-MUTHOOTFIN.NS,80.5,74.7,🟢 STRONG BULLISH,52.7,False,🔵 3d only bullish
-ROUTE.NS,78.8,74.5,🟢 STRONG BULLISH,58.0,True,🟢 STRONG — Both 1d & 3d agree
-RVNL.NS,79.3,74.5,🟢 STRONG BULLISH,58.0,True,🟢 STRONG — Both 1d & 3d agree
-KEC.NS,79.6,74.4,🟢 STRONG BULLISH,54.4,False,🔵 3d only bullish
-NATIONALUM.NS,78.7,74.3,🟢 STRONG BULLISH,55.8,True,🟢 STRONG — Both 1d & 3d agree
-KAYNES.NS,82.6,74.3,🟢 STRONG BULLISH,53.8,False,🔵 3d only bullish
-TATAPOWER.NS,80.7,74.2,🟢 STRONG BULLISH,55.3,True,🟢 STRONG — Both 1d & 3d agree
-IDEA.NS,80.9,74.2,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
-DEEPAKNTR.NS,80.7,74.1,🟢 STRONG BULLISH,49.4,False,🔵 3d only bullish
-JINDALSTEL.NS,81.3,74.1,🟢 STRONG BULLISH,51.6,False,🔵 3d only bullish
-AARTIIND.NS,77.8,74.1,🟢 STRONG BULLISH,56.8,True,🟢 STRONG — Both 1d & 3d agree
-BALAMINES.NS,75.8,74.1,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
-AJANTPHARM.NS,80.6,74.0,🟢 STRONG BULLISH,50.9,False,🔵 3d only bullish
-IRCTC.NS,79.1,73.8,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
-CESC.NS,78.6,73.6,🟢 STRONG BULLISH,50.2,False,🔵 3d only bullish
-SIEMENS.NS,78.9,73.5,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
-TORNTPHARM.NS,79.5,73.4,🟢 STRONG BULLISH,47.4,False,🔵 3d only bullish
-UTIAMC.NS,79.1,73.1,🟢 STRONG BULLISH,54.8,False,🔵 3d only bullish
-GRANULES.NS,78.8,73.0,🟢 STRONG BULLISH,46.8,False,🔵 3d only bullish
-MPHASIS.NS,80.7,72.8,🟢 STRONG BULLISH,47.4,False,🔵 3d only bullish
-NMDC.NS,80.4,72.7,🟢 STRONG BULLISH,45.5,False,🔵 3d only bullish
-BIOCON.NS,79.8,72.6,🟢 STRONG BULLISH,51.5,False,🔵 3d only bullish
-LUPIN.NS,78.6,72.4,🟢 STRONG BULLISH,52.6,False,🔵 3d only bullish
-LTM.NS,80.7,72.4,🟢 STRONG BULLISH,51.4,False,🔵 3d only bullish
-BAJAJ-AUTO.NS,80.3,72.3,🟢 STRONG BULLISH,54.3,False,🔵 3d only bullish
-JUBLFOOD.NS,80.1,72.3,🟢 STRONG BULLISH,49.0,False,🔵 3d only bullish
-ONGC.NS,77.3,72.1,🟢 STRONG BULLISH,54.2,False,🔵 3d only bullish
-ALKEM.NS,80.0,72.1,🟢 STRONG BULLISH,50.0,False,🔵 3d only bullish
-JIOFIN.NS,77.5,72.1,🟢 STRONG BULLISH,55.5,True,🟢 STRONG — Both 1d & 3d agree
-SONACOMS.NS,77.0,72.1,🟢 STRONG BULLISH,57.7,True,🟢 STRONG — Both 1d & 3d agree
-SKFINDIA.NS,77.5,72.0,🟢 STRONG BULLISH,53.6,False,🔵 3d only bullish
-ASIANPAINT.NS,78.9,71.7,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
-HDFCLIFE.NS,78.8,71.7,🟢 STRONG BULLISH,52.2,False,🔵 3d only bullish
-NATCOPHARM.NS,79.4,71.5,🟢 STRONG BULLISH,55.9,True,🟢 STRONG — Both 1d & 3d agree
-NAM-INDIA.NS,78.6,71.4,🟢 STRONG BULLISH,48.6,False,🔵 3d only bullish
-ADANIPORTS.NS,78.5,71.3,🟢 STRONG BULLISH,54.5,False,🔵 3d only bullish
-TORNTPOWER.NS,77.7,71.3,🟢 STRONG BULLISH,52.9,False,🔵 3d only bullish
-TATASTEEL.NS,75.0,71.2,🟢 STRONG BULLISH,61.4,True,🟢 STRONG — Both 1d & 3d agree
-DATAPATTNS.NS,77.8,71.2,🟢 STRONG BULLISH,52.9,False,🔵 3d only bullish
-BPCL.NS,79.0,71.2,🟢 STRONG BULLISH,49.4,False,🔵 3d only bullish
-TMPV.NS,78.7,71.2,🟢 STRONG BULLISH,46.4,False,🔵 3d only bullish
-VINATIORGA.NS,75.8,71.2,🟢 STRONG BULLISH,60.4,True,🟢 STRONG — Both 1d & 3d agree
-RADICO.NS,76.9,71.1,🟢 STRONG BULLISH,58.3,True,🟢 STRONG — Both 1d & 3d agree
-BAJAJHLDNG.NS,78.4,71.1,🟢 STRONG BULLISH,51.1,False,🔵 3d only bullish
-IRCON.NS,76.3,71.0,🟢 STRONG BULLISH,52.9,False,🔵 3d only bullish
-INDUSINDBK.NS,77.9,71.0,🟢 STRONG BULLISH,43.9,False,🔵 3d only bullish
-ZYDUSLIFE.NS,77.3,70.7,🟢 STRONG BULLISH,53.5,False,🔵 3d only bullish
-COLPAL.NS,75.4,70.7,🟢 STRONG BULLISH,56.9,True,🟢 STRONG — Both 1d & 3d agree
-HINDALCO.NS,77.7,70.7,🟢 STRONG BULLISH,52.4,False,🔵 3d only bullish
-ABB.NS,75.8,70.6,🟢 STRONG BULLISH,55.2,True,🟢 STRONG — Both 1d & 3d agree
-BHEL.NS,76.3,70.5,🟢 STRONG BULLISH,57.1,True,🟢 STRONG — Both 1d & 3d agree
-SUNPHARMA.NS,74.7,70.5,🟢 STRONG BULLISH,58.5,True,🟢 STRONG — Both 1d & 3d agree
-DMART.NS,77.1,70.4,🟢 STRONG BULLISH,57.7,True,🟢 STRONG — Both 1d & 3d agree
-ETERNAL.NS,74.3,70.3,🟢 STRONG BULLISH,60.2,True,🟢 STRONG — Both 1d & 3d agree
-BOSCHLTD.NS,76.6,70.3,🟢 STRONG BULLISH,53.4,False,🔵 3d only bullish
-CAMS.NS,77.1,70.1,🟢 STRONG BULLISH,52.2,False,🔵 3d only bullish
-NESTLEIND.NS,77.7,69.7,🟢 STRONG BULLISH,52.5,False,🔵 3d only bullish
-MOTHERSON.NS,75.8,69.7,🟢 STRONG BULLISH,49.2,False,🔵 3d only bullish
-VBL.NS,76.7,69.6,🟢 STRONG BULLISH,44.9,False,🔵 3d only bullish
-TIMKEN.NS,74.3,69.4,🟢 STRONG BULLISH,45.3,False,🔵 3d only bullish
-POLICYBZR.NS,74.4,69.4,🟢 STRONG BULLISH,40.8,False,🔵 3d only bullish
-HINDUNILVR.NS,73.7,69.4,🟢 STRONG BULLISH,57.6,True,🟢 STRONG — Both 1d & 3d agree
-UBL.NS,73.6,69.4,🟢 STRONG BULLISH,62.2,True,🟢 STRONG — Both 1d & 3d agree
-IIFL.NS,71.6,69.2,🟢 STRONG BULLISH,58.9,True,🟢 STRONG — Both 1d & 3d agree
-AMBER.NS,75.5,69.2,🟢 STRONG BULLISH,52.6,False,🔵 3d only bullish
-SHRIRAMFIN.NS,72.3,69.2,🟢 STRONG BULLISH,55.6,True,🟢 STRONG — Both 1d & 3d agree
-YESBANK.NS,73.6,69.2,🟢 STRONG BULLISH,50.0,False,🔵 3d only bullish
-WESTLIFE.NS,73.2,69.2,🟢 STRONG BULLISH,59.1,True,🟢 STRONG — Both 1d & 3d agree
-DRREDDY.NS,72.1,69.0,🟢 STRONG BULLISH,55.6,True,🟢 STRONG — Both 1d & 3d agree
-AUROPHARMA.NS,75.1,68.9,🟢 STRONG BULLISH,57.7,True,🟢 STRONG — Both 1d & 3d agree
-HEROMOTOCO.NS,74.3,68.8,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
-SRF.NS,74.6,68.7,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
-OBEROIRLTY.NS,75.1,68.7,🟢 STRONG BULLISH,53.2,False,🔵 3d only bullish
-BIKAJI.NS,75.2,68.6,🟢 STRONG BULLISH,52.3,False,🔵 3d only bullish
-CIPLA.NS,73.6,68.5,🟢 STRONG BULLISH,55.3,True,🟢 STRONG — Both 1d & 3d agree
-ZENSARTECH.NS,76.3,68.5,🟢 STRONG BULLISH,45.4,False,🔵 3d only bullish
-APOLLOHOSP.NS,77.1,68.4,🟢 STRONG BULLISH,50.2,False,🔵 3d only bullish
-HAL.NS,75.1,68.4,🟢 STRONG BULLISH,53.5,False,🔵 3d only bullish
-PAYTM.NS,69.8,68.4,🟢 STRONG BULLISH,51.9,False,🔵 3d only bullish
-LAURUSLABS.NS,74.4,68.4,🟢 STRONG BULLISH,55.9,True,🟢 STRONG — Both 1d & 3d agree
-BRITANNIA.NS,75.8,68.4,🟢 STRONG BULLISH,49.0,False,🔵 3d only bullish
-INFY.NS,77.2,68.2,🟢 STRONG BULLISH,40.6,False,🔵 3d only bullish
-JSWSTEEL.NS,73.3,68.1,🟢 STRONG BULLISH,52.7,False,🔵 3d only bullish
-NH.NS,76.5,67.9,🟢 STRONG BULLISH,49.8,False,🔵 3d only bullish
-HDFCAMC.NS,73.7,67.9,🟢 STRONG BULLISH,57.4,True,🟢 STRONG — Both 1d & 3d agree
-ITC.NS,74.8,67.9,🟢 STRONG BULLISH,61.2,True,🟢 STRONG — Both 1d & 3d agree
-NTPC.NS,71.0,67.9,🟢 STRONG BULLISH,58.0,True,🟢 STRONG — Both 1d & 3d agree
-ADANIPOWER.NS,72.8,67.8,🟢 STRONG BULLISH,54.0,False,🔵 3d only bullish
-ADANIGREEN.NS,73.8,67.8,🟢 STRONG BULLISH,53.4,False,🔵 3d only bullish
-LICI.NS,72.1,67.7,🟢 STRONG BULLISH,50.3,False,🔵 3d only bullish
-TMCV.NS,72.9,67.7,🟢 STRONG BULLISH,54.6,False,🔵 3d only bullish
-BSE.NS,73.7,67.7,🟢 STRONG BULLISH,54.5,False,🔵 3d only bullish
-GODREJCP.NS,70.5,67.6,🟢 STRONG BULLISH,57.0,True,🟢 STRONG — Both 1d & 3d agree
-HCLTECH.NS,77.2,67.5,🟢 STRONG BULLISH,41.5,False,🔵 3d only bullish
-BRIGADE.NS,74.2,67.4,🟢 STRONG BULLISH,48.9,False,🔵 3d only bullish
-KIMS.NS,74.3,67.3,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
-FORTIS.NS,73.4,67.3,🟢 STRONG BULLISH,52.8,False,🔵 3d only bullish
-POWERGRID.NS,72.4,67.3,🟢 STRONG BULLISH,54.0,False,🔵 3d only bullish
-UPL.NS,74.8,67.2,🟢 STRONG BULLISH,52.2,False,🔵 3d only bullish
-EMAMILTD.NS,70.6,67.2,🟢 STRONG BULLISH,61.0,True,🟢 STRONG — Both 1d & 3d agree
-DABUR.NS,75.9,67.2,🟢 STRONG BULLISH,49.8,False,🔵 3d only bullish
-TCS.NS,75.2,67.0,🟢 STRONG BULLISH,40.7,False,🔵 3d only bullish
-PIDILITIND.NS,73.5,66.7,🟢 STRONG BULLISH,46.7,False,🔵 3d only bullish
-BAJAJFINSV.NS,71.2,66.6,🟢 STRONG BULLISH,53.8,False,🔵 3d only bullish
-HINDPETRO.NS,72.5,66.6,🟢 STRONG BULLISH,51.8,False,🔵 3d only bullish
-BALKRISIND.NS,70.9,66.4,🟢 STRONG BULLISH,49.2,False,🔵 3d only bullish
-BAJFINANCE.NS,69.9,66.3,🟢 STRONG BULLISH,48.7,False,🔵 3d only bullish
-RELIANCE.NS,68.8,66.1,🟢 STRONG BULLISH,59.4,True,🟢 STRONG — Both 1d & 3d agree
-MRF.NS,68.7,66.1,🟢 STRONG BULLISH,55.2,True,🟢 STRONG — Both 1d & 3d agree
-EICHERMOT.NS,72.6,66.1,🟢 STRONG BULLISH,55.3,True,🟢 STRONG — Both 1d & 3d agree
-TRENT.NS,71.4,66.0,🟢 STRONG BULLISH,53.1,False,🔵 3d only bullish
-IGL.NS,71.7,66.0,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
-TATACONSUM.NS,71.3,66.0,🟢 STRONG BULLISH,54.6,False,🔵 3d only bullish
-CHOLAFIN.NS,70.1,65.7,🟢 STRONG BULLISH,53.4,False,🔵 3d only bullish
-MARICO.NS,71.0,65.7,🟢 STRONG BULLISH,57.1,True,🟢 STRONG — Both 1d & 3d agree
-COFORGE.NS,70.2,65.5,🟢 STRONG BULLISH,49.9,False,🔵 3d only bullish
-ABCAPITAL.NS,70.6,65.5,🟢 STRONG BULLISH,52.9,False,🔵 3d only bullish
-PRESTIGE.NS,69.6,65.3,🟢 STRONG BULLISH,53.3,False,🔵 3d only bullish
-AXISBANK.NS,70.3,65.3,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
-ANGELONE.NS,70.6,65.3,🟢 STRONG BULLISH,49.0,False,🔵 3d only bullish
-LEMONTREE.NS,71.3,65.2,🟢 STRONG BULLISH,53.2,False,🔵 3d only bullish
-IOC.NS,68.6,65.2,🟢 STRONG BULLISH,54.3,False,🔵 3d only bullish
+MUTHOOTFIN.NS,81.0,74.9,🟢 STRONG BULLISH,52.5,False,🔵 3d only bullish
+PAGEIND.NS,83.0,74.9,🟢 STRONG BULLISH,56.4,True,🟢 STRONG — Both 1d & 3d agree
+TATAPOWER.NS,82.7,74.7,🟢 STRONG BULLISH,55.7,True,🟢 STRONG — Both 1d & 3d agree
+RVNL.NS,80.3,74.5,🟢 STRONG BULLISH,57.6,True,🟢 STRONG — Both 1d & 3d agree
+BHARATFORG.NS,80.5,74.5,🟢 STRONG BULLISH,48.9,False,🔵 3d only bullish
+NATIONALUM.NS,80.4,74.5,🟢 STRONG BULLISH,56.5,True,🟢 STRONG — Both 1d & 3d agree
+BALAMINES.NS,78.7,74.2,🟢 STRONG BULLISH,55.3,True,🟢 STRONG — Both 1d & 3d agree
+ABBOTINDIA.NS,80.8,74.2,🟢 STRONG BULLISH,50.6,False,🔵 3d only bullish
+JPPOWER.NS,82.5,74.2,🟢 STRONG BULLISH,55.5,True,🟢 STRONG — Both 1d & 3d agree
+ATGL.NS,82.2,74.2,🟢 STRONG BULLISH,55.5,True,🟢 STRONG — Both 1d & 3d agree
+KEC.NS,79.1,74.1,🟢 STRONG BULLISH,54.4,False,🔵 3d only bullish
+SUZLON.NS,82.1,74.1,🟢 STRONG BULLISH,52.7,False,🔵 3d only bullish
+UTIAMC.NS,80.1,73.9,🟢 STRONG BULLISH,54.8,False,🔵 3d only bullish
+DEEPAKNTR.NS,80.5,73.8,🟢 STRONG BULLISH,54.3,False,🔵 3d only bullish
+AARTIIND.NS,77.2,73.8,🟢 STRONG BULLISH,56.8,True,🟢 STRONG — Both 1d & 3d agree
+AJANTPHARM.NS,80.6,73.8,🟢 STRONG BULLISH,51.0,False,🔵 3d only bullish
+MPHASIS.NS,81.1,73.7,🟢 STRONG BULLISH,50.2,False,🔵 3d only bullish
+TITAN.NS,77.1,73.6,🟢 STRONG BULLISH,56.9,True,🟢 STRONG — Both 1d & 3d agree
+KAYNES.NS,82.3,73.5,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
+NBCC.NS,78.9,73.4,🟢 STRONG BULLISH,57.7,True,🟢 STRONG — Both 1d & 3d agree
+APLAPOLLO.NS,79.6,73.3,🟢 STRONG BULLISH,56.3,True,🟢 STRONG — Both 1d & 3d agree
+BDL.NS,79.8,73.2,🟢 STRONG BULLISH,54.2,False,🔵 3d only bullish
+ADANIENT.NS,79.7,73.2,🟢 STRONG BULLISH,52.3,False,🔵 3d only bullish
+SIEMENS.NS,78.3,73.2,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
+SJVN.NS,80.9,73.1,🟢 STRONG BULLISH,58.5,True,🟢 STRONG — Both 1d & 3d agree
+IRCTC.NS,77.9,73.0,🟢 STRONG BULLISH,55.2,True,🟢 STRONG — Both 1d & 3d agree
+IDEA.NS,82.0,72.9,🟢 STRONG BULLISH,53.6,False,🔵 3d only bullish
+SOLARINDS.NS,77.2,72.8,🟢 STRONG BULLISH,54.6,False,🔵 3d only bullish
+NMDC.NS,79.9,72.7,🟢 STRONG BULLISH,50.2,False,🔵 3d only bullish
+NHPC.NS,79.6,72.7,🟢 STRONG BULLISH,51.8,False,🔵 3d only bullish
+LUPIN.NS,78.4,72.6,🟢 STRONG BULLISH,52.4,False,🔵 3d only bullish
+NATCOPHARM.NS,79.4,72.5,🟢 STRONG BULLISH,55.5,True,🟢 STRONG — Both 1d & 3d agree
+HINDALCO.NS,80.3,72.5,🟢 STRONG BULLISH,50.1,False,🔵 3d only bullish
+CESC.NS,77.1,72.5,🟢 STRONG BULLISH,45.0,False,🔵 3d only bullish
+BERGEPAINT.NS,76.4,72.3,🟢 STRONG BULLISH,50.6,False,🔵 3d only bullish
+LTM.NS,80.7,72.3,🟢 STRONG BULLISH,50.9,False,🔵 3d only bullish
+JUBLFOOD.NS,80.0,72.2,🟢 STRONG BULLISH,49.7,False,🔵 3d only bullish
+NAUKRI.NS,78.1,72.1,🟢 STRONG BULLISH,50.9,False,🔵 3d only bullish
+BIOCON.NS,79.0,71.9,🟢 STRONG BULLISH,53.5,False,🔵 3d only bullish
+TMPV.NS,80.8,71.9,🟢 STRONG BULLISH,46.7,False,🔵 3d only bullish
+BAJAJ-AUTO.NS,79.4,71.8,🟢 STRONG BULLISH,55.6,True,🟢 STRONG — Both 1d & 3d agree
+JIOFIN.NS,76.5,71.7,🟢 STRONG BULLISH,53.6,False,🔵 3d only bullish
+ABB.NS,77.6,71.6,🟢 STRONG BULLISH,54.9,False,🔵 3d only bullish
+PERSISTENT.NS,78.5,71.3,🟢 STRONG BULLISH,49.2,False,🔵 3d only bullish
+DATAPATTNS.NS,77.1,71.3,🟢 STRONG BULLISH,50.8,False,🔵 3d only bullish
+TIMKEN.NS,77.1,71.3,🟢 STRONG BULLISH,45.3,False,🔵 3d only bullish
+GRANULES.NS,77.2,71.2,🟢 STRONG BULLISH,50.7,False,🔵 3d only bullish
+ADANIPORTS.NS,78.8,71.2,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
+TATAELXSI.NS,77.9,71.1,🟢 STRONG BULLISH,44.8,False,🔵 3d only bullish
+UBL.NS,75.4,71.1,🟢 STRONG BULLISH,60.9,True,🟢 STRONG — Both 1d & 3d agree
+SHRIRAMFIN.NS,76.1,70.7,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
+ZYDUSLIFE.NS,79.0,70.7,🟢 STRONG BULLISH,54.6,False,🔵 3d only bullish
+ALKEM.NS,78.9,70.7,🟢 STRONG BULLISH,48.2,False,🔵 3d only bullish
+TATATECH.NS,80.2,70.6,🟢 STRONG BULLISH,52.1,False,🔵 3d only bullish
+CIPLA.NS,76.8,70.5,🟢 STRONG BULLISH,53.3,False,🔵 3d only bullish
+DRREDDY.NS,73.6,70.3,🟢 STRONG BULLISH,56.5,True,🟢 STRONG — Both 1d & 3d agree
+INDUSINDBK.NS,78.1,70.2,🟢 STRONG BULLISH,46.9,False,🔵 3d only bullish
+BOSCHLTD.NS,77.0,70.2,🟢 STRONG BULLISH,52.7,False,🔵 3d only bullish
+BHEL.NS,76.5,70.1,🟢 STRONG BULLISH,58.6,True,🟢 STRONG — Both 1d & 3d agree
+HINDUNILVR.NS,72.0,69.9,🟢 STRONG BULLISH,61.3,True,🟢 STRONG — Both 1d & 3d agree
+HAL.NS,77.9,69.9,🟢 STRONG BULLISH,52.4,False,🔵 3d only bullish
+FORTIS.NS,76.8,69.8,🟢 STRONG BULLISH,52.7,False,🔵 3d only bullish
+IRCON.NS,75.6,69.8,🟢 STRONG BULLISH,52.7,False,🔵 3d only bullish
+SONACOMS.NS,74.5,69.8,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
+YESBANK.NS,74.7,69.8,🟢 STRONG BULLISH,46.3,False,🔵 3d only bullish
+COLPAL.NS,72.0,69.8,🟢 STRONG BULLISH,56.5,True,🟢 STRONG — Both 1d & 3d agree
+IIFL.NS,72.1,69.5,🟢 STRONG BULLISH,60.8,True,🟢 STRONG — Both 1d & 3d agree
+DMART.NS,76.0,69.4,🟢 STRONG BULLISH,58.8,True,🟢 STRONG — Both 1d & 3d agree
+BRITANNIA.NS,75.4,69.4,🟢 STRONG BULLISH,49.7,False,🔵 3d only bullish
+BRIGADE.NS,76.2,69.2,🟢 STRONG BULLISH,50.6,False,🔵 3d only bullish
+BLS.NS,72.7,69.2,🟢 STRONG BULLISH,53.8,False,🔵 3d only bullish
+KIMS.NS,76.3,69.1,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
+JINDALSTEL.NS,75.3,69.0,🟢 STRONG BULLISH,52.2,False,🔵 3d only bullish
+IRFC.NS,73.6,69.0,🟢 STRONG BULLISH,60.1,True,🟢 STRONG — Both 1d & 3d agree
+NTPC.NS,71.8,69.0,🟢 STRONG BULLISH,56.9,True,🟢 STRONG — Both 1d & 3d agree
+POLICYBZR.NS,71.9,68.9,🟢 STRONG BULLISH,42.8,False,🔵 3d only bullish
+PAYTM.NS,73.9,68.9,🟢 STRONG BULLISH,51.0,False,🔵 3d only bullish
+ETERNAL.NS,72.0,68.8,🟢 STRONG BULLISH,59.5,True,🟢 STRONG — Both 1d & 3d agree
+NESTLEIND.NS,76.1,68.8,🟢 STRONG BULLISH,56.1,True,🟢 STRONG — Both 1d & 3d agree
+IEX.NS,72.1,68.7,🟢 STRONG BULLISH,57.5,True,🟢 STRONG — Both 1d & 3d agree
+GODREJCP.NS,72.3,68.6,🟢 STRONG BULLISH,57.0,True,🟢 STRONG — Both 1d & 3d agree
+LAURUSLABS.NS,75.4,68.6,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
+LICI.NS,73.7,68.6,🟢 STRONG BULLISH,49.5,False,🔵 3d only bullish
+TATACOMM.NS,74.5,68.6,🟢 STRONG BULLISH,51.6,False,🔵 3d only bullish
+PIDILITIND.NS,75.2,68.4,🟢 STRONG BULLISH,49.5,False,🔵 3d only bullish
+SUNPHARMA.NS,68.4,68.4,🟢 STRONG BULLISH,59.5,True,🟢 STRONG — Both 1d & 3d agree
+JSWSTEEL.NS,76.2,68.3,🟢 STRONG BULLISH,50.0,False,🔵 3d only bullish
+RADICO.NS,73.3,68.3,🟢 STRONG BULLISH,55.5,True,🟢 STRONG — Both 1d & 3d agree
+OBEROIRLTY.NS,76.0,68.2,🟢 STRONG BULLISH,52.8,False,🔵 3d only bullish
+TCS.NS,75.4,68.1,🟢 STRONG BULLISH,41.4,False,🔵 3d only bullish
+DELTACORP.NS,69.8,67.8,🟢 STRONG BULLISH,54.2,False,🔵 3d only bullish
+MOTHERSON.NS,74.9,67.8,🟢 STRONG BULLISH,50.0,False,🔵 3d only bullish
+INFY.NS,75.8,67.8,🟢 STRONG BULLISH,40.6,False,🔵 3d only bullish
+JYOTHYLAB.NS,75.4,67.8,🟢 STRONG BULLISH,50.6,False,🔵 3d only bullish
+TATASTEEL.NS,72.7,67.6,🟢 STRONG BULLISH,61.2,True,🟢 STRONG — Both 1d & 3d agree
+AUROPHARMA.NS,72.3,67.6,🟢 STRONG BULLISH,57.7,True,🟢 STRONG — Both 1d & 3d agree
+IOB.NS,73.1,67.6,🟢 STRONG BULLISH,53.3,False,🔵 3d only bullish
+NAM-INDIA.NS,71.7,67.6,🟢 STRONG BULLISH,46.4,False,🔵 3d only bullish
+SRF.NS,73.1,67.5,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
+BAJAJHLDNG.NS,73.1,67.5,🟢 STRONG BULLISH,47.7,False,🔵 3d only bullish
+NYKAA.NS,74.1,67.3,🟢 STRONG BULLISH,48.8,False,🔵 3d only bullish
+VINATIORGA.NS,69.7,67.3,🟢 STRONG BULLISH,57.1,True,🟢 STRONG — Both 1d & 3d agree
+WESTLIFE.NS,70.4,67.2,🟢 STRONG BULLISH,58.4,True,🟢 STRONG — Both 1d & 3d agree
+APOLLOHOSP.NS,75.2,67.1,🟢 STRONG BULLISH,50.8,False,🔵 3d only bullish
+ADANIGREEN.NS,74.5,67.0,🟢 STRONG BULLISH,52.4,False,🔵 3d only bullish
+BPCL.NS,72.9,67.0,🟢 STRONG BULLISH,48.7,False,🔵 3d only bullish
+POWERGRID.NS,73.6,67.0,🟢 STRONG BULLISH,51.6,False,🔵 3d only bullish
+HEROMOTOCO.NS,72.9,67.0,🟢 STRONG BULLISH,58.8,True,🟢 STRONG — Both 1d & 3d agree
+CAMS.NS,71.0,66.8,🟢 STRONG BULLISH,48.1,False,🔵 3d only bullish
+NH.NS,74.5,66.8,🟢 STRONG BULLISH,48.2,False,🔵 3d only bullish
+HCLTECH.NS,75.4,66.7,🟢 STRONG BULLISH,42.5,False,🔵 3d only bullish
+ICICIBANK.NS,67.8,66.7,🟢 STRONG BULLISH,52.1,False,🔵 3d only bullish
+BHARTIARTL.NS,71.7,66.6,🟢 STRONG BULLISH,52.9,False,🔵 3d only bullish
+TATACONSUM.NS,71.3,66.3,🟢 STRONG BULLISH,53.0,False,🔵 3d only bullish
+DABUR.NS,72.5,66.3,🟢 STRONG BULLISH,54.0,False,🔵 3d only bullish
+AMBER.NS,69.9,66.3,🟢 STRONG BULLISH,49.9,False,🔵 3d only bullish
+MRF.NS,68.7,66.2,🟢 STRONG BULLISH,55.1,True,🟢 STRONG — Both 1d & 3d agree
+HDFCLIFE.NS,71.7,66.2,🟢 STRONG BULLISH,53.0,False,🔵 3d only bullish
+RELIANCE.NS,70.5,66.1,🟢 STRONG BULLISH,58.1,True,🟢 STRONG — Both 1d & 3d agree
+COFORGE.NS,71.8,66.0,🟢 STRONG BULLISH,48.1,False,🔵 3d only bullish
+IGL.NS,72.5,65.8,🟢 STRONG BULLISH,56.7,True,🟢 STRONG — Both 1d & 3d agree
+TMCV.NS,70.2,65.8,🟢 STRONG BULLISH,56.1,True,🟢 STRONG — Both 1d & 3d agree
+ITC.NS,71.9,65.7,🟢 STRONG BULLISH,63.6,True,🟢 STRONG — Both 1d & 3d agree
+ASIANPAINT.NS,69.8,65.7,🟢 STRONG BULLISH,53.5,False,🔵 3d only bullish
+EMAMILTD.NS,68.5,65.6,🟢 STRONG BULLISH,60.8,True,🟢 STRONG — Both 1d & 3d agree
+MANKIND.NS,71.9,65.4,🟢 STRONG BULLISH,41.6,False,🔵 3d only bullish
+TANLA.NS,66.6,65.3,🟢 STRONG BULLISH,49.5,False,🔵 3d only bullish
+INDHOTEL.NS,70.1,65.3,🟢 STRONG BULLISH,53.1,False,🔵 3d only bullish
+PRESTIGE.NS,71.9,65.1,🟢 STRONG BULLISH,50.9,False,🔵 3d only bullish
+TRENT.NS,70.8,65.0,🟢 STRONG BULLISH,56.4,True,🟢 STRONG — Both 1d & 3d agree
 EIHOTEL.NS,72.4,65.0,🟢 STRONG BULLISH,47.7,False,🔵 3d only bullish
-ACC.NS,71.1,64.8,🟢 STRONG BULLISH,51.1,False,🔵 3d only bullish
-MANKIND.NS,69.8,64.5,🟢 STRONG BULLISH,43.5,False,🔵 3d only bullish
-SHREECEM.NS,70.1,64.3,🟢 STRONG BULLISH,52.1,False,🔵 3d only bullish
-INDIGO.NS,68.1,64.2,🟢 STRONG BULLISH,46.5,False,🔵 3d only bullish
-INDHOTEL.NS,68.0,64.1,🟢 STRONG BULLISH,51.7,False,🔵 3d only bullish
-ADANIENSOL.NS,68.4,64.0,🟢 STRONG BULLISH,52.8,False,🔵 3d only bullish
-LODHA.NS,69.9,63.9,🟢 STRONG BULLISH,47.8,False,🔵 3d only bullish
-WIPRO.NS,75.4,63.8,🟢 STRONG BULLISH,40.7,False,🔵 3d only bullish
-GAIL.NS,66.5,63.7,🟢 STRONG BULLISH,56.9,True,🟢 STRONG — Both 1d & 3d agree
-PHOENIXLTD.NS,67.9,63.4,🟢 STRONG BULLISH,48.6,False,🔵 3d only bullish
-GODREJPROP.NS,68.6,63.2,🟢 STRONG BULLISH,51.4,False,🔵 3d only bullish
-HAVELLS.NS,68.2,62.5,🟢 STRONG BULLISH,52.9,False,🔵 3d only bullish
-DLF.NS,66.2,62.2,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
-BLUESTARCO.NS,67.2,61.9,🟢 STRONG BULLISH,49.1,False,🔵 3d only bullish
-SUNTV.NS,64.1,61.7,🟢 STRONG BULLISH,57.0,True,🟢 STRONG — Both 1d & 3d agree
-BEL.NS,63.1,61.7,🟢 STRONG BULLISH,57.0,True,🟢 STRONG — Both 1d & 3d agree
-DIXON.NS,64.6,61.4,🟢 STRONG BULLISH,48.1,False,🔵 3d only bullish
-PNB.NS,66.8,60.8,🟢 STRONG BULLISH,52.0,False,🔵 3d only bullish
-HDFCBANK.NS,60.7,60.7,🟢 STRONG BULLISH,52.0,False,🔵 3d only bullish
-ULTRACEMCO.NS,63.8,60.7,🟢 STRONG BULLISH,49.2,False,🔵 3d only bullish
-NIFTYBEES.NS,60.2,60.6,🟢 STRONG BULLISH,51.7,False,🔵 3d only bullish
-MARUTI.NS,64.8,60.0,🟢 STRONG BULLISH,44.0,False,🔵 3d only bullish
-LT.NS,57.9,59.9,🟢 STRONG BULLISH,59.9,True,🟢 STRONG — Both 1d & 3d agree
-SBIN.NS,67.8,59.8,🟢 STRONG BULLISH,54.1,False,🔵 3d only bullish
-BANKBARODA.NS,64.2,59.5,🟢 STRONG BULLISH,51.2,False,🔵 3d only bullish
-VOLTAS.NS,62.4,57.8,🟢 STRONG BULLISH,54.3,False,🔵 3d only bullish
-M&M.NS,60.6,57.4,🟢 STRONG BULLISH,49.5,False,🔵 3d only bullish
-ICICIBANK.NS,55.6,56.0,🟢 STRONG BULLISH,54.7,False,🔵 3d only bullish
-MAXHEALTH.NS,54.3,54.9,🟢 STRONG BULLISH,48.9,False,⚪ NEUTRAL
-KOTAKBANK.NS,51.5,51.3,🟢 STRONG BULLISH,53.7,False,⚪ NEUTRAL
+HDFCAMC.NS,69.3,64.8,🟢 STRONG BULLISH,57.4,True,🟢 STRONG — Both 1d & 3d agree
+BALKRISIND.NS,68.8,64.8,🟢 STRONG BULLISH,49.9,False,🔵 3d only bullish
+LEMONTREE.NS,71.4,64.8,🟢 STRONG BULLISH,53.8,False,🔵 3d only bullish
+ZENSARTECH.NS,71.6,64.6,🟢 STRONG BULLISH,46.3,False,🔵 3d only bullish
+DIVISLAB.NS,65.7,64.6,🟢 STRONG BULLISH,56.8,True,🟢 STRONG — Both 1d & 3d agree
+GAIL.NS,66.6,64.5,🟢 STRONG BULLISH,57.7,True,🟢 STRONG — Both 1d & 3d agree
+UPL.NS,71.7,64.3,🟢 STRONG BULLISH,55.3,True,🟢 STRONG — Both 1d & 3d agree
+LODHA.NS,69.1,64.1,🟢 STRONG BULLISH,50.0,False,🔵 3d only bullish
+MARICO.NS,66.2,64.1,🟢 STRONG BULLISH,55.9,True,🟢 STRONG — Both 1d & 3d agree
+IOC.NS,69.8,64.0,🟢 STRONG BULLISH,54.5,False,🔵 3d only bullish
+SHREECEM.NS,67.6,63.9,🟢 STRONG BULLISH,49.3,False,🔵 3d only bullish
+WIPRO.NS,75.2,63.7,🟢 STRONG BULLISH,43.0,False,🔵 3d only bullish
+AFFLE.NS,65.9,63.7,🟢 STRONG BULLISH,44.9,False,🔵 3d only bullish
+ANGELONE.NS,68.8,63.4,🟢 STRONG BULLISH,46.7,False,🔵 3d only bullish
+DLF.NS,65.2,63.1,🟢 STRONG BULLISH,51.1,False,🔵 3d only bullish
+BSE.NS,67.9,62.9,🟢 STRONG BULLISH,56.2,True,🟢 STRONG — Both 1d & 3d agree
+HINDPETRO.NS,65.9,62.9,🟢 STRONG BULLISH,53.8,False,🔵 3d only bullish
+AXISBANK.NS,67.6,62.8,🟢 STRONG BULLISH,58.1,True,🟢 STRONG — Both 1d & 3d agree
+SUNTV.NS,69.3,62.7,🟢 STRONG BULLISH,59.0,True,🟢 STRONG — Both 1d & 3d agree
+PHOENIXLTD.NS,65.3,62.6,🟢 STRONG BULLISH,48.6,False,🔵 3d only bullish
+BAJAJFINSV.NS,66.6,62.6,🟢 STRONG BULLISH,56.7,True,🟢 STRONG — Both 1d & 3d agree
+ACC.NS,69.1,62.6,🟢 STRONG BULLISH,50.8,False,🔵 3d only bullish
+ADANIPOWER.NS,64.4,62.3,🟢 STRONG BULLISH,49.8,False,🔵 3d only bullish
+EICHERMOT.NS,66.8,62.3,🟢 STRONG BULLISH,53.0,False,🔵 3d only bullish
+VOLTAS.NS,67.9,62.1,🟢 STRONG BULLISH,52.0,False,🔵 3d only bullish
+BEL.NS,62.7,61.8,🟢 STRONG BULLISH,58.9,True,🟢 STRONG — Both 1d & 3d agree
+GODREJPROP.NS,65.3,61.7,🟢 STRONG BULLISH,50.6,False,🔵 3d only bullish
+PNB.NS,65.2,61.7,🟢 STRONG BULLISH,55.3,True,🟢 STRONG — Both 1d & 3d agree
+BANKBARODA.NS,65.2,61.5,🟢 STRONG BULLISH,44.5,False,🔵 3d only bullish
+BAJFINANCE.NS,62.5,61.4,🟢 STRONG BULLISH,51.8,False,🔵 3d only bullish
+INDIGO.NS,63.4,61.4,🟢 STRONG BULLISH,48.0,False,🔵 3d only bullish
+HAVELLS.NS,63.6,61.1,🟢 STRONG BULLISH,50.9,False,🔵 3d only bullish
+DIXON.NS,65.8,61.0,🟢 STRONG BULLISH,53.2,False,🔵 3d only bullish
+BLUESTARCO.NS,65.9,61.0,🟢 STRONG BULLISH,48.7,False,🔵 3d only bullish
+KOTAKBANK.NS,63.1,60.9,🟢 STRONG BULLISH,55.4,True,🟢 STRONG — Both 1d & 3d agree
+NAVINFLUOR.NS,61.9,59.8,🟢 STRONG BULLISH,56.2,True,🟢 STRONG — Both 1d & 3d agree
+ADANIENSOL.NS,62.3,59.1,🟢 STRONG BULLISH,54.8,False,🔵 3d only bullish
+HDFCBANK.NS,56.3,58.8,🟢 STRONG BULLISH,53.0,False,🔵 3d only bullish
+ULTRACEMCO.NS,59.2,58.2,🟢 STRONG BULLISH,54.9,False,🔵 3d only bullish
+MAXHEALTH.NS,59.3,57.6,🟢 STRONG BULLISH,50.2,False,🔵 3d only bullish
+SBIN.NS,63.9,57.4,🟢 STRONG BULLISH,51.6,False,🔵 3d only bullish
+CHOLAFIN.NS,57.7,57.2,🟢 STRONG BULLISH,55.2,True,🟢 STRONG — Both 1d & 3d agree
+LT.NS,56.3,56.4,🟢 STRONG BULLISH,59.7,True,🟢 STRONG — Both 1d & 3d agree
+ABCAPITAL.NS,58.4,56.3,🟢 STRONG BULLISH,54.6,False,🔵 3d only bullish
+M&M.NS,59.0,55.0,🟢 STRONG BULLISH,49.8,False,⚪ NEUTRAL
+MARUTI.NS,56.6,54.4,🟢 STRONG BULLISH,52.5,False,⚪ NEUTRAL
